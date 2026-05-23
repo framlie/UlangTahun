@@ -25,7 +25,7 @@ for(let i=0;i<30;i++){
 }
 
 // LOGIKA SISTEM LOCK DAN COUNTDOWN UTAMA
-const targetDate = new Date('2026-05-14T00:00:00');
+const targetDate = new Date('2026-06-14T00:00:00');
 
 function checkLockAndCountdown(){
   const now = new Date();
