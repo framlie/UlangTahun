@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy 21st Birthday, Sayang!</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- CANVAS GLOBAL BARU UNTUK KEMBANG API -->
+  <canvas id="globalFwCanvas"></canvas>
+
+  <!-- ELEMENT LOCK SCREEN -->
+  <div class="lock-screen" id="lockScreen">
+    <div class="stars-bg" id="lockStars"></div>
+    <div class="lock-badge">Halaman Terkunci 🔒</div>
+    <h2>Sabar ya, Sayang... ✨</h2>
+    <p>Kejutan spesial ulang tahunmu yang ke-21 baru bisa dibuka tepat pada tanggal 14 Juni 2026. Tunggu hitungan mundur ini selesai ya!</p>
+    
+    <div class="countdown-wrap">
+      <div class="cd-box"><span class="cd-num" id="lock-d">00</span><span class="cd-label">Hari</span></div>
+      <div class="cd-box"><span class="cd-num" id="lock-h">00</span><span class="cd-label">Jam</span></div>
+      <div class="cd-box"><span class="cd-num" id="lock-m">00</span><span class="cd-label">Menit</span></div>
+      <div class="cd-box"><span class="cd-num" id="lock-s">00</span><span class="cd-label">Detik</span></div>
+    </div>
+  </div>
+
+  <!-- FITUR AUDIO PLAYER -->
+  <div class="music-player" id="musicPlayer" style="display:none;">
+    <button class="music-btn" id="musicBtn">▶</button>
+    <select class="music-select" id="musicSelect">
+      <option value="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">🎵 Beautiful Piano (Song 1)</option>
+      <option value="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3">🎵 Romantic Ambient (Song 2)</option>
+      <option value="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3">🎵 Soft Acoustic (Song 3)</option>
+    </select>
+    <audio id="bgAudio" loop></audio>
+  </div>
+
+  <!-- KONTEN UTAMA WEBSITE -->
+  <div class="site" id="mainSite">
+
+    <div class="hero" id="hero">
+      <div class="stars-bg" id="stars"></div>
+      <div class="hearts-rain" id="heartsRain"></div>
+
+      <div class="hero-badge">Selamat Ulang Tahun</div>
+      <h1>Happy 21st Birthday,<br>Sayangku ✨</h1>
+      <p>Hari ini dunia bersyukur kamu lahir. Tepat 2 bulan kita saling mengenal — dan rasanya seperti seumur hidup.</p>
+
+      <div class="countdown-wrap" id="countdown">
+        <div class="cd-box"><span class="cd-num" id="cd-h">00</span><span class="cd-label">Jam</span></div>
+        <div class="cd-box"><span class="cd-num" id="cd-m">00</span><span class="cd-label">Menit</span></div>
+        <div class="cd-box"><span class="cd-num" id="cd-s">00</span><span class="cd-label">Detik</span></div>
+      </div>
+      <div class="scroll-hint">↓ &nbsp; scroll ke bawah &nbsp; ↓</div>
+    </div>
+
+    <section class="letter-section">
+      <div class="section-label">Surat untukmu</div>
+      <h2 class="section-title" style="text-align:center;">Dari hatiku, untuk hatimu</h2>
+      <div class="divider"></div>
+      <div class="letter-card">
+        <p>Sayangku yang tercinta,</p><br>
+        <p>Tidak terasa, hari ini kamu resmi menginjak usia 21 tahun. Usia yang indah — penuh mimpi, penuh kemungkinan, penuh cahaya. Dan aku sangat beruntung bisa ada di sisimu di momen yang begitu spesial ini.</p><br>
+        <p>Dua bulan mungkin terdengar singkat. Tapi setiap hari yang kita lalui bersama terasa begitu bermakna. Setiap tawa, setiap cerita, setiap momen kecil yang kita bagi — semua itu sudah menjadi bagian dari hatiku.</p><br>
+        <p>Di hari ulang tahunmu yang ke-21 ini, aku hanya ingin bilang: terima kasih telah hadir. Terima kasih telah memilihku. Dan terima kasih telah menjadi kamu — persis seperti adanya.</p><br>
+        <p style="text-align:right; color:#ff8fb0;">Dengan cinta yang tulus,<br><em>Aku ❤️</em></p>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-label">Alasan aku cinta kamu</div>
+      <h2 class="section-title" style="text-align:center;">21 hal yang membuatmu luar biasa</h2>
+      <div class="divider"></div>
+      <div class="reasons-grid" id="reasonsGrid"></div>
+    </section>
+
+    <section>
+      <div class="section-label">Perjalanan kita</div>
+      <h2 class="section-title" style="text-align:center;">Kisah 2 bulan yang berkesan</h2>
+      <div class="divider"></div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-content">
+            <div class="tl-date">14 April 2026</div>
+            <div class="tl-title">Awal dari segalanya</div>
+            <div class="tl-desc">Hari di mana kita pertama kali saling mengenal. Siapa yang sangka, pertemuan itu akan mengubah segalanya.</div>
+          </div>
+          <div class="tl-dot"></div>
+          <div style="flex:1"></div>
+        </div>
+        <div class="tl-item">
+          <div style="flex:1"></div>
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <div class="tl-date">Minggu pertama</div>
+            <div class="tl-title">Obrolan yang tak ada habisnya</div>
+            <div class="tl-desc">Chat dari pagi sampai tengah malam. Tertawa bersama. Perasaan yang mulai tumbuh perlahan-lahan.</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-content">
+            <div class="tl-date">Bulan pertama</div>
+            <div class="tl-title">Semakin dekat</div>
+            <div class="tl-desc">Aku semakin mengenal kamu lebih dalam. Cerita hidupmu, mimpimu, hal-hal kecil yang membuatmu unik.</div>
+          </div>
+          <div class="tl-dot"></div>
+          <div style="flex:1"></div>
+        </div>
+        <div class="tl-item">
+          <div style="flex:1"></div>
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <div class="tl-date">14 Juni 2026</div>
+            <div class="tl-title">Genap 2 bulan & ulang tahunmu</div>
+            <div class="tl-desc">Hari ini, tepat 2 bulan kita bersama. Dan ini adalah momen paling manis yang pernah aku rasakan bersamamu.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALERI FOTO & VIDEO -->
+    <section>
+      <div class="section-label">Galeri Kenangan</div>
+      <h2 class="section-title" style="text-align:center;">Momen Cantik Tentangmu</h2>
+      <div class="divider"></div>
+      
+      <div class="media-gallery">
+        <div class="media-card">
+          <img src="foto1.jpg" alt="Foto Sayang 1">
+          <p class="media-caption">Senyum favoritku 🥰</p>
+        </div>
+        <div class="media-card">
+          <img src="foto2.jpg" alt="Foto Sayang 2">
+          <p class="media-caption">Saat kamu terlihat sangat menggemaskan ✨</p>
+        </div>
+        <div class="media-card video-card">
+          <video controls>
+            <source src="video.mp4" type="video/mp4">
+          </video>
+          <p class="media-caption">Momen video yang paling berkesan 🎥</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="wish-section">
+      <div class="section-label">Doa & harapan</div>
+      <h2 class="section-title">Untukmu di usia 21</h2>
+      <div class="divider"></div>
+
+      <div class="cake-wrap">
+        <svg class="cake-svg" viewBox="0 0 160 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="20" y="110" width="120" height="50" rx="12" fill="#4a1525" stroke="#ff8fb0" stroke-width="1.5"/>
+          <rect x="30" y="85" width="100" height="30" rx="10" fill="#3b0f1f" stroke="#c084fc" stroke-width="1.5"/>
+          <path d="M20 125 Q80 115 140 125" stroke="#ff8fb0" stroke-width="1" fill="none"/>
+          <path d="M30 95 Q80 88 130 95" stroke="#c084fc" stroke-width="1" fill="none"/>
+          <circle cx="50" cy="85" r="4" fill="#ff6b9d"/>
+          <circle cx="80" cy="83" r="4" fill="#c084fc"/>
+          <circle cx="110" cy="85" r="4" fill="#ff6b9d"/>
+          <line x1="50" y1="85" x2="50" y2="55" stroke="#ff6b9d" stroke-width="2"/>
+          <line x1="80" y1="83" x2="80" y2="53" stroke="#c084fc" stroke-width="2"/>
+          <line x1="110" y1="85" x2="110" y2="55" stroke="#ff6b9d" stroke-width="2"/>
+          <ellipse cx="50" cy="52" rx="5" ry="8" fill="#ffcce0" opacity="0.9"/>
+          <ellipse cx="80" cy="50" rx="5" ry="8" fill="#e9c2ff" opacity="0.9"/>
+          <ellipse cx="110" cy="52" rx="5" ry="8" fill="#ffcce0" opacity="0.9"/>
+          <text x="80" y="148" text-anchor="middle" font-family="Playfair Display, serif" font-size="13" fill="#ff8fb0">Happy Birthday!</text>
+          <text x="80" y="167" text-anchor="middle" font-family="Lato, sans-serif" font-size="10" fill="rgba(255,255,255,0.5)">21 tahun</text>
+        </svg>
+      </div>
+
+      <p class="big-wish">"Semoga usiamu yang ke-21 ini menjadi awal dari babak terindah dalam hidupmu."</p>
+      <p style="color:rgba(255,255,255,0.6); line-height:1.9; max-width:600px; margin: 0 auto; font-size:1.05rem;">
+        Semoga mimpimu tercapai satu per satu. Semoga kamu selalu sehat, bahagia, dan dikelilingi orang-orang yang benar-benar mencintaimu. Dan semoga aku bisa terus ada untuk menyaksikan setiap langkah indahmu.
+      </p>
+
+      <!-- TOMBOL UTAMA PEMICU LEDAKAN -->
+      <button class="firework-btn" id="fwBtn">Ledakkan kembang api! 🎆</button>
+    </section>
+
+    <section>
+      <div class="section-label">Janji dariku</div>
+      <h2 class="section-title" style="text-align:center;">Yang aku berikan untukmu</h2>
+      <div class="divider"></div>
+      <ul class="promise-list">
+        <li><span class="promise-icon">🌹</span><span class="promise-text">Aku berjanji untuk selalu ada — di saat kamu senang maupun sedih. Kamu tidak akan pernah merasakan sepi selama aku ada.</span></li>
+        <li><span class="promise-icon">🌙</span><span class="promise-text">Aku berjanji untuk selalu mendengarkan ceritamu, sekecil apapun itu. Karena setiap kata yang kamu ucapkan berharga bagiku.</span></li>
+        <li><span class="promise-icon">⭐</span><span class="promise-text">Aku berjanji untuk selalu mendukung mimpi-mimpimu. Apapun yang kamu kejar, aku akan jadi orang pertama yang mendorongmu ke depan.</span></li>
+        <li><span class="promise-icon">🌸</span><span class="promise-text">Aku berjanji untuk membuat setiap hari bersamamu terasa istimewa — karena kamu memang istimewa.</span></li>
+        <li><span class="promise-icon">💫</span><span class="promise-text">Aku berjanji untuk mencintaimu dengan tulus, sabar, dan sepenuh hati — hari ini dan seterusnya.</span></li>
+      </ul>
+    </section>
+
+    <div class="final-section" id="finalSection">
+      <p class="big">Selamat Ulang Tahun,<br>Sayangku 🌹</p>
+      <div class="divider"></div>
+      <p style="color:rgba(255,255,255,0.65); font-size:1.1rem; line-height:1.9; max-width:500px; margin:0 auto;">
+        Dua bulan bersama kamu terasa seperti sebuah keajaiban kecil yang terus tumbuh setiap harinya. Selamat memasuki usia 21 — tahun yang penuh harapan, penuh cinta, dan penuh kamu.
+      </p>
+      <p class="signature">— Selalu untukmu, dengan cinta ❤️</p>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
