@@ -292,3 +292,93 @@ const obs = new IntersectionObserver((entries) => {
 
 const finalSec = document.getElementById('finalSection');
 if (finalSec) obs.observe(finalSec);
+/* ==========================================================================
+   EFEK KLIK LAYAR: MUNCUL PARTIKEL HATI (LOVE)
+   ========================================================================== */
+document.getElementById('lockScreen').addEventListener('click', function(e) {
+  // Membuat 5 partikel hati setiap kali layar diklik
+  for (let i = 0; i < 5; i++) {
+    createHeart(e.clientX, e.clientY);
+  }
+});
+
+function createHeart(x, y) {
+  const heart = document.createElement('div');
+  heart.className = 'click-heart';
+  // Menggunakan simbol hati HTML
+  heart.innerHTML = '❤️'; 
+  
+  // Posisi awal tepat di titik kursor/sentuhan jari
+  heart.style.left = x + 'px';
+  heart.style.top = y + 'px';
+  
+  // Mengatur arah terbang acak (kiri/kanan/atas)
+  const velocityX = (Math.random() - 0.5) * 100; // Gerakan horizontal
+  const velocityY = (Math.random() * -150) - 50;  // Gerakan vertikal ke atas
+  const rotation = (Math.random() - 0.5) * 45;   // Rotasi acak
+  
+  heart.style.setProperty('--target-x', `${velocityX}px`);
+  heart.style.setProperty('--target-y', `${velocityY}px`);
+  heart.style.setProperty('--target-rot', `${rotation}deg`);
+  
+  // Ukuran acak biar bervariasi
+  const size = Math.random() * 15 + 10; // Rentang 10px - 25px
+  heart.style.fontSize = size + 'px';
+
+  // Masukkan ke dalam lockscreen
+  document.getElementById('lockScreen').appendChild(heart);
+  
+  // Hapus elemen dari HTML setelah animasi selesai (1 detik) agar tidak menumpuk sampah memori
+  setTimeout(() => {
+    heart.remove();
+  }, 1000);
+}
+/* ==========================================================================
+   EFEK REFRESH: PESAN DINAMIS ACAK (DYNAMIC QUOTES)
+   ========================================================================== */
+document.addEventListener("DOMContentLoaded", function() {
+  // 1. Kumpulan kalimat kejutan (Silakan ganti/tambah sendiri teks di dalam tanda kutip!)
+  const pesanKejutan = [
+    "Sabar ya sayangku nggak lama lagi kokk!! 💖",
+    "Jangan dicoba buat di hack ya kak, aku sudah pasang banyak pelindung 😜",
+    "Tapi kalo kamu mau jadi pacarku, countdownnya lansung selesai sih!! ✨",
+    "Ciyee yang gak sabar nungguin countdown-nya selesai... 🤭",
+    "Akses masih digembok! Coba rayu aku dulu pakai kata - kata romantis 🥞",
+    "Tenang, kejutan terbaik selalu butuh waktu yang tepat. Sabar ya, Sayang! 💕",
+    "Setiap detik countdown ini berjalan, rasa sayangku ke kamu juga nambah terus! Hahaha 🐳",
+    "Yang sabar ya sayangku, cantikku, manisku, princessku, masa depanku!!👑"
+  ];
+
+  // 2. Mengambil satu pesan secara acak
+  const indeksAcak = Math.floor(Math.random() * pesanKejutan.length);
+  const pesanTerpilih = pesanKejutan[indeksAcak];
+
+  // 3. Menampilkan pesan acak tersebut ke layar
+  const subtitleElemen = document.getElementById("lockSubtitle");
+  if (subtitleElemen) {
+    subtitleElemen.innerText = pesanTerpilih;
+  }
+});
+/* ==========================================================================
+   PERBAIKAN LOGIKA GETAR (MENEMBAK LANGSUNG KE CONTAINER)
+   ========================================================================== */
+document.getElementById('btnUnlock').addEventListener('click', function(e) {
+  e.stopPropagation(); 
+
+  // Mengambil container utama countdown
+  const countdownContainer = document.querySelector('.lock-countdown-container');
+  
+  if (countdownContainer) {
+    // 1. Hapus dulu class-nya jika sebelumnya sudah pernah terpasang
+    countdownContainer.classList.remove('shake-animation');
+    
+    // Trick bumbu dapur coding: memicu "reflow" agar browser me-reset animasi CSS
+    void countdownContainer.offsetWidth; 
+    
+    // 2. Pasang kembali class animasi getar
+    countdownContainer.classList.add('shake-animation');
+  }
+
+  // 3. Munculkan pesan pop-up
+  alert("Jangan dibuka paksa sayang!!! ❌ Gak sabaran banget ya? Tungguin countdown-nya selesai yaa atau nggak jadi pacarku dulu hehe!! 🥞😜");
+});

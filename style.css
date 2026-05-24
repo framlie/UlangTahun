@@ -276,10 +276,18 @@ body {
 /* Subtitle/Keterangan di bawah judul */
 .lock-subtitle {
   font-size: 14px !important;
-  max-width: 500px !important; /* Membuat teks membungkus rapi di tengah */
+  max-width: 500px !important;
   margin: 0 auto 35px auto !important;
   line-height: 1.6 !important;
   color: rgba(255, 255, 255, 0.7) !important;
+  
+  /* Tambahan animasi fade-in halus saat refresh */
+  animation: fadeInSubtitle 1.5s ease-in-out;
+}
+
+@keyframes fadeInSubtitle {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 
@@ -833,6 +841,72 @@ section {
     100% { transform: translate(-220px, 154px) rotate(-35deg); opacity: 0; }
   }
 }
+/* ==========================================================================
+   ANIMASI PARTIKEL HATI SAAT KLIK
+   ========================================================================== */
+.click-heart {
+  position: fixed;
+  pointer-events: none; /* Supaya tidak mengganggu klik elemen lain */
+  z-index: 10001; /* Di depan seluruh elemen lockscreen */
+  user-select: none;
+  animation: flyAndFade 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes flyAndFade {
+  0% {
+    transform: translate(-50%, -50%) translate(0, 0) rotate(0deg);
+    opacity: 1;
+    filter: drop-shadow(0 0 2px rgba(255, 143, 176, 0.8));
+  }
+  100% {
+    /* Terbang ke arah acak sesuai variabel JS dan memudar */
+    transform: translate(-50%, -50%) translate(var(--target-x), var(--target-y)) rotate(var(--target-rot));
+    opacity: 0;
+  }
+}
+/* ==========================================================================
+   CUSTOM CURSOR BINTANG (HANYA MUNCUL DI LAPTOP/PC)
+   ========================================================================== */
+.lock-screen {
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40' style='font-size:24px'><text y='30'>✨</text></svg>"), auto !important;
+}
+
+/* ==========================================================================
+   ANIMASI GETAR (SHAKE) SAAT SALAH KLIK
+   ========================================================================== */
+.shake-animation {
+  animation: shake 0.5s ease-in-out !important;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-6px); }
+  20%, 40%, 60%, 80% { transform: translateX(6px); }
+}
+
+/* Style Tombol "Buka Sekarang" biar Estetik & Serasi */
+.lock-btn-unlock {
+  background: transparent !important;
+  border: 1px solid rgba(255, 143, 176, 0.4) !important;
+  color: #ff8fb0 !important;
+  padding: 10px 24px !important;
+  font-size: 13px !important;
+  font-weight: bold !important;
+  letter-spacing: 1px !important;
+  border-radius: 20px !important;
+  text-transform: uppercase !important;
+  margin-top: 30px !important;
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40' style='font-size:24px'><text y='30'>🔑</text></svg>"), pointer !important; /* Kursor berubah jadi kunci pas hover tombol */
+  transition: all 0.3s ease !important;
+  z-index: 5;
+  position: relative;
+}
+
+.lock-btn-unlock:hover {
+  background: rgba(255, 143, 176, 0.15) !important;
+  box-shadow: 0 0 15px rgba(255, 143, 176, 0.3) !important;
+}
 
 /* ==========================================================================
    MEDIA QUERY: PENYESUAIAN AGAR KOMET KELIHATAN DI HP
@@ -873,6 +947,7 @@ section {
     }
   }
 }
+
 
 /* ==========================================================================
    16. MEDIA QUERY (RESPONSIF SMARTPHONE)
