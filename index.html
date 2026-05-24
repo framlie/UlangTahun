@@ -4,15 +4,505 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Happy 21st Birthday, Kak Marcia!</title>
-  <link rel="stylesheet" href="style.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body { background: #0d0014; overflow-x: hidden; }
+
+    /* ===== CANVAS KEMBANG API GLOBAL ===== */
+    #globalFwCanvas {
+      position: fixed; top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      z-index: 99998; pointer-events: none;
+    }
+
+    /* ===== AUDIO PLAYER ===== */
+    .music-player {
+      position: fixed; bottom: 20px; right: 20px;
+      z-index: 999999 !important;
+      background: rgba(13, 0, 20, 0.9);
+      border: 1px solid rgba(255, 143, 176, 0.4);
+      padding: 12px 18px; border-radius: 30px;
+      backdrop-filter: blur(10px);
+      display: flex !important; align-items: center; gap: 12px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.6);
+    }
+    .music-btn {
+      background: #ff8fb0; border: none;
+      width: 36px; height: 36px; border-radius: 50%;
+      color: #0d0014; font-size: 14px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: transform 0.2s, background 0.2s;
+    }
+    .music-btn:hover { transform: scale(1.05); background: #ff6b9d; }
+    .music-box { max-width: 160px; overflow: hidden; position: relative; display: flex; align-items: center; padding-right: 10px; }
+    .music-select {
+      background: transparent; border: none; color: #fff;
+      font-size: 16px; font-family: 'Lato', sans-serif;
+      cursor: pointer; outline: none; white-space: nowrap;
+      padding-left: 15px; padding-right: 30px; width: auto;
+      -webkit-appearance: none; -moz-appearance: none; appearance: none;
+      animation: textMarquee 5s linear infinite;
+    }
+    .music-select option { background: #1a0030; color: #fff; }
+    @keyframes textMarquee {
+      0% { transform: translateX(150px); }
+      100% { transform: translateX(-100%); }
+    }
+    .music-player:hover .music-select, .music-select:focus { animation-play-state: paused; }
+
+    /* ===== LOCK SCREEN ===== */
+    .lock-screen {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: radial-gradient(ellipse at center, #1a0030 0%, #0d0014 70%);
+      z-index: 9999;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding: 2rem; color: #fff;
+      font-family: 'Lato', sans-serif;
+      transition: opacity 1s ease, visibility 1s;
+      cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40' style='font-size:24px'><text y='30'>✨</text></svg>"), auto !important;
+    }
+    .lock-badge {
+      background: rgba(255, 100, 150, 0.15);
+      border: 1px solid rgba(255, 100, 150, 0.4);
+      border-radius: 50px; padding: 8px 24px;
+      font-size: 12px; letter-spacing: 3px; text-transform: uppercase;
+      color: #ff8fb0; margin-bottom: 2rem;
+    }
+    .lock-title {
+      font-family: 'Playfair Display', serif !important;
+      font-size: 3.2rem !important; font-weight: 700 !important;
+      color: #ffffff !important; line-height: 1.3 !important;
+      margin-bottom: 15px !important;
+      text-shadow: 0 0 20px rgba(255, 255, 255, 0.2) !important;
+    }
+    .lock-subtitle {
+      font-size: 14px !important; max-width: 500px !important;
+      margin: 0 auto 35px auto !important; line-height: 1.6 !important;
+      color: rgba(255, 255, 255, 0.7) !important;
+      animation: fadeInSubtitle 1.5s ease-in-out;
+    }
+    @keyframes fadeInSubtitle {
+      from { opacity: 0; transform: translateY(5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .lock-countdown-container {
+      display: flex !important; flex-direction: row !important;
+      flex-wrap: nowrap !important; justify-content: center !important;
+      align-items: center !important; gap: 18px !important;
+      width: 100% !important; z-index: 2;
+    }
+    .lock-countdown-container .lock-cd-box {
+      background: #251235 !important;
+      border: 1px solid rgba(255, 143, 176, 0.4) !important;
+      width: 90px !important; height: 120px !important; border-radius: 18px !important;
+      display: flex !important; flex-direction: column !important;
+      justify-content: center !important; align-items: center !important; padding: 0 !important;
+    }
+    .lock-cd-num {
+      font-size: 2.4rem !important; font-weight: bold !important;
+      color: #ff8fb0 !important; line-height: 1 !important; margin-bottom: 10px !important;
+    }
+    .lock-cd-label {
+      font-size: 10px !important; text-transform: uppercase !important;
+      color: rgba(255, 143, 176, 0.6) !important;
+      letter-spacing: 1.5px !important; line-height: 1 !important;
+    }
+    .lock-btn-unlock {
+      background: transparent !important;
+      border: 1px solid rgba(255, 143, 176, 0.4) !important;
+      color: #ff8fb0 !important; padding: 10px 24px !important;
+      font-size: 13px !important; font-weight: bold !important;
+      letter-spacing: 1px !important; border-radius: 20px !important;
+      text-transform: uppercase !important; margin-top: 30px !important;
+      cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40' style='font-size:24px'><text y='30'>🔑</text></svg>"), pointer !important;
+      transition: all 0.3s ease !important; z-index: 5; position: relative;
+    }
+    .lock-btn-unlock:hover {
+      background: rgba(255, 143, 176, 0.15) !important;
+      box-shadow: 0 0 15px rgba(255, 143, 176, 0.3) !important;
+    }
+
+    /* ===== SHOOTING STARS ===== */
+    .shooting-stars-container {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      overflow: hidden; pointer-events: none; z-index: 9999;
+    }
+    .shooting-star {
+      position: absolute; width: 2px; height: 2px;
+      border-radius: 50%; opacity: 0; transform: rotate(-35deg);
+      animation: cometShower 5s linear infinite;
+    }
+    .shooting-star::before {
+      content: ''; position: absolute; top: 50%;
+      transform: translateY(-50%); width: 160px; height: 1px;
+    }
+    .shooting-star.putih { background: linear-gradient(90deg, #ffffff, rgba(255,255,255,0)); filter: drop-shadow(0 0 4px #ffffff); }
+    .shooting-star.putih::before { background: linear-gradient(90deg, rgba(255,255,255,0.8), transparent); }
+    .shooting-star.ungu { background: linear-gradient(90deg, #c084fc, rgba(192,132,252,0)); filter: drop-shadow(0 0 4px #c084fc); }
+    .shooting-star.ungu::before { background: linear-gradient(90deg, rgba(192,132,252,0.8), transparent); }
+    .shooting-star:nth-child(1) { top: -10%; left: 50%; animation-delay: 0s; animation-duration: 3.5s; }
+    .shooting-star:nth-child(2) { top: -5%; left: 80%; animation-delay: 1.5s; animation-duration: 4.5s; }
+    .shooting-star:nth-child(3) { top: 10%; left: 40%; animation-delay: 2.5s; animation-duration: 3s; }
+    .shooting-star:nth-child(4) { top: -15%; left: 70%; animation-delay: 4s; animation-duration: 5s; }
+    @keyframes cometShower {
+      0% { transform: translate(0,0) rotate(-35deg); opacity: 0; }
+      5% { opacity: 1; }
+      15% { transform: translate(-350px,245px) rotate(-35deg); opacity: 0; }
+      100% { transform: translate(-350px,245px) rotate(-35deg); opacity: 0; }
+    }
+
+    /* ===== CLICK HEART ===== */
+    .click-heart {
+      position: fixed; pointer-events: none; z-index: 10001;
+      user-select: none;
+      animation: flyAndFade 1s cubic-bezier(0.25,1,0.5,1) forwards;
+      transform: translate(-50%,-50%);
+    }
+    @keyframes flyAndFade {
+      0% { transform: translate(-50%,-50%) translate(0,0) rotate(0deg); opacity: 1; }
+      100% { transform: translate(-50%,-50%) translate(var(--target-x),var(--target-y)) rotate(var(--target-rot)); opacity: 0; }
+    }
+    .shake-animation { animation: shake 0.5s ease-in-out !important; }
+    @keyframes shake {
+      0%,100% { transform: translateX(0); }
+      10%,30%,50%,70%,90% { transform: translateX(-6px); }
+      20%,40%,60%,80% { transform: translateX(6px); }
+    }
+
+    /* ===== SITE / MAIN CONTENT ===== */
+    .site {
+      font-family: 'Lato', sans-serif;
+      background: #0d0014; color: #fff;
+      overflow-x: hidden;
+      display: none; /* JS akan mengubah ini menjadi block saat countdown selesai */
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center; padding: 2rem;
+      background: radial-gradient(ellipse at center, #1a0030 0%, #0d0014 70%);
+      position: relative; overflow: hidden;
+    }
+    .hero-badge {
+      background: rgba(255,100,150,0.2);
+      border: 1px solid rgba(255,100,150,0.5);
+      border-radius: 50px; padding: 8px 24px;
+      font-size: 13px; letter-spacing: 3px; text-transform: uppercase;
+      color: #ff8fb0; margin-bottom: 2rem;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%,100% { box-shadow: 0 0 0 0 rgba(255,100,150,0.3); }
+      50% { box-shadow: 0 0 20px 8px rgba(255,100,150,0.1); }
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem,7vw,5rem); line-height: 1.2; margin-bottom: 1.5rem;
+      background: linear-gradient(135deg,#ff8fb0,#ffcce0,#c084fc,#ff8fb0);
+      background-size: 300% 300%;
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      animation: gradShift 4s ease infinite;
+    }
+    @keyframes gradShift {
+      0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; }
+    }
+    .hero p { font-size: 1.1rem; color: rgba(255,255,255,0.7); max-width: 500px; line-height: 1.8; margin-bottom: 2.5rem; }
+    .scroll-hint { color: rgba(255,255,255,0.4); font-size: 13px; letter-spacing: 2px; animation: bounce 2s infinite; }
+    @keyframes bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(8px); } }
+
+    /* ===== COUNTDOWN (HERO) ===== */
+    .countdown-wrap { display: flex; gap: 16px; margin-bottom: 2.5rem; }
+    .cd-box {
+      background: rgba(255,143,176,0.08);
+      border: 1px solid rgba(255,143,176,0.25);
+      border-radius: 16px; padding: 16px 20px;
+      display: flex; flex-direction: column; align-items: center; min-width: 75px;
+    }
+    .cd-num { font-size: 2rem; font-weight: 700; color: #ff8fb0; line-height: 1; margin-bottom: 6px; }
+    .cd-label { font-size: 10px; text-transform: uppercase; color: rgba(255,143,176,0.6); letter-spacing: 1.5px; }
+
+    /* ===== PARTICLE BACKGROUND ===== */
+    .stars-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; overflow: hidden; }
+    .star { position: absolute; background: #fff; border-radius: 50%; animation: twinkle 3s infinite alternate; }
+    @keyframes twinkle { 0% { opacity: 0.2; } 100% { opacity: 1; } }
+    .hearts-rain { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
+    .heart-drop { position: absolute; top: -40px; font-size: 20px; animation: fallDown linear infinite; }
+    @keyframes fallDown {
+      0% { transform: translateY(0) rotate(0deg); opacity: 0.7; }
+      100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+    }
+
+    /* ===== SECTIONS ===== */
+    section { padding: 6rem 2rem; max-width: 900px; margin: 0 auto; }
+    .section-label { font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: #c084fc; margin-bottom: 1rem; text-align: center; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem,4vw,3rem); margin-bottom: 1.5rem; }
+    .divider { width: 80px; height: 2px; background: linear-gradient(to right,transparent,#ff8fb0,transparent); margin: 1rem auto; }
+
+    /* ===== LETTER ===== */
+    .letter-section { text-align: center; }
+    .letter-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,143,176,0.2);
+      border-radius: 24px; padding: 3rem;
+      text-align: left; position: relative;
+      font-size: 1.05rem; line-height: 2;
+      color: rgba(255,255,255,0.85);
+      font-family: 'Playfair Display', serif; font-style: italic;
+    }
+    .letter-card::before {
+      content: '\201C'; font-size: 8rem; color: rgba(255,143,176,0.1);
+      position: absolute; top: -20px; left: 20px; font-family: serif; line-height: 1;
+    }
+
+    /* ===== REASONS GRID ===== */
+    .reasons-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap: 16px; margin-top: 2rem; }
+    .reason-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(192,132,252,0.2);
+      border-radius: 20px; padding: 1.5rem;
+      transition: transform 0.3s, border-color 0.3s; cursor: default;
+    }
+    .reason-card:hover { transform: translateY(-6px); border-color: rgba(255,143,176,0.5); }
+    .reason-num { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: rgba(255,143,176,0.3); font-weight: 700; }
+    .reason-text { font-size: 0.95rem; color: rgba(255,255,255,0.75); margin-top: 8px; line-height: 1.7; }
+
+    /* ===== TIMELINE ===== */
+    .timeline { position: relative; margin-top: 3rem; }
+    .timeline::before {
+      content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 1px;
+      background: linear-gradient(to bottom,transparent,rgba(255,143,176,0.4),transparent);
+      transform: translateX(-50%);
+    }
+    .tl-item { display: flex; gap: 2rem; margin-bottom: 3rem; align-items: center; }
+    .tl-item:nth-child(even) { flex-direction: row-reverse; }
+    .tl-dot {
+      width: 14px; height: 14px; border-radius: 50%;
+      background: #ff8fb0; border: 3px solid #0d0014;
+      box-shadow: 0 0 0 4px rgba(255,143,176,0.3);
+      flex-shrink: 0; position: relative; z-index: 1;
+    }
+    .tl-content {
+      flex: 1; background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,143,176,0.15);
+      border-radius: 16px; padding: 1.25rem 1.5rem;
+    }
+    .tl-date { font-size: 11px; letter-spacing: 2px; color: #c084fc; text-transform: uppercase; margin-bottom: 4px; }
+    .tl-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; margin-bottom: 6px; }
+    .tl-desc { font-size: 0.9rem; color: rgba(255,255,255,0.6); line-height: 1.7; }
+
+    /* ===== MEDIA GALLERY ===== */
+    .media-gallery { display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap: 24px; margin-top: 3rem; }
+    .media-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,143,176,0.2);
+      border-radius: 20px; padding: 12px; overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+    .media-card:hover { transform: translateY(-5px); border-color: rgba(255,143,176,0.6); }
+    .media-card img, .media-card video { width: 100%; height: 250px; object-fit: cover; border-radius: 12px; background: #000; outline: none; }
+    .media-card.video-card video { object-fit: contain; }
+    .media-caption { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.95rem; color: rgba(255,255,255,0.8); text-align: center; margin-top: 12px; }
+
+    /* ===== WISH SECTION ===== */
+    .wish-section { text-align: center; }
+    .big-wish { font-family: 'Playfair Display', serif; font-size: clamp(1.5rem,4vw,2.5rem); color: #ff8fb0; margin: 2rem 0; line-height: 1.6; font-style: italic; }
+    .cake-wrap { display: flex; justify-content: center; margin: 3rem 0; }
+    .cake-svg { width: 160px; height: auto; }
+
+    /* ===== FIREWORK BUTTON ===== */
+    .firework-btn {
+      background: linear-gradient(135deg,#ff6b9d,#c084fc);
+      border: none; border-radius: 50px; padding: 14px 36px;
+      color: white; font-size: 1rem; cursor: pointer; margin-top: 2.5rem;
+      letter-spacing: 1px; font-weight: bold;
+      box-shadow: 0 4px 15px rgba(255,107,157,0.4);
+      transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+    }
+    .firework-btn:hover { transform: scale(1.05); box-shadow: 0 6px 20px rgba(255,107,157,0.6); opacity: 0.95; }
+
+    /* ===== PROMISE LIST ===== */
+    .promise-list { list-style: none; display: grid; gap: 16px; margin-top: 2rem; }
+    .promise-list li {
+      display: flex; align-items: flex-start; gap: 16px;
+      background: rgba(255,255,255,0.03); border-radius: 16px;
+      padding: 1.25rem; border: 1px solid rgba(192,132,252,0.15); text-align: left;
+    }
+    .promise-icon { font-size: 1.5rem; flex-shrink: 0; }
+    .promise-text { color: rgba(255,255,255,0.8); line-height: 1.7; font-size: 0.95rem; }
+
+    /* ===== FINAL SECTION ===== */
+    .final-section { text-align: center; padding: 8rem 2rem; background: radial-gradient(ellipse at center,#1a0030 0%,#0d0014 70%); }
+    .final-section .big { font-family: 'Playfair Display', serif; font-size: clamp(2rem,6vw,4rem); margin-bottom: 1rem; }
+    .signature { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.3rem; color: #ff8fb0; margin-top: 2rem; }
+
+    /* ===== FITUR BARU: PESAN RAHASIA ===== */
+    .secret-section { text-align: center; padding: 6rem 2rem; max-width: 700px; margin: 0 auto; }
+    .secret-envelope {
+      display: inline-block; cursor: pointer;
+      font-size: 6rem; margin: 2rem 0;
+      animation: floatEnvelope 3s ease-in-out infinite;
+      transition: transform 0.3s;
+      filter: drop-shadow(0 0 20px rgba(255,143,176,0.5));
+    }
+    .secret-envelope:hover { transform: scale(1.1); }
+    @keyframes floatEnvelope {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+    .secret-message-box {
+      background: rgba(255,143,176,0.06);
+      border: 1px solid rgba(255,143,176,0.3);
+      border-radius: 24px; padding: 2.5rem;
+      margin-top: 1.5rem; display: none;
+      animation: fadeSlideIn 0.6s ease;
+      font-family: 'Playfair Display', serif;
+      font-style: italic; font-size: 1.1rem;
+      color: rgba(255,255,255,0.9); line-height: 1.9;
+    }
+    .secret-message-box.open { display: block; }
+    @keyframes fadeSlideIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    .secret-hint { font-size: 13px; color: rgba(255,143,176,0.6); letter-spacing: 2px; text-transform: uppercase; margin-top: 0.5rem; }
+
+    /* ===== FITUR BARU: LOVE METER / QUIZ ===== */
+    .quiz-section { text-align: center; padding: 6rem 2rem; max-width: 700px; margin: 0 auto; }
+    .quiz-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(192,132,252,0.25);
+      border-radius: 24px; padding: 2.5rem; margin-top: 2rem;
+    }
+    .quiz-question { font-family: 'Playfair Display', serif; font-size: 1.3rem; margin-bottom: 1.5rem; line-height: 1.6; }
+    .quiz-options { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .quiz-opt {
+      background: rgba(255,143,176,0.07);
+      border: 1px solid rgba(255,143,176,0.25);
+      border-radius: 14px; padding: 14px 16px;
+      cursor: pointer; font-size: 0.9rem; color: rgba(255,255,255,0.8);
+      transition: all 0.25s; text-align: left; font-family: 'Lato', sans-serif;
+    }
+    .quiz-opt:hover { background: rgba(255,143,176,0.18); border-color: #ff8fb0; color: #fff; }
+    .quiz-opt.correct { background: rgba(100,255,150,0.15); border-color: rgba(100,255,150,0.6); color: #aaffcc; pointer-events: none; }
+    .quiz-opt.wrong { background: rgba(255,80,80,0.12); border-color: rgba(255,80,80,0.4); color: rgba(255,120,120,0.8); pointer-events: none; }
+    .quiz-result { margin-top: 1.5rem; font-family: 'Playfair Display', serif; font-size: 1.1rem; color: #ff8fb0; font-style: italic; display: none; }
+    .quiz-nav { margin-top: 1.5rem; }
+    .quiz-next-btn {
+      background: transparent; border: 1px solid rgba(255,143,176,0.4);
+      color: #ff8fb0; padding: 10px 28px; border-radius: 20px;
+      cursor: pointer; font-size: 13px; letter-spacing: 1px;
+      text-transform: uppercase; transition: all 0.3s; display: none;
+    }
+    .quiz-next-btn:hover { background: rgba(255,143,176,0.15); }
+    .quiz-score-wrap { display: none; text-align: center; padding: 2rem 0; }
+    .quiz-score-wrap .score-num { font-family: 'Playfair Display', serif; font-size: 4rem; color: #ff8fb0; }
+    .quiz-score-wrap .score-msg { font-size: 1.1rem; color: rgba(255,255,255,0.75); margin-top: 1rem; line-height: 1.7; }
+    .quiz-progress { display: flex; gap: 6px; justify-content: center; margin-bottom: 1.5rem; }
+    .quiz-pip { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,143,176,0.2); transition: background 0.3s; }
+    .quiz-pip.done { background: #ff8fb0; }
+
+    /* ===== FITUR BARU: PHOTO POLAROID ===== */
+    .polaroid-gallery { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; margin-top: 3rem; padding: 1rem; }
+    .polaroid {
+      background: #fff; padding: 14px 14px 50px 14px;
+      border-radius: 4px; box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+      transform: rotate(var(--rot)); transition: transform 0.3s, box-shadow 0.3s;
+      width: 220px; cursor: pointer; position: relative;
+    }
+    .polaroid:hover { transform: rotate(0deg) scale(1.05); box-shadow: 0 16px 50px rgba(255,143,176,0.4); z-index: 5; }
+    .polaroid img { width: 100%; height: 180px; object-fit: cover; background: #1a0030; display: block; border-radius: 2px; }
+    .polaroid-placeholder {
+      width: 100%; height: 180px; background: linear-gradient(135deg,#1a0030,#2a0845);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3rem; border-radius: 2px;
+    }
+    .polaroid-caption { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.85rem; color: #333; text-align: center; margin-top: 12px; }
+
+    /* ===== VIDEO SECTION ===== */
+    .video-section { text-align: center; padding: 6rem 2rem; max-width: 800px; margin: 0 auto; }
+    .video-frame-wrap {
+      position: relative; margin-top: 2.5rem;
+      border-radius: 24px; overflow: hidden;
+      background: #0d0014;
+      border: 1px solid rgba(255,143,176,0.3);
+      box-shadow: 0 0 60px rgba(255,143,176,0.15), 0 20px 60px rgba(0,0,0,0.6);
+      transition: box-shadow 0.4s;
+    }
+    .video-frame-wrap:hover {
+      box-shadow: 0 0 80px rgba(255,143,176,0.3), 0 20px 60px rgba(0,0,0,0.7);
+    }
+    .video-frame-wrap video {
+      width: 100%; display: block; border-radius: 24px;
+      max-height: 500px; background: #0d0014;
+    }
+    /* Dekorasi sudut video */
+    .video-frame-wrap::before,
+    .video-frame-wrap::after {
+      content: ''; position: absolute;
+      width: 40px; height: 40px; z-index: 2; pointer-events: none;
+    }
+    .video-frame-wrap::before {
+      top: 10px; left: 10px;
+      border-top: 2px solid #ff8fb0;
+      border-left: 2px solid #ff8fb0;
+      border-radius: 6px 0 0 0;
+    }
+    .video-frame-wrap::after {
+      bottom: 10px; right: 10px;
+      border-bottom: 2px solid #c084fc;
+      border-right: 2px solid #c084fc;
+      border-radius: 0 0 6px 0;
+    }
+    .video-caption {
+      font-family: 'Playfair Display', serif;
+      font-style: italic; font-size: 1rem;
+      color: rgba(255,255,255,0.6); margin-top: 1.2rem;
+      line-height: 1.7;
+    }
+
+    /* ===== TOAST NOTIFICATION ===== */
+    .toast {
+      position: fixed; bottom: 90px; left: 50%; transform: translateX(-50%) translateY(20px);
+      background: rgba(26,0,48,0.95); border: 1px solid rgba(255,143,176,0.4);
+      color: #fff; padding: 12px 24px; border-radius: 30px;
+      font-size: 14px; z-index: 99999; opacity: 0;
+      transition: all 0.4s ease; pointer-events: none; text-align: center;
+      backdrop-filter: blur(10px); white-space: nowrap;
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    /* ===== SCROLL REVEAL ===== */
+    .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease, transform 0.8s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 600px) {
+      .timeline::before { left: 20px; }
+      .tl-item, .tl-item:nth-child(even) { flex-direction: column; align-items: flex-start; padding-left: 40px; }
+      .tl-dot { position: absolute; left: 13px; }
+      .letter-card { padding: 2rem 1.5rem; }
+      .quiz-options { grid-template-columns: 1fr; }
+      .polaroid { width: 160px; }
+      .polaroid img, .polaroid-placeholder { height: 140px; }
+    }
+    @media screen and (max-width: 480px) {
+      .lock-title { font-size: 2.2rem !important; }
+      .lock-countdown-container { gap: 8px !important; }
+      .lock-countdown-container .lock-cd-box { width: 70px !important; height: 95px !important; }
+      .lock-cd-num { font-size: 1.6rem !important; margin-bottom: 6px !important; }
+      .lock-cd-label { font-size: 8px !important; letter-spacing: 1px !important; }
+    }
+  </style>
 </head>
 <body>
 
-  <!-- CANVAS GLOBAL UTAMA UNTUK KEMBANG API -->
   <canvas id="globalFwCanvas"></canvas>
 
-  <!-- FITUR AUDIO PLAYER (MUNCUL SEJAK AWAL LOCK SCREEN) -->
-  <!-- FITUR AUDIO PLAYER (Ditambah pembungkus music-box agar bisa bergerak) -->
+  <!-- AUDIO PLAYER -->
   <div class="music-player" id="musicPlayer">
     <button class="music-btn" id="musicBtn">▶</button>
     <div class="music-box">
@@ -24,16 +514,15 @@
     <audio id="bgAudio" loop></audio>
   </div>
 
-  <!-- ELEMENT LOCK SCREEN -->
-  <div class="lock-screen" id="lockScreen">
-    <!-- Background Bintang Statis -->
-    <div class="stars-bg" id="lockStars"></div>
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
 
-    <!-- Konten Teks -->
+  <!-- ======================== LOCK SCREEN ======================== -->
+  <div class="lock-screen" id="lockScreen">
+    <div class="stars-bg" id="lockStars"></div>
     <div class="lock-badge">Halaman Terkunci 🔒</div>
     <h1 class="lock-title">Sabar ya, kak Marcia Rianda... ✨</h1>
     <p class="lock-subtitle" id="lockSubtitle">Tunggu sampai tanggal 24 Mei 2026 yaa baru kuncinya terbuka hehe!!</p>
-    <!-- Kotak Angka Countdown (Wajib dibungkus container ini) -->
     <div class="lock-countdown-container">
       <div class="lock-cd-box">
         <div class="lock-cd-num" id="lock-d">00</div>
@@ -52,34 +541,26 @@
         <div class="lock-cd-label">Detik</div>
       </div>
     </div>
-<button class="lock-btn-unlock" id="btnUnlock">Buka Sekarang 🔓</button>
-    <!-- Efek Bintang Jatuh -->
+    <button class="lock-btn-unlock" id="btnUnlock">Buka Sekarang 🔓</button>
     <div class="shooting-stars-container">
       <div class="shooting-star putih"></div>
       <div class="shooting-star ungu"></div>
       <div class="shooting-star putih"></div>
       <div class="shooting-star ungu"></div>
     </div>
-  </div> <!-- Penutup lock-screen -->
+  </div>
 
- 
-<!-- ==========================================================================
-     KONTEN UTAMA WEBSITE (BERADA DI LUAR LOCK SCREEN)
-     ========================================================================== -->
-<div id="mainSite">
-  <!-- Isi konten website utama kamu, hero section, grid 21 alasan, dll -->
-</div>
-  <!-- KONTEN UTAMA WEBSITE -->
+  <!-- ======================== MAIN SITE ======================== -->
+  <!-- SATU div#mainSite saja, langsung dengan class .site -->
   <div class="site" id="mainSite">
 
+    <!-- HERO -->
     <div class="hero" id="hero">
       <div class="stars-bg" id="stars"></div>
       <div class="hearts-rain" id="heartsRain"></div>
-
       <div class="hero-badge">Selamat Ulang Tahun</div>
       <h1>Happy 21st Birthday,<br>Marcia Rianda ✨</h1>
       <p>Hari ini dunia bersyukur kamu lahir. Tepat 2 bulan kita saling mengenal — dan rasanya seperti seumur hidup.</p>
-
       <div class="countdown-wrap" id="countdown">
         <div class="cd-box"><span class="cd-num" id="cd-h">00</span><span class="cd-label">Jam</span></div>
         <div class="cd-box"><span class="cd-num" id="cd-m">00</span><span class="cd-label">Menit</span></div>
@@ -88,7 +569,8 @@
       <div class="scroll-hint">↓ &nbsp; scroll ke bawah &nbsp; ↓</div>
     </div>
 
-    <section class="letter-section">
+    <!-- SURAT -->
+    <section class="letter-section reveal">
       <div class="section-label">Surat untukmu</div>
       <h2 class="section-title" style="text-align:center;">Dari hatiku, untuk hatimu</h2>
       <div class="divider"></div>
@@ -101,14 +583,16 @@
       </div>
     </section>
 
-    <section>
+    <!-- 21 ALASAN -->
+    <section class="reveal">
       <div class="section-label">Alasan aku cinta kamu</div>
       <h2 class="section-title" style="text-align:center;">21 hal yang membuatmu luar biasa</h2>
       <div class="divider"></div>
       <div class="reasons-grid" id="reasonsGrid"></div>
     </section>
 
-    <section>
+    <!-- TIMELINE -->
+    <section class="reveal">
       <div class="section-label">Perjalanan kita</div>
       <h2 class="section-title" style="text-align:center;">Kisah 2 bulan yang berkesan</h2>
       <div class="divider"></div>
@@ -144,43 +628,76 @@
           <div style="flex:1"></div>
           <div class="tl-dot"></div>
           <div class="tl-content">
-            <div class="tl-date">14 Juni 2026</div>
-            <div class="tl-title">Genap 2 bulan & ulang tahunmu</div>
-            <div class="tl-desc">Hari ini, tepat 2 bulan kita bersama. Dan ini adalah momen paling manis yang pernah aku rasakan bersamamu.</div>
+            <div class="tl-date">24 Mei 2026</div>
+            <div class="tl-title">Hari ulang tahunmu yang ke-21</div>
+            <div class="tl-desc">Hari ini, aku ucapkan selamat ulang tahun dari lubuk hati yang paling dalam. Semoga kamu selalu bahagia.</div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- GALERI FOTO & VIDEO -->
-    <section>
+    <!-- ===== FITUR BARU: PESAN RAHASIA ===== -->
+    <section class="secret-section reveal">
+      <div class="section-label">Kejutan spesial</div>
+      <h2 class="section-title" style="text-align:center;">Ada pesan rahasia untukmu 💌</h2>
+      <div class="divider"></div>
+      <p style="color:rgba(255,255,255,0.55); font-size:0.95rem;">Klik amplop di bawah untuk membuka pesan tersembunyi...</p>
+      <div class="secret-envelope" id="secretEnvelope">💌</div>
+      <p class="secret-hint">✨ klik untuk membuka ✨</p>
+      <div class="secret-message-box" id="secretMsgBox">
+        <p>"Kalau kamu bisa baca ini artinya kamu sudah berani klik, dan itu salah satu hal yang aku suka dari kamu — kamu selalu penasaran dan penuh semangat. 🌸</p><br>
+        <p>Aku nggak butuh waktu lama untuk sadar bahwa kamu bukan orang biasa. Kamu itu... istimewa. Dan aku bersyukur banget bisa mengenalmu.</p><br>
+        <p>Selamat ulang tahun ya, Marcia. Semoga di usia 21 ini, kamu semakin bersinar — karena kamu memang sudah selalu bersinar dari awal." 💖</p>
+      </div>
+    </section>
+
+    <!-- ===== FITUR BARU: KUIS KENAL AKU ===== -->
+    <section class="quiz-section reveal">
+      <div class="section-label">Mini Quiz</div>
+      <h2 class="section-title" style="text-align:center;">Seberapa kenal kamu aku? 🤭</h2>
+      <div class="divider"></div>
+      <p style="color:rgba(255,255,255,0.55); font-size:0.95rem; margin-bottom:0.5rem;">Jawab 3 pertanyaan iseng ini ya!</p>
+      <div class="quiz-card" id="quizCard">
+        <div class="quiz-progress" id="quizProgress"></div>
+        <div class="quiz-question" id="quizQuestion"></div>
+        <div class="quiz-options" id="quizOptions"></div>
+        <div class="quiz-result" id="quizResult"></div>
+        <div class="quiz-nav">
+          <button class="quiz-next-btn" id="quizNext">Pertanyaan berikutnya →</button>
+        </div>
+        <div class="quiz-score-wrap" id="quizScore"></div>
+      </div>
+    </section>
+
+    <!-- GALERI FOTO -->
+    <section class="reveal">
       <div class="section-label">Galeri Kenangan</div>
       <h2 class="section-title" style="text-align:center;">Momen Cantik Tentangmu</h2>
       <div class="divider"></div>
-      
-      <div class="media-gallery">
-        <div class="media-card">
-          <img src="foto1.jpg" alt="Foto Sayang 1">
-          <p class="media-caption">Senyum favoritku 🥰</p>
+      <div class="polaroid-gallery" id="polaroidGallery">
+        <div class="polaroid" style="--rot: -3deg;">
+          <img src="foto1.jpg" alt="Foto 1" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="polaroid-placeholder" style="display:none;">🥰</div>
+          <div class="polaroid-caption">Senyum favoritku 🥰</div>
         </div>
-        <div class="media-card">
-          <img src="foto2.jpg" alt="Foto Sayang 2">
-          <p class="media-caption">Saat kamu terlihat sangat menggemaskan ✨</p>
+        <div class="polaroid" style="--rot: 2deg;">
+          <img src="foto2.jpg" alt="Foto 2" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="polaroid-placeholder" style="display:none;">✨</div>
+          <div class="polaroid-caption">Saat kamu sangat menggemaskan ✨</div>
         </div>
-        <div class="media-card video-card">
-          <video controls>
-            <source src="video.mp4" type="video/mp4">
-          </video>
-          <p class="media-caption">Momen video yang paling berkesan 🎥</p>
+        <div class="polaroid" style="--rot: -1.5deg;">
+          <img src="foto3.jpg" alt="Foto 3" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="polaroid-placeholder" style="display:none;">🌸</div>
+          <div class="polaroid-caption">Kenangan indah kita 🌸</div>
         </div>
       </div>
     </section>
 
-    <section class="wish-section">
+    <!-- WISH SECTION -->
+    <section class="wish-section reveal">
       <div class="section-label">Doa & harapan aku kepada kak Marcia Rianda</div>
       <h2 class="section-title">Untukmu di usia 21</h2>
       <div class="divider"></div>
-
       <div class="cake-wrap">
         <svg class="cake-svg" viewBox="0 0 160 180" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect x="20" y="110" width="120" height="50" rx="12" fill="#4a1525" stroke="#ff8fb0" stroke-width="1.5"/>
@@ -200,17 +717,15 @@
           <text x="80" y="167" text-anchor="middle" font-family="Lato, sans-serif" font-size="10" fill="rgba(255,255,255,0.5)">21 tahun</text>
         </svg>
       </div>
-
       <p class="big-wish">"Semoga usiamu yang ke-21 ini menjadi awal dari babak terindah dalam hidupmu."</p>
       <p style="color:rgba(255,255,255,0.6); line-height:1.9; max-width:600px; margin: 0 auto; font-size:1.05rem;">
-        Semoga mimpimu tercapai satu per satu. Semoga kamu selalu sehat, bahagia, dan dikelilingi orang-orang yang benar-benar mencintaimu. Dan semoga aku bisa terus ada disisimu untuk melihat setiap mimpi yang kamu impikan tercapai. 
+        Semoga mimpimu tercapai satu per satu. Semoga kamu selalu sehat, bahagia, dan dikelilingi orang-orang yang benar-benar mencintaimu. Dan semoga aku bisa terus ada disisimu untuk melihat setiap mimpi yang kamu impikan tercapai.
       </p>
-
-      <!-- TOMBOL UTAMA PEMICU LEDAKAN -->
       <button class="firework-btn" id="fwBtn">Ledakkan kembang api! 🎆</button>
     </section>
 
-    <section>
+    <!-- JANJI -->
+    <section class="reveal">
       <div class="section-label">Janji dariku</div>
       <h2 class="section-title" style="text-align:center;">Yang aku berikan untukmu</h2>
       <div class="divider"></div>
@@ -223,6 +738,22 @@
       </ul>
     </section>
 
+    <!-- ===== VIDEO SPESIAL ===== -->
+    <section class="video-section reveal">
+      <div class="section-label">Pesan video untukmu</div>
+      <h2 class="section-title" style="text-align:center;">Khusus untuk Marcia 🎥</h2>
+      <div class="divider"></div>
+      <p style="color:rgba(255,255,255,0.55); font-size:0.95rem; line-height:1.7;">Aku merekam ini khusus untukmu. Tonton sampai habis ya, ada sesuatu yang ingin aku sampaikan langsung dari hati...</p>
+      <div class="video-frame-wrap">
+        <video controls playsinline>
+          <source src="video.mp4" type="video/mp4">
+          Browser kamu tidak mendukung pemutaran video.
+        </video>
+      </div>
+      <p class="video-caption">🎬 &nbsp;"Karena ada hal-hal yang lebih indah disampaikan lewat gambar yang bergerak." 🌸</p>
+    </section>
+
+    <!-- FINAL -->
     <div class="final-section" id="finalSection">
       <p class="big">Selamat Ulang Tahun,<br>Sayangku Marcia 🌹</p>
       <div class="divider"></div>
@@ -232,8 +763,416 @@
       <p class="signature">— Selalu untukmu, dengan cinta ❤️</p>
     </div>
 
-  </div>
+  </div><!-- end #mainSite -->
 
-  <script src="script.js"></script>
+  <script>
+  // ==========================================================================
+  // 1. BACKGROUNDS
+  // ==========================================================================
+  function initBackgrounds(containerId, starCount) {
+    const bg = document.getElementById(containerId);
+    if (!bg) return;
+    for(let i=0;i<starCount;i++){
+      const s = document.createElement('div');
+      s.className = 'star';
+      const size = Math.random()*2.5+0.5;
+      s.style.cssText = `width:${size}px;height:${size}px;left:${Math.random()*100}%;top:${Math.random()*100}%;animation-delay:${Math.random()*4}s;animation-duration:${2+Math.random()*3}s;`;
+      bg.appendChild(s);
+    }
+  }
+  initBackgrounds('stars', 120);
+  initBackgrounds('lockStars', 60);
+
+  const heartsRain = document.getElementById('heartsRain');
+  if(heartsRain){
+    const hSymbols=['♥','❤','💕','✨','🌸'];
+    for(let i=0;i<30;i++){
+      const h=document.createElement('div');
+      h.className='heart-drop';
+      h.textContent=hSymbols[Math.floor(Math.random()*hSymbols.length)];
+      const dur=5+Math.random()*10;
+      h.style.cssText=`left:${Math.random()*100}%;font-size:${14+Math.random()*16}px;animation-duration:${dur}s;animation-delay:${Math.random()*dur}s;opacity:${0.3+Math.random()*0.5};`;
+      heartsRain.appendChild(h);
+    }
+  }
+
+  // ==========================================================================
+  // 2. LOCK SCREEN & COUNTDOWN
+  //    TARGET: 24 Mei 2026 jam 00:00 WIB (UTC+7) = 2026-05-23T17:00:00Z
+  // ==========================================================================
+  const targetDate = new Date('2026-06-14T00:00:00');
+
+  function unlockSite() {
+    const lockScreen = document.getElementById('lockScreen');
+    const mainSite = document.getElementById('mainSite');
+    if (lockScreen) {
+      lockScreen.style.opacity = '0';
+      lockScreen.style.pointerEvents = 'none';
+      setTimeout(() => { lockScreen.style.display = 'none'; }, 1000);
+    }
+    if (mainSite) {
+      mainSite.style.display = 'block';
+      // Auto-burst kembang api saat terbuka
+      setTimeout(() => {
+        spawnBurst(canvas.width/2, canvas.height/3);
+        setTimeout(()=>spawnBurst(canvas.width/4, canvas.height/4),200);
+        setTimeout(()=>spawnBurst(canvas.width*3/4, canvas.height/4),400);
+        setTimeout(()=>spawnBurst(canvas.width/2, canvas.height/2),600);
+      }, 800);
+    }
+  }
+
+  function checkLockAndCountdown(){
+    const now = new Date();
+    const diff = targetDate - now;
+
+    if(diff <= 0){
+      unlockSite();
+      ['cd-h','cd-m','cd-s'].forEach(id=>{
+        const el=document.getElementById(id);
+        if(el) el.textContent='00';
+      });
+      return true;
+    }
+
+    const days = String(Math.floor(diff/(1000*60*60*24))).padStart(2,'0');
+    const hours = String(Math.floor((diff%(1000*60*60*24))/(1000*60*60))).padStart(2,'0');
+    const minutes = String(Math.floor((diff%(1000*60*60))/(1000*60))).padStart(2,'0');
+    const seconds = String(Math.floor((diff%(1000*60))/1000)).padStart(2,'0');
+
+    const el = (id,v) => { const e=document.getElementById(id); if(e) e.textContent=v; };
+    el('lock-d',days); el('lock-h',hours); el('lock-m',minutes); el('lock-s',seconds);
+    el('cd-h',hours); el('cd-m',minutes); el('cd-s',seconds);
+    return false;
+  }
+
+  const timerInterval = setInterval(()=>{ if(checkLockAndCountdown()) clearInterval(timerInterval); },1000);
+  checkLockAndCountdown();
+
+  // ==========================================================================
+  // 3. AUDIO PLAYER
+  // ==========================================================================
+  const audio = document.getElementById('bgAudio');
+  const musicBtn = document.getElementById('musicBtn');
+  const musicSelect = document.getElementById('musicSelect');
+
+  if(audio && musicBtn && musicSelect){
+    audio.src = musicSelect.value;
+    function jalankanAudio(){
+      audio.playbackRate=1;
+      audio.play().then(()=>{ musicBtn.textContent='⏸'; }).catch(()=>{ musicBtn.textContent='▶'; });
+    }
+    musicBtn.addEventListener('click',()=>{
+      if(audio.paused) jalankanAudio(); else { audio.pause(); musicBtn.textContent='▶'; }
+    });
+    musicSelect.addEventListener('change',function(){ audio.src=this.value; jalankanAudio(); });
+    audio.addEventListener('ended',function(){
+      let next=(musicSelect.selectedIndex+1)%musicSelect.options.length;
+      musicSelect.selectedIndex=next;
+      audio.src=musicSelect.value;
+      setTimeout(jalankanAudio,100);
+    });
+  }
+
+  // ==========================================================================
+  // 4. REASONS GRID
+  // ==========================================================================
+  const reasons=[
+    'Senyummu yang bisa langsung memperbaiki hariku yang paling buruk sekalipun',
+    'Cara kamu tertawa — tulus, lepas, dan membuatku ikut bahagia',
+    'Kekuatanmu yang tersembunyi di balik penampilanmu yang lembut',
+    'Kejujuranmu dalam bercerita — aku selalu merasa aman bersamamu',
+    'Kepedulianmu pada orang-orang di sekitarmu yang kamu cintai',
+    'Cara kamu melihat dunia dengan sudut pandang yang selalu membuatku kagum',
+    'Semangatmu yang tidak pernah padam meski keadaan sedang sulit',
+    'Ketulusanmu — tidak ada yang dibuat-buat, semua dari hati',
+    'Cara kamu perhatian pada hal-hal kecil yang orang lain sering lewatkan',
+    'Suaramu yang bisa membuat hatiku tenang seketika',
+    'Keberanianmu untuk terus bermimpi besar',
+    'Cara kamu bisa membuat suasana menjadi hangat hanya dengan kehadiranmu',
+    'Kesabaran dan kelembutanmu yang membuatku ingin jadi seseorang yang lebih baik',
+    'Kamu tidak pernah takut untuk jadi dirimu sendiri — itu sangat langka',
+    'Cara kamu membuatku selalu merasa dihargai dan disayangi',
+    'Antusiasmu saat bercerita tentang hal yang kamu sukai',
+    'Kehangatan hatimu yang terasa bahkan lewat kata-kata sederhana',
+    'Cara kamu membuatku merasa diterima sepenuhnya',
+    'Keunikanmu — tidak ada yang seperti kamu di dunia ini',
+    'Kehadiranmu yang sudah mengubah hidupku menjadi lebih berwarna',
+    'Dan yang paling penting: kamu adalah kamu — dan itu lebih dari cukup'
+  ];
+  const grid=document.getElementById('reasonsGrid');
+  if(grid) reasons.forEach((r,i)=>{
+    const card=document.createElement('div');
+    card.className='reason-card';
+    card.innerHTML=`<div class="reason-num">${String(i+1).padStart(2,'0')}</div><div class="reason-text">${r}</div>`;
+    grid.appendChild(card);
+  });
+
+  // ==========================================================================
+  // 5. KEMBANG API CANVAS
+  // ==========================================================================
+  const canvas=document.getElementById('globalFwCanvas');
+  const ctx=canvas.getContext('2d');
+  let particles=[];
+  const colors=['#ff8fb0','#c084fc','#ffcce0','#ff6b9d','#e9c2ff','#ffffc2','#ffd700'];
+
+  function resizeCanvas(){ canvas.width=window.innerWidth; canvas.height=window.innerHeight; }
+  window.addEventListener('resize',resizeCanvas); resizeCanvas();
+
+  function spawnBurst(x,y){
+    for(let i=0;i<80;i++){
+      const angle=Math.random()*Math.PI*2;
+      const speed=1+Math.random()*6;
+      particles.push({x,y,vx:Math.cos(angle)*speed,vy:Math.sin(angle)*speed,life:1,color:colors[Math.floor(Math.random()*colors.length)],size:1.5+Math.random()*3});
+    }
+  }
+
+  function animateFireworks(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    particles=particles.filter(p=>{
+      p.x+=p.vx; p.y+=p.vy; p.vy+=0.06; p.life-=0.015;
+      if(p.life<=0) return false;
+      ctx.globalAlpha=p.life;
+      ctx.fillStyle=p.color;
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,p.size,0,Math.PI*2);
+      ctx.fill();
+      return true;
+    });
+    ctx.globalAlpha=1;
+    requestAnimationFrame(animateFireworks);
+  }
+  animateFireworks();
+
+  const fwBtn=document.getElementById('fwBtn');
+  if(fwBtn){
+    fwBtn.addEventListener('click',function(){
+      this.textContent='💥 Boom! 🎆';
+      const mx=canvas.width/2, my=canvas.height/2;
+      spawnBurst(mx,my-50);
+      setTimeout(()=>spawnBurst(mx-120,my-120),150);
+      setTimeout(()=>spawnBurst(mx+120,my-100),300);
+      setTimeout(()=>spawnBurst(mx-60,my+40),450);
+      setTimeout(()=>spawnBurst(mx+60,my+30),600);
+      setTimeout(()=>spawnBurst(mx,my-180),750);
+      setTimeout(()=>{ this.textContent='Ledakkan lagi! 🎆'; },3000);
+    });
+  }
+
+  // Scroll ke final section → auto burst
+  const obs=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting && e.target.id==='finalSection'){
+        const mx=canvas.width/2;
+        spawnBurst(mx-100,200); setTimeout(()=>spawnBurst(mx+100,150),300); setTimeout(()=>spawnBurst(mx,250),600);
+        obs.unobserve(e.target);
+      }
+    });
+  },{threshold:0.2});
+  const finalSec=document.getElementById('finalSection');
+  if(finalSec) obs.observe(finalSec);
+
+  // ==========================================================================
+  // 6. EFEK KLIK HATI DI LOCK SCREEN
+  // ==========================================================================
+  document.getElementById('lockScreen').addEventListener('click',function(e){
+    for(let i=0;i<5;i++) createHeart(e.clientX,e.clientY);
+  });
+
+  function createHeart(x,y){
+    const heart=document.createElement('div');
+    heart.className='click-heart';
+    heart.innerHTML='❤️';
+    heart.style.left=x+'px'; heart.style.top=y+'px';
+    const vx=(Math.random()-0.5)*100;
+    const vy=(Math.random()*-150)-50;
+    const rot=(Math.random()-0.5)*45;
+    heart.style.setProperty('--target-x',`${vx}px`);
+    heart.style.setProperty('--target-y',`${vy}px`);
+    heart.style.setProperty('--target-rot',`${rot}deg`);
+    heart.style.fontSize=(Math.random()*15+10)+'px';
+    document.getElementById('lockScreen').appendChild(heart);
+    setTimeout(()=>heart.remove(),1000);
+  }
+
+  // ==========================================================================
+  // 7. PESAN DINAMIS ACAK
+  // ==========================================================================
+  document.addEventListener("DOMContentLoaded",function(){
+    const pesanKejutan=[
+      "Sabar ya sayangku nggak lama lagi kokk!! 💖",
+      "Jangan dicoba buat di hack ya kak, aku sudah pasang banyak pelindung 😜",
+      "Tapi kalo kamu mau jadi pacarku, countdownnya langsung selesai sih!! ✨",
+      "Ciyee yang gak sabar nungguin countdown-nya selesai... 🤭",
+      "Akses masih digembok! Coba rayu aku dulu pakai kata-kata romantis 🥞",
+      "Tenang, kejutan terbaik selalu butuh waktu yang tepat. Sabar ya, Sayang! 💕",
+      "Setiap detik countdown ini berjalan, rasa sayangku ke kamu juga nambah terus! 🐳",
+      "Yang sabar ya sayangku, cantikku, manisku, princessku, masa depanku!! 👑"
+    ];
+    const el=document.getElementById("lockSubtitle");
+    if(el) el.innerText=pesanKejutan[Math.floor(Math.random()*pesanKejutan.length)];
+  });
+
+  // ==========================================================================
+  // 8. TOMBOL BUKA PAKSA (GETAR + ALERT)
+  // ==========================================================================
+  document.getElementById('btnUnlock').addEventListener('click',function(e){
+    e.stopPropagation();
+    const cc=document.querySelector('.lock-countdown-container');
+    if(cc){ cc.classList.remove('shake-animation'); void cc.offsetWidth; cc.classList.add('shake-animation'); }
+    alert("Jangan dibuka paksa sayang!!! ❌ Gak sabaran banget ya? Tungguin countdown-nya selesai yaa atau nggak jadi pacarku dulu hehe!! 🥞😜");
+  });
+
+  // ==========================================================================
+  // 9. SCROLL REVEAL
+  // ==========================================================================
+  const revealObs=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
+  },{threshold:0.1});
+  document.querySelectorAll('.reveal').forEach(el=>revealObs.observe(el));
+
+  // ==========================================================================
+  // 10. TOAST HELPER
+  // ==========================================================================
+  function showToast(msg, dur=2500){
+    const t=document.getElementById('toast');
+    t.textContent=msg; t.classList.add('show');
+    setTimeout(()=>t.classList.remove('show'),dur);
+  }
+
+  // ==========================================================================
+  // 11. PESAN RAHASIA (AMPLOP)
+  // ==========================================================================
+  const envelope=document.getElementById('secretEnvelope');
+  const msgBox=document.getElementById('secretMsgBox');
+  let opened=false;
+  if(envelope && msgBox){
+    envelope.addEventListener('click',()=>{
+      opened=!opened;
+      if(opened){
+        envelope.textContent='💝';
+        msgBox.classList.add('open');
+        showToast('💌 Pesan rahasia terbuka!');
+        // Burst kembang api kecil
+        spawnBurst(canvas.width/2, canvas.height/2);
+      } else {
+        envelope.textContent='💌';
+        msgBox.classList.remove('open');
+      }
+    });
+  }
+
+  // ==========================================================================
+  // 12. QUIZ
+  // ==========================================================================
+  const quizData=[
+    {
+      q:'Kenapa aku bikin website ini untuk kamu?',
+      opts:['Karena tugas sekolah','Karena kamu sangat spesial bagiku 💖','Karena iseng aja','Karena disuruh teman'],
+      correct:1,
+      feedback:'Betul banget! Karena kamu memang sangat spesial 💖'
+    },
+    {
+      q:'Apa yang paling aku suka dari kamu?',
+      opts:['Semuanya, tapi terutama senyummu','Hanya penampilanmu','Tidak ada yang spesial','Cara kamu memasak'],
+      correct:0,
+      feedback:'Yap! Semuanya, tapi senyummu yang paling bikin aku jatuh cinta 🥰'
+    },
+    {
+      q:'Berapa bulan kita sudah saling mengenal?',
+      opts:['1 bulan','3 bulan','2 bulan 🌸','6 bulan'],
+      correct:2,
+      feedback:'Tepat! Sudah 2 bulan dan aku nggak menyesal sama sekali 💕'
+    }
+  ];
+  let qIdx=0, score=0;
+
+  function renderQuiz(){
+    const q=quizData[qIdx];
+    const prog=document.getElementById('quizProgress');
+    const questionEl=document.getElementById('quizQuestion');
+    const optsEl=document.getElementById('quizOptions');
+    const resultEl=document.getElementById('quizResult');
+    const nextBtn=document.getElementById('quizNext');
+    const scoreWrap=document.getElementById('quizScore');
+
+    // Progress dots
+    prog.innerHTML=quizData.map((_,i)=>`<div class="quiz-pip ${i<qIdx?'done':''}"></div>`).join('');
+
+    questionEl.textContent=q.q;
+    optsEl.innerHTML='';
+    resultEl.style.display='none';
+    nextBtn.style.display='none';
+    scoreWrap.style.display='none';
+
+    q.opts.forEach((opt,i)=>{
+      const btn=document.createElement('button');
+      btn.className='quiz-opt';
+      btn.textContent=opt;
+      btn.addEventListener('click',()=>{
+        document.querySelectorAll('.quiz-opt').forEach(b=>{
+          b.classList.toggle('correct',parseInt(b.dataset.idx)===q.correct);
+          b.classList.toggle('wrong',parseInt(b.dataset.idx)!==q.correct);
+          b.style.pointerEvents='none';
+        });
+        if(i===q.correct){ score++; showToast('✅ Jawaban benar!'); }
+        else { showToast('❌ Jawaban salah, tapi aku masih sayang kamu!'); }
+        resultEl.textContent=q.feedback;
+        resultEl.style.display='block';
+        nextBtn.style.display='inline-block';
+        nextBtn.textContent=qIdx<quizData.length-1?'Pertanyaan berikutnya →':'Lihat hasil 🎉';
+      });
+      btn.dataset.idx=i;
+      optsEl.appendChild(btn);
+    });
+
+    nextBtn.onclick=()=>{
+      qIdx++;
+      if(qIdx<quizData.length){ renderQuiz(); }
+      else { showScore(); }
+    };
+  }
+
+  function showScore(){
+    document.getElementById('quizQuestion').style.display='none';
+    document.getElementById('quizOptions').style.display='none';
+    document.getElementById('quizResult').style.display='none';
+    document.getElementById('quizNext').style.display='none';
+    const msgs=[
+      ['0/3','Hehe, masih perlu banyak kenalan ya! Tapi aku tetap suka kamu 😆'],
+      ['1/3','Lumayan! Kita perlu lebih sering ngobrol nih 🤭'],
+      ['2/3','Wah hampir sempurna! Kamu sudah kenal aku cukup baik 💕'],
+      ['3/3','Sempurna! Kamu memang sudah jadi bagian dari hidupku 💖✨']
+    ];
+    const scoreWrap=document.getElementById('quizScore');
+    scoreWrap.style.display='block';
+    scoreWrap.innerHTML=`
+      <div class="score-num">${score}/3</div>
+      <div class="score-msg">${msgs[score][1]}</div>
+    `;
+    if(score===3){
+      setTimeout(()=>{
+        spawnBurst(canvas.width/2,canvas.height/3);
+        setTimeout(()=>spawnBurst(canvas.width/3,canvas.height/4),300);
+        setTimeout(()=>spawnBurst(canvas.width*2/3,canvas.height/4),600);
+      },300);
+    }
+  }
+
+  renderQuiz();
+
+  // Event video: kembang api saat video selesai ditonton
+  const videoEl = document.querySelector('.video-frame-wrap video');
+  if(videoEl){
+    videoEl.addEventListener('ended', ()=>{
+      showToast('💖 Makasih sudah menontonnya sampai habis!');
+      setTimeout(()=>{
+        spawnBurst(canvas.width/2, canvas.height/3);
+        setTimeout(()=>spawnBurst(canvas.width/3, canvas.height/2),300);
+        setTimeout(()=>spawnBurst(canvas.width*2/3, canvas.height/2),600);
+      }, 300);
+    });
+  }
+  </script>
 </body>
 </html>
