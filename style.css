@@ -256,37 +256,132 @@ body {
 /* ==========================================================================
    6. COUNTDOWN DESIGN
    ========================================================================== */
-.countdown-wrap {
-  display: flex;
-  gap: 16px;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-bottom: 2rem;
+/* ==========================================================================
+   FIX TOTAL: MENYESUAIKAN CLASS ASLI HTML KAMU
+   ========================================================================== */
+
+/* ==========================================================================
+   PERBAIKAN UKURAN TEKS JUDUL (MENGIKUTI GAMBAR SEBELUMNYA)
+   ========================================================================== */
+.lock-title {
+  font-family: 'Playfair Display', 'Georgia', serif !important; /* Mengubah ke font serif elegan */
+  font-size: 3.2rem !important; /* Memperbesar ukuran teks secara signifikan */
+  font-weight: 700 !important;
+  color: #ffffff !important;
+  line-height: 1.3 !important;
+  margin-bottom: 15px !important;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.2) !important;
 }
 
-.cd-box {
-  background: rgba(255, 255, 255, 0.07);
-  border: 1px solid rgba(255, 143, 176, 0.3);
-  border-radius: 16px;
-  padding: 20px 24px;
-  min-width: 80px;
-  text-align: center;
-  backdrop-filter: blur(10px);
+/* Subtitle/Keterangan di bawah judul */
+.lock-subtitle {
+  font-size: 14px !important;
+  max-width: 500px !important; /* Membuat teks membungkus rapi di tengah */
+  margin: 0 auto 35px auto !important;
+  line-height: 1.6 !important;
+  color: rgba(255, 255, 255, 0.7) !important;
 }
 
-.cd-num {
-  font-family: 'Playfair Display', serif;
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #ff8fb0;
-  display: block;
+
+/* ==========================================================================
+   PERBAIKAN UKURAN KOTAK COUNTDOWN (BESAR & VERTIKAL KAYA TARGET)
+   ========================================================================== */
+.lock-countdown-container {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 18px !important; /* Jarak antar kotak yang lebih pas */
+  width: 100% !important;
+  z-index: 2;
 }
 
-.cd-label {
-  font-size: 11px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.5);
+.lock-countdown-container .lock-cd-box {
+  /* Mengubah background menjadi ungu pekat (solid fill) seperti di ss */
+  background: #251235 !important; 
+  
+  /* Membuat border pink tipis melingkar yang tegas tapi soft */
+  border: 1px solid rgba(255, 143, 176, 0.4) !important;
+  
+  /* Kunci ukuran kotak besar memanjang ke bawah sesuai target sebelumnya */
+  width: 90px !important; 
+  height: 120px !important; 
+  border-radius: 18px !important;
+  
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  padding: 0 !important;
+}
+
+/* Ukuran Angka di Dalam Kotak (Dibuat Jauh Lebih Besar) */
+.lock-cd-num {
+  font-size: 2.4rem !important; /* Ukuran besar tebal sesuai target */
+  font-weight: bold !important;
+  color: #ff8fb0 !important;
+  line-height: 1 !important;
+  margin-bottom: 10px !important; /* Jarak tegas ke tulisan bawahnya */
+}
+
+/* Ukuran Tulisan Hari, Jam, Menit, Detik */
+.lock-cd-label {
+  font-size: 10px !important;
+  text-transform: uppercase !important;
+  color: rgba(255, 143, 176, 0.6) !important;
+  letter-spacing: 1.5px !important;
+  line-height: 1 !important;
+}
+
+
+/* ==========================================================================
+   RESPONSIF DI LAYAR HP (AGAR TETAP PROPORSIONAL)
+   ========================================================================== */
+@media screen and (max-width: 480px) {
+  .lock-title {
+    font-size: 2.2rem !important; /* Menyesuaikan ke layar HP agar tidak kebesaran */
+  }
+
+  .lock-countdown-container {
+    gap: 8px !important;
+  }
+
+  .lock-countdown-container .lock-cd-box {
+    width: 70px !important;
+    height: 95px !important;
+  }
+
+  .lock-cd-num {
+    font-size: 1.6rem !important;
+    margin-bottom: 6px !important;
+  }
+
+  .lock-cd-label {
+    font-size: 8px !important;
+    letter-spacing: 1px !important;
+  }
+}
+/* ==========================================================================
+   PENYESUAIAN UKURAN KOTAK SAAT DIBUKA DI LAYAR HP
+   ========================================================================== */
+@media screen and (max-width: 480px) {
+  .lock-countdown-container {
+    gap: 8px !important; /* Jarak kotak agak rapat di HP */
+  }
+
+  .lock-countdown-container .lock-cd-box {
+    min-width: 65px !important; /* Kotak sedikit mengecil agar pas di screen HP */
+    padding: 8px 4px !important;
+  }
+
+  .lock-cd-num {
+    font-size: 1.3rem !important; /* Angka mengecil proporsional di HP */
+  }
+
+  .lock-cd-label {
+    font-size: 9px !important;
+  }
 }
 
 /* ==========================================================================
@@ -657,7 +752,7 @@ section {
   margin-top: 2rem;
 }
 /* ==========================================================================
-   EFEK BINTANG JATUH (VARIASI 2 WARNA: PUTIH & UNGU) - FULL & CORRECT
+   SISIPKAN DI PALING BAWAH: EFEK BINTANG JATUH LAPISAN TERDEPAN (FIX HP)
    ========================================================================== */
 .shooting-stars-container {
   position: absolute;
@@ -667,10 +762,9 @@ section {
   height: 100%;
   overflow: hidden;
   pointer-events: none;
-  z-index: 1; /* Berada di belakang teks utama lockscreen */
+  z-index: 9999; /* Memaksa komet lari di depan background agar kelihatan */
 }
 
-/* Sifat Dasar Semua Komet (Ukuran Kepala & Kecepatan) */
 .shooting-star {
   position: absolute;
   width: 2px;
@@ -681,85 +775,62 @@ section {
   animation: cometShower 5s linear infinite;
 }
 
-/* Membuat Ekor Komet Secara Umum */
 .shooting-star::before {
   content: '';
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 180px;
+  width: 160px;
   height: 1px;
 }
 
-/* --------------------------------------------------------------------------
-   WARNA 1: KOMET PUTIH (Bersinar Terang & Tajam)
-   -------------------------------------------------------------------------- */
 .shooting-star.putih {
   background: linear-gradient(90deg, #ffffff, rgba(255, 255, 255, 0));
-  filter: drop-shadow(0 0 4px #ffffff) drop-shadow(0 0 10px #ffffff);
+  filter: drop-shadow(0 0 4px #ffffff);
 }
 .shooting-star.putih::before {
-  background: linear-gradient(90deg, rgba(255,255,255,0.9), rgba(255,255,255,0.2), transparent);
+  background: linear-gradient(90deg, rgba(255,255,255,0.8), transparent);
 }
 
-/* --------------------------------------------------------------------------
-   WARNA 2: KOMET UNGU (Lembut & Anggun Berpendar Pink)
-   -------------------------------------------------------------------------- */
 .shooting-star.ungu {
   background: linear-gradient(90deg, #c084fc, rgba(192, 132, 252, 0));
-  filter: drop-shadow(0 0 4px #c084fc) drop-shadow(0 0 10px #ff8fb0);
+  filter: drop-shadow(0 0 4px #c084fc);
 }
 .shooting-star.ungu::before {
-  background: linear-gradient(90deg, rgba(192, 132, 252, 0.9), rgba(255, 143, 176, 0.3), transparent);
+  background: linear-gradient(90deg, rgba(192, 132, 252, 0.8), transparent);
 }
 
-/* --------------------------------------------------------------------------
-   VARIASI POSISI TIMING LAPTOP (Agar Jatuhnya Bergantian Alami)
-   -------------------------------------------------------------------------- */
-.shooting-star:nth-child(1) {
-  top: -10%;
-  left: 45%;
-  animation-delay: 0s;
-  animation-duration: 3.2s;
-}
+/* Jeda kemunculan komet */
+.shooting-star:nth-child(1) { top: -10%; left: 50%; animation-delay: 0s; animation-duration: 3.5s; }
+.shooting-star:nth-child(2) { top: -5%; left: 80%; animation-delay: 1.5s; animation-duration: 4.5s; }
+.shooting-star:nth-child(3) { top: 10%; left: 40%; animation-delay: 2.5s; animation-duration: 3s; }
+.shooting-star:nth-child(4) { top: -15%; left: 70%; animation-delay: 4s; animation-duration: 5s; }
 
-.shooting-star:nth-child(2) {
-  top: -5%;
-  left: 75%;
-  animation-delay: 1.5s;
-  animation-duration: 4.5s;
-}
-
-.shooting-star:nth-child(3) {
-  top: 10%;
-  left: 30%;
-  animation-delay: 2.8s;
-  animation-duration: 3s;
-}
-
-.shooting-star:nth-child(4) {
-  top: -15%;
-  left: 60%;
-  animation-delay: 4.2s;
-  animation-duration: 5s;
-}
-
-/* KEYFRAMES JALUR LUNCUR KOMET (UNTUK LAYAR LAPTOP / DESKTOP) */
+/* Jalur luncur standar di Laptop */
 @keyframes cometShower {
-  0% {
-    transform: translate(0, 0) rotate(-35deg);
-    opacity: 0;
+  0% { transform: translate(0, 0) rotate(-35deg); opacity: 0; }
+  5% { opacity: 1; }
+  15% { transform: translate(-350px, 245px) rotate(-35deg); opacity: 0; }
+  100% { transform: translate(-350px, 245px) rotate(-35deg); opacity: 0; }
+}
+
+/* Penyesuaian khusus layar HP agar tidak amblas keluar screen */
+@media screen and (max-width: 480px) {
+  .shooting-star::before {
+    width: 90px; /* Ekor komet diperpendek di HP */
   }
-  5% {
-    opacity: 1; /* Mulai menyala terang */
-  }
-  15% {
-    transform: translate(-400px, 280px) rotate(-35deg);
-    opacity: 0; /* Menghilang halus di area laptop */
-  }
-  100% {
-    transform: translate(-400px, 280px) rotate(-35deg);
-    opacity: 0;
+  
+  /* Atur ulang posisi start komet khusus di HP */
+  .shooting-star:nth-child(1) { left: 60%; top: -5%; }
+  .shooting-star:nth-child(2) { left: 90%; top: 5%; }
+  .shooting-star:nth-child(3) { left: 50%; top: 10%; }
+  .shooting-star:nth-child(4) { left: 80%; top: -10%; }
+
+  @keyframes cometShower {
+    0% { transform: translate(0, 0) rotate(-35deg); opacity: 0; }
+    5% { opacity: 1; }
+    20% { transform: translate(-220px, 154px) rotate(-35deg); opacity: 0; }
+    100% { transform: translate(-220px, 154px) rotate(-35deg); opacity: 0; }
   }
 }
 
@@ -767,6 +838,10 @@ section {
    MEDIA QUERY: PENYESUAIAN AGAR KOMET KELIHATAN DI HP
    ========================================================================== */
 @media screen and (max-width: 480px) {
+  .cd-box {
+    min-width: 65px !important;
+    padding: 8px 4px !important;
+  }
   /* 1. Perkecil ekor komet agar muat di layar sempit HP */
   .shooting-star::before {
     width: 90px;

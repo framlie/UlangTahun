@@ -24,49 +24,46 @@
     <audio id="bgAudio" loop></audio>
   </div>
 
-  <!-- ==========================================================================
-     STRUKTUR UTAMA LOCK SCREEN YANG BENAR
-     ========================================================================== -->
-<div class="lock-screen" id="lockScreen">
-  <!-- 1. Background Bintang Statis -->
-  <div class="stars-bg" id="lockStars"></div>
+  <!-- ELEMENT LOCK SCREEN -->
+  <div class="lock-screen" id="lockScreen">
+    <!-- Background Bintang Statis -->
+    <div class="stars-bg" id="lockStars"></div>
 
-  <!-- 2. Konten Teks & Informasi -->
-  <div class="lock-badge">Halaman Terkunci 🔒</div>
-  <h1 class="lock-title">Sabar ya, kak Marcia Rianda... ✨</h1>
-  <p class="lock-subtitle">Tunggu sampai tanggal 24 Mei 2026 yaa baru kuncinya terbuka hehe!!</p>
+    <!-- Konten Teks -->
+    <div class="lock-badge">Halaman Terkunci 🔒</div>
+    <h1 class="lock-title">Sabar ya, kak Marcia Rianda... ✨</h1>
+    <p class="lock-subtitle">Tunggu sampai tanggal 24 Mei 2026 yaa baru kuncinya terbuka hehe!!</p>
 
-  <!-- 3. Kotak Angka Countdown Mundur -->
-  <div class="lock-countdown-container">
-    <div class="lock-cd-box">
-      <div class="lock-cd-num" id="lock-d">00</div>
-      <div class="lock-cd-label">Hari</div>
+    <!-- Kotak Angka Countdown (Wajib dibungkus container ini) -->
+    <div class="lock-countdown-container">
+      <div class="lock-cd-box">
+        <div class="lock-cd-num" id="lock-d">00</div>
+        <div class="lock-cd-label">Hari</div>
+      </div>
+      <div class="lock-cd-box">
+        <div class="lock-cd-num" id="lock-h">00</div>
+        <div class="lock-cd-label">Jam</div>
+      </div>
+      <div class="lock-cd-box">
+        <div class="lock-cd-num" id="lock-m">00</div>
+        <div class="lock-cd-label">Menit</div>
+      </div>
+      <div class="lock-cd-box">
+        <div class="lock-cd-num" id="lock-s">00</div>
+        <div class="lock-cd-label">Detik</div>
+      </div>
     </div>
-    <div class="lock-cd-box">
-      <div class="lock-cd-num" id="lock-h">00</div>
-      <div class="lock-cd-label">Jam</div>
+
+    <!-- Efek Bintang Jatuh -->
+    <div class="shooting-stars-container">
+      <div class="shooting-star putih"></div>
+      <div class="shooting-star ungu"></div>
+      <div class="shooting-star putih"></div>
+      <div class="shooting-star ungu"></div>
     </div>
-    <div class="lock-cd-box">
-      <div class="lock-cd-num" id="lock-m">00</div>
-      <div class="lock-cd-label">Menit</div>
-    </div>
-    <div class="lock-cd-box">
-      <div class="lock-cd-num" id="lock-s">00</div>
-      <div class="lock-cd-label">Detik</div>
-    </div>
-  </div>
+  </div> <!-- Penutup lock-screen -->
 
-  <!-- 4. Efek Bintang Jatuh (Di lapisan z-index paling depan) -->
-  <div class="shooting-stars-container">
-    <div class="shooting-star putih"></div>
-    <div class="shooting-star ungu"></div>
-    <div class="shooting-star putih"></div>
-    <div class="shooting-star ungu"></div>
-  </div>
-
-</div> <!-- <--- INI DIA TAG PENUTUP UNTUK <div class="lock-screen"> YANG BENAR -->
-
-
+ 
 <!-- ==========================================================================
      KONTEN UTAMA WEBSITE (BERADA DI LUAR LOCK SCREEN)
      ========================================================================== -->
