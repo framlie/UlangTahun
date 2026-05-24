@@ -657,7 +657,7 @@ section {
   margin-top: 2rem;
 }
 /* ==========================================================================
-   EFEK BINTANG JATUH (VARIASI 2 WARNA: PUTHI & UNGU)
+   EFEK BINTANG JATUH (VARIASI 2 WARNA: PUTIH & UNGU) - FULL & CORRECT
    ========================================================================== */
 .shooting-stars-container {
   position: absolute;
@@ -667,10 +667,10 @@ section {
   height: 100%;
   overflow: hidden;
   pointer-events: none;
-  z-index: 1;
+  z-index: 1; /* Berada di belakang teks utama lockscreen */
 }
 
-/* Sifat Dasar Semua Komet (Ukuran & Kecepatan) */
+/* Sifat Dasar Semua Komet (Ukuran Kepala & Kecepatan) */
 .shooting-star {
   position: absolute;
   width: 2px;
@@ -681,6 +681,7 @@ section {
   animation: cometShower 5s linear infinite;
 }
 
+/* Membuat Ekor Komet Secara Umum */
 .shooting-star::before {
   content: '';
   position: absolute;
@@ -691,7 +692,7 @@ section {
 }
 
 /* --------------------------------------------------------------------------
-   WARNA 1: KOMET PUTHI (Bersinar Terang & Tajam)
+   WARNA 1: KOMET PUTIH (Bersinar Terang & Tajam)
    -------------------------------------------------------------------------- */
 .shooting-star.putih {
   background: linear-gradient(90deg, #ffffff, rgba(255, 255, 255, 0));
@@ -702,7 +703,7 @@ section {
 }
 
 /* --------------------------------------------------------------------------
-   WARNA 2: KOMET UNGU (Lembut & Anggun)
+   WARNA 2: KOMET UNGU (Lembut & Anggun Berpendar Pink)
    -------------------------------------------------------------------------- */
 .shooting-star.ungu {
   background: linear-gradient(90deg, #c084fc, rgba(192, 132, 252, 0));
@@ -713,52 +714,88 @@ section {
 }
 
 /* --------------------------------------------------------------------------
-   VARIASI POSISI TIMING (Agar Jatuhnya Bergantian Alami)
+   VARIASI POSISI TIMING LAPTOP (Agar Jatuhnya Bergantian Alami)
    -------------------------------------------------------------------------- */
 .shooting-star:nth-child(1) {
   top: -10%;
   left: 45%;
   animation-delay: 0s;
-  animation-duration: 3.2s; /* Putih meluncur cepat */
+  animation-duration: 3.2s;
 }
 
 .shooting-star:nth-child(2) {
   top: -5%;
   left: 75%;
   animation-delay: 1.5s;
-  animation-duration: 4.5s; /* Ungu meluncur sedang */
+  animation-duration: 4.5s;
 }
 
 .shooting-star:nth-child(3) {
   top: 10%;
   left: 30%;
   animation-delay: 2.8s;
-  animation-duration: 3s;   /* Putih meluncur sangat cepat */
+  animation-duration: 3s;
 }
 
 .shooting-star:nth-child(4) {
   top: -15%;
   left: 60%;
   animation-delay: 4.2s;
-  animation-duration: 5s;   /* Ungu meluncur lembut panjang */
+  animation-duration: 5s;
 }
 
-/* KEYFRAMES JALUR LUNCUR */
+/* KEYFRAMES JALUR LUNCUR KOMET (UNTUK LAYAR LAPTOP / DESKTOP) */
 @keyframes cometShower {
   0% {
     transform: translate(0, 0) rotate(-35deg);
     opacity: 0;
   }
   5% {
-    opacity: 1;
+    opacity: 1; /* Mulai menyala terang */
   }
-  18% {
-    transform: translate(-550px, 385px) rotate(-35deg);
-    opacity: 0;
+  15% {
+    transform: translate(-400px, 280px) rotate(-35deg);
+    opacity: 0; /* Menghilang halus di area laptop */
   }
   100% {
-    transform: translate(-550px, 385px) rotate(-35deg);
+    transform: translate(-400px, 280px) rotate(-35deg);
     opacity: 0;
+  }
+}
+
+/* ==========================================================================
+   MEDIA QUERY: PENYESUAIAN AGAR KOMET KELIHATAN DI HP
+   ========================================================================== */
+@media screen and (max-width: 480px) {
+  /* 1. Perkecil ekor komet agar muat di layar sempit HP */
+  .shooting-star::before {
+    width: 90px;
+  }
+
+  /* 2. Geser posisi awal komet agak ke tengah kanan agar tidak langsung terbuang */
+  .shooting-star:nth-child(1) { left: 50%; top: -5%; }
+  .shooting-star:nth-child(2) { left: 85%; top: 5%; }
+  .shooting-star:nth-child(3) { left: 40%; top: 15%; }
+  .shooting-star:nth-child(4) { left: 70%; top: -10%; }
+
+  /* 3. Jalur luncur versi pendek khusus HP agar tidak melesat keluar layar */
+  @keyframes cometShower {
+    0% {
+      transform: translate(0, 0) rotate(-35deg);
+      opacity: 0;
+    }
+    5% {
+      opacity: 1;
+    }
+    18% {
+      /* Jarak luncur diperpendek agar pas di screen HP */
+      transform: translate(-180px, 126px) rotate(-35deg);
+      opacity: 0;
+    }
+    100% {
+      transform: translate(-180px, 126px) rotate(-35deg);
+      opacity: 0;
+    }
   }
 }
 
