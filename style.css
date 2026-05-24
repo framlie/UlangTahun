@@ -1,5 +1,5 @@
 /* ==========================================================================
-   1. FONTS & RESET DEFAULT STYLE
+   1. FONTS & RESET SYSTEM RESET
    ========================================================================== */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap');
 
@@ -15,7 +15,7 @@ body {
 }
 
 /* ==========================================================================
-   2. CANVAS KEMBANG API GLOBAL (LAYER TERDEPAN)
+   2. CANVAS KEMBANG API GLOBAL
    ========================================================================== */
 #globalFwCanvas {
   position: fixed;
@@ -23,21 +23,110 @@ body {
   left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 99999;   /* Berada tepat di atas semua elemen */
-  pointer-events: none; /* Supaya tombol dan video di bawahnya tetap bisa di-klik */
+  z-index: 99998; /* Berada tepat di bawah kontrol musik agar tombol tidak tertutup */
+  pointer-events: none; /* Klik bisa menembus canvas ke elemen di bawahnya */
 }
 
 /* ==========================================================================
-   3. STRUKTUR UTAMA WEBSITE & LOCK SCREEN
+   3. AUDIO PLAYER FIX (TAMPIL DI LOCK SCREEN & LAYER TERTINGGI)
    ========================================================================== */
-.site {
-  font-family: 'Lato', sans-serif;
-  background: #0d0014;
-  color: #fff;
-  overflow-x: hidden;
-  display: none; /* Diaktifkan otomatis oleh javascript jika tanggal sudah sesuai */
+.music-player {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999999 !important; /* Nilai z-index tertinggi agar selalu di atas */
+  background: rgba(13, 0, 20, 0.9);
+  border: 1px solid rgba(255, 143, 176, 0.4);
+  padding: 12px 18px;
+  border-radius: 30px;
+  backdrop-filter: blur(10px);
+  display: flex !important; /* Memaksa layout fleksibel */
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.6);
 }
 
+.music-btn {
+  background: #ff8fb0;
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  color: #0d0014;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.music-btn:hover {
+  transform: scale(1.05);
+  background: #ff6b9d;
+}
+
+/* Wadah pembungkus teks lagu agar potongan yang keluar tidak kelihatan */
+.music-box {
+  max-width: 160px;       /* Sedikit dilebarkan agar teks tidak sesak */
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding-right: 10px;    /* Memberikan ruang napas di sebelah kanan */
+}
+
+/* Mengatur agar pilihan lagu memanjang dan memicu efek animasi jalan */
+.music-select {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  font-family: 'Lato', sans-serif;
+  cursor: pointer;
+  outline: none;
+  white-space: nowrap;
+  
+  /* SOLUSI HURUF TERPOTONG: */
+  padding-left: 15px;     /* Memberikan ruang kosong di awal teks */
+  padding-right: 30px;    /* Memberikan ruang kosong ekstra di akhir teks agar huruf "a" tidak tergunting */
+  width: auto;            /* Membiarkan lebar mengikuti panjang teks asli + padding */
+  
+  /* Menyembunyikan tanda panah bawaan browser */
+  -webkit-appearance: none;  
+  -moz-appearance: none;     
+  appearance: none;          
+  
+  /* Jalankan animasi */
+  animation: textMarquee 5s linear infinite; 
+}
+
+.music-select option {
+  background: #1a0030;
+  color: #fff;
+}
+
+/* KEYFRAMES: Logika pergerakan teks dari kanan ke kiri */
+/* KEYFRAMES: Gerakan teks mengalir mulus dari kanan ke kiri */
+/* KEYFRAMES: Dibuat langsung muncul di ujung kanan kotak tanpa jeda lama */
+@keyframes textMarquee {
+  0% {
+    transform: translateX(150px); /* Mulai tepat di batas kanan kotak music-box (sesuai max-width) */
+  }
+  100% {
+    transform: translateX(-100%); /* Tetap berjalan mulus sampai habis ke kiri */
+  }
+}
+
+/* Menghentikan jalan teks saat menu diklik agar pacarmu mudah memilih lagu */
+.music-player:hover .music-select,
+.music-select:focus {
+  animation-play-state: paused;
+}
+
+/* ==========================================================================
+   4. LOCK SCREEN LAYER
+   ========================================================================== */
 .lock-screen {
   position: fixed;
   top: 0;
@@ -84,110 +173,16 @@ body {
 }
 
 /* ==========================================================================
-   4. AUDIO PLAYER UI (MELAYANG DI POJOK)
+   5. SITE CONTENT & HERO STRUCTURE
    ========================================================================== */
-.music-player {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 999;
-  background: rgba(13, 0, 20, 0.85);
-  border: 1px solid rgba(255, 143, 176, 0.3);
-  padding: 12px 18px;
-  border-radius: 30px;
-  backdrop-filter: blur(10px);
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.5);
-}
-
-.music-btn {
-  background: #ff8fb0;
-  border: none;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  color: #0d0014;
-  font-size: 14px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.2s, background 0.2s;
-}
-
-.music-btn:hover {
-  transform: scale(1.05);
-  background: #ff6b9d;
-}
-
-.music-select {
-  background: transparent;
-  border: none;
-  color: #fff;
-  font-size: 12px;
+.site {
   font-family: 'Lato', sans-serif;
-  cursor: pointer;
-  outline: none;
-  padding-right: 5px;
-}
-
-.music-select option {
-  background: #1a0030;
+  background: #0d0014;
   color: #fff;
+  overflow-x: hidden;
+  display: none; /* Akan dibuka otomatis oleh JS jika counter habis */
 }
 
-/* ==========================================================================
-   5. BACKGROUND EFEK (BINTANG & HUJAN HATI)
-   ========================================================================== */
-.stars-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-.star {
-  position: absolute;
-  background: #fff;
-  border-radius: 50%;
-  animation: twinkle 3s infinite alternate;
-}
-
-@keyframes twinkle {
-  0% { opacity: 0.2; }
-  100% { opacity: 1; }
-}
-
-.hearts-rain {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-}
-
-.heart-drop {
-  position: absolute;
-  top: -40px;
-  font-size: 20px;
-  animation: fallDown linear infinite;
-  opacity: 0.7;
-}
-
-@keyframes fallDown {
-  0% { transform: translateY(0) rotate(0deg); opacity: 0.7; }
-  100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
-}
-
-/* ==========================================================================
-   6. HERO SECTION
-   ========================================================================== */
 .hero {
   min-height: 100vh;
   display: flex;
@@ -259,7 +254,7 @@ body {
 }
 
 /* ==========================================================================
-   7. COUNTDOWN LAYOUT
+   6. COUNTDOWN DESIGN
    ========================================================================== */
 .countdown-wrap {
   display: flex;
@@ -295,7 +290,53 @@ body {
 }
 
 /* ==========================================================================
-   8. LAYOUT ELEMEN UMUM (SECTIONS)
+   7. BACKGROUND PARTICLE SYSTEMS (STARS & HEARTS)
+   ========================================================================== */
+.stars-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.star {
+  position: absolute;
+  background: #fff;
+  border-radius: 50%;
+  animation: twinkle 3s infinite alternate;
+}
+
+@keyframes twinkle {
+  0% { opacity: 0.2; }
+  100% { opacity: 1; }
+}
+
+.hearts-rain {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.heart-drop {
+  position: absolute;
+  top: -40px;
+  font-size: 20px;
+  animation: fallDown linear infinite;
+}
+
+@keyframes fallDown {
+  0% { transform: translateY(0) rotate(0deg); opacity: 0.7; }
+  100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+}
+
+/* ==========================================================================
+   8. LAYOUT ELEMEN UMUM SECTIONS
    ========================================================================== */
 section {
   padding: 6rem 2rem;
@@ -358,7 +399,7 @@ section {
 }
 
 /* ==========================================================================
-   10. GRID 21 ALASAN (REASONS CARD)
+   10. GRID 21 ALASAN
    ========================================================================== */
 .reasons-grid {
   display: grid;
@@ -396,7 +437,7 @@ section {
 }
 
 /* ==========================================================================
-   11. TIMELINE PERJALANAN KISAH
+   11. TIMELINE JALUR KISAH
    ========================================================================== */
 .timeline {
   position: relative;
@@ -466,7 +507,7 @@ section {
 }
 
 /* ==========================================================================
-   12. GALERI MEDIA (FOTO & VIDEO BARU)
+   12. MEDIA GALLERY (FOTO & VIDEO)
    ========================================================================== */
 .media-gallery {
   display: grid;
@@ -501,7 +542,7 @@ section {
 }
 
 .media-card.video-card video {
-  object-fit: contain; /* Memastikan video tidak gepeng/terpotong */
+  object-fit: contain;
 }
 
 .media-caption {
@@ -579,6 +620,7 @@ section {
   border-radius: 16px;
   padding: 1.25rem;
   border: 1px solid rgba(192, 132, 252, 0.15);
+  text-align: left;
 }
 
 .promise-icon {

@@ -1,36 +1,58 @@
-// Pembuatan background bintang & hujan hati
+// ==========================================================================
+// 1. ANIMASI BACKGROUND (BINTANG BERKEDIP & HUJAN HATI)
+// ==========================================================================
 function initBackgrounds(containerId, starCount) {
   const bg = document.getElementById(containerId);
   if (!bg) return;
   for(let i=0; i<starCount; i++){
-    const s=document.createElement('div');
-    s.className='star';
-    const size=Math.random()*2.5+0.5;
-    s.style.cssText=`width:${size}px;height:${size}px;left:${Math.random()*100}%;top:${Math.random()*100}%;animation-delay:${Math.random()*4}s;animation-duration:${2+Math.random()*3}s`;
+    const s = document.createElement('div');
+    s.className = 'star';
+    const size = Math.random() * 2.5 + 0.5;
+    s.style.cssText = `
+      width: ${size}px;
+      height: ${size}px;
+      left: ${Math.random() * 100}%;
+      top: ${Math.random() * 100}%;
+      animation-delay: ${Math.random() * 4}s;
+      animation-duration: ${2 + Math.random() * 3}s;
+    `;
     bg.appendChild(s);
   }
 }
+// Jalankan background bintang untuk hero dan lock screen
 initBackgrounds('stars', 120);
 initBackgrounds('lockStars', 60);
 
+// Efek Hujan Hati / Simbol Cantik
 const heartsRain = document.getElementById('heartsRain');
-const hSymbols = ['♥','❤','💕','✨','🌸'];
-for(let i=0;i<30;i++){
-  const h=document.createElement('div');
-  h.className='heart-drop';
-  h.textContent=hSymbols[Math.floor(Math.random()*hSymbols.length)];
-  const dur=5+Math.random()*10;
-  h.style.cssText=`left:${Math.random()*100}%;font-size:${14+Math.random()*16}px;animation-duration:${dur}s;animation-delay:${Math.random()*dur}s;opacity:${0.3+Math.random()*0.5}`;
-  heartsRain.appendChild(h);
+if (heartsRain) {
+  const hSymbols = ['♥', '❤', '💕', '✨', '🌸'];
+  for(let i=0; i<30; i++){
+    const h = document.createElement('div');
+    h.className = 'heart-drop';
+    h.textContent = hSymbols[Math.floor(Math.random() * hSymbols.length)];
+    const dur = 5 + Math.random() * 10;
+    h.style.cssText = `
+      left: ${Math.random() * 100}%;
+      font-size: ${14 + Math.random() * 16}px;
+      animation-duration: ${dur}s;
+      animation-delay: ${Math.random() * dur}s;
+      opacity: ${0.3 + Math.random() * 0.5};
+    `;
+    heartsRain.appendChild(h);
+  }
 }
 
-// LOGIKA SISTEM LOCK DAN COUNTDOWN UTAMA
+// ==========================================================================
+// 2. LOGIKA LOCK SCREEN & COUNTDOWN UTAMA (TARGET: 24 MEI 2026, 12:40)
+// ==========================================================================
 const targetDate = new Date('2026-06-14T00:00:00');
 
 function checkLockAndCountdown(){
   const now = new Date();
   const diff = targetDate - now;
 
+  // Jika waktu target sudah lewat / tercapai
   if (diff <= 0) {
     const lockScreen = document.getElementById('lockScreen');
     if (lockScreen) {
@@ -38,61 +60,111 @@ function checkLockAndCountdown(){
       setTimeout(() => { lockScreen.style.display = 'none'; }, 1000);
     }
     
-    document.getElementById('mainSite').style.display = 'block';
-    document.getElementById('musicPlayer').style.display = 'flex';
+    // Tampilkan konten utama website
+    const mainSite = document.getElementById('mainSite');
+    if (mainSite) mainSite.style.display = 'block';
 
-    document.getElementById('cd-h').textContent='00';
-    document.getElementById('cd-m').textContent='00';
-    document.getElementById('cd-s').textContent='00';
+    // Reset teks countdown ke 00
+    if (document.getElementById('cd-h')) document.getElementById('cd-h').textContent = '00';
+    if (document.getElementById('cd-m')) document.getElementById('cd-m').textContent = '00';
+    if (document.getElementById('cd-s')) document.getElementById('cd-s').textContent = '00';
     return true; 
   }
 
+  // Kalkulasi matematika waktu mundur
   const days = String(Math.floor(diff / (1000 * 60 * 60 * 24))).padStart(2, '0');
   const hours = String(Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
   const minutes = String(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
   const seconds = String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(2, '0');
 
-  document.getElementById('lock-d').textContent = days;
-  document.getElementById('lock-h').textContent = hours;
-  document.getElementById('lock-m').textContent = minutes;
-  document.getElementById('lock-s').textContent = seconds;
+  // Update angka di halaman Lock Screen
+  if (document.getElementById('lock-d')) document.getElementById('lock-d').textContent = days;
+  if (document.getElementById('lock-h')) document.getElementById('lock-h').textContent = hours;
+  if (document.getElementById('lock-m')) document.getElementById('lock-m').textContent = minutes;
+  if (document.getElementById('lock-s')) document.getElementById('lock-s').textContent = seconds;
 
-  document.getElementById('cd-h').textContent = hours;
-  document.getElementById('cd-m').textContent = minutes;
-  document.getElementById('cd-s').textContent = seconds;
+  // Update angka di halaman utama (Hero Section)
+  if (document.getElementById('cd-h')) document.getElementById('cd-h').textContent = hours;
+  if (document.getElementById('cd-m')) document.getElementById('cd-m').textContent = minutes;
+  if (document.getElementById('cd-s')) document.getElementById('cd-s').textContent = seconds;
 
   return false; 
 }
 
+// Jalankan timer setiap satu detik
 const timerInterval = setInterval(() => {
   const isUnlocked = checkLockAndCountdown();
   if (isUnlocked) clearInterval(timerInterval);
 }, 1000);
 checkLockAndCountdown();
 
-// FITUR PILIHAN LAGU
+// ==========================================================================
+// 3. FITUR AUDIO PLAYER UI & AUTOMATIC NEXT TRACK (PERBAIKAN FITUR AUTOMATIC)
+// ==========================================================================
 const audio = document.getElementById('bgAudio');
 const musicBtn = document.getElementById('musicBtn');
 const musicSelect = document.getElementById('musicSelect');
-audio.src = musicSelect.value;
 
-function togglePlay() {
-  if (audio.paused) {
-    audio.play().then(() => { musicBtn.textContent = '⏸'; }).catch(err => console.log("Audio play blocked"));
-  } else {
-    audio.pause();
-    musicBtn.textContent = '▶';
+if (audio && musicBtn && musicSelect) {
+  audio.src = musicSelect.value;
+
+  // Fungsi khusus untuk memutar musik + memaksa kecepatan uji coba (jika dipakai)
+  function jalankanAudio() {
+    // UBAH ANGKA 1 MENJADI 8 ATAU 16 JIKA INGIN DIUJI COBA SECARA CEPAT
+    audio.playbackRate = 1; 
+    
+    audio.play()
+      .then(() => { 
+        musicBtn.textContent = '⏸'; 
+      })
+      .catch(err => {
+        console.log("Browser memblokir autoplay otomatis sebelum ada interaksi:", err);
+        musicBtn.textContent = '▶';
+      });
   }
-}
-musicBtn.addEventListener('click', togglePlay);
-musicSelect.addEventListener('change', function() {
-  const wasPlaying = !audio.paused;
-  audio.src = this.value;
-  if (wasPlaying) { audio.play(); musicBtn.textContent = '⏸'; }
-  else { musicBtn.textContent = '▶'; }
-});
 
-// GENERATE GRID 21 ALASAN
+  function togglePlay() {
+    if (audio.paused) {
+      jalankanAudio();
+    } else {
+      audio.pause();
+      musicBtn.textContent = '▶';
+    }
+  }
+
+  musicBtn.addEventListener('click', togglePlay);
+  
+  // Saat user mengubah lagu secara manual lewat dropdown menu
+  musicSelect.addEventListener('change', function() {
+    audio.src = this.value;
+    // Langsung putar otomatis tanpa peduli status sebelumnya paused atau tidak
+    jalankanAudio(); 
+  });
+
+  // LOGIKA UTAMA: Otomatis pindah lagu saat lagu selesai
+  audio.addEventListener('ended', function() {
+    const options = musicSelect.options;
+    let currentIndex = musicSelect.selectedIndex;
+    
+    // Cari urutan index lagu berikutnya
+    let nextIndex = (currentIndex + 1) % options.length;
+    
+    // Geser pilihan di layar visual select
+    musicSelect.selectedIndex = nextIndex;
+    
+    // Ganti file sumber audio ke lagu yang baru
+    audio.src = musicSelect.value;
+    
+    // Berikan jeda sangat singkat (100 milidetik) agar browser sempat memuat file baru sebelum di-play
+    setTimeout(() => {
+      jalankanAudio();
+    }, 100);
+  });
+}
+
+// ==========================================================================
+// 4. GENERATE OTOMATIS DATA GRID: 21 ALASAN
+// ==========================================================================
 const reasons = [
   'Senyummu yang bisa langsung memperbaiki hariku yang paling buruk sekalipun',
   'Cara kamu tertawa — tulus, lepas, dan membuatku ikut bahagia',
@@ -108,7 +180,7 @@ const reasons = [
   'Cara kamu bisa membuat suasana menjadi hangat hanya dengan kehadiranmu',
   'Kesabaran dan kelembutanmu yang membuatku ingin jadi seseorang yang lebih baik',
   'Kamu tidak pernah takut untuk jadi dirimu sendiri — itu sangat langka',
-  'Cara kamu mengingat hal-hal kecil yang pernah aku ceritakan',
+  'Cara kamu membuatku selalu merasa dihargai dan disayangi',
   'Antusiasmu saat bercerita tentang hal yang kamu sukai',
   'Kehangatan hatimu yang terasa bahkan lewat kata-kata sederhana',
   'Cara kamu membuatku merasa diterima sepenuhnya',
@@ -116,15 +188,23 @@ const reasons = [
   'Kehadiranmu yang sudah mengubah hidupku menjadi lebih berwarna',
   'Dan yang paling penting: kamu adalah kamu — dan itu lebih dari cukup'
 ];
-const grid = document.getElementById('reasonsGrid');
-reasons.forEach((r, i) => {
-  const card = document.createElement('div');
-  card.className = 'reason-card';
-  card.innerHTML = `<div class="reason-num">${String(i + 1).padStart(2, '0')}</div><div class="reason-text">${r}</div>`;
-  grid.appendChild(card);
-});
 
-// ENGINE UTAMA KEMBANG API BARU (GLOBAL & AKURAT)
+const grid = document.getElementById('reasonsGrid');
+if (grid) {
+  reasons.forEach((r, i) => {
+    const card = document.createElement('div');
+    card.className = 'reason-card';
+    card.innerHTML = `
+      <div class="reason-num">${String(i + 1).padStart(2, '0')}</div>
+      <div class="reason-text">${r}</div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+// ==========================================================================
+// 5. ENGINE KEMBANG API GLOBAL (FIXED LAYER CANVAS)
+// ==========================================================================
 const canvas = document.getElementById('globalFwCanvas');
 const ctx = canvas.getContext('2d');
 let particles = [];
@@ -159,8 +239,8 @@ function animateFireworks() {
   particles.forEach((p, idx) => {
     p.x += p.vx;
     p.y += p.vy;
-    p.vy += 0.06; // Gravitasi jatuh lembut
-    p.life -= 0.015;
+    p.vy += 0.06; 
+    p.life -= 0.015; 
     
     if (p.life <= 0) {
       particles.splice(idx, 1);
@@ -177,26 +257,27 @@ function animateFireworks() {
   ctx.globalAlpha = 1;
   requestAnimationFrame(animateFireworks);
 }
-animateFireworks(); // Mulai loop animasi utama
+animateFireworks();
 
-// Event klik tombol ledakan kembang api otomatis meledak di tengah layar
-document.getElementById('fwBtn').addEventListener('click', function() {
-  this.textContent = '💥 Boom! 🎆';
-  
-  // Ledakkan 5 kembang api sekaligus di sekeliling area pandang layar saat ini
-  const midX = canvas.width / 2;
-  const midY = canvas.height / 2;
-  
-  spawnBurst(midX, midY - 50);
-  setTimeout(() => spawnBurst(midX - 120, midY - 120), 150);
-  setTimeout(() => spawnBurst(midX + 120, midY - 100), 300);
-  setTimeout(() => spawnBurst(midX - 60, midY + 40), 450);
-  setTimeout(() => spawnBurst(midX + 60, midY + 30), 600);
+// Event Tombol Kembang Api
+const fwBtn = document.getElementById('fwBtn');
+if (fwBtn) {
+  fwBtn.addEventListener('click', function() {
+    this.textContent = '💥 Boom! 🎆';
+    const midX = canvas.width / 2;
+    const midY = canvas.height / 2;
+    
+    spawnBurst(midX, midY - 50);
+    setTimeout(() => spawnBurst(midX - 120, midY - 120), 150);
+    setTimeout(() => spawnBurst(midX + 120, midY - 100), 300);
+    setTimeout(() => spawnBurst(midX - 60, midY + 40), 450);
+    setTimeout(() => spawnBurst(midX + 60, midY + 30), 600);
 
-  setTimeout(() => { this.textContent = 'Ledakkan lagi! 🎆'; }, 3000);
-});
+    setTimeout(() => { this.textContent = 'Ledakkan lagi! 🎆'; }, 3000);
+  });
+}
 
-// Trigger kembang api otomatis saat mencapai section paling bawah
+// Efek Ledakan Otomatis Saat Scroll ke Paling Bawah
 const obs = new IntersectionObserver((entries) => {
   entries.forEach(e => {
     if (e.isIntersecting && e.target.id === 'finalSection') {
@@ -204,7 +285,7 @@ const obs = new IntersectionObserver((entries) => {
       spawnBurst(midX - 100, 200);
       setTimeout(() => spawnBurst(midX + 100, 150), 300);
       setTimeout(() => spawnBurst(midX, 250), 600);
-      obs.unobserve(e.target);
+      obs.unobserve(e.target); 
     }
   });
 }, { threshold: 0.2 });

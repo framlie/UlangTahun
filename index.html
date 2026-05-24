@@ -3,21 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Happy 21st Birthday, Sayang!</title>
+  <title>Happy 21st Birthday, Kak Marcia!</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- CANVAS GLOBAL BARU UNTUK KEMBANG API -->
+  <!-- CANVAS GLOBAL UTAMA UNTUK KEMBANG API -->
   <canvas id="globalFwCanvas"></canvas>
+
+  <!-- FITUR AUDIO PLAYER (MUNCUL SEJAK AWAL LOCK SCREEN) -->
+  <!-- FITUR AUDIO PLAYER (Ditambah pembungkus music-box agar bisa bergerak) -->
+  <div class="music-player" id="musicPlayer">
+    <button class="music-btn" id="musicBtn">▶</button>
+    <div class="music-box">
+      <select class="music-select" id="musicSelect">
+        <option value="Yiruma - River Flows in You (Visualizer).mp3">🎵 River Flows In You - Yiruma</option>
+        <option value="Declan McKenna - Slipping Through My Fingers (Official Audio).mp3">🎵 Slipping through My Fingers - Declan McKenna</option>
+      </select>
+    </div>
+    <audio id="bgAudio" loop></audio>
+  </div>
 
   <!-- ELEMENT LOCK SCREEN -->
   <div class="lock-screen" id="lockScreen">
     <div class="stars-bg" id="lockStars"></div>
     <div class="lock-badge">Halaman Terkunci 🔒</div>
     <h2>Sabar ya, kak Marcia Rianda... ✨</h2>
-    <p>Tunggu sampai tanggal 14 juni 2026 yaa baru kuncinya terbukaa hehe!!</p>
-      
+    <p>Tunggu sampai tanggal 14 Juni 2026 yaa baru kuncinya terbukaa hehe!!</p>
     
     <div class="countdown-wrap">
       <div class="cd-box"><span class="cd-num" id="lock-d">00</span><span class="cd-label">Hari</span></div>
@@ -25,17 +37,6 @@
       <div class="cd-box"><span class="cd-num" id="lock-m">00</span><span class="cd-label">Menit</span></div>
       <div class="cd-box"><span class="cd-num" id="lock-s">00</span><span class="cd-label">Detik</span></div>
     </div>
-  </div>
-
-  <!-- FITUR AUDIO PLAYER -->
-  <div class="music-player" id="musicPlayer" style="display:none;">
-    <button class="music-btn" id="musicBtn">▶</button>
-    <select class="music-select" id="musicSelect">
-      <option value="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">🎵 Beautiful Piano (Song 1)</option>
-      <option value="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3">🎵 Romantic Ambient (Song 2)</option>
-      <option value="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3">🎵 Soft Acoustic (Song 3)</option>
-    </select>
-    <audio id="bgAudio" loop></audio>
   </div>
 
   <!-- KONTEN UTAMA WEBSITE -->
@@ -46,7 +47,7 @@
       <div class="hearts-rain" id="heartsRain"></div>
 
       <div class="hero-badge">Selamat Ulang Tahun</div>
-      <h1>Happy 21st Birthday,<br>Sayangku ✨</h1>
+      <h1>Happy 21st Birthday,<br>Marcia Rianda ✨</h1>
       <p>Hari ini dunia bersyukur kamu lahir. Tepat 2 bulan kita saling mengenal — dan rasanya seperti seumur hidup.</p>
 
       <div class="countdown-wrap" id="countdown">
@@ -146,7 +147,7 @@
     </section>
 
     <section class="wish-section">
-      <div class="section-label">Doa & harapan</div>
+      <div class="section-label">Doa & harapan aku kepada kak Marcia Rianda</div>
       <h2 class="section-title">Untukmu di usia 21</h2>
       <div class="divider"></div>
 
@@ -172,7 +173,7 @@
 
       <p class="big-wish">"Semoga usiamu yang ke-21 ini menjadi awal dari babak terindah dalam hidupmu."</p>
       <p style="color:rgba(255,255,255,0.6); line-height:1.9; max-width:600px; margin: 0 auto; font-size:1.05rem;">
-        Semoga mimpimu tercapai satu per satu. Semoga kamu selalu sehat, bahagia, dan dikelilingi orang-orang yang benar-benar mencintaimu. Dan semoga aku bisa terus ada untuk menyaksikan setiap langkah indahmu.
+        Semoga mimpimu tercapai satu per satu. Semoga kamu selalu sehat, bahagia, dan dikelilingi orang-orang yang benar-benar mencintaimu. Dan semoga aku bisa terus ada disisimu untuk melihat setiap mimpi yang kamu impikan tercapai. 
       </p>
 
       <!-- TOMBOL UTAMA PEMICU LEDAKAN -->
@@ -184,7 +185,7 @@
       <h2 class="section-title" style="text-align:center;">Yang aku berikan untukmu</h2>
       <div class="divider"></div>
       <ul class="promise-list">
-        <li><span class="promise-icon">🌹</span><span class="promise-text">Aku berjanji untuk selalu ada — di saat kamu senang maupun sedih. Kamu tidak akan pernah merasakan sepi selama aku ada.</span></li>
+        <li><span class="promise-icon">🌹</span><span class="promise-text">Aku berjanji untuk selalu ada di saat kamu senang maupun sedih. Dan aku tidak akan pernah membuatmu merasakan kesepian selama aku ada.</span></li>
         <li><span class="promise-icon">🌙</span><span class="promise-text">Aku berjanji untuk selalu mendengarkan ceritamu, sekecil apapun itu. Karena setiap kata yang kamu ucapkan berharga bagiku.</span></li>
         <li><span class="promise-icon">⭐</span><span class="promise-text">Aku berjanji untuk selalu mendukung mimpi-mimpimu. Apapun yang kamu kejar, aku akan jadi orang pertama yang mendorongmu ke depan.</span></li>
         <li><span class="promise-icon">🌸</span><span class="promise-text">Aku berjanji untuk membuat setiap hari bersamamu terasa istimewa — karena kamu memang istimewa.</span></li>
