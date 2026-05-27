@@ -17,14 +17,12 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { background: var(--deep); overflow-x: hidden; }
 
-    /* ===== CANVAS KEMBANG API GLOBAL ===== */
     #globalFwCanvas {
       position: fixed; top: 0; left: 0;
       width: 100vw; height: 100vh;
       z-index: 99998; pointer-events: none;
     }
 
-    /* ===== PETAL CURSOR TRAIL ===== */
     .petal-trail {
       position: fixed; pointer-events: none; z-index: 99997;
       font-size: 18px; opacity: 0;
@@ -36,7 +34,6 @@
       100% { opacity: 0; transform: translate(var(--px), var(--py)) rotate(var(--pr)) scale(0.3); }
     }
 
-    /* ===== AUDIO PLAYER ===== */
     .music-player {
       position: fixed; bottom: 20px; right: 20px;
       z-index: 999999;
@@ -55,8 +52,6 @@
       transition: transform 0.2s, background 0.2s; flex-shrink: 0;
     }
     .music-btn:hover { transform: scale(1.08); background: #ff6b9d; }
-
-    /* Music visualizer bars */
     .music-viz {
       display: flex; align-items: flex-end; gap: 2px;
       height: 20px; width: 30px; flex-shrink: 0;
@@ -64,7 +59,6 @@
     .viz-bar {
       width: 4px; border-radius: 2px;
       background: var(--pink); opacity: 0.3;
-      transition: height 0.1s;
     }
     .music-viz.active .viz-bar:nth-child(1) { animation: bar1 0.6s ease infinite alternate; opacity: 1; }
     .music-viz.active .viz-bar:nth-child(2) { animation: bar2 0.5s ease infinite alternate; opacity: 1; }
@@ -74,22 +68,14 @@
     @keyframes bar2 { from { height: 8px; } to { height: 14px; } }
     @keyframes bar3 { from { height: 5px; } to { height: 20px; } }
     @keyframes bar4 { from { height: 10px; } to { height: 12px; } }
-
     .music-info { max-width: 150px; overflow: hidden; }
-    .music-title {
-      font-size: 11px; color: #fff; font-family: 'Lato', sans-serif;
-      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-    }
+    .music-title { font-size: 11px; color: #fff; font-family: 'Lato', sans-serif; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .music-artist { font-size: 10px; color: rgba(255,143,176,0.6); }
-    .music-select {
-      background: black; border: none; color: white;
-      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-      cursor: pointer; opacity: 0;
-    }
+    .music-select { background: black; border: none; color: white; position: absolute; top: 0; left: 0; width: 100%; height: 100%; cursor: pointer; opacity: 0; }
     .music-info-wrap { position: relative; cursor: pointer; }
     #bgAudio { display: none; }
 
-    /* ===== LOCK SCREEN ===== */
+    /* LOCK SCREEN */
     .lock-screen {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       background: radial-gradient(ellipse at center, #1a0030 0%, #0d0014 70%);
@@ -100,52 +86,17 @@
       transition: opacity 1s ease, visibility 1s;
       cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40' style='font-size:24px'><text y='30'>✨</text></svg>"), auto !important;
     }
-    .lock-badge {
-      background: rgba(255,100,150,0.15);
-      border: 1px solid rgba(255,100,150,0.4);
-      border-radius: 50px; padding: 8px 24px;
-      font-size: 12px; letter-spacing: 3px; text-transform: uppercase;
-      color: var(--pink); margin-bottom: 2rem;
-    }
-    .lock-title {
-      font-family: 'Playfair Display', serif !important;
-      font-size: 3.2rem !important; font-weight: 700 !important;
-      color: #ffffff !important; line-height: 1.3 !important;
-      margin-bottom: 15px !important;
-      text-shadow: 0 0 20px rgba(255,255,255,0.2) !important;
-    }
-    .lock-subtitle {
-      font-size: 14px !important; max-width: 500px !important;
-      margin: 0 auto 35px auto !important; line-height: 1.6 !important;
-      color: rgba(255,255,255,0.7) !important;
-      animation: fadeInSubtitle 1.5s ease-in-out;
-    }
+    .lock-badge { background: rgba(255,100,150,0.15); border: 1px solid rgba(255,100,150,0.4); border-radius: 50px; padding: 8px 24px; font-size: 12px; letter-spacing: 3px; text-transform: uppercase; color: var(--pink); margin-bottom: 2rem; }
+    .lock-title { font-family: 'Playfair Display', serif !important; font-size: 3.2rem !important; font-weight: 700 !important; color: #ffffff !important; line-height: 1.3 !important; margin-bottom: 15px !important; text-shadow: 0 0 20px rgba(255,255,255,0.2) !important; }
+    .lock-subtitle { font-size: 14px !important; max-width: 500px !important; margin: 0 auto 35px auto !important; line-height: 1.6 !important; color: rgba(255,255,255,0.7) !important; animation: fadeInSubtitle 1.5s ease-in-out; }
     @keyframes fadeInSubtitle { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
-    .lock-countdown-container {
-      display: flex !important; flex-direction: row !important;
-      flex-wrap: nowrap !important; justify-content: center !important;
-      align-items: center !important; gap: 18px !important;
-      width: 100% !important;
-    }
-    .lock-cd-box {
-      background: #251235 !important;
-      border: 1px solid rgba(255,143,176,0.4) !important;
-      width: 90px !important; height: 120px !important; border-radius: 18px !important;
-      display: flex !important; flex-direction: column !important;
-      justify-content: center !important; align-items: center !important;
-    }
+    .lock-countdown-container { display: flex !important; flex-direction: row !important; flex-wrap: nowrap !important; justify-content: center !important; align-items: center !important; gap: 18px !important; width: 100% !important; }
+    .lock-cd-box { background: #251235 !important; border: 1px solid rgba(255,143,176,0.4) !important; width: 90px !important; height: 120px !important; border-radius: 18px !important; display: flex !important; flex-direction: column !important; justify-content: center !important; align-items: center !important; }
     .lock-cd-num { font-size: 2.4rem !important; font-weight: bold !important; color: var(--pink) !important; line-height: 1 !important; margin-bottom: 10px !important; }
     .lock-cd-label { font-size: 10px !important; text-transform: uppercase !important; color: rgba(255,143,176,0.6) !important; letter-spacing: 1.5px !important; }
-    .lock-btn-unlock {
-      background: transparent !important; border: 1px solid rgba(255,143,176,0.4) !important;
-      color: var(--pink) !important; padding: 10px 24px !important; font-size: 13px !important;
-      font-weight: bold !important; letter-spacing: 1px !important; border-radius: 20px !important;
-      text-transform: uppercase !important; margin-top: 30px !important;
-      cursor: pointer !important; transition: all 0.3s ease !important; z-index: 5; position: relative;
-    }
+    .lock-btn-unlock { background: transparent !important; border: 1px solid rgba(255,143,176,0.4) !important; color: var(--pink) !important; padding: 10px 24px !important; font-size: 13px !important; font-weight: bold !important; letter-spacing: 1px !important; border-radius: 20px !important; text-transform: uppercase !important; margin-top: 30px !important; cursor: pointer !important; transition: all 0.3s ease !important; z-index: 5; position: relative; }
     .lock-btn-unlock:hover { background: rgba(255,143,176,0.15) !important; box-shadow: 0 0 15px rgba(255,143,176,0.3) !important; }
 
-    /* ===== SHOOTING STARS ===== */
     .shooting-stars-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; pointer-events: none; }
     .shooting-star { position: absolute; width: 2px; height: 2px; border-radius: 50%; opacity: 0; transform: rotate(-35deg); animation: cometShower 5s linear infinite; }
     .shooting-star::before { content: ''; position: absolute; top: 50%; transform: translateY(-50%); width: 160px; height: 1px; }
@@ -157,73 +108,32 @@
     .shooting-star:nth-child(2) { top:-5%;left:80%;animation-delay:1.5s;animation-duration:4.5s; }
     .shooting-star:nth-child(3) { top:10%;left:40%;animation-delay:2.5s;animation-duration:3s; }
     .shooting-star:nth-child(4) { top:-15%;left:70%;animation-delay:4s;animation-duration:5s; }
-    @keyframes cometShower {
-      0% { transform:translate(0,0) rotate(-35deg);opacity:0; }
-      5% { opacity:1; }
-      15% { transform:translate(-350px,245px) rotate(-35deg);opacity:0; }
-      100% { transform:translate(-350px,245px) rotate(-35deg);opacity:0; }
-    }
+    @keyframes cometShower { 0% { transform:translate(0,0) rotate(-35deg);opacity:0; } 5% { opacity:1; } 15% { transform:translate(-350px,245px) rotate(-35deg);opacity:0; } 100% { transform:translate(-350px,245px) rotate(-35deg);opacity:0; } }
 
-    /* ===== CLICK HEART ===== */
-    .click-heart {
-      position: fixed; pointer-events: none; z-index: 10001; user-select: none;
-      animation: flyAndFade 1s cubic-bezier(0.25,1,0.5,1) forwards; transform: translate(-50%,-50%);
-    }
-    @keyframes flyAndFade {
-      0% { transform:translate(-50%,-50%) translate(0,0) rotate(0deg);opacity:1; }
-      100% { transform:translate(-50%,-50%) translate(var(--target-x),var(--target-y)) rotate(var(--target-rot));opacity:0; }
-    }
+    .click-heart { position: fixed; pointer-events: none; z-index: 10001; user-select: none; animation: flyAndFade 1s cubic-bezier(0.25,1,0.5,1) forwards; transform: translate(-50%,-50%); }
+    @keyframes flyAndFade { 0% { transform:translate(-50%,-50%) translate(0,0) rotate(0deg);opacity:1; } 100% { transform:translate(-50%,-50%) translate(var(--target-x),var(--target-y)) rotate(var(--target-rot));opacity:0; } }
     .shake-animation { animation: shake 0.5s ease-in-out !important; }
     @keyframes shake { 0%,100%{transform:translateX(0)} 10%,30%,50%,70%,90%{transform:translateX(-6px)} 20%,40%,60%,80%{transform:translateX(6px)} }
 
-    /* ===== SITE ===== */
+    /* SITE */
     .site { font-family: 'Lato', sans-serif; background: var(--deep); color: #fff; overflow-x: hidden; display: none; }
 
-    /* ===== HERO ===== */
-    .hero {
-      min-height: 100vh;
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      text-align: center; padding: 2rem;
-      background: radial-gradient(ellipse at center,#1a0030 0%,var(--deep) 70%);
-      position: relative; overflow: hidden;
-    }
-    .hero-badge {
-      background: rgba(255,100,150,0.2); border: 1px solid rgba(255,100,150,0.5);
-      border-radius: 50px; padding: 8px 24px; font-size: 13px; letter-spacing: 3px;
-      text-transform: uppercase; color: var(--pink); margin-bottom: 2rem;
-      animation: pulse 2s infinite;
-    }
+    /* HERO */
+    .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 2rem; background: radial-gradient(ellipse at center,#1a0030 0%,var(--deep) 70%); position: relative; overflow: hidden; }
+    .hero-badge { background: rgba(255,100,150,0.2); border: 1px solid rgba(255,100,150,0.5); border-radius: 50px; padding: 8px 24px; font-size: 13px; letter-spacing: 3px; text-transform: uppercase; color: var(--pink); margin-bottom: 2rem; animation: pulse 2s infinite; }
     @keyframes pulse { 0%,100%{box-shadow:0 0 0 0 rgba(255,100,150,0.3)} 50%{box-shadow:0 0 20px 8px rgba(255,100,150,0.1)} }
-    .hero h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2.5rem,7vw,5rem); line-height: 1.2; margin-bottom: 0.5rem;
-      background: linear-gradient(135deg,#ff8fb0,#ffcce0,#c084fc,#ff8fb0);
-      background-size: 300% 300%;
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-      animation: gradShift 4s ease infinite;
-    }
+    .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem,7vw,5rem); line-height: 1.2; margin-bottom: 0.5rem; background: linear-gradient(135deg,#ff8fb0,#ffcce0,#c084fc,#ff8fb0); background-size: 300% 300%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: gradShift 4s ease infinite; }
     @keyframes gradShift { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
-    
-    /* Typing effect subtitle */
-    .hero-typing {
-      font-size: 1.1rem; color: rgba(255,255,255,0.7); max-width: 500px; line-height: 1.8; margin-bottom: 2rem;
-      min-height: 2.5em;
-    }
+    .hero-typing { font-size: 1.1rem; color: rgba(255,255,255,0.7); max-width: 500px; line-height: 1.8; margin-bottom: 2rem; min-height: 2.5em; }
     .typing-cursor { display: inline-block; width: 2px; height: 1.1em; background: var(--pink); animation: blink 0.7s infinite; vertical-align: text-bottom; margin-left: 2px; }
     @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
-    
     .scroll-hint { color: rgba(255,255,255,0.4); font-size: 13px; letter-spacing: 2px; animation: bounce 2s infinite; }
     @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(8px)} }
     .countdown-wrap { display: flex; gap: 16px; margin-bottom: 2.5rem; }
-    .cd-box {
-      background: rgba(255,143,176,0.08); border: 1px solid rgba(255,143,176,0.25);
-      border-radius: 16px; padding: 16px 20px;
-      display: flex; flex-direction: column; align-items: center; min-width: 75px;
-    }
+    .cd-box { background: rgba(255,143,176,0.08); border: 1px solid rgba(255,143,176,0.25); border-radius: 16px; padding: 16px 20px; display: flex; flex-direction: column; align-items: center; min-width: 75px; }
     .cd-num { font-size: 2rem; font-weight: 700; color: var(--pink); line-height: 1; margin-bottom: 6px; }
     .cd-label { font-size: 10px; text-transform: uppercase; color: rgba(255,143,176,0.6); letter-spacing: 1.5px; }
 
-    /* ===== STAR BG ===== */
     .stars-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; overflow: hidden; }
     .star { position: absolute; background: #fff; border-radius: 50%; animation: twinkle 3s infinite alternate; }
     @keyframes twinkle { 0%{opacity:0.2} 100%{opacity:1} }
@@ -231,324 +141,234 @@
     .heart-drop { position: absolute; top: -40px; font-size: 20px; animation: fallDown linear infinite; }
     @keyframes fallDown { 0%{transform:translateY(0) rotate(0deg);opacity:0.7} 100%{transform:translateY(110vh) rotate(360deg);opacity:0} }
 
-    /* ===== SECTIONS ===== */
+    /* SECTIONS */
     section { padding: 6rem 2rem; max-width: 900px; margin: 0 auto; }
     .section-label { font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: var(--purple); margin-bottom: 1rem; text-align: center; }
     .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem,4vw,3rem); margin-bottom: 1.5rem; }
     .divider { width: 80px; height: 2px; background: linear-gradient(to right,transparent,var(--pink),transparent); margin: 1rem auto; }
 
-    /* ===== LETTER ===== */
+    /* LETTER */
     .letter-section { text-align: center; }
-    .letter-card {
-      background: var(--card-bg); border: 1px solid rgba(255,143,176,0.2);
-      border-radius: 24px; padding: 3rem; text-align: left; position: relative;
-      font-size: 1.05rem; line-height: 2; color: rgba(255,255,255,0.85);
-      font-family: 'Playfair Display', serif; font-style: italic;
-    }
-    .letter-card::before {
-      content: '\201C'; font-size: 8rem; color: rgba(255,143,176,0.1);
-      position: absolute; top: -20px; left: 20px; font-family: serif; line-height: 1;
-    }
+    .letter-card { background: var(--card-bg); border: 1px solid rgba(255,143,176,0.2); border-radius: 24px; padding: 3rem; text-align: left; position: relative; font-size: 1.05rem; line-height: 2; color: rgba(255,255,255,0.85); font-family: 'Playfair Display', serif; font-style: italic; }
+    .letter-card::before { content: '\201C'; font-size: 8rem; color: rgba(255,143,176,0.1); position: absolute; top: -20px; left: 20px; font-family: serif; line-height: 1; }
 
-    /* ===== REASONS GRID ===== */
+    /* REASONS */
     .reasons-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap: 16px; margin-top: 2rem; }
-    .reason-card {
-      background: var(--card-bg); border: 1px solid rgba(192,132,252,0.2);
-      border-radius: 20px; padding: 1.5rem; transition: transform 0.3s, border-color 0.3s; cursor: default;
-    }
+    .reason-card { background: var(--card-bg); border: 1px solid rgba(192,132,252,0.2); border-radius: 20px; padding: 1.5rem; transition: transform 0.3s, border-color 0.3s; cursor: default; }
     .reason-card:hover { transform: translateY(-6px); border-color: rgba(255,143,176,0.5); }
     .reason-num { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: rgba(255,143,176,0.3); font-weight: 700; }
     .reason-text { font-size: 0.95rem; color: rgba(255,255,255,0.75); margin-top: 8px; line-height: 1.7; }
 
-    /* ===== TIMELINE ===== */
+    /* TIMELINE */
     .timeline { position: relative; margin-top: 3rem; }
-    .timeline::before {
-      content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 1px;
-      background: linear-gradient(to bottom,transparent,rgba(255,143,176,0.4),transparent); transform: translateX(-50%);
-    }
+    .timeline::before { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: linear-gradient(to bottom,transparent,rgba(255,143,176,0.4),transparent); transform: translateX(-50%); }
     .tl-item { display: flex; gap: 2rem; margin-bottom: 3rem; align-items: center; }
     .tl-item:nth-child(even) { flex-direction: row-reverse; }
-    .tl-dot {
-      width: 14px; height: 14px; border-radius: 50%; background: var(--pink);
-      border: 3px solid var(--deep); box-shadow: 0 0 0 4px rgba(255,143,176,0.3);
-      flex-shrink: 0; position: relative; z-index: 1;
-    }
-    .tl-content {
-      flex: 1; background: var(--card-bg); border: 1px solid rgba(255,143,176,0.15);
-      border-radius: 16px; padding: 1.25rem 1.5rem;
-    }
+    .tl-dot { width: 14px; height: 14px; border-radius: 50%; background: var(--pink); border: 3px solid var(--deep); box-shadow: 0 0 0 4px rgba(255,143,176,0.3); flex-shrink: 0; position: relative; z-index: 1; }
+    .tl-content { flex: 1; background: var(--card-bg); border: 1px solid rgba(255,143,176,0.15); border-radius: 16px; padding: 1.25rem 1.5rem; }
     .tl-date { font-size: 11px; letter-spacing: 2px; color: var(--purple); text-transform: uppercase; margin-bottom: 4px; }
     .tl-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; margin-bottom: 6px; }
     .tl-desc { font-size: 0.9rem; color: rgba(255,255,255,0.6); line-height: 1.7; }
 
-    /* ===== PHOTO GALLERY (NEW MASONRY / BENTO GRID) ===== */
-    .gallery-section { padding: 6rem 2rem; max-width: 1100px; margin: 0 auto; }
-    .photo-bento {
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      grid-auto-rows: 80px;
-      gap: 12px;
-      margin-top: 3rem;
-    }
-    .photo-bento .p-card {
-      position: relative; border-radius: 18px; overflow: hidden; cursor: pointer;
-      background: linear-gradient(135deg,#1a0030,#2a0845);
-      border: 1px solid rgba(255,143,176,0.15);
-      transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), border-color 0.3s, box-shadow 0.3s;
-    }
-    .photo-bento .p-card:hover {
-      transform: scale(1.03) translateY(-4px);
-      border-color: rgba(255,143,176,0.6);
-      box-shadow: 0 12px 40px rgba(255,143,176,0.25);
-      z-index: 2;
-    }
-    .photo-bento .p-card img {
-      width: 100%; height: 100%; object-fit: cover; display: block;
-      transition: transform 0.5s ease;
-    }
-    .photo-bento .p-card:hover img { transform: scale(1.07); }
-    .photo-bento .p-card .p-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(13,0,20,0.75) 0%, transparent 60%);
-      opacity: 0; transition: opacity 0.3s;
-      display: flex; align-items: flex-end; padding: 16px;
-    }
-    .photo-bento .p-card:hover .p-overlay { opacity: 1; }
-    .photo-bento .p-card .p-caption {
-      font-family: 'Playfair Display', serif; font-style: italic;
-      font-size: 0.85rem; color: #fff; line-height: 1.4;
-    }
-    .photo-bento .p-card .p-placeholder {
-      width: 100%; height: 100%;
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      gap: 8px;
-    }
-    .photo-bento .p-card .p-placeholder span:first-child { font-size: 2.5rem; }
-    .photo-bento .p-card .p-placeholder span:last-child {
-      font-size: 0.75rem; color: rgba(255,143,176,0.5); letter-spacing: 1px;
-      font-family: 'Lato', sans-serif;
-    }
-    .photo-bento .p-card .p-zoom-icon {
-      position: absolute; top: 12px; right: 12px;
-      width: 30px; height: 30px; background: rgba(255,143,176,0.2);
-      border: 1px solid rgba(255,143,176,0.4); border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 13px; opacity: 0; transition: opacity 0.3s;
-    }
-    .photo-bento .p-card:hover .p-zoom-icon { opacity: 1; }
+    /* ===== PHOTO GALLERY — AESTHETIC BENTO ===== */
+    .gallery-section { padding: 6rem 2rem; max-width: 1200px; margin: 0 auto; position: relative; overflow: visible; }
 
-    /* Bento layout spans */
-    .p-card.span-4  { grid-column: span 4; grid-row: span 4; }
-    .p-card.span-3  { grid-column: span 3; grid-row: span 3; }
-    .p-card.span-6  { grid-column: span 6; grid-row: span 3; }
-    .p-card.span-4h { grid-column: span 4; grid-row: span 3; }
-    .p-card.span-wide { grid-column: span 8; grid-row: span 3; }
-    .p-card.span-tall { grid-column: span 4; grid-row: span 5; }
-    .p-card.span-sm   { grid-column: span 3; grid-row: span 2; }
-    .p-card.span-med  { grid-column: span 6; grid-row: span 4; }
-
-    /* Gallery add-photo hint card */
-    .p-card.add-hint {
-      border: 2px dashed rgba(255,143,176,0.25) !important;
-      background: rgba(255,143,176,0.03) !important;
-      display: flex; align-items: center; justify-content: center;
-      cursor: default;
-    }
-    .p-card.add-hint:hover { transform: none !important; box-shadow: none !important; }
-    .add-hint-inner { text-align: center; }
-    .add-hint-inner span:first-child { font-size: 1.8rem; display: block; margin-bottom: 6px; opacity: 0.4; }
-    .add-hint-inner span:last-child { font-size: 10px; color: rgba(255,143,176,0.4); letter-spacing: 1px; }
-
-    /* ===== LIGHTBOX ===== */
-    .lightbox {
-      position: fixed; inset: 0; z-index: 999990;
-      background: rgba(0,0,0,0.92); backdrop-filter: blur(12px);
-      display: none; align-items: center; justify-content: center; padding: 2rem;
-    }
-    .lightbox.open { display: flex; }
-    .lightbox-inner { position: relative; max-width: 90vw; max-height: 90vh; }
-    .lightbox img {
-      max-width: 80vw; max-height: 80vh; border-radius: 16px;
-      box-shadow: 0 0 80px rgba(255,143,176,0.3), 0 20px 60px rgba(0,0,0,0.8);
-      display: block;
-    }
-    .lightbox-caption {
-      text-align: center; margin-top: 16px;
-      font-family: 'Playfair Display', serif; font-style: italic;
-      color: rgba(255,255,255,0.8); font-size: 1rem;
-    }
-    .lb-close {
-      position: absolute; top: -16px; right: -16px;
-      width: 38px; height: 38px; background: rgba(255,143,176,0.2);
-      border: 1px solid rgba(255,143,176,0.5); border-radius: 50%;
-      color: #fff; font-size: 18px; cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      transition: background 0.2s; z-index: 2;
-    }
-    .lb-close:hover { background: rgba(255,143,176,0.4); }
-    .lb-nav {
-      position: absolute; top: 50%; transform: translateY(-50%);
-      width: 40px; height: 40px; background: rgba(255,143,176,0.15);
-      border: 1px solid rgba(255,143,176,0.4); border-radius: 50%;
-      color: #fff; font-size: 18px; cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      transition: background 0.2s;
-    }
-    .lb-nav:hover { background: rgba(255,143,176,0.35); }
-    .lb-prev { right: calc(100% + 12px); }
-    .lb-next { left: calc(100% + 12px); }
-    .lb-counter {
-      position: absolute; bottom: -36px; left: 50%; transform: translateX(-50%);
-      font-size: 11px; color: rgba(255,143,176,0.6); letter-spacing: 2px;
-    }
-
-    /* ===== WISH CARDS (NEW FEATURE) ===== */
-    .wishboard-section { text-align: center; padding: 6rem 2rem; max-width: 900px; margin: 0 auto; }
-    .wish-input-wrap {
-      display: flex; gap: 10px; max-width: 600px; margin: 2rem auto 0;
-      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,143,176,0.25);
-      border-radius: 50px; padding: 6px 6px 6px 20px; align-items: center;
-    }
-    .wish-input {
-      flex: 1; background: transparent; border: none; color: #fff; font-size: 0.95rem;
-      font-family: 'Lato', sans-serif; outline: none;
-    }
-    .wish-input::placeholder { color: rgba(255,255,255,0.3); }
-    .wish-send-btn {
-      background: linear-gradient(135deg,#ff6b9d,#c084fc); border: none;
-      border-radius: 50px; padding: 10px 20px; color: #fff; font-size: 13px;
-      cursor: pointer; font-weight: bold; letter-spacing: 0.5px;
-      transition: transform 0.2s, box-shadow 0.2s; white-space: nowrap;
-    }
-    .wish-send-btn:hover { transform: scale(1.05); box-shadow: 0 4px 15px rgba(255,107,157,0.4); }
-    .wish-cards-board {
-      display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; margin-top: 2rem;
-    }
-    .wish-bubble {
-      background: rgba(255,143,176,0.08); border: 1px solid rgba(255,143,176,0.2);
-      border-radius: 20px; padding: 14px 18px;
-      font-size: 0.9rem; color: rgba(255,255,255,0.85);
-      font-family: 'Playfair Display', serif; font-style: italic;
-      max-width: 240px; text-align: left; position: relative;
-      animation: popIn 0.4s cubic-bezier(0.34,1.56,0.64,1) forwards;
-    }
-    .wish-bubble.no-anim { animation: none; opacity: 1; transform: none; }
-    .wb-text { display: block; line-height: 1.6; }
-    @keyframes popIn { from{opacity:0;transform:scale(0.7) translateY(20px)} to{opacity:1;transform:scale(1) translateY(0)} }
-    .wish-bubble .wb-time {
-      font-size: 9px; color: rgba(255,143,176,0.45); font-family: 'Lato', sans-serif;
-      font-style: normal; margin-top: 8px; letter-spacing: 1px;
-    }
-
-    /* ===== GALLERY FLORAL DECORATIONS ===== */
-    .gallery-section { position: relative; overflow: visible; }
-
-    /* SVG bunga melayang di pojok galeri */
-    .gallery-floral {
-      position: absolute; pointer-events: none; z-index: 0;
-      opacity: 0.18;
-    }
+    .gallery-floral { position: absolute; pointer-events: none; z-index: 0; opacity: 0.18; }
     .gallery-floral.fl-tl { top: 20px; left: -30px; width: 160px; animation: floralDrift 8s ease-in-out infinite; }
     .gallery-floral.fl-tr { top: 10px; right: -20px; width: 130px; animation: floralDrift 10s ease-in-out infinite reverse; }
     .gallery-floral.fl-bl { bottom: 40px; left: -10px; width: 100px; animation: floralDrift 9s ease-in-out infinite 2s; }
     .gallery-floral.fl-br { bottom: 20px; right: -30px; width: 140px; animation: floralDrift 7s ease-in-out infinite 1s reverse; }
-    @keyframes floralDrift {
-      0%,100% { transform: translateY(0) rotate(0deg); }
-      33%  { transform: translateY(-14px) rotate(6deg); }
-      66%  { transform: translateY(-6px) rotate(-4deg); }
+    @keyframes floralDrift { 0%,100% { transform: translateY(0) rotate(0deg); } 33% { transform: translateY(-14px) rotate(6deg); } 66% { transform: translateY(-6px) rotate(-4deg); } }
+
+    /* ===== NEW AESTHETIC MASONRY BENTO ===== */
+    .photo-bento {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-auto-rows: 75px;
+      gap: 14px;
+      margin-top: 3rem;
+      position: relative;
     }
 
-    /* Kelopak bunga melayang di atas grid */
-    .floating-petal {
-      position: absolute; pointer-events: none; z-index: 1;
-      animation: petalFloat linear infinite;
-      opacity: 0;
-    }
-    @keyframes petalFloat {
-      0%   { transform: translateY(0) rotate(0deg) scale(1);   opacity: 0; }
-      10%  { opacity: 0.7; }
-      80%  { opacity: 0.5; }
-      100% { transform: translateY(-120px) rotate(var(--rot)) scale(0.6); opacity: 0; }
-    }
-
-    /* Bintang / sparkle kecil di sekitar foto */
-    .photo-bento { position: relative; }
+    /* Sparkle accents */
     .photo-bento::before, .photo-bento::after {
       content: '✦';
-      position: absolute; color: rgba(255,143,176,0.35);
-      font-size: 1.4rem; pointer-events: none; z-index: 3;
+      position: absolute; color: rgba(255,143,176,0.4);
+      font-size: 1.6rem; pointer-events: none; z-index: 3;
       animation: sparkleRotate 4s linear infinite;
     }
-    .photo-bento::before { top: -18px; left: 8%; }
-    .photo-bento::after  { bottom: -18px; right: 10%; animation-delay: 2s; }
-    @keyframes sparkleRotate { 0%{transform:rotate(0deg) scale(1)} 50%{transform:rotate(180deg) scale(1.3)} 100%{transform:rotate(360deg) scale(1)} }
+    .photo-bento::before { top: -22px; left: 6%; }
+    .photo-bento::after  { bottom: -22px; right: 8%; animation-delay: 2s; }
+    @keyframes sparkleRotate { 0%{transform:rotate(0deg) scale(1)} 50%{transform:rotate(180deg) scale(1.4)} 100%{transform:rotate(360deg) scale(1)} }
 
-    /* Corner petal di tiap foto card */
-    .p-card .p-corner-petal {
-      position: absolute; font-size: 1rem; pointer-events: none; z-index: 3;
-      opacity: 0; transition: opacity 0.4s, transform 0.4s;
+    .p-card {
+      position: relative; border-radius: 20px; overflow: hidden; cursor: pointer;
+      background: linear-gradient(135deg,#1a0030,#2a0845);
+      border: 1px solid rgba(255,143,176,0.12);
+      transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1), border-color 0.3s, box-shadow 0.3s;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.4);
     }
-    .p-card:hover .p-corner-petal { opacity: 0.8; }
-    .p-corner-petal.cp-tl { top: 6px;  left: 8px;  transform: rotate(-20deg); }
-    .p-corner-petal.cp-tr { top: 6px;  right: 8px; transform: rotate(20deg); }
-    .p-card:hover .cp-tl { transform: rotate(-30deg) scale(1.2); }
-    .p-card:hover .cp-tr { transform: rotate(30deg) scale(1.2); }
+    .p-card::before {
+      content: '';
+      position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(135deg, rgba(255,143,176,0.06), rgba(192,132,252,0.04));
+      opacity: 0; transition: opacity 0.4s; pointer-events: none; border-radius: 20px;
+    }
+    .p-card:hover {
+      transform: scale(1.035) translateY(-5px);
+      border-color: rgba(255,143,176,0.7);
+      box-shadow: 0 16px 48px rgba(255,143,176,0.28), 0 0 0 1px rgba(255,143,176,0.3);
+      z-index: 4;
+    }
+    .p-card:hover::before { opacity: 1; }
+    .p-card img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.55s cubic-bezier(0.25,0.46,0.45,0.94); border-radius: 20px; }
+    .p-card:hover img { transform: scale(1.08); }
 
-    /* Glowing border on hover — pink bloom */
-    .p-card::after {
-      content: ''; position: absolute; inset: -1px; border-radius: 18px; z-index: 0;
-      background: linear-gradient(135deg, rgba(255,143,176,0), rgba(192,132,252,0), rgba(255,143,176,0));
-      transition: background 0.4s;
-      pointer-events: none;
+    /* Gradient overlay on hover */
+    .p-overlay {
+      position: absolute; inset: 0; z-index: 2;
+      background: linear-gradient(to top, rgba(13,0,20,0.85) 0%, rgba(13,0,20,0.2) 50%, transparent 100%);
+      opacity: 0; transition: opacity 0.35s;
+      display: flex; align-items: flex-end; padding: 18px;
     }
-    .p-card:hover::after {
-      background: linear-gradient(135deg,rgba(255,143,176,0.18),rgba(192,132,252,0.12),rgba(255,143,176,0.18));
-    }
+    .p-card:hover .p-overlay { opacity: 1; }
+    .p-caption { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.88rem; color: #fff; line-height: 1.4; text-shadow: 0 1px 8px rgba(0,0,0,0.8); }
 
-    /* ===== SECRET ===== */
+    /* Placeholder when image missing */
+    .p-placeholder { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; }
+    .p-placeholder span:first-child { font-size: 2.8rem; }
+    .p-placeholder span:last-child { font-size: 0.72rem; color: rgba(255,143,176,0.45); letter-spacing: 1px; font-family: 'Lato', sans-serif; }
+    .p-placeholder { display: none; }
+
+    /* Zoom icon */
+    .p-zoom-icon { position: absolute; top: 12px; right: 12px; z-index: 3; width: 32px; height: 32px; background: rgba(255,143,176,0.22); border: 1px solid rgba(255,143,176,0.5); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; opacity: 0; transition: opacity 0.3s, transform 0.3s; backdrop-filter: blur(4px); }
+    .p-card:hover .p-zoom-icon { opacity: 1; transform: scale(1.1); }
+
+    /* Corner petals */
+    .p-corner-petal { position: absolute; font-size: 1rem; pointer-events: none; z-index: 3; opacity: 0; transition: opacity 0.4s, transform 0.4s; }
+    .p-card:hover .p-corner-petal { opacity: 0.9; }
+    .cp-tl { top: 7px; left: 9px; transform: rotate(-20deg); }
+    .cp-tr { top: 7px; right: 9px; transform: rotate(20deg); }
+    .p-card:hover .cp-tl { transform: rotate(-32deg) scale(1.25); }
+    .p-card:hover .cp-tr { transform: rotate(32deg) scale(1.25); }
+
+    /* Number badge */
+    .p-num-badge {
+      position: absolute; top: 10px; left: 10px; z-index: 3;
+      font-family: 'Playfair Display', serif;
+      font-size: 0.7rem; color: rgba(255,143,176,0.8);
+      background: rgba(13,0,20,0.65); border: 1px solid rgba(255,143,176,0.3);
+      border-radius: 20px; padding: 2px 8px;
+      letter-spacing: 1px; backdrop-filter: blur(4px);
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .p-card:hover .p-num-badge { opacity: 1; }
+
+    /* ===== BENTO SPAN CLASSES ===== */
+    /* Row × Col on a 12-col grid, 75px auto-rows */
+    .p-card.s-feat-l   { grid-column: span 5; grid-row: span 5; }  /* large feature left  */
+    .p-card.s-feat-m   { grid-column: span 4; grid-row: span 4; }  /* medium feature      */
+    .p-card.s-tall     { grid-column: span 3; grid-row: span 5; }  /* tall portrait       */
+    .p-card.s-wide     { grid-column: span 7; grid-row: span 3; }  /* wide landscape      */
+    .p-card.s-sq       { grid-column: span 3; grid-row: span 3; }  /* square              */
+    .p-card.s-med      { grid-column: span 4; grid-row: span 3; }  /* medium              */
+    .p-card.s-sm       { grid-column: span 3; grid-row: span 2; }  /* small               */
+    .p-card.s-xwide    { grid-column: span 9; grid-row: span 3; }  /* extra wide          */
+    .p-card.s-pair     { grid-column: span 6; grid-row: span 4; }  /* pair/duo            */
+    .p-card.s-accent   { grid-column: span 2; grid-row: span 2; }  /* tiny accent         */
+
+    /* Decorative filler cards */
+    .deco-card {
+      border-radius: 20px; overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+      pointer-events: none; cursor: default;
+    }
+    .deco-quote {
+      background: linear-gradient(135deg, rgba(255,143,176,0.07), rgba(192,132,252,0.05));
+      border: 1px solid rgba(255,143,176,0.15);
+      flex-direction: column; gap: 8px; padding: 16px;
+    }
+    .deco-emoji-cloud {
+      background: linear-gradient(135deg, rgba(192,132,252,0.07), rgba(255,143,176,0.05));
+      border: 1px solid rgba(192,132,252,0.15);
+    }
+    .deco-sparkle-card {
+      background: radial-gradient(ellipse at center, rgba(255,215,0,0.06), rgba(255,143,176,0.04));
+      border: 1px solid rgba(255,215,0,0.14);
+    }
+    .deco-quote-mark { font-size: 2.2rem; color: rgba(255,143,176,0.22); line-height: 1; font-family: serif; }
+    .deco-quote-text { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.78rem; color: rgba(255,143,176,0.9); text-align: center; line-height: 1.55; }
+    .deco-emoji-big { font-size: 2.6rem; animation: floatEmoji 3s ease-in-out infinite; }
+    @keyframes floatEmoji { 0%,100%{transform:translateY(0) rotate(0deg)} 50%{transform:translateY(-9px) rotate(12deg)} }
+    .deco-sparkle-wrap { display: grid; grid-template-columns: repeat(3,1fr); gap: 5px; padding: 10px; }
+    .deco-sparkle-wrap span { font-size: 1.25rem; text-align: center; animation: sparkleFloat 2s ease-in-out infinite; }
+    .deco-sparkle-wrap span:nth-child(2){animation-delay:.3s} .deco-sparkle-wrap span:nth-child(3){animation-delay:.6s}
+    .deco-sparkle-wrap span:nth-child(4){animation-delay:.9s} .deco-sparkle-wrap span:nth-child(5){animation-delay:1.2s}
+    .deco-sparkle-wrap span:nth-child(6){animation-delay:1.5s}
+    @keyframes sparkleFloat { 0%,100%{opacity:0.4;transform:scale(1)} 50%{opacity:1;transform:scale(1.2)} }
+
+    /* Floating petals */
+    .floating-petal { position: absolute; pointer-events: none; z-index: 1; animation: petalFloat linear infinite; opacity: 0; }
+    @keyframes petalFloat { 0%{transform:translateY(0) rotate(0deg) scale(1);opacity:0} 10%{opacity:0.7} 80%{opacity:0.5} 100%{transform:translateY(-140px) rotate(var(--rot)) scale(0.5);opacity:0} }
+
+    /* LIGHTBOX */
+    .lightbox { position: fixed; inset: 0; z-index: 999990; background: rgba(0,0,0,0.94); backdrop-filter: blur(16px); display: none; align-items: center; justify-content: center; padding: 2rem; }
+    .lightbox.open { display: flex; }
+    .lightbox-inner { position: relative; max-width: 90vw; max-height: 90vh; }
+    .lightbox img { max-width: 80vw; max-height: 80vh; border-radius: 18px; box-shadow: 0 0 80px rgba(255,143,176,0.35), 0 20px 60px rgba(0,0,0,0.8); display: block; }
+    .lightbox-caption { text-align: center; margin-top: 16px; font-family: 'Playfair Display', serif; font-style: italic; color: rgba(255,255,255,0.8); font-size: 1rem; }
+    .lb-close { position: absolute; top: -16px; right: -16px; width: 38px; height: 38px; background: rgba(255,143,176,0.2); border: 1px solid rgba(255,143,176,0.5); border-radius: 50%; color: #fff; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s; z-index: 2; }
+    .lb-close:hover { background: rgba(255,143,176,0.4); }
+    .lb-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 40px; height: 40px; background: rgba(255,143,176,0.15); border: 1px solid rgba(255,143,176,0.4); border-radius: 50%; color: #fff; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s; }
+    .lb-nav:hover { background: rgba(255,143,176,0.35); }
+    .lb-prev { right: calc(100% + 12px); }
+    .lb-next { left: calc(100% + 12px); }
+    .lb-counter { position: absolute; bottom: -36px; left: 50%; transform: translateX(-50%); font-size: 11px; color: rgba(255,143,176,0.6); letter-spacing: 2px; }
+
+    /* ===== STAR MAP ===== */
+    .starmap-section { text-align: center; padding: 6rem 2rem; max-width: 900px; margin: 0 auto; }
+    .starmap-wrap { position: relative; margin: 2.5rem auto 0; max-width: 700px; border-radius: 24px; overflow: hidden; border: 1px solid rgba(255,143,176,0.25); box-shadow: 0 0 60px rgba(192,132,252,0.1), 0 20px 60px rgba(0,0,0,0.5); }
+    #starMapCanvas { display: block; width: 100%; }
+    .starmap-label { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1rem; color: rgba(255,255,255,0.6); margin-top: 1.2rem; line-height: 1.7; }
+
+    /* ===== MOOD RING ===== */
+    .moodring-section { text-align: center; padding: 6rem 2rem; max-width: 700px; margin: 0 auto; }
+    .mood-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; margin-top: 2rem; }
+    .mood-btn { background: var(--card-bg); border: 1px solid rgba(255,143,176,0.2); border-radius: 20px; padding: 1.2rem 0.8rem; cursor: pointer; transition: transform 0.3s, border-color 0.3s, background 0.3s; font-family: 'Lato', sans-serif; }
+    .mood-btn:hover { transform: translateY(-4px) scale(1.04); border-color: var(--pink); }
+    .mood-btn.selected { border-color: var(--pink); background: rgba(255,143,176,0.15); }
+    .mood-btn .mb-emoji { font-size: 2rem; display: block; margin-bottom: 6px; }
+    .mood-btn .mb-label { font-size: 0.8rem; color: rgba(255,255,255,0.75); }
+    .mood-result { margin-top: 2rem; padding: 2rem; background: var(--card-bg); border: 1px solid rgba(255,143,176,0.25); border-radius: 20px; display: none; animation: fadeSlideIn 0.5s ease; }
+    .mood-result.show { display: block; }
+    @keyframes fadeSlideIn { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+    .mood-result .mr-emoji { font-size: 3rem; }
+    .mood-result .mr-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--pink); margin: 0.5rem 0; }
+    .mood-result .mr-message { font-size: 0.95rem; color: rgba(255,255,255,0.75); line-height: 1.8; }
+    .mood-result .mr-song { margin-top: 1rem; padding: 0.8rem 1rem; background: rgba(255,143,176,0.08); border-radius: 12px; border: 1px solid rgba(255,143,176,0.2); font-size: 0.9rem; color: rgba(255,255,255,0.8); }
+    .mood-result .mr-song span { color: var(--pink); font-weight: bold; }
+
+    /* SECRET */
     .secret-section { text-align: center; padding: 6rem 2rem; max-width: 700px; margin: 0 auto; }
-    .secret-envelope {
-      display: inline-block; cursor: pointer; font-size: 6rem; margin: 2rem 0;
-      animation: floatEnvelope 3s ease-in-out infinite; transition: transform 0.3s;
-      filter: drop-shadow(0 0 20px rgba(255,143,176,0.5));
-    }
+    .secret-envelope { display: inline-block; cursor: pointer; font-size: 6rem; margin: 2rem 0; animation: floatEnvelope 3s ease-in-out infinite; transition: transform 0.3s; filter: drop-shadow(0 0 20px rgba(255,143,176,0.5)); }
     .secret-envelope:hover { transform: scale(1.1); }
     @keyframes floatEnvelope { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
-    .secret-message-box {
-      background: rgba(255,143,176,0.06); border: 1px solid rgba(255,143,176,0.3);
-      border-radius: 24px; padding: 2.5rem; margin-top: 1.5rem; display: none;
-      animation: fadeSlideIn 0.6s ease;
-      font-family: 'Playfair Display', serif; font-style: italic;
-      font-size: 1.1rem; color: rgba(255,255,255,0.9); line-height: 1.9;
-    }
+    .secret-message-box { background: rgba(255,143,176,0.06); border: 1px solid rgba(255,143,176,0.3); border-radius: 24px; padding: 2.5rem; margin-top: 1.5rem; display: none; animation: fadeSlideIn 0.6s ease; font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.1rem; color: rgba(255,255,255,0.9); line-height: 1.9; }
     .secret-message-box.open { display: block; }
-    @keyframes fadeSlideIn { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
     .secret-hint { font-size: 13px; color: rgba(255,143,176,0.6); letter-spacing: 2px; text-transform: uppercase; margin-top: 0.5rem; }
 
-    /* ===== QUIZ ===== */
+    /* QUIZ */
     .quiz-section { text-align: center; padding: 6rem 2rem; max-width: 700px; margin: 0 auto; }
-    .quiz-card {
-      background: var(--card-bg); border: 1px solid rgba(192,132,252,0.25);
-      border-radius: 24px; padding: 2.5rem; margin-top: 2rem;
-    }
+    .quiz-card { background: var(--card-bg); border: 1px solid rgba(192,132,252,0.25); border-radius: 24px; padding: 2.5rem; margin-top: 2rem; }
     .quiz-question { font-family: 'Playfair Display', serif; font-size: 1.3rem; margin-bottom: 1.5rem; line-height: 1.6; }
     .quiz-options { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-    .quiz-opt {
-      background: rgba(255,143,176,0.07); border: 1px solid rgba(255,143,176,0.25);
-      border-radius: 14px; padding: 14px 16px; cursor: pointer;
-      font-size: 0.9rem; color: rgba(255,255,255,0.8); transition: all 0.25s;
-      text-align: left; font-family: 'Lato', sans-serif;
-    }
+    .quiz-opt { background: rgba(255,143,176,0.07); border: 1px solid rgba(255,143,176,0.25); border-radius: 14px; padding: 14px 16px; cursor: pointer; font-size: 0.9rem; color: rgba(255,255,255,0.8); transition: all 0.25s; text-align: left; font-family: 'Lato', sans-serif; }
     .quiz-opt:hover { background: rgba(255,143,176,0.18); border-color: var(--pink); color: #fff; }
     .quiz-opt.correct { background: rgba(100,255,150,0.15); border-color: rgba(100,255,150,0.6); color: #aaffcc; pointer-events: none; }
     .quiz-opt.wrong { background: rgba(255,80,80,0.12); border-color: rgba(255,80,80,0.4); color: rgba(255,120,120,0.8); pointer-events: none; }
     .quiz-result { margin-top: 1.5rem; font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--pink); font-style: italic; display: none; }
     .quiz-nav { margin-top: 1.5rem; }
-    .quiz-next-btn {
-      background: transparent; border: 1px solid rgba(255,143,176,0.4); color: var(--pink);
-      padding: 10px 28px; border-radius: 20px; cursor: pointer; font-size: 13px;
-      letter-spacing: 1px; text-transform: uppercase; transition: all 0.3s; display: none;
-    }
+    .quiz-next-btn { background: transparent; border: 1px solid rgba(255,143,176,0.4); color: var(--pink); padding: 10px 28px; border-radius: 20px; cursor: pointer; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; transition: all 0.3s; display: none; }
     .quiz-next-btn:hover { background: rgba(255,143,176,0.15); }
     .quiz-score-wrap { display: none; text-align: center; padding: 2rem 0; }
     .quiz-score-wrap .score-num { font-family: 'Playfair Display', serif; font-size: 4rem; color: var(--pink); }
@@ -557,81 +377,54 @@
     .quiz-pip { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,143,176,0.2); transition: background 0.3s; }
     .quiz-pip.done { background: var(--pink); }
 
-    /* ===== WISH SECTION ===== */
+    /* WISH SECTION */
     .wish-section { text-align: center; }
     .big-wish { font-family: 'Playfair Display', serif; font-size: clamp(1.5rem,4vw,2.5rem); color: var(--pink); margin: 2rem 0; line-height: 1.6; font-style: italic; }
     .cake-wrap { display: flex; justify-content: center; margin: 3rem 0; }
     .cake-svg { width: 160px; height: auto; }
-    .firework-btn {
-      background: linear-gradient(135deg,#ff6b9d,#c084fc); border: none; border-radius: 50px;
-      padding: 14px 36px; color: white; font-size: 1rem; cursor: pointer; margin-top: 2.5rem;
-      letter-spacing: 1px; font-weight: bold; box-shadow: 0 4px 15px rgba(255,107,157,0.4);
-      transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
-    }
+    .firework-btn { background: linear-gradient(135deg,#ff6b9d,#c084fc); border: none; border-radius: 50px; padding: 14px 36px; color: white; font-size: 1rem; cursor: pointer; margin-top: 2.5rem; letter-spacing: 1px; font-weight: bold; box-shadow: 0 4px 15px rgba(255,107,157,0.4); transition: transform 0.2s, box-shadow 0.2s; }
     .firework-btn:hover { transform: scale(1.05); box-shadow: 0 6px 20px rgba(255,107,157,0.6); }
 
-    /* ===== PROMISE ===== */
+    /* PROMISE */
     .promise-list { list-style: none; display: grid; gap: 16px; margin-top: 2rem; }
-    .promise-list li {
-      display: flex; align-items: flex-start; gap: 16px;
-      background: rgba(255,255,255,0.03); border-radius: 16px;
-      padding: 1.25rem; border: 1px solid rgba(192,132,252,0.15); text-align: left;
-    }
+    .promise-list li { display: flex; align-items: flex-start; gap: 16px; background: rgba(255,255,255,0.03); border-radius: 16px; padding: 1.25rem; border: 1px solid rgba(192,132,252,0.15); text-align: left; }
     .promise-icon { font-size: 1.5rem; flex-shrink: 0; }
     .promise-text { color: rgba(255,255,255,0.8); line-height: 1.7; font-size: 0.95rem; }
 
-    /* ===== VIDEO ===== */
+    /* VIDEO */
     .video-section { text-align: center; padding: 6rem 2rem; max-width: 800px; margin: 0 auto; }
-    .video-frame-wrap {
-      position: relative; margin-top: 2.5rem; border-radius: 24px; overflow: hidden;
-      background: var(--deep); border: 1px solid rgba(255,143,176,0.3);
-      box-shadow: 0 0 60px rgba(255,143,176,0.15), 0 20px 60px rgba(0,0,0,0.6);
-      transition: box-shadow 0.4s;
-    }
-    .video-frame-wrap:hover { box-shadow: 0 0 80px rgba(255,143,176,0.3), 0 20px 60px rgba(0,0,0,0.7); }
+    .video-frame-wrap { position: relative; margin-top: 2.5rem; border-radius: 24px; overflow: hidden; background: var(--deep); border: 1px solid rgba(255,143,176,0.3); box-shadow: 0 0 60px rgba(255,143,176,0.15), 0 20px 60px rgba(0,0,0,0.6); }
     .video-frame-wrap video { width: 100%; display: block; border-radius: 24px; max-height: 500px; background: var(--deep); }
-    .video-frame-wrap::before {
-      content: ''; position: absolute; top: 10px; left: 10px; width: 40px; height: 40px; z-index: 2; pointer-events: none;
-      border-top: 2px solid var(--pink); border-left: 2px solid var(--pink); border-radius: 6px 0 0 0;
-    }
-    .video-frame-wrap::after {
-      content: ''; position: absolute; bottom: 10px; right: 10px; width: 40px; height: 40px; z-index: 2; pointer-events: none;
-      border-bottom: 2px solid var(--purple); border-right: 2px solid var(--purple); border-radius: 0 0 6px 0;
-    }
+    .video-frame-wrap::before { content: ''; position: absolute; top: 10px; left: 10px; width: 40px; height: 40px; z-index: 2; pointer-events: none; border-top: 2px solid var(--pink); border-left: 2px solid var(--pink); border-radius: 6px 0 0 0; }
+    .video-frame-wrap::after { content: ''; position: absolute; bottom: 10px; right: 10px; width: 40px; height: 40px; z-index: 2; pointer-events: none; border-bottom: 2px solid var(--purple); border-right: 2px solid var(--purple); border-radius: 0 0 6px 0; }
     .video-caption { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1rem; color: rgba(255,255,255,0.6); margin-top: 1.2rem; line-height: 1.7; }
 
-    /* ===== FINAL ===== */
+    /* FINAL */
     .final-section { text-align: center; padding: 8rem 2rem; background: radial-gradient(ellipse at center,#1a0030 0%,var(--deep) 70%); }
     .final-section .big { font-family: 'Playfair Display', serif; font-size: clamp(2rem,6vw,4rem); margin-bottom: 1rem; }
     .signature { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.3rem; color: var(--pink); margin-top: 2rem; }
 
-    /* ===== TOAST ===== */
-    .toast {
-      position: fixed; bottom: 90px; left: 50%; transform: translateX(-50%) translateY(20px);
-      background: rgba(26,0,48,0.95); border: 1px solid rgba(255,143,176,0.4);
-      color: #fff; padding: 12px 24px; border-radius: 30px; font-size: 14px;
-      z-index: 99999; opacity: 0; transition: all 0.4s ease; pointer-events: none;
-      text-align: center; backdrop-filter: blur(10px); white-space: nowrap;
-    }
+    /* TOAST */
+    .toast { position: fixed; bottom: 90px; left: 50%; transform: translateX(-50%) translateY(20px); background: rgba(26,0,48,0.95); border: 1px solid rgba(255,143,176,0.4); color: #fff; padding: 12px 24px; border-radius: 30px; font-size: 14px; z-index: 99999; opacity: 0; transition: all 0.4s ease; pointer-events: none; text-align: center; backdrop-filter: blur(10px); white-space: nowrap; }
     .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
-    /* ===== SCROLL REVEAL ===== */
+    /* SCROLL REVEAL */
     .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease, transform 0.8s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 768px) {
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
       .photo-bento { grid-template-columns: repeat(6,1fr); grid-auto-rows: 70px; }
-      .p-card.span-4 { grid-column: span 3; grid-row: span 3; }
-      .p-card.span-6 { grid-column: span 6; grid-row: span 3; }
-      .p-card.span-wide { grid-column: span 6; grid-row: span 3; }
-      .p-card.span-tall { grid-column: span 3; grid-row: span 4; }
-      .p-card.span-3 { grid-column: span 3; grid-row: span 3; }
-      .p-card.span-4h { grid-column: span 3; grid-row: span 3; }
-      .p-card.span-med { grid-column: span 6; grid-row: span 3; }
-      .p-card.span-sm { grid-column: span 3; grid-row: span 2; }
-      .lb-prev { right: auto; left: 8px; top: auto; bottom: -60px; transform: none; }
-      .lb-next { left: auto; right: 8px; top: auto; bottom: -60px; transform: none; }
+      .p-card.s-feat-l  { grid-column: span 4; grid-row: span 4; }
+      .p-card.s-feat-m  { grid-column: span 3; grid-row: span 4; }
+      .p-card.s-tall    { grid-column: span 3; grid-row: span 5; }
+      .p-card.s-wide    { grid-column: span 6; grid-row: span 3; }
+      .p-card.s-sq      { grid-column: span 3; grid-row: span 3; }
+      .p-card.s-med     { grid-column: span 3; grid-row: span 3; }
+      .p-card.s-sm      { grid-column: span 3; grid-row: span 2; }
+      .p-card.s-xwide   { grid-column: span 6; grid-row: span 3; }
+      .p-card.s-pair    { grid-column: span 6; grid-row: span 3; }
+      .p-card.s-accent  { grid-column: span 2; grid-row: span 2; }
     }
     @media (max-width: 600px) {
       .timeline::before { left: 20px; }
@@ -639,6 +432,19 @@
       .tl-dot { position: absolute; left: 13px; }
       .letter-card { padding: 2rem 1.5rem; }
       .quiz-options { grid-template-columns: 1fr; }
+      .mood-grid { grid-template-columns: repeat(2,1fr); }
+      .photo-bento { grid-template-columns: repeat(4,1fr); grid-auto-rows: 65px; }
+      .p-card.s-feat-l  { grid-column: span 2; grid-row: span 4; }
+      .p-card.s-feat-m  { grid-column: span 2; grid-row: span 3; }
+      .p-card.s-tall    { grid-column: span 2; grid-row: span 5; }
+      .p-card.s-wide    { grid-column: span 4; grid-row: span 3; }
+      .p-card.s-sq      { grid-column: span 2; grid-row: span 3; }
+      .p-card.s-med     { grid-column: span 2; grid-row: span 3; }
+      .p-card.s-sm      { grid-column: span 2; grid-row: span 2; }
+      .p-card.s-xwide   { grid-column: span 4; grid-row: span 3; }
+      .p-card.s-pair    { grid-column: span 4; grid-row: span 3; }
+      .p-card.s-accent  { display: none; }
+      .deco-card        { display: none; }
     }
     @media screen and (max-width: 480px) {
       .lock-title { font-size: 2.2rem !important; }
@@ -646,10 +452,6 @@
       .lock-cd-box { width: 70px !important; height: 95px !important; }
       .lock-cd-num { font-size: 1.6rem !important; margin-bottom: 6px !important; }
       .lock-cd-label { font-size: 8px !important; letter-spacing: 1px !important; }
-      .photo-bento { grid-template-columns: repeat(4,1fr); }
-      .p-card.span-4, .p-card.span-3, .p-card.span-4h, .p-card.span-tall { grid-column: span 2; }
-      .p-card.span-6, .p-card.span-wide, .p-card.span-med { grid-column: span 4; }
-      .p-card.span-sm { grid-column: span 2; }
     }
   </style>
 </head>
@@ -672,7 +474,9 @@
         <div class="music-artist" id="musicArtist">Miki Matsubara</div>
       </div>
       <select class="music-select" id="musicSelect">
+        
         <option value="Miki Matsubara - Stay With Me (Lyrics).mp3" data-title="Stay With Me" data-artist="Miki Matsubara">Stay With Me</option>
+        <option value="Takut -idgitaf (lirik lagu).mp3" data-title="Takut" data-artist="idgitaf">Takut</option>
         <option value="Meghan Trainor - Just A Friend To You (Lyrics).mp3" data-title="Just A Friend To You" data-artist="Meghan Trainor">Just A Friend To You</option>
         <option value="PUBLIC - Make You Mine (Official Lyric Video).mp3" data-title="Make You Mine" data-artist="PUBLIC">Make You Mine</option>
         <option value="Yiruma - River Flows in You (Visualizer).mp3" data-title="River Flows In You" data-artist="Yiruma">River Flows In You</option>
@@ -682,7 +486,6 @@
     <audio id="bgAudio" loop></audio>
   </div>
 
-  <!-- TOAST -->
   <div class="toast" id="toast"></div>
 
   <!-- LIGHTBOX -->
@@ -743,14 +546,14 @@
         <p>Marcia rianda yang tercinta,</p><br>
         <p>Nggak kerasa, hari ini kamu udah nyentuh umur 21 tahun. Usia yang indah (usia favorite aku sih), penuh mimpi, penuh kemungkinan, penuh cahaya. Dan bestie mu ini sangat beruntung bisa ada di sisimu di momen Ulang Tahun kamu yang spesial ini.</p><br>
         <p>Dua bulan mungkin terdengar singkat. Tapi setiap hari yang kita lalui bersama membuatku ingin memilikimu, aku harap kamu juga merasakan hal yang sama.</p><br>
-        <p>Di hari ulang tahunmu yang ke-21 ini, aku hanya ingin bilang: terima kasih telah hadir. Terima kasih telah memilihku sebagai bestie mu. Dan terima kasih telah menjadi kamu — persis seperti adanya(Jangan insecure lagi ya cantikk).</p><br>
+        <p>Di hari ulang tahunmu yang ke-21 ini, aku hanya ingin bilang: terima kasih telah hadir. Terima kasih telah memilihku sebagai bestie mu. Dan terima kasih telah menjadi kamu — persis seperti adanya (Jangan insecure lagi ya cantikk).</p><br>
         <p style="text-align:right; color:#ff8fb0;">Dengan cinta yang tulus,<br><em>Bestie ❤️</em></p>
       </div>
     </section>
 
     <!-- 21 ALASAN -->
     <section class="reveal">
-      <div class="section-label">Alasan aku cinta kamu sebagai bestie(maunya lebih dari bestie sih!!)</div>
+      <div class="section-label">Alasan aku cinta kamu sebagai bestie (maunya lebih dari bestie sih!!)</div>
       <h2 class="section-title" style="text-align:center;">21 hal yang membuatmu luar biasa</h2>
       <div class="divider"></div>
       <div class="reasons-grid" id="reasonsGrid"></div>
@@ -801,9 +604,8 @@
       </div>
     </section>
 
-    <!-- ===== GALERI FOTO (BENTO GRID) ===== -->
+    <!-- ===== GALERI FOTO ===== -->
     <section class="gallery-section reveal">
-      <!-- SVG Floral Decorations -->
       <svg class="gallery-floral fl-tl" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" fill="none">
         <circle cx="100" cy="100" r="30" fill="#ff8fb0"/>
         <ellipse cx="100" cy="60" rx="18" ry="28" fill="#ffcce0" transform="rotate(0 100 100)"/>
@@ -826,40 +628,46 @@
         <ellipse cx="80" cy="48" rx="14" ry="22" fill="#ffcce0" transform="rotate(300 80 80)"/>
         <circle cx="80" cy="80" r="14" fill="#fff9c2" opacity="0.9"/>
       </svg>
-      <svg class="gallery-floral fl-bl" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" fill="none">
-        <circle cx="60" cy="60" r="16" fill="#ff6b9d"/>
-        <ellipse cx="60" cy="36" rx="11" ry="18" fill="#ffb3cc" transform="rotate(0 60 60)"/>
-        <ellipse cx="60" cy="36" rx="11" ry="18" fill="#d4a0f5" transform="rotate(72 60 60)"/>
-        <ellipse cx="60" cy="36" rx="11" ry="18" fill="#ffb3cc" transform="rotate(144 60 60)"/>
-        <ellipse cx="60" cy="36" rx="11" ry="18" fill="#d4a0f5" transform="rotate(216 60 60)"/>
-        <ellipse cx="60" cy="36" rx="11" ry="18" fill="#ffb3cc" transform="rotate(288 60 60)"/>
-        <circle cx="60" cy="60" r="10" fill="#fffde0" opacity="0.9"/>
-      </svg>
-      <svg class="gallery-floral fl-br" viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg" fill="none">
-        <circle cx="90" cy="90" r="26" fill="#ff8fb0"/>
-        <ellipse cx="90" cy="55" rx="16" ry="26" fill="#ffcce0" transform="rotate(0 90 90)"/>
-        <ellipse cx="90" cy="55" rx="16" ry="26" fill="#c084fc" transform="rotate(51 90 90)"/>
-        <ellipse cx="90" cy="55" rx="16" ry="26" fill="#ffcce0" transform="rotate(102 90 90)"/>
-        <ellipse cx="90" cy="55" rx="16" ry="26" fill="#c084fc" transform="rotate(153 90 90)"/>
-        <ellipse cx="90" cy="55" rx="16" ry="26" fill="#ffcce0" transform="rotate(204 90 90)"/>
-        <ellipse cx="90" cy="55" rx="16" ry="26" fill="#c084fc" transform="rotate(255 90 90)"/>
-        <ellipse cx="90" cy="55" rx="16" ry="26" fill="#ffcce0" transform="rotate(306 90 90)"/>
-        <circle cx="90" cy="90" r="16" fill="#ffd700" opacity="0.75"/>
-      </svg>
 
       <div class="section-label">Galeri Kenangan</div>
       <h2 class="section-title" style="text-align:center;">Momen Cantik Tentangmu 🌸</h2>
       <div class="divider"></div>
-      <p style="color:rgba(255,255,255,0.45); font-size:0.9rem; text-align:center; margin-top:0.5rem;">Klik foto untuk memperbesar ✨<code style="color:rgba(255,143,176,0.7);font-size:0.85rem">foto cantik kamu kak!!</code> </p>
+      <p style="color:rgba(255,255,255,0.45); font-size:0.9rem; text-align:center; margin-top:0.5rem;">Klik foto untuk memperbesar ✨ <code style="color:rgba(255,143,176,0.7);font-size:0.85rem">foto cantik kamu kak!!</code></p>
 
-      <!-- Container relatif agar kelopak melayang bisa diposisi -->
       <div style="position:relative;">
         <div class="photo-bento" id="photoBento"></div>
         <div id="floatingPetals"></div>
       </div>
     </section>
 
-    <!-- ===== PESAN RAHASIA ===== -->
+    <!-- ===== STAR MAP ===== -->
+    <section class="starmap-section reveal">
+      <div class="section-label">Peta Bintang Kita</div>
+      <h2 class="section-title" style="text-align:center;">Bintang yang Mempertemukan Kita ⭐</h2>
+      <div class="divider"></div>
+      <p style="color:rgba(255,255,255,0.55); font-size:0.95rem; line-height:1.7; max-width:500px; margin:0 auto;">Di langit malam yang sama, ada dua bintang yang selalu bersinar untuk satu sama lain. Bintang kamu dan bintang aku.</p>
+      <div class="starmap-wrap">
+        <canvas id="starMapCanvas" width="700" height="380"></canvas>
+      </div>
+      <p class="starmap-label">✨ "Dari 14 April hingga selamanya — dua bintang yang berpadu menjadi satu konstelasi." ✨</p>
+    </section>
+
+    <!-- ===== MOOD RING ===== -->
+    <section class="moodring-section reveal">
+      <div class="section-label">Spesial untuk kamu</div>
+      <h2 class="section-title" style="text-align:center;">Lagi ngerasa gimana hari ini? 🌈</h2>
+      <div class="divider"></div>
+      <p style="color:rgba(255,255,255,0.55); font-size:0.95rem;">Pilih mood kamu sekarang dan biar aku kasih pesan spesial untukmu! 💌</p>
+      <div class="mood-grid" id="moodGrid"></div>
+      <div class="mood-result" id="moodResult">
+        <div class="mr-emoji" id="mrEmoji">💖</div>
+        <div class="mr-title" id="mrTitle">Loading...</div>
+        <div class="mr-message" id="mrMessage"></div>
+        <div class="mr-song" id="mrSong"></div>
+      </div>
+    </section>
+
+    <!-- PESAN RAHASIA -->
     <section class="secret-section reveal">
       <div class="section-label">Kejutan spesial</div>
       <h2 class="section-title" style="text-align:center;">Ada pesan rahasia untukmu 💌</h2>
@@ -874,7 +682,7 @@
       </div>
     </section>
 
-    <!-- ===== KUIS ===== -->
+    <!-- KUIS -->
     <section class="quiz-section reveal">
       <div class="section-label">Mini Quiz</div>
       <h2 class="section-title" style="text-align:center;">Seberapa kenal kamu aku? 🤭</h2>
@@ -888,19 +696,6 @@
         <div class="quiz-nav"><button class="quiz-next-btn" id="quizNext">Pertanyaan berikutnya →</button></div>
         <div class="quiz-score-wrap" id="quizScore"></div>
       </div>
-    </section>
-
-    <!-- ===== WISH BOARD (FITUR BARU) ===== -->
-    <section class="wishboard-section reveal">
-      <div class="section-label">Papan Doa & Ucapan & Harapan</div>
-      <h2 class="section-title" style="text-align:center;">Kirim doa untuk Marcia 🌷</h2>
-      <div class="divider"></div>
-      <p style="color:rgba(255,255,255,0.55); font-size:0.95rem;">Tulis ucapan atau doa untuk Marcia Rianda dan lihat bermunculan di papan! ✨</p>
-      <div class="wish-input-wrap">
-        <input type="text" class="wish-input" id="wishInput" placeholder="Tulis ucapanmu di sini..." maxlength="120">
-        <button class="wish-send-btn" id="wishSendBtn">Kirim 💌</button>
-      </div>
-      <div class="wish-cards-board" id="wishBoard"></div>
     </section>
 
     <!-- WISH SECTION -->
@@ -971,29 +766,56 @@
       <p class="signature">— Selalu untukmu, dengan cinta ❤️</p>
     </div>
 
-  </div><!-- end #mainSite -->
+  </div>
 
   <script>
   // ==========================================================================
-  // 0. FOTO DATA — Tambah foto di sini! Cukup edit array ini.
-  //    Ganti src dengan nama file foto kamu (foto1.jpg, foto2.jpg, dst.)
-  //    span menentukan ukuran di grid: 'span-4'=besar, 'span-3'=sedang, dll.
+  // PHOTO DATA — foto 9 & 10 pakai s-tall seperti foto 4 & 5
+  // Layout bento 12 kolom aesthetic:
+  //   Row 1: foto1(feat-l=5col) | foto2(feat-m=4col) | DECO-emoji(sm=3col)
+  //   Row 2: foto3(tall=3col, rows=5) | foto4(tall=3col, rows=5) | foto5(tall=3col, rows=5) | DECO-quote(sq=3col)
+  //   Row 3: foto6(wide=7col) | DECO-sparkle(sq=3col) | isi sisa
+  //   Row 4: foto7(med=4col) | foto8(sq=3col) | foto9(tall=3col,rows=5) | foto10(tall=3col,rows=5) — tapi 3+3+3+3=12 ✓
+  //   Row 5: foto11(sq=3col) | foto12(sq=3col) | (sisanya ditutup tall foto9&10)
+  //   Row 6: foto13(pair=6col) | foto14(feat-m=4col) | DECO(sm=2col)
   // ==========================================================================
+
+  /*
+    LAYOUT PLAN (12-col, 75px rows):
+    [foto1: s-feat-l 5c×5r] [foto2: s-feat-m 4c×4r] [deco-emoji 3c×2r]
+                                                       [deco-sparkle 3c×2r]
+    [foto3: s-tall 3c×5r] [foto4: s-tall 3c×5r] [foto5: s-tall 3c×5r] [deco-quote 3c×2r]
+                                                                          [foto6: s-sq 3c×3r]  <- wait recalc
+    ... We'll do it via explicit data and let CSS auto-flow do the work
+  */
+
   const photoData = [
-    { src: 'foto1.jpg', caption: 'Senyum favoritku 🥰', emoji: '🥰', span: 'span-4' },
-    { src: 'foto2.jpg', caption: 'Saat kamu sangat menggemaskan ✨', emoji: '✨', span: 'span-3' },
-    { src: 'foto3.jpg', caption: 'Kecantikkanmu 🌸', emoji: '🌸', span: 'span-tall' },
-    { src: 'foto4.jpg', caption: 'Cantik banget kak 💕', emoji: '💕', span: 'span-4h' },
-    { src: 'foto5.jpg', caption: 'My favorite person 🌹', emoji: '🌹', span: 'span-4h' },
-    { src: 'foto6.jpg', caption: 'Kamu dan senyummu 💖', emoji: '💖', span: 'span-wide' },
-    { src: 'foto7.jpg', caption: 'Bersama Keluarga Kecilnya ⭐', emoji: '⭐', span: 'span-3' },
-    { src: 'foto8.jpg', caption: 'Hari yang indah (habis bonyok)🌼', emoji: '🌼', span: 'span-3' },
+    { src: 'foto1.jpg',  caption: 'Senyum favoritku 🥰',              emoji: '🥰', span: 's-feat-l' },
+    { src: 'foto2.jpg',  caption: 'Saat kamu sangat menggemaskan ✨',  emoji: '✨', span: 's-feat-m' },
+    { src: 'foto3.jpg',  caption: 'Kecantikkanmu 🌸',                  emoji: '🌸', span: 's-tall'  },
+    { src: 'foto4.jpg',  caption: 'Cantik banget kak 💕',              emoji: '💕', span: 's-tall'  },
+    { src: 'foto5.jpg',  caption: 'My favorite person 🌹',             emoji: '🌹', span: 's-tall'  },
+    { src: 'foto6.jpg',  caption: 'Kamu dan senyummu 💖',              emoji: '💖', span: 's-wide'  },
+    { src: 'foto7.jpg',  caption: 'Bersama Keluarga Kecilnya ⭐',      emoji: '⭐', span: 's-med'   },
+    { src: 'foto8.jpg',  caption: 'Hari yang indah 🌼',                emoji: '🌼', span: 's-sq'    },
+    { src: 'foto9.jpg',  caption: 'Momen yang aku rindukan 💫',        emoji: '💫', span: 's-tall'  },
+    { src: 'foto10.jpg', caption: 'Kamu yang aku sayang 🌷',           emoji: '🌷', span: 's-tall'  },
+    { src: 'foto11.jpg', caption: 'Ekspresi lucumu 🤭',                emoji: '🤭', span: 's-sq'    },
+    { src: 'foto12.jpg', caption: 'Gadis favoritku 👑',                emoji: '👑', span: 's-sq'    },
+    { src: 'foto13.jpg', caption: 'Cantik seperti bintang ⭐',          emoji: '⭐', span: 's-pair'  },
+    { src: 'foto14.jpg', caption: 'Kamu, selamanya 🫶',                emoji: '🫶', span: 's-feat-m'},
   ];
-  // Untuk menambah foto: copy salah satu baris di atas dan tambahkan ke array.
-  // span options: 'span-4', 'span-3', 'span-6', 'span-4h', 'span-wide', 'span-tall', 'span-med', 'span-sm'
+
+  // Deco cards placed in-between photos
+  const decoInserts = [
+    { afterIdx: 1,  type:'emoji',   span:'s-sm',    emoji:'💖' },
+    { afterIdx: 5,  type:'sparkle', span:'s-sq',    emojis:['✨','🌸','💕','⭐','🌺','💫'] },
+    { afterIdx: 7,  type:'quote',   span:'s-sq',    content:'"Kamu cantik tanpa kamu sadari" 🌸' },
+    { afterIdx: 11, type:'emoji',   span:'s-sm',    emoji:'🎀' },
+  ];
 
   // ==========================================================================
-  // 1. BACKGROUNDS
+  // BACKGROUNDS
   // ==========================================================================
   function initBackgrounds(containerId, starCount) {
     const bg = document.getElementById(containerId);
@@ -1022,7 +844,7 @@
   }
 
   // ==========================================================================
-  // 2. LOCK SCREEN & COUNTDOWN
+  // LOCK SCREEN & COUNTDOWN
   // ==========================================================================
   const targetDate = new Date('2026-06-14T00:00:00');
 
@@ -1039,17 +861,14 @@
         setTimeout(()=>spawnBurst(canvas.width/2, canvas.height/2),600);
       },800);
       setTimeout(startTyping, 1200);
+      setTimeout(initStarMap, 1500);
     }
   }
 
   function checkLockAndCountdown(){
     const now = new Date();
     const diff = targetDate - now;
-    if(diff <= 0){
-      unlockSite();
-      ['cd-h','cd-m','cd-s'].forEach(id=>{ const el=document.getElementById(id); if(el) el.textContent='00'; });
-      return true;
-    }
+    if(diff <= 0){ unlockSite(); return true; }
     const days=String(Math.floor(diff/(1000*60*60*24))).padStart(2,'0');
     const hours=String(Math.floor((diff%(1000*60*60*24))/(1000*60*60))).padStart(2,'0');
     const minutes=String(Math.floor((diff%(1000*60*60))/(1000*60))).padStart(2,'0');
@@ -1063,7 +882,7 @@
   checkLockAndCountdown();
 
   // ==========================================================================
-  // 3. TYPING EFFECT (HERO)
+  // TYPING EFFECT
   // ==========================================================================
   const typingTexts = [
     'Hari ini dunia bersyukur kamu lahir. 🌸',
@@ -1071,55 +890,35 @@
     'Semoga hari ini jadi yang terindah buat kamu, Marcia ❤️',
     'Kamu adalah alasan kenapa aku selalu tersenyum setiap hari. 💖'
   ];
-  let typingIndex = 0, charIndex = 0, typingPhase = 'typing'; // phases: typing | pause | deleting | gap
+  let typingIndex = 0, charIndex = 0, typingPhase = 'typing';
 
   function startTyping() {
     const el = document.getElementById('heroTyping');
     if (!el) return;
     const cursor = '<span class="typing-cursor"></span>';
-
     function tick() {
       const current = typingTexts[typingIndex];
-
       if (typingPhase === 'typing') {
         charIndex++;
         el.innerHTML = current.substring(0, charIndex) + cursor;
-        if (charIndex === current.length) {
-          // Selesai diketik → jeda baca 3 detik agar bisa dibaca dengan nyaman
-          typingPhase = 'pause';
-          setTimeout(tick, 3000);
-        } else {
-          setTimeout(tick, 65);
-        }
-
+        if (charIndex === current.length) { typingPhase = 'pause'; setTimeout(tick, 3000); }
+        else { setTimeout(tick, 65); }
       } else if (typingPhase === 'pause') {
-        // Mulai hapus setelah jeda
-        typingPhase = 'deleting';
-        setTimeout(tick, 50);
-
+        typingPhase = 'deleting'; setTimeout(tick, 50);
       } else if (typingPhase === 'deleting') {
         charIndex--;
         el.innerHTML = current.substring(0, charIndex) + cursor;
-        if (charIndex === 0) {
-          // Semua terhapus → jeda singkat sebelum teks berikutnya
-          typingPhase = 'gap';
-          typingIndex = (typingIndex + 1) % typingTexts.length;
-          setTimeout(tick, 500);
-        } else {
-          setTimeout(tick, 38);
-        }
-
+        if (charIndex === 0) { typingPhase = 'gap'; typingIndex = (typingIndex + 1) % typingTexts.length; setTimeout(tick, 500); }
+        else { setTimeout(tick, 38); }
       } else if (typingPhase === 'gap') {
-        typingPhase = 'typing';
-        setTimeout(tick, 50);
+        typingPhase = 'typing'; setTimeout(tick, 50);
       }
     }
-
     tick();
   }
 
   // ==========================================================================
-  // 4. AUDIO PLAYER dengan visualizer
+  // AUDIO PLAYER
   // ==========================================================================
   const audio = document.getElementById('bgAudio');
   const musicBtn = document.getElementById('musicBtn');
@@ -1137,15 +936,10 @@
   if(audio && musicBtn && musicSelect){
     audio.src = musicSelect.value;
     function jalankanAudio(){
-      audio.play().then(()=>{ musicBtn.textContent='⏸'; if(musicViz) musicViz.classList.add('active'); })
-        .catch(()=>{ musicBtn.textContent='▶'; });
+      audio.play().then(()=>{ musicBtn.textContent='⏸'; if(musicViz) musicViz.classList.add('active'); }).catch(()=>{ musicBtn.textContent='▶'; });
     }
-    musicBtn.addEventListener('click',()=>{
-      if(audio.paused){ jalankanAudio(); } else { audio.pause(); musicBtn.textContent='▶'; if(musicViz) musicViz.classList.remove('active'); }
-    });
-    musicSelect.addEventListener('change',function(){
-      audio.src=this.value; updateMusicInfo(); jalankanAudio();
-    });
+    musicBtn.addEventListener('click',()=>{ if(audio.paused){ jalankanAudio(); } else { audio.pause(); musicBtn.textContent='▶'; if(musicViz) musicViz.classList.remove('active'); } });
+    musicSelect.addEventListener('change',function(){ audio.src=this.value; updateMusicInfo(); jalankanAudio(); });
     audio.addEventListener('ended',function(){
       let next=(musicSelect.selectedIndex+1)%musicSelect.options.length;
       musicSelect.selectedIndex=next; audio.src=musicSelect.value;
@@ -1154,7 +948,7 @@
   }
 
   // ==========================================================================
-  // 5. REASONS GRID
+  // REASONS GRID
   // ==========================================================================
   const reasons=[
     'Senyummu yang bisa langsung memperbaiki hariku yang paling buruk sekalipun',
@@ -1187,7 +981,7 @@
   });
 
   // ==========================================================================
-  // 6. KEMBANG API
+  // FIREWORKS
   // ==========================================================================
   const canvas=document.getElementById('globalFwCanvas');
   const ctx=canvas.getContext('2d');
@@ -1232,7 +1026,7 @@
   if(finalSec) obs.observe(finalSec);
 
   // ==========================================================================
-  // 7. PETAL CURSOR TRAIL
+  // PETAL CURSOR TRAIL
   // ==========================================================================
   const petals = ['🌸','🌺','✨','💕','🌷','🌼','💗'];
   let lastPetal = 0;
@@ -1245,8 +1039,7 @@
     p.textContent = petals[Math.floor(Math.random()*petals.length)];
     p.style.left = e.clientX + 'px';
     p.style.top = e.clientY + 'px';
-    const px = (Math.random()-0.5)*80, py = -40-Math.random()*60;
-    const pr = (Math.random()-0.5)*180;
+    const px = (Math.random()-0.5)*80, py = -40-Math.random()*60, pr = (Math.random()-0.5)*180;
     p.style.setProperty('--px',`${px}px`);
     p.style.setProperty('--py',`${py}px`);
     p.style.setProperty('--pr',`${pr}deg`);
@@ -1255,7 +1048,7 @@
   });
 
   // ==========================================================================
-  // 8. CLICK HEART (LOCK SCREEN)
+  // CLICK HEART (LOCK)
   // ==========================================================================
   document.getElementById('lockScreen').addEventListener('click',function(e){
     for(let i=0;i<5;i++) createHeart(e.clientX,e.clientY);
@@ -1271,7 +1064,7 @@
   }
 
   // ==========================================================================
-  // 9. TOAST HELPER
+  // TOAST
   // ==========================================================================
   function showToast(msg, dur=2500){
     const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show');
@@ -1279,7 +1072,7 @@
   }
 
   // ==========================================================================
-  // 10. PESAN RAHASIA
+  // PESAN RAHASIA
   // ==========================================================================
   const envelope=document.getElementById('secretEnvelope'); const msgBox=document.getElementById('secretMsgBox'); let opened=false;
   if(envelope&&msgBox){
@@ -1291,12 +1084,12 @@
   }
 
   // ==========================================================================
-  // 11. QUIZ
+  // QUIZ
   // ==========================================================================
   const quizData=[
     { q:'Kenapa aku bikin website ini untuk kamu?', opts:['Karena tugas sekolah','Karena kamu sangat spesial bagiku 💖','Karena iseng aja','Karena disuruh teman'], correct:1, feedback:'Betul banget! Karena kamu memang sangat spesial 💖' },
     { q:'Apa yang paling aku suka dari kamu?', opts:['Semuanya, tapi terutama senyummu','Hanya penampilanmu','Tidak ada yang spesial','Cara kamu memasak'], correct:0, feedback:'Yap! Semuanya, tapi senyummu yang paling bikin aku jatuh cinta 🥰' },
-    { q:'Berapa bulan kita sudah saling mengenal?', opts:['1 bulan','3 bulan','2 bulan 🌸','6 bulan'], correct:2, feedback:'Tepat! Sudah 2 bulan dan aku nggak menyesal sama sekali, malah itu makin membuatku kecintaan sama kamu 💕' }
+    { q:'Berapa bulan kita sudah saling mengenal?', opts:['1 bulan','3 bulan','2 bulan 🌸','6 bulan'], correct:2, feedback:'Tepat! Sudah 2 bulan dan aku nggak menyesal sama sekali 💕' }
   ];
   let qIdx=0, score=0;
   function renderQuiz(){
@@ -1321,83 +1114,121 @@
   function showScore(){
     document.getElementById('quizQuestion').style.display='none'; document.getElementById('quizOptions').style.display='none';
     document.getElementById('quizResult').style.display='none'; document.getElementById('quizNext').style.display='none';
-    const msgs=[['0/3','Hehe, masih perlu banyak kenalan ya! Tapi aku tetap suka kamu 😆'],['1/3','Lumayan! Kita perlu lebih sering ngobrol nih 🤭'],['2/3','Wah hampir sempurna! Kamu sudah kenal aku cukup baik 💕'],['3/3','Sempurna! Karena kamu benar 3 kali, jadi pacar aku aja yaaa💖✨']];
+    const msgs=[['0/3','Hehe, masih perlu banyak kenalan ya! Tapi aku tetap suka kamu 😆'],['1/3','Lumayan! Kita perlu lebih sering ngobrol nih 🤭'],['2/3','Wah hampir sempurna! Kamu sudah kenal aku cukup baik 💕'],['3/3','Sempurna! Karena kamu benar 3 kali, jadi pacarku aja yaaa 💖✨']];
     const scoreWrap=document.getElementById('quizScore');
     scoreWrap.style.display='block';
     scoreWrap.innerHTML=`<div class="score-num">${score}/3</div><div class="score-msg">${msgs[score][1]}</div>`;
-    if(score===3){ setTimeout(()=>{ spawnBurst(canvas.width/2,canvas.height/3); setTimeout(()=>spawnBurst(canvas.width/3,canvas.height/4),300); setTimeout(()=>spawnBurst(canvas.width*2/3,canvas.height/4),600); },300); }
+    if(score===3){ setTimeout(()=>{ spawnBurst(canvas.width/2,canvas.height/3); setTimeout(()=>spawnBurst(canvas.width/3,canvas.height/2),300); setTimeout(()=>spawnBurst(canvas.width*2/3,canvas.height/2),600); },300); }
   }
   renderQuiz();
 
   // ==========================================================================
-  // 12. PHOTO BENTO GRID + LIGHTBOX
+  // PHOTO BENTO GRID + LIGHTBOX
   // ==========================================================================
   const bentoEl = document.getElementById('photoBento');
-  let lbPhotos = []; // hanya foto yang berhasil dimuat
+  let lbPhotos = [];
+
+  function makePCard(photo, idx) {
+    const card = document.createElement('div');
+    card.className = `p-card ${photo.span}`;
+    card.dataset.idx = idx;
+
+    const img = document.createElement('img');
+    img.src = photo.src;
+    img.alt = photo.caption;
+    img.loading = 'lazy';
+
+    const placeholder = document.createElement('div');
+    placeholder.className = 'p-placeholder';
+    placeholder.innerHTML = `<span>${photo.emoji}</span><span>${photo.src}</span>`;
+
+    const overlay = document.createElement('div');
+    overlay.className = 'p-overlay';
+    overlay.innerHTML = `<span class="p-caption">${photo.caption}</span>`;
+
+    const zoom = document.createElement('div');
+    zoom.className = 'p-zoom-icon';
+    zoom.textContent = '🔍';
+
+    const petalSymbols = ['🌸','🌺','🌷','🌼','💮'];
+    const cpl = document.createElement('span');
+    cpl.className = 'p-corner-petal cp-tl';
+    cpl.textContent = petalSymbols[idx % petalSymbols.length];
+    const cpr = document.createElement('span');
+    cpr.className = 'p-corner-petal cp-tr';
+    cpr.textContent = petalSymbols[(idx+2) % petalSymbols.length];
+
+    const badge = document.createElement('div');
+    badge.className = 'p-num-badge';
+    badge.textContent = String(idx+1).padStart(2,'0');
+
+    img.addEventListener('load', () => {
+      placeholder.style.display = 'none';
+      img.style.display = 'block';
+      lbPhotos[idx] = { src: photo.src, caption: photo.caption };
+      card.dataset.lbIdx = idx;
+    });
+    img.addEventListener('error', () => {
+      img.style.display = 'none';
+      placeholder.style.display = 'flex';
+    });
+
+    card.appendChild(img);
+    card.appendChild(placeholder);
+    card.appendChild(overlay);
+    card.appendChild(zoom);
+    card.appendChild(cpl);
+    card.appendChild(cpr);
+    card.appendChild(badge);
+
+    card.addEventListener('click', () => {
+      const lbIdx = parseInt(card.dataset.lbIdx);
+      if(!isNaN(lbIdx) && lbPhotos[lbIdx]) openLightbox(lbIdx);
+      else { lbPhotos[idx] = { src: photo.src, caption: photo.caption }; openLightbox(idx); }
+    });
+
+    return card;
+  }
+
+  function makeDecoCard(deco) {
+    const card = document.createElement('div');
+    card.className = `p-card deco-card ${deco.span}`;
+
+    if (deco.type === 'quote') {
+      card.classList.add('deco-quote');
+      card.innerHTML = `<div class="deco-quote-mark">"</div><div class="deco-quote-text">${deco.content}</div>`;
+    } else if (deco.type === 'emoji') {
+      card.classList.add('deco-emoji-cloud');
+      card.innerHTML = `<div class="deco-emoji-big">${deco.emoji}</div>`;
+    } else if (deco.type === 'sparkle') {
+      card.classList.add('deco-sparkle-card');
+      const g = document.createElement('div');
+      g.className = 'deco-sparkle-wrap';
+      deco.emojis.forEach(e => { const s=document.createElement('span'); s.textContent=e; g.appendChild(s); });
+      card.appendChild(g);
+    }
+    return card;
+  }
 
   function buildBento() {
     bentoEl.innerHTML = '';
-    lbPhotos = [];
-    const petalSymbols = ['🌸','🌺','🌷','🌼','💮'];
+    lbPhotos = new Array(photoData.length).fill(null);
+
+    // Pre-populate lbPhotos with all entries (fallback for clicked before load)
+    photoData.forEach((p,i) => lbPhotos[i] = { src: p.src, caption: p.caption });
+
+    // Build with deco inserts
+    const decoMap = {};
+    decoInserts.forEach(d => { decoMap[d.afterIdx] = d; });
 
     photoData.forEach((photo, idx) => {
-      const card = document.createElement('div');
-      card.className = `p-card ${photo.span}`;
-      card.dataset.idx = idx;
-
-      const img = document.createElement('img');
-      img.src = photo.src;
-      img.alt = photo.caption;
-
-      const placeholder = document.createElement('div');
-      placeholder.className = 'p-placeholder';
-      placeholder.innerHTML = `<span>${photo.emoji}</span><span>foto${idx+1}.jpg</span>`;
-      placeholder.style.display = 'none';
-
-      const overlay = document.createElement('div');
-      overlay.className = 'p-overlay';
-      overlay.innerHTML = `<span class="p-caption">${photo.caption}</span>`;
-
-      const zoomIcon = document.createElement('div');
-      zoomIcon.className = 'p-zoom-icon';
-      zoomIcon.textContent = '🔍';
-
-      // Corner petals
-      const cpl = document.createElement('span');
-      cpl.className = 'p-corner-petal cp-tl';
-      cpl.textContent = petalSymbols[idx % petalSymbols.length];
-      const cpr = document.createElement('span');
-      cpr.className = 'p-corner-petal cp-tr';
-      cpr.textContent = petalSymbols[(idx+2) % petalSymbols.length];
-
-      img.addEventListener('load', () => {
-        lbPhotos.push({ src: photo.src, caption: photo.caption });
-        card.dataset.lbIdx = lbPhotos.length - 1;
-      });
-      img.addEventListener('error', () => {
-        img.style.display = 'none';
-        placeholder.style.display = 'flex';
-        card.classList.add('no-photo');
-      });
-
-      card.appendChild(img);
-      card.appendChild(placeholder);
-      card.appendChild(overlay);
-      card.appendChild(zoomIcon);
-      card.appendChild(cpl);
-      card.appendChild(cpr);
-
-      card.addEventListener('click', () => {
-        const lbIdx = parseInt(card.dataset.lbIdx);
-        if(!isNaN(lbIdx) && lbPhotos[lbIdx]) openLightbox(lbIdx);
-      });
-
-      bentoEl.appendChild(card);
+      bentoEl.appendChild(makePCard(photo, idx));
+      if (decoMap[idx]) bentoEl.appendChild(makeDecoCard(decoMap[idx]));
     });
 
-    // Spawn kelopak melayang di atas grid
     spawnFloatingPetals();
   }
+
   buildBento();
 
   function spawnFloatingPetals() {
@@ -1405,24 +1236,12 @@
     if (!container) return;
     container.innerHTML = '';
     const petalEmojis = ['🌸','🌺','🌷','✿','❀','🌼'];
-    const count = 14;
-    for (let i = 0; i < count; i++) {
+    for (let i = 0; i < 12; i++) {
       const p = document.createElement('div');
       p.className = 'floating-petal';
       p.textContent = petalEmojis[Math.floor(Math.random() * petalEmojis.length)];
-      const leftPct = Math.random() * 95;
-      const topStart = 20 + Math.random() * 70; // % dari tinggi bento
-      const dur = 5 + Math.random() * 8;
-      const delay = Math.random() * 10;
-      const rot = (Math.random() - 0.5) * 360;
-      p.style.cssText = `
-        left: ${leftPct}%;
-        top: ${topStart}%;
-        font-size: ${12 + Math.random() * 14}px;
-        animation-duration: ${dur}s;
-        animation-delay: ${delay}s;
-      `;
-      p.style.setProperty('--rot', `${rot}deg`);
+      p.style.cssText = `left:${Math.random()*95}%;top:${20+Math.random()*70}%;font-size:${12+Math.random()*14}px;animation-duration:${6+Math.random()*8}s;animation-delay:${Math.random()*10}s;`;
+      p.style.setProperty('--rot', `${(Math.random()-0.5)*360}deg`);
       container.appendChild(p);
     }
   }
@@ -1443,10 +1262,7 @@
     lightbox.classList.add('open');
     document.body.style.overflow = 'hidden';
   }
-  function closeLightbox() {
-    lightbox.classList.remove('open');
-    document.body.style.overflow = '';
-  }
+  function closeLightbox() { lightbox.classList.remove('open'); document.body.style.overflow = ''; }
   document.getElementById('lbClose').addEventListener('click', closeLightbox);
   document.getElementById('lbPrev').addEventListener('click', () => { currentLb=(currentLb-1+lbPhotos.length)%lbPhotos.length; openLightbox(currentLb); });
   document.getElementById('lbNext').addEventListener('click', () => { currentLb=(currentLb+1)%lbPhotos.length; openLightbox(currentLb); });
@@ -1459,97 +1275,97 @@
   });
 
   // ==========================================================================
-  // 13. WISH BOARD — persisten pakai localStorage
+  // STAR MAP
   // ==========================================================================
-  const WISH_KEY = 'marcia21_wishes';
+  function initStarMap() {
+    const c = document.getElementById('starMapCanvas');
+    if (!c) return;
+    const cx = c.getContext('2d');
+    const W = c.offsetWidth || 700;
+    const H = c.height;
+    c.width = W;
 
-  // Ucapan default (hanya ditambahkan sekali jika localStorage masih kosong)
-  const defaultWishes = [
-    { text: 'Selamat ulang tahun kak Marcia! Semoga selalu bahagia 🎂', ts: Date.now() - 1000*60*60*2 },
-    { text: 'Happy birthday! Semoga panjang umur dan sehat selalu 🌸', ts: Date.now() - 1000*60*30 },
-    { text: 'Semoga di usia 21 ini semua impian kamu terwujud! ✨',    ts: Date.now() - 1000*60*5  },
+    const bg = cx.createLinearGradient(0,0,W,H);
+    bg.addColorStop(0,'#0d0020'); bg.addColorStop(0.5,'#14003a'); bg.addColorStop(1,'#0a0018');
+    cx.fillStyle = bg; cx.fillRect(0,0,W,H);
+
+    for(let i=0;i<180;i++){
+      const x=Math.random()*W, y=Math.random()*H, r=Math.random()*1.5, a=0.2+Math.random()*0.7;
+      cx.globalAlpha=a; cx.fillStyle='#fff';
+      cx.beginPath(); cx.arc(x,y,r,0,Math.PI*2); cx.fill();
+    }
+    cx.globalAlpha=1;
+
+    const nodes=[
+      { x:W*0.22, y:H*0.35, label:'Fram ⭐', color:'#c084fc', r:8 },
+      { x:W*0.38, y:H*0.55, label:'', color:'#ff8fb0', r:5 },
+      { x:W*0.52, y:H*0.30, label:'', color:'#ffcce0', r:4 },
+      { x:W*0.64, y:H*0.50, label:'', color:'#ff8fb0', r:5 },
+      { x:W*0.50, y:H*0.65, label:'', color:'#c084fc', r:4 },
+      { x:W*0.78, y:H*0.38, label:'Marcia 💖', color:'#ff6b9d', r:8 },
+    ];
+
+    cx.strokeStyle='rgba(255,143,176,0.35)'; cx.lineWidth=1; cx.setLineDash([4,6]);
+    cx.beginPath();
+    nodes.forEach((n,i)=>{ if(i===0) cx.moveTo(n.x,n.y); else cx.lineTo(n.x,n.y); });
+    cx.stroke(); cx.setLineDash([]);
+
+    cx.strokeStyle='rgba(255,107,157,0.5)'; cx.lineWidth=1.5;
+    cx.beginPath(); cx.moveTo(nodes[0].x,nodes[0].y);
+    const hx=(nodes[0].x+nodes[5].x)/2, hy=(nodes[0].y+nodes[5].y)/2-20;
+    cx.quadraticCurveTo(hx,hy-30,nodes[5].x,nodes[5].y); cx.stroke();
+
+    nodes.forEach(n=>{
+      const grd=cx.createRadialGradient(n.x,n.y,0,n.x,n.y,n.r*4);
+      grd.addColorStop(0,n.color+'99'); grd.addColorStop(1,n.color+'00');
+      cx.fillStyle=grd; cx.beginPath(); cx.arc(n.x,n.y,n.r*4,0,Math.PI*2); cx.fill();
+      cx.fillStyle=n.color; cx.beginPath(); cx.arc(n.x,n.y,n.r,0,Math.PI*2); cx.fill();
+      cx.fillStyle='#fff'; cx.beginPath(); cx.arc(n.x,n.y,n.r*0.4,0,Math.PI*2); cx.fill();
+    });
+
+    cx.font='bold 13px "Lato", sans-serif'; cx.textAlign='center'; cx.fillStyle='#fff'; cx.globalAlpha=0.9;
+    cx.fillText(nodes[0].label,nodes[0].x,nodes[0].y-18);
+    cx.fillText(nodes[5].label,nodes[5].x,nodes[5].y-18); cx.globalAlpha=1;
+    cx.font='italic 12px "Playfair Display", serif'; cx.fillStyle='rgba(255,143,176,0.7)';
+    cx.fillText('14 April 2026',W/2,H-18);
+  }
+
+  // ==========================================================================
+  // MOOD RING
+  // ==========================================================================
+  const moods=[
+    { emoji:'😊', label:'Bahagia', color:'#ffd700', title:'Yayyy kamu bahagia! 🌟', message:'Aku juga ikut senang mendengarnya! Senyum kamu itu sungguh menular. Terus jaga energi positifmu ya — dunia jadi lebih cerah karena kamu ada di dalamnya.', song:'🎵 Lagu untukmu: <span>Make You Mine — PUBLIC</span> 🎶' },
+    { emoji:'😔', label:'Sedih', color:'#7eb3ff', title:'Sini aku peluk kamu 💙', message:'Nggak apa-apa untuk sedih. Aku di sini, selalu. Ingat ya, setelah hujan pasti ada pelangi.', song:'🎵 Lagu untukmu: <span>River Flows In You — Yiruma</span> 🎶' },
+    { emoji:'😴', label:'Ngantuk', color:'#c084fc', title:'Tidur yang nyenyak ya sayang 🌙', message:'Istirahat yang cukup itu penting banget! Badan kamu harus sehat. Sebelum tidur, tahu nggak? Aku selalu memikirkanmu.', song:'🎵 Lagu untukmu: <span>Stay With Me — Miki Matsubara</span> 🎶' },
+    { emoji:'😤', label:'Kesel', color:'#ff8fb0', title:'Ayo cerita ke aku 💕', message:'Kalau ada yang ganggu kamu, aku siap dengarkan. Kamu nggak perlu menghadapi apapun sendirian — aku selalu ada.', song:'🎵 Lagu untukmu: <span>Slipping Through My Fingers — Declan McKenna</span> 🎶' },
+    { emoji:'🥰', label:'Kangen', color:'#ff6b9d', title:'Aku juga kangen kamu! 💖', message:'Perasaan itu sama persis — aku juga sering kepikiran kamu di tengah-tengah aktivitas.', song:'🎵 Lagu untukmu: <span>Just A Friend To You — Meghan Trainor</span> 🎶' },
+    { emoji:'🌸', label:'Semangat', color:'#60d394', title:'Channeling your inner boss! 👑', message:'Senang deh lihat kamu se-happy dan sesemangat ini. You got this! ❤️', song:'🎵 Lagu untukmu: <span>Make You Mine — PUBLIC</span> 🎶' },
   ];
 
-  // Ambil dari storage, atau pakai default
-  function loadWishes() {
-    try {
-      const raw = localStorage.getItem(WISH_KEY);
-      if (raw) return JSON.parse(raw);
-    } catch(e) {}
-    // Pertama kali → simpan default
-    localStorage.setItem(WISH_KEY, JSON.stringify(defaultWishes));
-    return defaultWishes;
-  }
-
-  function saveWishes(arr) {
-    try { localStorage.setItem(WISH_KEY, JSON.stringify(arr)); } catch(e) {}
-  }
-
-  // Format waktu relatif
-  function relativeTime(ts) {
-    const diff = Math.floor((Date.now() - ts) / 1000); // detik
-    if (diff < 10)   return 'Baru saja ✨';
-    if (diff < 60)   return `${diff} detik yang lalu`;
-    if (diff < 3600) return `${Math.floor(diff/60)} menit yang lalu`;
-    if (diff < 86400) {
-      const h = Math.floor(diff/3600);
-      return `${h} jam yang lalu`;
-    }
-    const d = Math.floor(diff/86400);
-    return d === 1 ? 'Kemarin' : `${d} hari yang lalu`;
-  }
-
-  // Update semua label waktu setiap 30 detik
-  function refreshTimestamps() {
-    document.querySelectorAll('.wb-time[data-ts]').forEach(el => {
-      el.textContent = relativeTime(parseInt(el.dataset.ts));
+  const moodGrid=document.getElementById('moodGrid');
+  const moodResult=document.getElementById('moodResult');
+  if(moodGrid){
+    moods.forEach((mood)=>{
+      const btn=document.createElement('div'); btn.className='mood-btn';
+      btn.innerHTML=`<span class="mb-emoji">${mood.emoji}</span><span class="mb-label">${mood.label}</span>`;
+      btn.addEventListener('click',()=>{
+        document.querySelectorAll('.mood-btn').forEach(b=>b.classList.remove('selected'));
+        btn.classList.add('selected');
+        document.getElementById('mrEmoji').textContent=mood.emoji;
+        document.getElementById('mrTitle').textContent=mood.title;
+        document.getElementById('mrMessage').textContent=mood.message;
+        document.getElementById('mrSong').innerHTML=mood.song;
+        moodResult.style.borderColor=mood.color+'66';
+        moodResult.classList.add('show');
+        showToast('💌 Pesan spesial untukmu!');
+        spawnBurst(canvas.width/2,canvas.height*0.6);
+      });
+      moodGrid.appendChild(btn);
     });
   }
-  setInterval(refreshTimestamps, 30000);
-
-  function renderWishBubble(wish, animate = false) {
-    const board = document.getElementById('wishBoard');
-    const bubble = document.createElement('div');
-    bubble.className = 'wish-bubble' + (animate ? '' : ' no-anim');
-    bubble.innerHTML = `
-      <span class="wb-text">${wish.text}</span>
-      <div class="wb-time" data-ts="${wish.ts}">${relativeTime(wish.ts)}</div>
-    `;
-    board.prepend(bubble);
-  }
-
-  // Muat ulang semua ucapan dari storage
-  function renderAllWishes() {
-    const board = document.getElementById('wishBoard');
-    board.innerHTML = '';
-    const wishes = loadWishes();
-    // Tampilkan dari yang terbaru ke terlama
-    [...wishes].reverse().forEach(w => renderWishBubble(w, false));
-  }
-  renderAllWishes();
-
-  const wishInput = document.getElementById('wishInput');
-  const wishSendBtn = document.getElementById('wishSendBtn');
-
-  function sendWish() {
-    const val = wishInput.value.trim();
-    if (!val) { showToast('Tulis ucapan dulu ya! 🌸'); return; }
-    const newWish = { text: val, ts: Date.now() };
-    // Simpan ke localStorage
-    const current = loadWishes();
-    current.push(newWish);
-    saveWishes(current);
-    // Render di atas
-    renderWishBubble(newWish, true);
-    wishInput.value = '';
-    showToast('Ucapan terkirim & tersimpan! 💌');
-    spawnBurst(canvas.width/2, canvas.height * 0.7);
-  }
-  wishSendBtn.addEventListener('click', sendWish);
-  wishInput.addEventListener('keydown', (e) => { if(e.key==='Enter') sendWish(); });
 
   // ==========================================================================
-  // 14. LOCK SUBTITLE RANDOM
+  // LOCK SUBTITLE RANDOM
   // ==========================================================================
   const pesanKejutan=[
     'Sabar ya sayangku nggak lama lagi kokk!! 💖',
@@ -1565,7 +1381,7 @@
   if(lockSubtitleEl) lockSubtitleEl.innerText=pesanKejutan[Math.floor(Math.random()*pesanKejutan.length)];
 
   // ==========================================================================
-  // 15. TOMBOL BUKA PAKSA
+  // TOMBOL BUKA PAKSA
   // ==========================================================================
   document.getElementById('btnUnlock').addEventListener('click',function(e){
     e.stopPropagation();
@@ -1575,16 +1391,19 @@
   });
 
   // ==========================================================================
-  // 16. SCROLL REVEAL
+  // SCROLL REVEAL
   // ==========================================================================
   const revealObs=new IntersectionObserver((entries)=>{
     entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
   },{threshold:0.1});
   document.querySelectorAll('.reveal').forEach(el=>revealObs.observe(el));
 
-  // ==========================================================================
-  // 17. VIDEO ENDED
-  // ==========================================================================
+  const starMapObs=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ initStarMap(); starMapObs.unobserve(e.target); } });
+  },{threshold:0.3});
+  const starMapEl=document.querySelector('.starmap-section');
+  if(starMapEl) starMapObs.observe(starMapEl);
+
   const videoEl=document.querySelector('.video-frame-wrap video');
   if(videoEl){ videoEl.addEventListener('ended',()=>{ showToast('💖 Makasih sudah menontonnya sampai habis!'); setTimeout(()=>{ spawnBurst(canvas.width/2,canvas.height/3); setTimeout(()=>spawnBurst(canvas.width/3,canvas.height/2),300); setTimeout(()=>spawnBurst(canvas.width*2/3,canvas.height/2),600); },300); }); }
   </script>
