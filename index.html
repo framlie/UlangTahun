@@ -52,14 +52,8 @@
       transition: transform 0.2s, background 0.2s; flex-shrink: 0;
     }
     .music-btn:hover { transform: scale(1.08); background: #ff6b9d; }
-    .music-viz {
-      display: flex; align-items: flex-end; gap: 2px;
-      height: 20px; width: 30px; flex-shrink: 0;
-    }
-    .viz-bar {
-      width: 4px; border-radius: 2px;
-      background: var(--pink); opacity: 0.3;
-    }
+    .music-viz { display: flex; align-items: flex-end; gap: 2px; height: 20px; width: 30px; flex-shrink: 0; }
+    .viz-bar { width: 4px; border-radius: 2px; background: var(--pink); opacity: 0.3; }
     .music-viz.active .viz-bar:nth-child(1) { animation: bar1 0.6s ease infinite alternate; opacity: 1; }
     .music-viz.active .viz-bar:nth-child(2) { animation: bar2 0.5s ease infinite alternate; opacity: 1; }
     .music-viz.active .viz-bar:nth-child(3) { animation: bar3 0.7s ease infinite alternate; opacity: 1; }
@@ -75,7 +69,6 @@
     .music-info-wrap { position: relative; cursor: pointer; }
     #bgAudio { display: none; }
 
-    /* LOCK SCREEN */
     .lock-screen {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       background: radial-gradient(ellipse at center, #1a0030 0%, #0d0014 70%);
@@ -115,10 +108,8 @@
     .shake-animation { animation: shake 0.5s ease-in-out !important; }
     @keyframes shake { 0%,100%{transform:translateX(0)} 10%,30%,50%,70%,90%{transform:translateX(-6px)} 20%,40%,60%,80%{transform:translateX(6px)} }
 
-    /* SITE */
     .site { font-family: 'Lato', sans-serif; background: var(--deep); color: #fff; overflow-x: hidden; display: none; }
 
-    /* HERO */
     .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 2rem; background: radial-gradient(ellipse at center,#1a0030 0%,var(--deep) 70%); position: relative; overflow: hidden; }
     .hero-badge { background: rgba(255,100,150,0.2); border: 1px solid rgba(255,100,150,0.5); border-radius: 50px; padding: 8px 24px; font-size: 13px; letter-spacing: 3px; text-transform: uppercase; color: var(--pink); margin-bottom: 2rem; animation: pulse 2s infinite; }
     @keyframes pulse { 0%,100%{box-shadow:0 0 0 0 rgba(255,100,150,0.3)} 50%{box-shadow:0 0 20px 8px rgba(255,100,150,0.1)} }
@@ -141,25 +132,21 @@
     .heart-drop { position: absolute; top: -40px; font-size: 20px; animation: fallDown linear infinite; }
     @keyframes fallDown { 0%{transform:translateY(0) rotate(0deg);opacity:0.7} 100%{transform:translateY(110vh) rotate(360deg);opacity:0} }
 
-    /* SECTIONS */
     section { padding: 6rem 2rem; max-width: 900px; margin: 0 auto; }
     .section-label { font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: var(--purple); margin-bottom: 1rem; text-align: center; }
     .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem,4vw,3rem); margin-bottom: 1.5rem; }
     .divider { width: 80px; height: 2px; background: linear-gradient(to right,transparent,var(--pink),transparent); margin: 1rem auto; }
 
-    /* LETTER */
     .letter-section { text-align: center; }
     .letter-card { background: var(--card-bg); border: 1px solid rgba(255,143,176,0.2); border-radius: 24px; padding: 3rem; text-align: left; position: relative; font-size: 1.05rem; line-height: 2; color: rgba(255,255,255,0.85); font-family: 'Playfair Display', serif; font-style: italic; }
     .letter-card::before { content: '\201C'; font-size: 8rem; color: rgba(255,143,176,0.1); position: absolute; top: -20px; left: 20px; font-family: serif; line-height: 1; }
 
-    /* REASONS */
     .reasons-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap: 16px; margin-top: 2rem; }
     .reason-card { background: var(--card-bg); border: 1px solid rgba(192,132,252,0.2); border-radius: 20px; padding: 1.5rem; transition: transform 0.3s, border-color 0.3s; cursor: default; }
     .reason-card:hover { transform: translateY(-6px); border-color: rgba(255,143,176,0.5); }
     .reason-num { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: rgba(255,143,176,0.3); font-weight: 700; }
     .reason-text { font-size: 0.95rem; color: rgba(255,255,255,0.75); margin-top: 8px; line-height: 1.7; }
 
-    /* TIMELINE */
     .timeline { position: relative; margin-top: 3rem; }
     .timeline::before { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: linear-gradient(to bottom,transparent,rgba(255,143,176,0.4),transparent); transform: translateX(-50%); }
     .tl-item { display: flex; gap: 2rem; margin-bottom: 3rem; align-items: center; }
@@ -170,226 +157,63 @@
     .tl-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; margin-bottom: 6px; }
     .tl-desc { font-size: 0.9rem; color: rgba(255,255,255,0.6); line-height: 1.7; }
 
-    /* ========================================================
-       GALLERY — UPGRADED AESTHETIC
-       ======================================================== */
-    .gallery-section {
-      padding: 6rem 1.5rem;
-      max-width: 1300px;
-      margin: 0 auto;
-      position: relative;
-      overflow: visible;
-    }
-
-    /* Ambient glow blobs behind grid */
-    .gallery-blob {
-      position: absolute;
-      border-radius: 50%;
-      pointer-events: none;
-      filter: blur(90px);
-      opacity: 0.18;
-      z-index: 0;
-    }
+    .gallery-section { padding: 6rem 1.5rem; max-width: 1300px; margin: 0 auto; position: relative; overflow: visible; }
+    .gallery-blob { position: absolute; border-radius: 50%; pointer-events: none; filter: blur(90px); opacity: 0.18; z-index: 0; }
     .blob-1 { width: 500px; height: 500px; background: radial-gradient(circle, #ff8fb0, transparent); top: -100px; left: -80px; animation: blobDrift 12s ease-in-out infinite; }
     .blob-2 { width: 400px; height: 400px; background: radial-gradient(circle, #c084fc, transparent); bottom: 0; right: -60px; animation: blobDrift 15s ease-in-out infinite reverse; }
     .blob-3 { width: 300px; height: 300px; background: radial-gradient(circle, #ffcce0, transparent); top: 40%; left: 50%; transform: translateX(-50%); animation: blobDrift 10s ease-in-out infinite 3s; }
     @keyframes blobDrift { 0%,100%{transform:translate(0,0) scale(1);} 33%{transform:translate(20px,-25px) scale(1.05);} 66%{transform:translate(-15px,10px) scale(0.97);} }
-
-    /* SVG floral accents */
     .gallery-floral { position: absolute; pointer-events: none; z-index: 0; opacity: 0.18; }
     .gallery-floral.fl-tl { top: 20px; left: -30px; width: 160px; animation: floralDrift 8s ease-in-out infinite; }
     .gallery-floral.fl-tr { top: 10px; right: -20px; width: 130px; animation: floralDrift 10s ease-in-out infinite reverse; }
-    .gallery-floral.fl-bl { bottom: 40px; left: -10px; width: 100px; animation: floralDrift 9s ease-in-out infinite 2s; }
-    .gallery-floral.fl-br { bottom: 20px; right: -30px; width: 140px; animation: floralDrift 7s ease-in-out infinite 1s reverse; }
     @keyframes floralDrift { 0%,100%{transform:translateY(0) rotate(0deg);} 33%{transform:translateY(-14px) rotate(6deg);} 66%{transform:translateY(-6px) rotate(-4deg);} }
 
-    /* ── FILTER BAR ── */
-    .gallery-filter-bar {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin: 1.8rem 0 2.2rem;
-      position: relative;
-      z-index: 2;
-    }
-    .gf-btn {
-      background: rgba(255,143,176,0.07);
-      border: 1px solid rgba(255,143,176,0.22);
-      color: rgba(255,255,255,0.65);
-      padding: 8px 20px;
-      border-radius: 30px;
-      font-family: 'Lato', sans-serif;
-      font-size: 12px;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1);
-      position: relative;
-      overflow: hidden;
-    }
-    .gf-btn::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: linear-gradient(135deg, rgba(255,143,176,0.2), rgba(192,132,252,0.15));
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
+    .gallery-filter-bar { display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap; margin: 1.8rem 0 2.2rem; position: relative; z-index: 2; }
+    .gf-btn { background: rgba(255,143,176,0.07); border: 1px solid rgba(255,143,176,0.22); color: rgba(255,255,255,0.65); padding: 8px 20px; border-radius: 30px; font-family: 'Lato', sans-serif; font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer; transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1); position: relative; overflow: hidden; }
+    .gf-btn::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(255,143,176,0.2), rgba(192,132,252,0.15)); opacity: 0; transition: opacity 0.3s; }
     .gf-btn:hover { border-color: rgba(255,143,176,0.6); color: #fff; transform: translateY(-2px); }
     .gf-btn:hover::before { opacity: 1; }
-    .gf-btn.active {
-      background: linear-gradient(135deg, rgba(255,143,176,0.25), rgba(192,132,252,0.2));
-      border-color: rgba(255,143,176,0.7);
-      color: #fff;
-      box-shadow: 0 4px 20px rgba(255,143,176,0.3), 0 0 0 1px rgba(255,143,176,0.3);
-    }
+    .gf-btn.active { background: linear-gradient(135deg, rgba(255,143,176,0.25), rgba(192,132,252,0.2)); border-color: rgba(255,143,176,0.7); color: #fff; box-shadow: 0 0 22px rgba(255,143,176,0.45), inset 0 0 12px rgba(255,143,176,0.12); }
 
-    /* ── PHOTO COUNT BADGE ── */
-    .gallery-count-badge {
-      text-align: center;
-      font-size: 11px;
-      color: rgba(255,143,176,0.5);
-      letter-spacing: 2px;
-      margin-bottom: 1.5rem;
-      position: relative;
-      z-index: 2;
-      font-family: 'Lato', sans-serif;
-    }
+    .gallery-count-badge { text-align: center; font-size: 11px; color: rgba(255,143,176,0.5); letter-spacing: 2px; margin-bottom: 1.5rem; position: relative; z-index: 2; font-family: 'Lato', sans-serif; background: linear-gradient(135deg,rgba(255,143,176,0.12),rgba(192,132,252,0.08)); border: 1px solid rgba(255,143,176,0.28); border-radius: 30px; padding: 5px 18px; display: inline-block; }
 
-    /* ── BENTO GRID ── */
-    .photo-bento {
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      grid-auto-rows: 75px;
-      gap: 14px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .photo-bento::before, .photo-bento::after {
-      content: '✦';
-      position: absolute; color: rgba(255,143,176,0.4);
-      font-size: 1.6rem; pointer-events: none; z-index: 3;
-      animation: sparkleRotate 4s linear infinite;
-    }
+    .photo-bento { display: grid; grid-template-columns: repeat(12, 1fr); grid-auto-rows: 75px; gap: 14px; position: relative; z-index: 1; }
+    .photo-bento::before, .photo-bento::after { content: '✦'; position: absolute; color: rgba(255,143,176,0.4); font-size: 1.6rem; pointer-events: none; z-index: 3; animation: sparkleRotate 4s linear infinite; }
     .photo-bento::before { top: -22px; left: 6%; }
     .photo-bento::after  { bottom: -22px; right: 8%; animation-delay: 2s; }
     @keyframes sparkleRotate { 0%{transform:rotate(0deg) scale(1)} 50%{transform:rotate(180deg) scale(1.4)} 100%{transform:rotate(360deg) scale(1)} }
 
-    /* ── PHOTO CARD ── */
-    .p-card {
-      position: relative;
-      border-radius: 20px;
-      overflow: hidden;
-      cursor: pointer;
-      background: linear-gradient(135deg,#1a0030,#2a0845);
-      border: 1px solid rgba(255,143,176,0.12);
-      /* 3D tilt handled via JS + CSS vars */
-      transform: perspective(800px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) scale(var(--sc,1));
-      transition: transform 0.15s ease, border-color 0.3s, box-shadow 0.3s;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.4);
-      will-change: transform;
-    }
-
-    /* Shimmer loading skeleton */
-    .p-card::after {
-      content: '';
-      position: absolute; inset: 0; z-index: 0;
-      background: linear-gradient(110deg, transparent 35%, rgba(255,200,220,0.07) 50%, transparent 65%);
-      background-size: 200% 100%;
-      animation: shimmer 1.8s linear infinite;
-    }
+    .p-card { position: relative; border-radius: 20px; overflow: hidden; cursor: pointer; background: linear-gradient(135deg,#1a0030,#2a0845); border: 1px solid rgba(255,143,176,0.12); transform: perspective(800px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) scale(var(--sc,1)); transition: transform 0.15s ease, border-color 0.3s, box-shadow 0.3s; box-shadow: 0 4px 24px rgba(0,0,0,0.4); will-change: transform; }
+    .p-card::after { content: ''; position: absolute; inset: 0; z-index: 0; background: linear-gradient(110deg, transparent 35%, rgba(255,200,220,0.07) 50%, transparent 65%); background-size: 200% 100%; animation: shimmer 1.8s linear infinite; }
     .p-card.loaded::after { display: none; }
     @keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
 
-    /* Inner glow on hover */
-    .p-glow {
-      position: absolute; inset: 0; z-index: 2; pointer-events: none;
-      background: radial-gradient(circle at var(--mx,50%) var(--my,50%), rgba(255,143,176,0.14) 0%, transparent 65%);
-      opacity: 0; transition: opacity 0.3s; border-radius: 20px;
-    }
+    .p-glow { position: absolute; inset: 0; z-index: 2; pointer-events: none; background: radial-gradient(circle at var(--mx,50%) var(--my,50%), rgba(255,143,176,0.14) 0%, transparent 65%); opacity: 0; transition: opacity 0.3s; border-radius: 20px; }
     .p-card:hover .p-glow { opacity: 1; }
-
-    .p-card img {
-      width: 100%; height: 100%; object-fit: cover; display: block;
-      transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94);
-      border-radius: 20px;
-      position: relative; z-index: 1;
-    }
+    .p-card img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94); border-radius: 20px; position: relative; z-index: 1; }
     .p-card:hover img { transform: scale(1.06); }
+    .p-card.loaded:hover img { filter: brightness(1.07) saturate(1.12); }
 
-    /* Gradient overlay */
-    .p-overlay {
-      position: absolute; inset: 0; z-index: 3;
-      background: linear-gradient(to top, rgba(13,0,20,0.92) 0%, rgba(13,0,20,0.3) 45%, transparent 100%);
-      opacity: 0; transition: opacity 0.35s;
-      display: flex; flex-direction: column; justify-content: flex-end; padding: 18px 16px;
-    }
+    .p-overlay { position: absolute; inset: 0; z-index: 3; background: linear-gradient(to top, rgba(13,0,20,0.92) 0%, rgba(13,0,20,0.3) 45%, transparent 100%); opacity: 0; transition: opacity 0.35s; display: flex; flex-direction: column; justify-content: flex-end; padding: 18px 16px; }
     .p-card:hover .p-overlay { opacity: 1; }
-    .p-caption {
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      font-size: 0.88rem;
-      color: #fff;
-      line-height: 1.4;
-      text-shadow: 0 1px 8px rgba(0,0,0,0.8);
-    }
-    .p-caption-date {
-      font-family: 'Lato', sans-serif;
-      font-size: 0.7rem;
-      color: rgba(255,143,176,0.7);
-      letter-spacing: 1px;
-      margin-top: 3px;
-    }
+    .p-caption { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.88rem; color: #fff; line-height: 1.4; text-shadow: 0 1px 8px rgba(0,0,0,0.8); }
+    .p-caption-date { font-family: 'Lato', sans-serif; font-size: 0.7rem; color: rgba(255,143,176,0.7); letter-spacing: 1px; margin-top: 3px; }
 
-    /* Placeholder */
-    .p-placeholder {
-      width: 100%; height: 100%;
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      position: absolute; inset: 0; z-index: 1;
-    }
+    .p-placeholder { width: 100%; height: 100%; display: none; flex-direction: column; align-items: center; justify-content: center; gap: 10px; position: absolute; inset: 0; z-index: 1; }
     .p-placeholder span:first-child { font-size: 2.8rem; }
     .p-placeholder span:last-child { font-size: 0.72rem; color: rgba(255,143,176,0.45); letter-spacing: 1px; font-family: 'Lato', sans-serif; }
 
-    /* Zoom icon */
-    .p-zoom-icon {
-      position: absolute; top: 12px; right: 12px; z-index: 4;
-      width: 32px; height: 32px;
-      background: rgba(13,0,20,0.65);
-      border: 1px solid rgba(255,143,176,0.5);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 13px;
-      opacity: 0; transition: opacity 0.3s, transform 0.3s;
-      backdrop-filter: blur(4px);
-    }
+    .p-zoom-icon { position: absolute; top: 12px; right: 12px; z-index: 4; width: 32px; height: 32px; background: rgba(13,0,20,0.65); border: 1px solid rgba(255,143,176,0.5); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; opacity: 0; transition: opacity 0.3s, transform 0.3s; backdrop-filter: blur(4px); }
     .p-card:hover .p-zoom-icon { opacity: 1; transform: scale(1.1); }
 
-    /* Favourite heart button */
-    .p-heart-btn {
-      position: absolute; top: 12px; left: 12px; z-index: 4;
-      width: 30px; height: 30px;
-      background: rgba(13,0,20,0.6);
-      border: 1px solid rgba(255,143,176,0.4);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 14px;
-      opacity: 0; transition: opacity 0.3s, transform 0.25s;
-      cursor: pointer;
-      backdrop-filter: blur(4px);
-    }
+    .p-heart-btn { position: absolute; top: 12px; left: 12px; z-index: 4; width: 30px; height: 30px; background: rgba(13,0,20,0.6); border: 1px solid rgba(255,143,176,0.4); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; opacity: 0; transition: opacity 0.3s, transform 0.25s; cursor: pointer; backdrop-filter: blur(4px); }
     .p-card:hover .p-heart-btn { opacity: 1; }
     .p-heart-btn:hover { transform: scale(1.2); background: rgba(255,100,150,0.3); }
-    .p-heart-btn.loved { opacity: 1 !important; }
+    .p-heart-btn.loved { opacity: 1 !important; animation: heartPulse 1.6s ease infinite; }
     .p-heart-btn.loved span { animation: heartPop 0.4s cubic-bezier(0.34,1.56,0.64,1); }
     @keyframes heartPop { 0%{transform:scale(1)} 50%{transform:scale(1.6)} 100%{transform:scale(1)} }
+    @keyframes heartPulse { 0%,100%{box-shadow:0 0 0 0 rgba(255,100,150,0.5);} 60%{box-shadow:0 0 0 9px rgba(255,100,150,0);} }
 
-    /* Corner petals */
     .p-corner-petal { position: absolute; font-size: 1rem; pointer-events: none; z-index: 3; opacity: 0; transition: opacity 0.4s, transform 0.4s; }
     .p-card:hover .p-corner-petal { opacity: 0.9; }
     .cp-tl { top: 7px; left: 9px; transform: rotate(-20deg); }
@@ -397,47 +221,44 @@
     .p-card:hover .cp-tl { transform: rotate(-32deg) scale(1.25); }
     .p-card:hover .cp-tr { transform: rotate(32deg) scale(1.25); }
 
-    /* Ribbon badge for featured */
-    .p-ribbon {
-      position: absolute; top: 0; left: 0; z-index: 4;
-      background: linear-gradient(135deg, #ff6b9d, #c084fc);
-      color: #fff; font-size: 9px; letter-spacing: 1px;
-      padding: 4px 12px 4px 8px;
-      clip-path: polygon(0 0, 85% 0, 100% 50%, 85% 100%, 0 100%);
-      font-family: 'Lato', sans-serif; font-weight: 700; text-transform: uppercase;
-      opacity: 0; transition: opacity 0.3s;
-    }
+    .p-ribbon { position: absolute; top: 0; left: 0; z-index: 4; background: linear-gradient(135deg, #ff6b9d, #c084fc); color: #fff; font-size: 9px; letter-spacing: 1px; padding: 4px 12px 4px 8px; clip-path: polygon(0 0, 85% 0, 100% 50%, 85% 100%, 0 100%); font-family: 'Lato', sans-serif; font-weight: 700; text-transform: uppercase; opacity: 0; transition: opacity 0.3s; }
     .p-card:hover .p-ribbon { opacity: 1; }
     .p-card.featured .p-ribbon { opacity: 0.85; }
+    .p-ribbon.cat-favorit { background: linear-gradient(135deg,#ffd700,#ff8c00); }
+    .p-ribbon.cat-cantik  { background: linear-gradient(135deg,#ff6b9d,#ff8fb0); }
+    .p-ribbon.cat-bersama { background: linear-gradient(135deg,#c084fc,#818cf8); }
+    .p-ribbon.cat-lucu    { background: linear-gradient(135deg,#34d399,#10b981); }
 
-    /* Number badge */
-    .p-num-badge {
-      position: absolute; bottom: 10px; right: 10px; z-index: 4;
-      font-family: 'Playfair Display', serif;
-      font-size: 0.7rem; color: rgba(255,143,176,0.8);
-      background: rgba(13,0,20,0.65); border: 1px solid rgba(255,143,176,0.3);
-      border-radius: 20px; padding: 2px 8px;
-      letter-spacing: 1px; backdrop-filter: blur(4px);
-      opacity: 0; transition: opacity 0.3s;
-    }
+    .p-num-badge { position: absolute; bottom: 10px; right: 10px; z-index: 4; font-family: 'Playfair Display', serif; font-size: 0.7rem; color: rgba(255,143,176,0.8); background: rgba(13,0,20,0.65); border: 1px solid rgba(255,143,176,0.3); border-radius: 20px; padding: 2px 8px; letter-spacing: 1px; backdrop-filter: blur(4px); opacity: 0; transition: opacity 0.3s; font-style: italic; }
     .p-card:hover .p-num-badge { opacity: 1; }
 
-    /* SPAN CLASSES */
-    .p-card.s-feat-l   { grid-column: span 5; grid-row: span 5; }
-    .p-card.s-feat-m   { grid-column: span 4; grid-row: span 4; }
-    .p-card.s-tall     { grid-column: span 3; grid-row: span 5; }
-    .p-card.s-wide     { grid-column: span 7; grid-row: span 3; }
-    .p-card.s-sq       { grid-column: span 3; grid-row: span 3; }
-    .p-card.s-med      { grid-column: span 4; grid-row: span 3; }
-    .p-card.s-sm       { grid-column: span 3; grid-row: span 2; }
-    .p-card.s-xwide    { grid-column: span 9; grid-row: span 3; }
-    .p-card.s-pair     { grid-column: span 6; grid-row: span 4; }
-    .p-card.s-accent   { grid-column: span 2; grid-row: span 2; }
+    .p-card.featured { box-shadow: 0 4px 28px rgba(0,0,0,0.55), inset 0 0 0 1px rgba(255,143,176,0.2), 0 0 0 2px rgba(255,143,176,0.08); }
+    .p-card.featured .p-overlay { background: linear-gradient(to top, rgba(13,0,20,0.96) 0%, rgba(13,0,20,0.55) 38%, transparent 100%); }
 
-    /* Filter hide/show */
-    .p-card.hidden { display: none; }
+    /* Animated border ring */
+    @property --ba { syntax:'<angle>'; inherits:false; initial-value:0deg; }
+    .p-border-ring { position: absolute; inset: -1.5px; border-radius: 22px; background: conic-gradient(from var(--ba), transparent 18%, #ff8fb0cc 36%, #c084fccc 50%, #ffcce0cc 64%, transparent 80%); z-index: 0; opacity: 0; transition: opacity 0.35s; animation: ringRotate 2.8s linear infinite paused; pointer-events: none; }
+    .p-card:hover .p-border-ring { opacity: 1; animation-play-state: running; }
+    @keyframes ringRotate { to { --ba: 360deg; } }
 
-    /* Deco cards */
+    .p-feat-spark { position: absolute; font-size: 0.8rem; z-index: 4; pointer-events: none; animation: sparkDrift 2.2s ease-in-out infinite alternate; }
+    @keyframes sparkDrift { 0%{opacity:0.3;transform:scale(0.85) rotate(-12deg);} 100%{opacity:1;transform:scale(1.25) rotate(12deg);} }
+
+    .p-micro-star { position: absolute; font-size: 11px; pointer-events: none; z-index: 6; opacity: 0; animation: microPop 0.75s ease forwards; }
+    @keyframes microPop { 0%{opacity:0;transform:translate(0,0) scale(0.5);} 40%{opacity:1;transform:translate(var(--sx),var(--sy)) scale(1.4);} 100%{opacity:0;transform:translate(var(--sx2),var(--sy2)) scale(0.2);} }
+
+    .p-card.s-feat-l { grid-column: span 5; grid-row: span 5; }
+    .p-card.s-feat-m { grid-column: span 4; grid-row: span 4; }
+    .p-card.s-tall   { grid-column: span 3; grid-row: span 5; }
+    .p-card.s-wide   { grid-column: span 7; grid-row: span 3; }
+    .p-card.s-sq     { grid-column: span 3; grid-row: span 3; }
+    .p-card.s-med    { grid-column: span 4; grid-row: span 3; }
+    .p-card.s-sm     { grid-column: span 3; grid-row: span 2; }
+    .p-card.s-xwide  { grid-column: span 9; grid-row: span 3; }
+    .p-card.s-pair   { grid-column: span 8; grid-row: span 4; }
+    .p-card.s-accent { grid-column: span 2; grid-row: span 2; }
+    .p-card.hidden   { display: none; }
+
     .deco-card { border-radius: 20px; overflow: hidden; display: flex; align-items: center; justify-content: center; pointer-events: none; cursor: default; }
     .deco-quote { background: linear-gradient(135deg,rgba(255,143,176,0.07),rgba(192,132,252,0.05)); border: 1px solid rgba(255,143,176,0.15); flex-direction: column; gap: 8px; padding: 16px; }
     .deco-emoji-cloud { background: linear-gradient(135deg,rgba(192,132,252,0.07),rgba(255,143,176,0.05)); border: 1px solid rgba(192,132,252,0.15); }
@@ -453,27 +274,13 @@
     .deco-sparkle-wrap span:nth-child(6){animation-delay:1.5s}
     @keyframes sparkleFloat { 0%,100%{opacity:0.4;transform:scale(1)} 50%{opacity:1;transform:scale(1.2)} }
 
-    /* Floating petals overlay */
     .floating-petal { position: absolute; pointer-events: none; z-index: 1; animation: petalFloat linear infinite; opacity: 0; }
     @keyframes petalFloat { 0%{transform:translateY(0) rotate(0deg) scale(1);opacity:0} 10%{opacity:0.7} 80%{opacity:0.5} 100%{transform:translateY(-140px) rotate(var(--rot)) scale(0.5);opacity:0} }
 
-    /* Favourites counter strip */
-    .gallery-loves-strip {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      margin-top: 2rem;
-      position: relative; z-index: 2;
-      font-family: 'Lato', sans-serif;
-      font-size: 13px;
-      color: rgba(255,143,176,0.7);
-      opacity: 0; transition: opacity 0.5s;
-    }
+    .gallery-loves-strip { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 2rem; position: relative; z-index: 2; font-family: 'Lato', sans-serif; font-size: 13px; color: rgba(255,143,176,0.7); opacity: 0; transition: opacity 0.5s; }
     .gallery-loves-strip.visible { opacity: 1; }
     .loves-count { font-weight: 700; color: var(--pink); }
 
-    /* LIGHTBOX */
     .lightbox { position: fixed; inset: 0; z-index: 999990; background: rgba(0,0,0,0.96); backdrop-filter: blur(20px); display: none; align-items: center; justify-content: center; padding: 2rem; }
     .lightbox.open { display: flex; animation: lbFadeIn 0.3s ease; }
     @keyframes lbFadeIn { from{opacity:0} to{opacity:1} }
@@ -488,16 +295,13 @@
     .lb-prev { right: calc(100% + 12px); }
     .lb-next { left: calc(100% + 12px); }
     .lb-counter { position: absolute; bottom: -36px; left: 50%; transform: translateX(-50%); font-size: 11px; color: rgba(255,143,176,0.6); letter-spacing: 2px; }
-    /* Swipe hint in lightbox */
     .lb-swipe-hint { position: absolute; bottom: -54px; left: 50%; transform: translateX(-50%); font-size: 10px; color: rgba(255,255,255,0.25); letter-spacing: 1px; white-space: nowrap; }
 
-    /* ── STAR MAP ── */
     .starmap-section { text-align: center; padding: 6rem 2rem; max-width: 900px; margin: 0 auto; }
     .starmap-wrap { position: relative; margin: 2.5rem auto 0; max-width: 700px; border-radius: 24px; overflow: hidden; border: 1px solid rgba(255,143,176,0.25); box-shadow: 0 0 60px rgba(192,132,252,0.1),0 20px 60px rgba(0,0,0,0.5); }
     #starMapCanvas { display: block; width: 100%; }
     .starmap-label { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1rem; color: rgba(255,255,255,0.6); margin-top: 1.2rem; line-height: 1.7; }
 
-    /* MOOD RING */
     .moodring-section { text-align: center; padding: 6rem 2rem; max-width: 700px; margin: 0 auto; }
     .mood-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; margin-top: 2rem; }
     .mood-btn { background: var(--card-bg); border: 1px solid rgba(255,143,176,0.2); border-radius: 20px; padding: 1.2rem 0.8rem; cursor: pointer; transition: transform 0.3s,border-color 0.3s,background 0.3s; font-family: 'Lato', sans-serif; }
@@ -514,7 +318,6 @@
     .mood-result .mr-song { margin-top: 1rem; padding: 0.8rem 1rem; background: rgba(255,143,176,0.08); border-radius: 12px; border: 1px solid rgba(255,143,176,0.2); font-size: 0.9rem; color: rgba(255,255,255,0.8); }
     .mood-result .mr-song span { color: var(--pink); font-weight: bold; }
 
-    /* SECRET */
     .secret-section { text-align: center; padding: 6rem 2rem; max-width: 700px; margin: 0 auto; }
     .secret-envelope { display: inline-block; cursor: pointer; font-size: 6rem; margin: 2rem 0; animation: floatEnvelope 3s ease-in-out infinite; transition: transform 0.3s; filter: drop-shadow(0 0 20px rgba(255,143,176,0.5)); }
     .secret-envelope:hover { transform: scale(1.1); }
@@ -523,7 +326,6 @@
     .secret-message-box.open { display: block; }
     .secret-hint { font-size: 13px; color: rgba(255,143,176,0.6); letter-spacing: 2px; text-transform: uppercase; margin-top: 0.5rem; }
 
-    /* QUIZ */
     .quiz-section { text-align: center; padding: 6rem 2rem; max-width: 700px; margin: 0 auto; }
     .quiz-card { background: var(--card-bg); border: 1px solid rgba(192,132,252,0.25); border-radius: 24px; padding: 2.5rem; margin-top: 2rem; }
     .quiz-question { font-family: 'Playfair Display', serif; font-size: 1.3rem; margin-bottom: 1.5rem; line-height: 1.6; }
@@ -543,21 +345,21 @@
     .quiz-pip { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,143,176,0.2); transition: background 0.3s; }
     .quiz-pip.done { background: var(--pink); }
 
-    /* WISH */
     .wish-section { text-align: center; }
     .big-wish { font-family: 'Playfair Display', serif; font-size: clamp(1.5rem,4vw,2.5rem); color: var(--pink); margin: 2rem 0; line-height: 1.6; font-style: italic; }
     .cake-wrap { display: flex; justify-content: center; margin: 3rem 0; }
     .cake-svg { width: 160px; height: auto; }
-    .firework-btn { background: linear-gradient(135deg,#ff6b9d,#c084fc); border: none; border-radius: 50px; padding: 14px 36px; color: white; font-size: 1rem; cursor: pointer; margin-top: 2.5rem; letter-spacing: 1px; font-weight: bold; box-shadow: 0 4px 15px rgba(255,107,157,0.4); transition: transform 0.2s,box-shadow 0.2s; }
-    .firework-btn:hover { transform: scale(1.05); box-shadow: 0 6px 20px rgba(255,107,157,0.6); }
+    .firework-btn { position: relative; overflow: hidden; background: linear-gradient(135deg,#ff1493,#ff6b9d,#c084fc,#ff8fb0); background-size: 300% 300%; border: none; border-radius: 50px; padding: 16px 44px; color: white; font-size: 1.1rem; cursor: pointer; margin-top: 2.5rem; letter-spacing: 2px; font-weight: bold; animation: btnGradShift 3s ease infinite, btnGlow 2s ease-in-out infinite alternate; transition: transform 0.15s, box-shadow 0.3s; }
+    .firework-btn:hover { transform: scale(1.08); }
+    .firework-btn:active { transform: scale(0.96); }
+    @keyframes btnGradShift { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+    @keyframes btnGlow { 0%{box-shadow:0 6px 30px rgba(255,20,147,0.5);} 100%{box-shadow:0 6px 50px rgba(192,132,252,0.7), 0 0 30px rgba(255,20,147,0.3);} }
 
-    /* PROMISE */
     .promise-list { list-style: none; display: grid; gap: 16px; margin-top: 2rem; }
     .promise-list li { display: flex; align-items: flex-start; gap: 16px; background: rgba(255,255,255,0.03); border-radius: 16px; padding: 1.25rem; border: 1px solid rgba(192,132,252,0.15); text-align: left; }
     .promise-icon { font-size: 1.5rem; flex-shrink: 0; }
     .promise-text { color: rgba(255,255,255,0.8); line-height: 1.7; font-size: 0.95rem; }
 
-    /* VIDEO */
     .video-section { text-align: center; padding: 6rem 2rem; max-width: 800px; margin: 0 auto; }
     .video-frame-wrap { position: relative; margin-top: 2.5rem; border-radius: 24px; overflow: hidden; background: var(--deep); border: 1px solid rgba(255,143,176,0.3); box-shadow: 0 0 60px rgba(255,143,176,0.15),0 20px 60px rgba(0,0,0,0.6); }
     .video-frame-wrap video { width: 100%; display: block; border-radius: 24px; max-height: 500px; background: var(--deep); }
@@ -565,32 +367,28 @@
     .video-frame-wrap::after { content: ''; position: absolute; bottom: 10px; right: 10px; width: 40px; height: 40px; z-index: 2; pointer-events: none; border-bottom: 2px solid var(--purple); border-right: 2px solid var(--purple); border-radius: 0 0 6px 0; }
     .video-caption { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1rem; color: rgba(255,255,255,0.6); margin-top: 1.2rem; line-height: 1.7; }
 
-    /* FINAL */
     .final-section { text-align: center; padding: 8rem 2rem; background: radial-gradient(ellipse at center,#1a0030 0%,var(--deep) 70%); }
     .final-section .big { font-family: 'Playfair Display', serif; font-size: clamp(2rem,6vw,4rem); margin-bottom: 1rem; }
     .signature { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.3rem; color: var(--pink); margin-top: 2rem; }
 
-    /* TOAST */
     .toast { position: fixed; bottom: 90px; left: 50%; transform: translateX(-50%) translateY(20px); background: rgba(26,0,48,0.95); border: 1px solid rgba(255,143,176,0.4); color: #fff; padding: 12px 24px; border-radius: 30px; font-size: 14px; z-index: 99999; opacity: 0; transition: all 0.4s ease; pointer-events: none; text-align: center; backdrop-filter: blur(10px); white-space: nowrap; }
     .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
-    /* SCROLL REVEAL */
     .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease,transform 0.8s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
-    /* RESPONSIVE */
     @media (max-width: 900px) {
       .photo-bento { grid-template-columns: repeat(6,1fr); grid-auto-rows: 70px; }
-      .p-card.s-feat-l  { grid-column: span 4; grid-row: span 4; }
-      .p-card.s-feat-m  { grid-column: span 3; grid-row: span 4; }
-      .p-card.s-tall    { grid-column: span 3; grid-row: span 5; }
-      .p-card.s-wide    { grid-column: span 6; grid-row: span 3; }
-      .p-card.s-sq      { grid-column: span 3; grid-row: span 3; }
-      .p-card.s-med     { grid-column: span 3; grid-row: span 3; }
-      .p-card.s-sm      { grid-column: span 3; grid-row: span 2; }
-      .p-card.s-xwide   { grid-column: span 6; grid-row: span 3; }
-      .p-card.s-pair    { grid-column: span 6; grid-row: span 3; }
-      .p-card.s-accent  { grid-column: span 2; grid-row: span 2; }
+      .p-card.s-feat-l { grid-column: span 4; grid-row: span 4; }
+      .p-card.s-feat-m { grid-column: span 3; grid-row: span 4; }
+      .p-card.s-tall   { grid-column: span 3; grid-row: span 5; }
+      .p-card.s-wide   { grid-column: span 6; grid-row: span 3; }
+      .p-card.s-sq     { grid-column: span 3; grid-row: span 3; }
+      .p-card.s-med    { grid-column: span 3; grid-row: span 3; }
+      .p-card.s-sm     { grid-column: span 3; grid-row: span 2; }
+      .p-card.s-xwide  { grid-column: span 6; grid-row: span 3; }
+      .p-card.s-pair   { grid-column: span 6; grid-row: span 3; }
+      .p-card.s-accent { grid-column: span 2; grid-row: span 2; }
     }
     @media (max-width: 600px) {
       .timeline::before { left: 20px; }
@@ -600,17 +398,17 @@
       .quiz-options { grid-template-columns: 1fr; }
       .mood-grid { grid-template-columns: repeat(2,1fr); }
       .photo-bento { grid-template-columns: repeat(4,1fr); grid-auto-rows: 65px; }
-      .p-card.s-feat-l  { grid-column: span 2; grid-row: span 4; }
-      .p-card.s-feat-m  { grid-column: span 2; grid-row: span 3; }
-      .p-card.s-tall    { grid-column: span 2; grid-row: span 5; }
-      .p-card.s-wide    { grid-column: span 4; grid-row: span 3; }
-      .p-card.s-sq      { grid-column: span 2; grid-row: span 3; }
-      .p-card.s-med     { grid-column: span 2; grid-row: span 3; }
-      .p-card.s-sm      { grid-column: span 2; grid-row: span 2; }
-      .p-card.s-xwide   { grid-column: span 4; grid-row: span 3; }
-      .p-card.s-pair    { grid-column: span 4; grid-row: span 3; }
-      .p-card.s-accent  { display: none; }
-      .deco-card        { display: none; }
+      .p-card.s-feat-l { grid-column: span 2; grid-row: span 4; }
+      .p-card.s-feat-m { grid-column: span 2; grid-row: span 3; }
+      .p-card.s-tall   { grid-column: span 2; grid-row: span 5; }
+      .p-card.s-wide   { grid-column: span 4; grid-row: span 3; }
+      .p-card.s-sq     { grid-column: span 2; grid-row: span 3; }
+      .p-card.s-med    { grid-column: span 2; grid-row: span 3; }
+      .p-card.s-sm     { grid-column: span 2; grid-row: span 2; }
+      .p-card.s-xwide  { grid-column: span 4; grid-row: span 3; }
+      .p-card.s-pair   { grid-column: span 4; grid-row: span 3; }
+      .p-card.s-accent { display: none; }
+      .deco-card       { display: none; }
       .gallery-filter-bar { gap: 7px; }
       .gf-btn { padding: 6px 14px; font-size: 10px; }
     }
@@ -625,759 +423,473 @@
 </head>
 <body>
 
-  <canvas id="globalFwCanvas"></canvas>
+<canvas id="globalFwCanvas"></canvas>
 
-  <!-- AUDIO PLAYER -->
-  <div class="music-player" id="musicPlayer">
-    <button class="music-btn" id="musicBtn">▶</button>
-    <div class="music-viz" id="musicViz">
-      <div class="viz-bar" style="height:6px"></div>
-      <div class="viz-bar" style="height:12px"></div>
-      <div class="viz-bar" style="height:8px"></div>
-      <div class="viz-bar" style="height:14px"></div>
+<div class="music-player" id="musicPlayer">
+  <button class="music-btn" id="musicBtn">▶</button>
+  <div class="music-viz" id="musicViz">
+    <div class="viz-bar" style="height:6px"></div>
+    <div class="viz-bar" style="height:12px"></div>
+    <div class="viz-bar" style="height:8px"></div>
+    <div class="viz-bar" style="height:14px"></div>
+  </div>
+  <div class="music-info-wrap">
+    <div class="music-info">
+      <div class="music-title" id="musicTitle">Stay With Me</div>
+      <div class="music-artist" id="musicArtist">Miki Matsubara</div>
     </div>
-    <div class="music-info-wrap">
-      <div class="music-info">
-        <div class="music-title" id="musicTitle">Stay With Me</div>
-        <div class="music-artist" id="musicArtist">Miki Matsubara</div>
-      </div>
-      <select class="music-select" id="musicSelect">
-        <option value="Miki Matsubara - Stay With Me (Lyrics).mp3" data-title="Stay With Me" data-artist="Miki Matsubara">Stay With Me</option>
-        <option value="Takut -idgitaf (lirik lagu).mp3" data-title="Takut" data-artist="idgitaf">Takut</option>
-        <option value="Meghan Trainor - Just A Friend To You (Lyrics).mp3" data-title="Just A Friend To You" data-artist="Meghan Trainor">Just A Friend To You</option>
-        <option value="PUBLIC - Make You Mine (Official Lyric Video).mp3" data-title="Make You Mine" data-artist="PUBLIC">Make You Mine</option>
-        <option value="Yiruma - River Flows in You (Visualizer).mp3" data-title="River Flows In You" data-artist="Yiruma">River Flows In You</option>
-        <option value="Declan McKenna - Slipping Through My Fingers (Official Audio).mp3" data-title="Slipping through My Fingers" data-artist="Declan McKenna">Slipping through My Fingers</option>
-      </select>
+    <select class="music-select" id="musicSelect">
+      <option value="Miki Matsubara - Stay With Me (Lyrics).mp3" data-title="Stay With Me" data-artist="Miki Matsubara">Stay With Me</option>
+      <option value="Takut -idgitaf (lirik lagu).mp3" data-title="Takut" data-artist="idgitaf">Takut</option>
+      <option value="Meghan Trainor - Just A Friend To You (Lyrics).mp3" data-title="Just A Friend To You" data-artist="Meghan Trainor">Just A Friend To You</option>
+      <option value="PUBLIC - Make You Mine (Official Lyric Video).mp3" data-title="Make You Mine" data-artist="PUBLIC">Make You Mine</option>
+      <option value="Yiruma - River Flows in You (Visualizer).mp3" data-title="River Flows In You" data-artist="Yiruma">River Flows In You</option>
+      <option value="Declan McKenna - Slipping Through My Fingers (Official Audio).mp3" data-title="Slipping through My Fingers" data-artist="Declan McKenna">Slipping through My Fingers</option>
+    </select>
+  </div>
+  <audio id="bgAudio" loop></audio>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<div class="lightbox" id="lightbox">
+  <div class="lightbox-inner">
+    <button class="lb-close" id="lbClose">✕</button>
+    <button class="lb-nav lb-prev" id="lbPrev">‹</button>
+    <button class="lb-nav lb-next" id="lbNext">›</button>
+    <img src="" id="lbImg" alt="">
+    <div class="lightbox-caption" id="lbCaption"></div>
+    <div class="lb-counter" id="lbCounter"></div>
+    <div class="lb-swipe-hint">← swipe atau tekan ← → untuk navigasi →</div>
+  </div>
+</div>
+
+<div class="lock-screen" id="lockScreen">
+  <div class="stars-bg" id="lockStars"></div>
+  <div class="lock-badge">Halaman Terkunci 🔒</div>
+  <h1 class="lock-title">Sabar ya, kak Marcia Rianda... ✨</h1>
+  <p class="lock-subtitle" id="lockSubtitle">Tunggu sampai tanggal 24 Mei 2026 yaa!</p>
+  <div class="lock-countdown-container">
+    <div class="lock-cd-box"><div class="lock-cd-num" id="lock-d">00</div><div class="lock-cd-label">Hari</div></div>
+    <div class="lock-cd-box"><div class="lock-cd-num" id="lock-h">00</div><div class="lock-cd-label">Jam</div></div>
+    <div class="lock-cd-box"><div class="lock-cd-num" id="lock-m">00</div><div class="lock-cd-label">Menit</div></div>
+    <div class="lock-cd-box"><div class="lock-cd-num" id="lock-s">00</div><div class="lock-cd-label">Detik</div></div>
+  </div>
+  <button class="lock-btn-unlock" id="btnUnlock">Buka Sekarang 🔓</button>
+  <div class="shooting-stars-container">
+    <div class="shooting-star putih"></div><div class="shooting-star ungu"></div>
+    <div class="shooting-star putih"></div><div class="shooting-star ungu"></div>
+  </div>
+</div>
+
+<div class="site" id="mainSite">
+  <div class="hero" id="hero">
+    <div class="stars-bg" id="stars"></div>
+    <div class="hearts-rain" id="heartsRain"></div>
+    <div class="hero-badge">Selamat Ulang Tahun</div>
+    <h1>Happy 21st Birthday,<br>Marcia Rianda ✨</h1>
+    <p class="hero-typing" id="heroTyping"><span class="typing-cursor"></span></p>
+    <div class="countdown-wrap" id="countdown">
+      <div class="cd-box"><span class="cd-num" id="cd-h">00</span><span class="cd-label">Jam</span></div>
+      <div class="cd-box"><span class="cd-num" id="cd-m">00</span><span class="cd-label">Menit</span></div>
+      <div class="cd-box"><span class="cd-num" id="cd-s">00</span><span class="cd-label">Detik</span></div>
     </div>
-    <audio id="bgAudio" loop></audio>
+    <div class="scroll-hint">↓ &nbsp; scroll ke bawah kak!! &nbsp; ↓</div>
   </div>
 
-  <div class="toast" id="toast"></div>
-
-  <!-- LIGHTBOX -->
-  <div class="lightbox" id="lightbox">
-    <div class="lightbox-inner">
-      <button class="lb-close" id="lbClose">✕</button>
-      <button class="lb-nav lb-prev" id="lbPrev">‹</button>
-      <button class="lb-nav lb-next" id="lbNext">›</button>
-      <img src="" id="lbImg" alt="">
-      <div class="lightbox-caption" id="lbCaption"></div>
-      <div class="lb-counter" id="lbCounter"></div>
-      <div class="lb-swipe-hint">← swipe atau tekan ← → untuk navigasi →</div>
+  <section class="letter-section reveal">
+    <div class="section-label">Surat untukmu</div>
+    <h2 class="section-title" style="text-align:center;">Dari hatiku, untuk hatimu</h2>
+    <div class="divider"></div>
+    <div class="letter-card">
+      <p>Marcia rianda yang tercinta,</p><br>
+      <p>Nggak kerasa, hari ini kamu udah nyentuh umur 21 tahun. Usia yang indah (usia favorite aku sih), penuh mimpi, penuh kemungkinan, penuh cahaya. Dan bestie mu ini sangat beruntung bisa ada di sisimu di momen Ulang Tahun kamu yang spesial ini.</p><br>
+      <p>Dua bulan mungkin terdengar singkat. Tapi setiap hari yang kita lalui bersama membuatku ingin memilikimu, aku harap kamu juga merasakan hal yang sama.</p><br>
+      <p>Di hari ulang tahunmu yang ke-21 ini, aku hanya ingin bilang: terima kasih telah hadir. Terima kasih telah memilihku sebagai bestie mu. Dan terima kasih telah menjadi kamu — persis seperti adanya (Jangan insecure lagi ya cantikk).</p><br>
+      <p style="text-align:right; color:#ff8fb0;">Dengan cinta yang tulus,<br><em>Bestie ❤️</em></p>
     </div>
-  </div>
+  </section>
 
-  <!-- LOCK SCREEN -->
-  <div class="lock-screen" id="lockScreen">
-    <div class="stars-bg" id="lockStars"></div>
-    <div class="lock-badge">Halaman Terkunci 🔒</div>
-    <h1 class="lock-title">Sabar ya, kak Marcia Rianda... ✨</h1>
-    <p class="lock-subtitle" id="lockSubtitle">Tunggu sampai tanggal 24 Mei 2026 yaa baru kuncinya terbuka hehe!!</p>
-    <div class="lock-countdown-container">
-      <div class="lock-cd-box"><div class="lock-cd-num" id="lock-d">00</div><div class="lock-cd-label">Hari</div></div>
-      <div class="lock-cd-box"><div class="lock-cd-num" id="lock-h">00</div><div class="lock-cd-label">Jam</div></div>
-      <div class="lock-cd-box"><div class="lock-cd-num" id="lock-m">00</div><div class="lock-cd-label">Menit</div></div>
-      <div class="lock-cd-box"><div class="lock-cd-num" id="lock-s">00</div><div class="lock-cd-label">Detik</div></div>
-    </div>
-    <button class="lock-btn-unlock" id="btnUnlock">Buka Sekarang 🔓</button>
-    <div class="shooting-stars-container">
-      <div class="shooting-star putih"></div><div class="shooting-star ungu"></div>
-      <div class="shooting-star putih"></div><div class="shooting-star ungu"></div>
-    </div>
-  </div>
+  <section class="reveal">
+    <div class="section-label">Alasan aku cinta kamu sebagai bestie (maunya lebih dari bestie sih!!)</div>
+    <h2 class="section-title" style="text-align:center;">21 hal yang membuatmu luar biasa</h2>
+    <div class="divider"></div>
+    <div class="reasons-grid" id="reasonsGrid"></div>
+  </section>
 
-  <!-- MAIN SITE -->
-  <div class="site" id="mainSite">
-
-    <!-- HERO -->
-    <div class="hero" id="hero">
-      <div class="stars-bg" id="stars"></div>
-      <div class="hearts-rain" id="heartsRain"></div>
-      <div class="hero-badge">Selamat Ulang Tahun</div>
-      <h1>Happy 21st Birthday,<br>Marcia Rianda ✨</h1>
-      <p class="hero-typing" id="heroTyping"><span class="typing-cursor"></span></p>
-      <div class="countdown-wrap" id="countdown">
-        <div class="cd-box"><span class="cd-num" id="cd-h">00</span><span class="cd-label">Jam</span></div>
-        <div class="cd-box"><span class="cd-num" id="cd-m">00</span><span class="cd-label">Menit</span></div>
-        <div class="cd-box"><span class="cd-num" id="cd-s">00</span><span class="cd-label">Detik</span></div>
+  <section class="reveal">
+    <div class="section-label">Perjalanan kita</div>
+    <h2 class="section-title" style="text-align:center;">Kisah 2 bulan yang berkesan</h2>
+    <div class="divider"></div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-content"><div class="tl-date">14 April 2026</div><div class="tl-title">Awal dari segalanya</div><div class="tl-desc">Hari di mana kita pertama kali saling mengenal. Siapa yang sangka, pertemuan itu terjadi di Roblox.</div></div>
+        <div class="tl-dot"></div><div style="flex:1"></div>
       </div>
-      <div class="scroll-hint">↓ &nbsp; scroll ke bawah kak!! &nbsp; ↓</div>
+      <div class="tl-item">
+        <div style="flex:1"></div><div class="tl-dot"></div>
+        <div class="tl-content"><div class="tl-date">Minggu pertama</div><div class="tl-title">Obrolan yang tak ada habisnya</div><div class="tl-desc">Chat dari pagi sampai tengah malam. Tertawa bersama. Perasaan yang mulai tumbuh perlahan-lahan.</div></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-content"><div class="tl-date">Bulan pertama</div><div class="tl-title">Semakin dekat</div><div class="tl-desc">Aku semakin mengenal kamu lebih dalam. Cerita hidupmu, mimpimu, hal-hal kecil yang membuatmu unik.</div></div>
+        <div class="tl-dot"></div><div style="flex:1"></div>
+      </div>
+      <div class="tl-item">
+        <div style="flex:1"></div><div class="tl-dot"></div>
+        <div class="tl-content"><div class="tl-date">24 Mei 2026</div><div class="tl-title">Hari ulang tahunmu yang ke-21</div><div class="tl-desc">Hari ini, aku ucapkan selamat ulang tahun dari lubuk hati yang paling dalam. Semoga kamu selalu bahagia dan mau menjadi pacarku.</div></div>
+      </div>
     </div>
+  </section>
 
-    <!-- SURAT -->
-    <section class="letter-section reveal">
-      <div class="section-label">Surat untukmu</div>
-      <h2 class="section-title" style="text-align:center;">Dari hatiku, untuk hatimu</h2>
-      <div class="divider"></div>
-      <div class="letter-card">
-        <p>Marcia rianda yang tercinta,</p><br>
-        <p>Nggak kerasa, hari ini kamu udah nyentuh umur 21 tahun. Usia yang indah (usia favorite aku sih), penuh mimpi, penuh kemungkinan, penuh cahaya. Dan bestie mu ini sangat beruntung bisa ada di sisimu di momen Ulang Tahun kamu yang spesial ini.</p><br>
-        <p>Dua bulan mungkin terdengar singkat. Tapi setiap hari yang kita lalui bersama membuatku ingin memilikimu, aku harap kamu juga merasakan hal yang sama.</p><br>
-        <p>Di hari ulang tahunmu yang ke-21 ini, aku hanya ingin bilang: terima kasih telah hadir. Terima kasih telah memilihku sebagai bestie mu. Dan terima kasih telah menjadi kamu — persis seperti adanya (Jangan insecure lagi ya cantikk).</p><br>
-        <p style="text-align:right; color:#ff8fb0;">Dengan cinta yang tulus,<br><em>Bestie ❤️</em></p>
-      </div>
-    </section>
+  <section class="gallery-section reveal">
+    <div class="gallery-blob blob-1"></div>
+    <div class="gallery-blob blob-2"></div>
+    <div class="gallery-blob blob-3"></div>
+    <svg class="gallery-floral fl-tl" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" fill="none">
+      <circle cx="100" cy="100" r="30" fill="#ff8fb0"/>
+      <ellipse cx="100" cy="60" rx="18" ry="28" fill="#ffcce0" transform="rotate(0 100 100)"/>
+      <ellipse cx="100" cy="60" rx="18" ry="28" fill="#ffcce0" transform="rotate(45 100 100)"/>
+      <ellipse cx="100" cy="60" rx="18" ry="28" fill="#e9c2ff" transform="rotate(90 100 100)"/>
+      <ellipse cx="100" cy="60" rx="18" ry="28" fill="#e9c2ff" transform="rotate(135 100 100)"/>
+      <ellipse cx="100" cy="60" rx="18" ry="28" fill="#ffcce0" transform="rotate(180 100 100)"/>
+      <ellipse cx="100" cy="60" rx="18" ry="28" fill="#ffcce0" transform="rotate(225 100 100)"/>
+      <ellipse cx="100" cy="60" rx="18" ry="28" fill="#e9c2ff" transform="rotate(270 100 100)"/>
+      <ellipse cx="100" cy="60" rx="18" ry="28" fill="#e9c2ff" transform="rotate(315 100 100)"/>
+      <circle cx="100" cy="100" r="18" fill="#ffd700" opacity="0.8"/>
+    </svg>
+    <svg class="gallery-floral fl-tr" viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg" fill="none">
+      <circle cx="80" cy="80" r="22" fill="#c084fc"/>
+      <ellipse cx="80" cy="48" rx="14" ry="22" fill="#e9c2ff" transform="rotate(0 80 80)"/>
+      <ellipse cx="80" cy="48" rx="14" ry="22" fill="#ffcce0" transform="rotate(60 80 80)"/>
+      <ellipse cx="80" cy="48" rx="14" ry="22" fill="#e9c2ff" transform="rotate(120 80 80)"/>
+      <ellipse cx="80" cy="48" rx="14" ry="22" fill="#ffcce0" transform="rotate(180 80 80)"/>
+      <ellipse cx="80" cy="48" rx="14" ry="22" fill="#e9c2ff" transform="rotate(240 80 80)"/>
+      <ellipse cx="80" cy="48" rx="14" ry="22" fill="#ffcce0" transform="rotate(300 80 80)"/>
+      <circle cx="80" cy="80" r="14" fill="#fff9c2" opacity="0.9"/>
+    </svg>
+    <div class="section-label">Galeri Kenangan</div>
+    <h2 class="section-title" style="text-align:center;">Momen Cantik Tentangmu 🌸</h2>
+    <div class="divider"></div>
+    <p style="color:rgba(255,255,255,0.45);font-size:0.9rem;text-align:center;margin-top:0.5rem;">
+      Klik foto untuk memperbesar ✨ &nbsp;|&nbsp; <span style="color:rgba(255,143,176,0.6)">hover untuk efek 3D</span> &nbsp;|&nbsp; <span style="color:rgba(192,132,252,0.6)">❤️ untuk simpan favoritmu</span>
+    </p>
+    <div class="gallery-filter-bar" id="galleryFilterBar">
+      <button class="gf-btn active" data-filter="all">✦ Semua</button>
+      <button class="gf-btn" data-filter="cantik">🌸 Cantik</button>
+      <button class="gf-btn" data-filter="lucu">🤭 Lucu</button>
+      <button class="gf-btn" data-filter="bersama">💕 Bersama</button>
+      <button class="gf-btn" data-filter="favorit">❤️ Favorit</button>
+    </div>
+    <div class="gallery-count-badge" id="galleryCountBadge">21 foto kenangan indah</div>
+    <div style="position:relative;">
+      <div class="photo-bento" id="photoBento"></div>
+      <div id="floatingPetals"></div>
+    </div>
+    <div class="gallery-loves-strip" id="galleryLovesStrip">
+      ❤️ Kamu sudah menyukai <span class="loves-count" id="lovesCount">0</span> foto
+    </div>
+  </section>
 
-    <!-- 21 ALASAN -->
-    <section class="reveal">
-      <div class="section-label">Alasan aku cinta kamu sebagai bestie (maunya lebih dari bestie sih!!)</div>
-      <h2 class="section-title" style="text-align:center;">21 hal yang membuatmu luar biasa</h2>
-      <div class="divider"></div>
-      <div class="reasons-grid" id="reasonsGrid"></div>
-    </section>
+  <section class="starmap-section reveal">
+    <div class="section-label">Peta Bintang Kita</div>
+    <h2 class="section-title" style="text-align:center;">Bintang yang Mempertemukan Kita ⭐</h2>
+    <div class="divider"></div>
+    <p style="color:rgba(255,255,255,0.55);font-size:0.95rem;line-height:1.7;max-width:500px;margin:0 auto;">Di langit malam yang sama, ada dua bintang yang selalu bersinar untuk satu sama lain.</p>
+    <div class="starmap-wrap"><canvas id="starMapCanvas" width="700" height="380"></canvas></div>
+    <p class="starmap-label">✨ "Dari 14 April hingga selamanya — dua bintang yang berpadu menjadi satu konstelasi." ✨</p>
+  </section>
 
-    <!-- TIMELINE -->
-    <section class="reveal">
-      <div class="section-label">Perjalanan kita</div>
-      <h2 class="section-title" style="text-align:center;">Kisah 2 bulan yang berkesan</h2>
-      <div class="divider"></div>
-      <div class="timeline">
-        <div class="tl-item">
-          <div class="tl-content">
-            <div class="tl-date">14 April 2026</div>
-            <div class="tl-title">Awal dari segalanya</div>
-            <div class="tl-desc">Hari di mana kita pertama kali saling mengenal. Siapa yang sangka, pertemuan itu terjadi di Roblox.</div>
-          </div>
-          <div class="tl-dot"></div>
-          <div style="flex:1"></div>
-        </div>
-        <div class="tl-item">
-          <div style="flex:1"></div>
-          <div class="tl-dot"></div>
-          <div class="tl-content">
-            <div class="tl-date">Minggu pertama</div>
-            <div class="tl-title">Obrolan yang tak ada habisnya</div>
-            <div class="tl-desc">Chat dari pagi sampai tengah malam. Tertawa bersama. Perasaan yang mulai tumbuh perlahan-lahan.</div>
-          </div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-content">
-            <div class="tl-date">Bulan pertama</div>
-            <div class="tl-title">Semakin dekat</div>
-            <div class="tl-desc">Aku semakin mengenal kamu lebih dalam. Cerita hidupmu, mimpimu, hal-hal kecil yang membuatmu unik.</div>
-          </div>
-          <div class="tl-dot"></div>
-          <div style="flex:1"></div>
-        </div>
-        <div class="tl-item">
-          <div style="flex:1"></div>
-          <div class="tl-dot"></div>
-          <div class="tl-content">
-            <div class="tl-date">24 Mei 2026</div>
-            <div class="tl-title">Hari ulang tahunmu yang ke-21</div>
-            <div class="tl-desc">Hari ini, aku ucapkan selamat ulang tahun dari lubuk hati yang paling dalam. Semoga kamu selalu bahagia dan mau menjadi pacarku.</div>
-          </div>
-        </div>
-      </div>
-    </section>
+  <section class="moodring-section reveal">
+    <div class="section-label">Spesial untuk kamu</div>
+    <h2 class="section-title" style="text-align:center;">Lagi ngerasa gimana hari ini? 🌈</h2>
+    <div class="divider"></div>
+    <p style="color:rgba(255,255,255,0.55);font-size:0.95rem;">Pilih mood kamu sekarang dan biar aku kasih pesan spesial untukmu! 💌</p>
+    <div class="mood-grid" id="moodGrid"></div>
+    <div class="mood-result" id="moodResult">
+      <div class="mr-emoji" id="mrEmoji">💖</div>
+      <div class="mr-title" id="mrTitle">Loading...</div>
+      <div class="mr-message" id="mrMessage"></div>
+      <div class="mr-song" id="mrSong"></div>
+    </div>
+  </section>
 
-    <!-- ===== GALERI FOTO ===== -->
-    <section class="gallery-section reveal">
-      <!-- Ambient blobs -->
-      <div class="gallery-blob blob-1"></div>
-      <div class="gallery-blob blob-2"></div>
-      <div class="gallery-blob blob-3"></div>
+  <section class="secret-section reveal">
+    <div class="section-label">Kejutan spesial</div>
+    <h2 class="section-title" style="text-align:center;">Ada pesan rahasia untukmu 💌</h2>
+    <div class="divider"></div>
+    <p style="color:rgba(255,255,255,0.55);font-size:0.95rem;">Klik amplop di bawah untuk membuka pesan tersembunyi...</p>
+    <div class="secret-envelope" id="secretEnvelope">💌</div>
+    <p class="secret-hint">✨ klik untuk membuka ✨</p>
+    <div class="secret-message-box" id="secretMsgBox">
+      <p>"Kalau kamu bisa baca ini artinya kamu sudah berani klik, dan itu salah satu hal yang aku suka dari kamu — kamu selalu penasaran dan penuh semangat. 🌸</p><br>
+      <p>Aku nggak butuh waktu lama untuk sadar bahwa kamu bukan orang biasa. Kamu itu... istimewa. Dan aku bersyukur banget bisa mengenalmu.</p><br>
+      <p>Selamat ulang tahun ya, kak Marcia. Semoga di usia 21 ini, kamu semakin bersinar — karena kamu memang sudah selalu bersinar dari awal." 💖</p>
+    </div>
+  </section>
 
-      <!-- SVG florals -->
-      <svg class="gallery-floral fl-tl" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" fill="none">
-        <circle cx="100" cy="100" r="30" fill="#ff8fb0"/>
-        <ellipse cx="100" cy="60" rx="18" ry="28" fill="#ffcce0" transform="rotate(0 100 100)"/>
-        <ellipse cx="100" cy="60" rx="18" ry="28" fill="#ffcce0" transform="rotate(45 100 100)"/>
-        <ellipse cx="100" cy="60" rx="18" ry="28" fill="#e9c2ff" transform="rotate(90 100 100)"/>
-        <ellipse cx="100" cy="60" rx="18" ry="28" fill="#e9c2ff" transform="rotate(135 100 100)"/>
-        <ellipse cx="100" cy="60" rx="18" ry="28" fill="#ffcce0" transform="rotate(180 100 100)"/>
-        <ellipse cx="100" cy="60" rx="18" ry="28" fill="#ffcce0" transform="rotate(225 100 100)"/>
-        <ellipse cx="100" cy="60" rx="18" ry="28" fill="#e9c2ff" transform="rotate(270 100 100)"/>
-        <ellipse cx="100" cy="60" rx="18" ry="28" fill="#e9c2ff" transform="rotate(315 100 100)"/>
-        <circle cx="100" cy="100" r="18" fill="#ffd700" opacity="0.8"/>
+  <section class="quiz-section reveal">
+    <div class="section-label">Mini Quiz</div>
+    <h2 class="section-title" style="text-align:center;">Seberapa kenal kamu aku? 🤭</h2>
+    <div class="divider"></div>
+    <p style="color:rgba(255,255,255,0.55);font-size:0.95rem;margin-bottom:0.5rem;">Jawab 3 pertanyaan iseng ini ya!</p>
+    <div class="quiz-card" id="quizCard">
+      <div class="quiz-progress" id="quizProgress"></div>
+      <div class="quiz-question" id="quizQuestion"></div>
+      <div class="quiz-options" id="quizOptions"></div>
+      <div class="quiz-result" id="quizResult"></div>
+      <div class="quiz-nav"><button class="quiz-next-btn" id="quizNext">Pertanyaan berikutnya →</button></div>
+      <div class="quiz-score-wrap" id="quizScore"></div>
+    </div>
+  </section>
+
+  <section class="wish-section reveal">
+    <div class="section-label">Doa & harapan aku kepada kak Marcia Rianda</div>
+    <h2 class="section-title">Untukmu di usia 21</h2>
+    <div class="divider"></div>
+    <div class="cake-wrap">
+      <svg class="cake-svg" viewBox="0 0 160 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="20" y="110" width="120" height="50" rx="12" fill="#4a1525" stroke="#ff8fb0" stroke-width="1.5"/>
+        <rect x="30" y="85" width="100" height="30" rx="10" fill="#3b0f1f" stroke="#c084fc" stroke-width="1.5"/>
+        <path d="M20 125 Q80 115 140 125" stroke="#ff8fb0" stroke-width="1" fill="none"/>
+        <path d="M30 95 Q80 88 130 95" stroke="#c084fc" stroke-width="1" fill="none"/>
+        <circle cx="50" cy="85" r="4" fill="#ff6b9d"/><circle cx="80" cy="83" r="4" fill="#c084fc"/><circle cx="110" cy="85" r="4" fill="#ff6b9d"/>
+        <line x1="50" y1="85" x2="50" y2="55" stroke="#ff6b9d" stroke-width="2"/>
+        <line x1="80" y1="83" x2="80" y2="53" stroke="#c084fc" stroke-width="2"/>
+        <line x1="110" y1="85" x2="110" y2="55" stroke="#ff6b9d" stroke-width="2"/>
+        <ellipse cx="50" cy="52" rx="5" ry="8" fill="#ffcce0" opacity="0.9"/>
+        <ellipse cx="80" cy="50" rx="5" ry="8" fill="#e9c2ff" opacity="0.9"/>
+        <ellipse cx="110" cy="52" rx="5" ry="8" fill="#ffcce0" opacity="0.9"/>
+        <text x="80" y="148" text-anchor="middle" font-family="Playfair Display, serif" font-size="13" fill="#ff8fb0">Happy Birthday!</text>
+        <text x="80" y="167" text-anchor="middle" font-family="Lato, sans-serif" font-size="10" fill="rgba(255,255,255,0.5)">21 tahun</text>
       </svg>
-      <svg class="gallery-floral fl-tr" viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg" fill="none">
-        <circle cx="80" cy="80" r="22" fill="#c084fc"/>
-        <ellipse cx="80" cy="48" rx="14" ry="22" fill="#e9c2ff" transform="rotate(0 80 80)"/>
-        <ellipse cx="80" cy="48" rx="14" ry="22" fill="#ffcce0" transform="rotate(60 80 80)"/>
-        <ellipse cx="80" cy="48" rx="14" ry="22" fill="#e9c2ff" transform="rotate(120 80 80)"/>
-        <ellipse cx="80" cy="48" rx="14" ry="22" fill="#ffcce0" transform="rotate(180 80 80)"/>
-        <ellipse cx="80" cy="48" rx="14" ry="22" fill="#e9c2ff" transform="rotate(240 80 80)"/>
-        <ellipse cx="80" cy="48" rx="14" ry="22" fill="#ffcce0" transform="rotate(300 80 80)"/>
-        <circle cx="80" cy="80" r="14" fill="#fff9c2" opacity="0.9"/>
-      </svg>
-
-      <div class="section-label">Galeri Kenangan</div>
-      <h2 class="section-title" style="text-align:center;">Momen Cantik Tentangmu 🌸</h2>
-      <div class="divider"></div>
-      <p style="color:rgba(255,255,255,0.45);font-size:0.9rem;text-align:center;margin-top:0.5rem;">
-        Klik foto untuk memperbesar ✨ &nbsp;|&nbsp; <span style="color:rgba(255,143,176,0.6)">hover untuk efek 3D</span> &nbsp;|&nbsp; <span style="color:rgba(192,132,252,0.6)">❤️ untuk simpan favoritmu</span>
-      </p>
-
-      <!-- FILTER BAR -->
-      <div class="gallery-filter-bar" id="galleryFilterBar">
-        <button class="gf-btn active" data-filter="all">✦ Semua</button>
-        <button class="gf-btn" data-filter="cantik">🌸 Cantik</button>
-        <button class="gf-btn" data-filter="lucu">🤭 Lucu</button>
-        <button class="gf-btn" data-filter="bersama">💕 Bersama</button>
-        <button class="gf-btn" data-filter="favorit">❤️ Favorit</button>
-      </div>
-
-      <!-- COUNT BADGE -->
-      <div class="gallery-count-badge" id="galleryCountBadge">14 foto kenangan indah</div>
-
-      <div style="position:relative;">
-        <div class="photo-bento" id="photoBento"></div>
-        <div id="floatingPetals"></div>
-      </div>
-
-      <!-- LOVES STRIP -->
-      <div class="gallery-loves-strip" id="galleryLovesStrip">
-        ❤️ Kamu sudah menyukai <span class="loves-count" id="lovesCount">0</span> foto
-      </div>
-    </section>
-
-    <!-- ===== STAR MAP ===== -->
-    <section class="starmap-section reveal">
-      <div class="section-label">Peta Bintang Kita</div>
-      <h2 class="section-title" style="text-align:center;">Bintang yang Mempertemukan Kita ⭐</h2>
-      <div class="divider"></div>
-      <p style="color:rgba(255,255,255,0.55);font-size:0.95rem;line-height:1.7;max-width:500px;margin:0 auto;">Di langit malam yang sama, ada dua bintang yang selalu bersinar untuk satu sama lain. Bintang kamu dan bintang aku.</p>
-      <div class="starmap-wrap">
-        <canvas id="starMapCanvas" width="700" height="380"></canvas>
-      </div>
-      <p class="starmap-label">✨ "Dari 14 April hingga selamanya — dua bintang yang berpadu menjadi satu konstelasi." ✨</p>
-    </section>
-
-    <!-- ===== MOOD RING ===== -->
-    <section class="moodring-section reveal">
-      <div class="section-label">Spesial untuk kamu</div>
-      <h2 class="section-title" style="text-align:center;">Lagi ngerasa gimana hari ini? 🌈</h2>
-      <div class="divider"></div>
-      <p style="color:rgba(255,255,255,0.55);font-size:0.95rem;">Pilih mood kamu sekarang dan biar aku kasih pesan spesial untukmu! 💌</p>
-      <div class="mood-grid" id="moodGrid"></div>
-      <div class="mood-result" id="moodResult">
-        <div class="mr-emoji" id="mrEmoji">💖</div>
-        <div class="mr-title" id="mrTitle">Loading...</div>
-        <div class="mr-message" id="mrMessage"></div>
-        <div class="mr-song" id="mrSong"></div>
-      </div>
-    </section>
-
-    <!-- PESAN RAHASIA -->
-    <section class="secret-section reveal">
-      <div class="section-label">Kejutan spesial</div>
-      <h2 class="section-title" style="text-align:center;">Ada pesan rahasia untukmu 💌</h2>
-      <div class="divider"></div>
-      <p style="color:rgba(255,255,255,0.55);font-size:0.95rem;">Klik amplop di bawah untuk membuka pesan tersembunyi...</p>
-      <div class="secret-envelope" id="secretEnvelope">💌</div>
-      <p class="secret-hint">✨ klik untuk membuka ✨</p>
-      <div class="secret-message-box" id="secretMsgBox">
-        <p>"Kalau kamu bisa baca ini artinya kamu sudah berani klik, dan itu salah satu hal yang aku suka dari kamu — kamu selalu penasaran dan penuh semangat. 🌸</p><br>
-        <p>Aku nggak butuh waktu lama untuk sadar bahwa kamu bukan orang biasa. Kamu itu... istimewa. Dan aku bersyukur banget bisa mengenalmu.</p><br>
-        <p>Selamat ulang tahun ya, kak Marcia. Semoga di usia 21 ini, kamu semakin bersinar — karena kamu memang sudah selalu bersinar dari awal." 💖</p>
-      </div>
-    </section>
-
-    <!-- KUIS -->
-    <section class="quiz-section reveal">
-      <div class="section-label">Mini Quiz</div>
-      <h2 class="section-title" style="text-align:center;">Seberapa kenal kamu aku? 🤭</h2>
-      <div class="divider"></div>
-      <p style="color:rgba(255,255,255,0.55);font-size:0.95rem;margin-bottom:0.5rem;">Jawab 3 pertanyaan iseng ini ya!</p>
-      <div class="quiz-card" id="quizCard">
-        <div class="quiz-progress" id="quizProgress"></div>
-        <div class="quiz-question" id="quizQuestion"></div>
-        <div class="quiz-options" id="quizOptions"></div>
-        <div class="quiz-result" id="quizResult"></div>
-        <div class="quiz-nav"><button class="quiz-next-btn" id="quizNext">Pertanyaan berikutnya →</button></div>
-        <div class="quiz-score-wrap" id="quizScore"></div>
-      </div>
-    </section>
-
-    <!-- WISH -->
-    <section class="wish-section reveal">
-      <div class="section-label">Doa & harapan aku kepada kak Marcia Rianda</div>
-      <h2 class="section-title">Untukmu di usia 21</h2>
-      <div class="divider"></div>
-      <div class="cake-wrap">
-        <svg class="cake-svg" viewBox="0 0 160 180" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="20" y="110" width="120" height="50" rx="12" fill="#4a1525" stroke="#ff8fb0" stroke-width="1.5"/>
-          <rect x="30" y="85" width="100" height="30" rx="10" fill="#3b0f1f" stroke="#c084fc" stroke-width="1.5"/>
-          <path d="M20 125 Q80 115 140 125" stroke="#ff8fb0" stroke-width="1" fill="none"/>
-          <path d="M30 95 Q80 88 130 95" stroke="#c084fc" stroke-width="1" fill="none"/>
-          <circle cx="50" cy="85" r="4" fill="#ff6b9d"/><circle cx="80" cy="83" r="4" fill="#c084fc"/><circle cx="110" cy="85" r="4" fill="#ff6b9d"/>
-          <line x1="50" y1="85" x2="50" y2="55" stroke="#ff6b9d" stroke-width="2"/>
-          <line x1="80" y1="83" x2="80" y2="53" stroke="#c084fc" stroke-width="2"/>
-          <line x1="110" y1="85" x2="110" y2="55" stroke="#ff6b9d" stroke-width="2"/>
-          <ellipse cx="50" cy="52" rx="5" ry="8" fill="#ffcce0" opacity="0.9"/>
-          <ellipse cx="80" cy="50" rx="5" ry="8" fill="#e9c2ff" opacity="0.9"/>
-          <ellipse cx="110" cy="52" rx="5" ry="8" fill="#ffcce0" opacity="0.9"/>
-          <text x="80" y="148" text-anchor="middle" font-family="Playfair Display, serif" font-size="13" fill="#ff8fb0">Happy Birthday!</text>
-          <text x="80" y="167" text-anchor="middle" font-family="Lato, sans-serif" font-size="10" fill="rgba(255,255,255,0.5)">21 tahun</text>
-        </svg>
-      </div>
-      <p class="big-wish">"Semoga usiamu yang ke-21 ini menjadi awal dari babak terindah dalam hidupmu."</p>
-      <p style="color:rgba(255,255,255,0.6);line-height:1.9;max-width:600px;margin:0 auto;font-size:1.05rem;">
-        Semoga mimpimu tercapai satu per satu. Semoga kamu selalu sehat, bahagia, dan dikelilingi orang-orang yang benar-benar mencintaimu. Dan semoga aku bisa terus ada disisimu untuk melihat setiap mimpi yang kamu impikan tercapai.
-      </p>
-      <button class="firework-btn" id="fwBtn">Ledakkan kembang api! 🎆</button>
-    </section>
-
-    <!-- JANJI -->
-    <section class="reveal">
-      <div class="section-label">Janji dariku</div>
-      <h2 class="section-title" style="text-align:center;">Yang aku berikan untukmu</h2>
-      <div class="divider"></div>
-      <ul class="promise-list">
-        <li><span class="promise-icon">🌹</span><span class="promise-text">Aku berjanji untuk selalu ada di saat kamu senang maupun sedih. Dan aku tidak akan pernah membuatmu merasakan kesepian selama aku ada.</span></li>
-        <li><span class="promise-icon">🌙</span><span class="promise-text">Aku berjanji untuk selalu mendengarkan ceritamu, sekecil apapun itu. Karena setiap kata yang kamu ucapkan berharga bagiku.</span></li>
-        <li><span class="promise-icon">⭐</span><span class="promise-text">Aku berjanji untuk selalu mendukung mimpi-mimpimu. Apapun yang kamu kejar, aku akan jadi orang pertama yang mendorongmu ke depan.</span></li>
-        <li><span class="promise-icon">🌸</span><span class="promise-text">Aku berjanji untuk membuat setiap hari bersamamu terasa istimewa — karena kamu memang istimewa.</span></li>
-        <li><span class="promise-icon">💫</span><span class="promise-text">Aku berjanji untuk mencintaimu dengan tulus, sabar, dan sepenuh hati — hari ini dan seterusnya.</span></li>
-      </ul>
-    </section>
-
-    <!-- VIDEO -->
-    <section class="video-section reveal">
-      <div class="section-label">Pesan video untukmu</div>
-      <h2 class="section-title" style="text-align:center;">Khusus untuk Marcia 🎥</h2>
-      <div class="divider"></div>
-      <p style="color:rgba(255,255,255,0.55);font-size:0.95rem;line-height:1.7;">Aku merekam ini khusus untukmu. Tonton sampai habis ya, ada sesuatu yang ingin aku sampaikan langsung dari hati...</p>
-      <div class="video-frame-wrap">
-        <video controls playsinline>
-          <source src="video.mp4" type="video/mp4">
-          Browser kamu tidak mendukung pemutaran video.
-        </video>
-      </div>
-      <p class="video-caption">🎬 &nbsp;"Karena ada hal-hal yang lebih indah disampaikan lewat gambar yang bergerak." 🌸</p>
-    </section>
-
-    <!-- FINAL -->
-    <div class="final-section" id="finalSection">
-      <p class="big">Selamat Ulang Tahun,<br>Sayangku Marcia 🌹</p>
-      <div class="divider"></div>
-      <p style="color:rgba(255,255,255,0.65);font-size:1.1rem;line-height:1.9;max-width:500px;margin:0 auto;">
-        Dua bulan bersama kamu terasa seperti sebuah keajaiban kecil yang terus tumbuh setiap harinya. Selamat memasuki usia 21 — tahun yang penuh harapan, penuh cinta, dan penuh kamu.
-      </p>
-      <p class="signature">— Selalu untukmu, dengan cinta ❤️</p>
     </div>
+    <p class="big-wish">"Semoga usiamu yang ke-21 ini menjadi awal dari babak terindah dalam hidupmu."</p>
+    <p style="color:rgba(255,255,255,0.6);line-height:1.9;max-width:600px;margin:0 auto;font-size:1.05rem;">Semoga mimpimu tercapai satu per satu. Semoga kamu selalu sehat, bahagia, dan dikelilingi orang-orang yang benar-benar mencintaimu.</p>
+    <button class="firework-btn" id="fwBtn">Ledakkan kembang api! 🎆</button>
+  </section>
 
-  </div><!-- /site -->
+  <section class="reveal">
+    <div class="section-label">Janji dariku</div>
+    <h2 class="section-title" style="text-align:center;">Yang aku berikan untukmu</h2>
+    <div class="divider"></div>
+    <ul class="promise-list">
+      <li><span class="promise-icon">🌹</span><span class="promise-text">Aku berjanji untuk selalu ada di saat kamu senang maupun sedih.</span></li>
+      <li><span class="promise-icon">🌙</span><span class="promise-text">Aku berjanji untuk selalu mendengarkan ceritamu, sekecil apapun itu.</span></li>
+      <li><span class="promise-icon">⭐</span><span class="promise-text">Aku berjanji untuk selalu mendukung mimpi-mimpimu.</span></li>
+      <li><span class="promise-icon">🌸</span><span class="promise-text">Aku berjanji untuk membuat setiap hari bersamamu terasa istimewa.</span></li>
+      <li><span class="promise-icon">💫</span><span class="promise-text">Aku berjanji untuk mencintaimu dengan tulus, sabar, dan sepenuh hati.</span></li>
+    </ul>
+  </section>
 
-  <script>
-  // ==========================================================================
-  // PHOTO DATA — dengan tag kategori untuk filter
-  // ==========================================================================
-  const photoData = [
-  // ── ROW 1: Hero shot besar + 2 tall di kanan ──
-  { src:'foto1.jpg',  caption:'Senyum favoritku 🥰',              emoji:'🥰', span:'s-feat-l',  tags:['cantik','favorit'], featured:true,  date:'Mei 2026' },
-  { src:'foto2.jpg',  caption:'Saat kamu sangat menggemaskan ✨',  emoji:'✨', span:'s-tall',    tags:['lucu','cantik'],                    date:'Mei 2026' },
-  { src:'foto3.jpg',  caption:'Kecantikanmu 🌸',                   emoji:'🌸', span:'s-tall',    tags:['cantik'],                           date:'Mei 2026' },
- 
-  // ── ROW 2: Wide + medium ──
-  { src:'foto4.jpg',  caption:'Cantik banget kak 💕',              emoji:'💕', span:'s-wide',    tags:['cantik','favorit'],                 date:'Mei 2026' },
-  { src:'foto5.jpg',  caption:'My favorite person 🌹',             emoji:'🌹', span:'s-med',     tags:['cantik','favorit'],                 date:'Mei 2026' },
- 
-  // ── ROW 3: 4 kartu sejajar medium ──
-  { src:'foto6.jpg',  caption:'Kamu dan senyummu 💖',              emoji:'💖', span:'s-sq',      tags:['cantik'],                           date:'Mei 2026' },
-  { src:'foto7.jpg',  caption:'Bersama Keluarga Kecilnya ⭐',      emoji:'⭐', span:'s-sq',      tags:['bersama'],                          date:'Mei 2026' },
-  { src:'foto8.jpg',  caption:'Hari yang indah 🌼',                emoji:'🌼', span:'s-sq',      tags:['cantik','lucu'],                    date:'Mei 2026' },
-  { src:'foto9.jpg',  caption:'Momen yang aku rindukan 💫',        emoji:'💫', span:'s-sq',      tags:['cantik','bersama'],                 date:'Mei 2026' },
- 
-  // ── ROW 4: Featured kanan + tall kiri ──
-  { src:'foto10.jpg', caption:'Kamu yang aku sayang 🌷',           emoji:'🌷', span:'s-tall',    tags:['cantik'],                           date:'Mei 2026' },
-  { src:'foto11.jpg', caption:'Ekspresi lucumu 🤭',                emoji:'🤭', span:'s-feat-m',  tags:['lucu'],           featured:true,     date:'Mei 2026' },
- 
-  // ── ROW 5: Wide panorama ──
-  { src:'foto12.jpg', caption:'Gadis favoritku 👑',                emoji:'👑', span:'s-xwide',   tags:['cantik','favorit'],                 date:'Mei 2026' },
- 
-  // ── ROW 6: 3 medium ──
-  { src:'foto13.jpg', caption:'Cantik seperti bintang ⭐',          emoji:'⭐', span:'s-med',     tags:['cantik','bersama'],                 date:'Mei 2026' },
-  { src:'foto14.jpg', caption:'Kamu, selamanya 🫶',                emoji:'🫶', span:'s-med',     tags:['cantik','favorit'],                 date:'Mei 2026' },
- 
-  // ── FOTO BARU 15–21 ──
-  { src:'foto15.jpg', caption:'Senyum paling tulus 🌷',            emoji:'🌷', span:'s-med',     tags:['cantik','favorit'],                 date:'Mei 2026' },
- 
-  // ── ROW 7: Big featured kiri + kolom kanan ──
-  { src:'foto16.jpg', caption:'Manis banget kak 🍓',               emoji:'🍓', span:'s-feat-l',  tags:['lucu','cantik'],  featured:true,     date:'Mei 2026' },
-  { src:'foto17.jpg', caption:'Momen berharga kita 💞',            emoji:'💞', span:'s-sq',      tags:['bersama','favorit'],                date:'Mei 2026' },
-  { src:'foto18.jpg', caption:'Ekspresi kesukaanku 🤍',            emoji:'🤍', span:'s-sq',      tags:['cantik','favorit'],                 date:'Mei 2026' },
- 
-  // ── ROW 8: Tall + wide ──
-  { src:'foto19.jpg', caption:'Cantik seperti bunga 🌺',           emoji:'🌺', span:'s-tall',    tags:['cantik'],                           date:'Mei 2026' },
-  { src:'foto20.jpg', caption:'Kamu dan duniamu 🌙',               emoji:'🌙', span:'s-wide',    tags:['cantik','bersama'],                 date:'Mei 2026' },
- 
-  // ── ROW 9: Finale — hero besar terakhir ──
-  { src:'foto21.jpg', caption:'21 tahun keajaiban — kamu ✨',      emoji:'✨', span:'s-pair',    tags:['cantik','favorit'], featured:true,   date:'Mei 2026' },
+  <section class="video-section reveal">
+    <div class="section-label">Pesan video untukmu</div>
+    <h2 class="section-title" style="text-align:center;">Khusus untuk Marcia 🎥</h2>
+    <div class="divider"></div>
+    <p style="color:rgba(255,255,255,0.55);font-size:0.95rem;line-height:1.7;">Aku merekam ini khusus untukmu. Tonton sampai habis ya...</p>
+    <div class="video-frame-wrap">
+      <video controls playsinline>
+        <source src="video.mp4" type="video/mp4">
+        Browser kamu tidak mendukung pemutaran video.
+      </video>
+    </div>
+    <p class="video-caption">🎬 &nbsp;"Karena ada hal-hal yang lebih indah disampaikan lewat gambar yang bergerak." 🌸</p>
+  </section>
+
+  <div class="final-section" id="finalSection">
+    <p class="big">Selamat Ulang Tahun,<br>Sayangku Marcia 🌹</p>
+    <div class="divider"></div>
+    <p style="color:rgba(255,255,255,0.65);font-size:1.1rem;line-height:1.9;max-width:500px;margin:0 auto;">Dua bulan bersama kamu terasa seperti sebuah keajaiban kecil yang terus tumbuh setiap harinya.</p>
+    <p class="signature">— Selalu untukmu, dengan cinta ❤️</p>
+  </div>
+</div>
+
+<script>
+// ==========================================================================
+// STEP 1: DEKLARASI DASAR — harus paling atas
+// ==========================================================================
+const lovedPhotos = new Set();
+let currentFilter = 'all';
+let lbPhotos = [];
+let currentLb = 0;
+
+// Canvas & fireworks dasar
+const canvas = document.getElementById('globalFwCanvas');
+const ctx = canvas.getContext('2d');
+let particles = [];
+const fwColors = ['#ff8fb0','#c084fc','#ffcce0','#ff6b9d','#e9c2ff','#ffffc2','#ffd700'];
+function resizeCanvas(){ canvas.width=window.innerWidth; canvas.height=window.innerHeight; }
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
+
+function spawnBurst(x, y) {
+  for(let i=0;i<80;i++){
+    const angle=Math.random()*Math.PI*2, speed=1+Math.random()*6;
+    particles.push({x,y,vx:Math.cos(angle)*speed,vy:Math.sin(angle)*speed,life:1,color:fwColors[Math.floor(Math.random()*fwColors.length)],size:1.5+Math.random()*3});
+  }
+}
+
+// ==========================================================================
+// STEP 2: PHOTO DATA & DECO
+// ==========================================================================
+const photoData = [
+  { src:'foto1.jpg',  caption:'Senyum favoritku 🥰',             emoji:'🥰', span:'s-feat-l', tags:['cantik','favorit'], featured:true,  date:'Mei 2026' },
+  { src:'foto2.jpg',  caption:'Saat kamu sangat menggemaskan ✨', emoji:'✨', span:'s-tall',   tags:['lucu','cantik'],                    date:'Mei 2026' },
+  { src:'foto3.jpg',  caption:'Kecantikanmu 🌸',                  emoji:'🌸', span:'s-tall',   tags:['cantik'],                           date:'Mei 2026' },
+  { src:'foto4.jpg',  caption:'Cantik banget kak 💕',             emoji:'💕', span:'s-wide',   tags:['cantik','favorit'],                 date:'Mei 2026' },
+  { src:'foto5.jpg',  caption:'My favorite person 🌹',            emoji:'🌹', span:'s-tall',    tags:['cantik','favorit'],                 date:'Mei 2026' },
+  { src:'foto6.jpg',  caption:'Kamu dan senyummu 💖',             emoji:'💖', span:'s-tall',     tags:['cantik'],                           date:'Mei 2026' },
+  { src:'foto7.jpg',  caption:'Bersama Keluarga Kecilnya ⭐',     emoji:'⭐', span:'s-sq',     tags:['bersama'],                          date:'Mei 2026' },
+  { src:'foto8.jpg',  caption:'Hari yang indah 🌼',               emoji:'🌼', span:'s-sq',     tags:['cantik','lucu'],                    date:'Mei 2026' },
+  { src:'foto9.jpg',  caption:'Momen yang aku rindukan 💫',       emoji:'💫', span:'s-sq',     tags:['cantik','bersama'],                  date:'Mei 2026' },
+  { src:'foto10.jpg', caption:'Kamu yang aku sayang 🌷',          emoji:'🌷', span:'s-tall',   tags:['cantik'],                            date:'Mei 2026' },
+  { src:'foto11.jpg', caption:'Ekspresi lucumu 🤭',               emoji:'🤭', span:'s-tall', tags:['lucu'],                                date:'Mei 2026' },
+  { src:'foto12.jpg', caption:'Gadis favoritku 👑',               emoji:'👑', span:'s-tall',  tags:['cantik','favorit'],                   date:'Mei 2026' },
+  { src:'foto13.jpg', caption:'Cantik seperti bintang ⭐',         emoji:'⭐', span:'s-med',    tags:['cantik','bersama'],                 date:'Mei 2026' },
+  { src:'foto14.jpg', caption:'Kamu, selamanya 🫶',               emoji:'🫶', span:'s-tall',    tags:['cantik','favorit'],                 date:'Mei 2026' },
+  { src:'foto15.jpg', caption:'Senyum paling tulus 🌷',           emoji:'🌷', span:'s-med',    tags:['cantik','favorit'],                 date:'Mei 2026' },
+  { src:'foto16.jpg', caption:'Manis banget kak 🍓',              emoji:'🍓', span:'s-feat-l', tags:['lucu','cantik'],  featured:true,     date:'Mei 2026' },
+  { src:'foto17.jpg', caption:'Momen berharga kita 💞',           emoji:'💞', span:'s-sq',     tags:['bersama','favorit'],                date:'Mei 2026' },
+  { src:'foto18.jpg', caption:'Ekspresi kesukaanku 🤍',           emoji:'🤍', span:'s-tall',     tags:['cantik','favorit'],                 date:'Mei 2026' },
+  { src:'foto19.jpg', caption:'Cantik seperti bunga 🌺',          emoji:'🌺', span:'s-tall',   tags:['cantik'],                           date:'Mei 2026' },
+  { src:'foto20.jpg', caption:'Kamu dan duniamu 🌙',              emoji:'🌙', span:'s-tall',   tags:['cantik','bersama'],                 date:'Mei 2026' },
+  { src:'foto21.jpg', caption:'21 tahun keajaiban — kamu ✨',     emoji:'✨', span:'s-pair',   tags:['cantik','favorit'], featured:true,   date:'Mei 2026' },
 ];
- 
-// ==========================================================================
-// DECO INSERTS — kartu dekoratif sisip di antara foto
-// ==========================================================================
+
 const decoInserts = [
-  { afterIdx:2,  type:'emoji',   span:'s-sm',   emoji:'💖' },
-  { afterIdx:5,  type:'sparkle', span:'s-sq',   emojis:['✨','🌸','💕','⭐','🌺','💫'] },
-  { afterIdx:9,  type:'quote',   span:'s-sq',   content:'"Kamu cantik tanpa kamu sadari" 🌸' },
-  { afterIdx:13, type:'emoji',   span:'s-sm',   emoji:'🎀' },
-  { afterIdx:17, type:'quote',   span:'s-sq',   content:'"Setiap fotomu bercerita tentang keindahan" 🌷' },
-  { afterIdx:20, type:'sparkle', span:'s-sm',   emojis:['🌸','💖','✨','🌺','💕','⭐'] },
+  { afterIdx:2,  type:'emoji',   span:'s-sm',  emoji:'💖' },
+  { afterIdx:5,  type:'sparkle', span:'s-sq',  emojis:['✨','🌸','💕','⭐','🌺','💫'] },
+  { afterIdx:9,  type:'quote',   span:'s-sq',  content:'"Kamu cantik banget kak!! Please jadi pacarku" 🌸' },
+  { afterIdx:13, type:'emoji',   span:'s-sm',  emoji:'🎀' },
+  { afterIdx:17, type:'quote',   span:'s-sq',  content:'"When ya jadi pacarnya kakak!!  🌷' },
+  { afterIdx:20, type:'sparkle', span:'s-sm',  emojis:['🌸','💖','✨','🌺','💕','⭐'] },
 ];
- 
+
 // ==========================================================================
-// CSS UPGRADE — layout bento lebih estetik + animasi kartu
+// STEP 3: BACKGROUNDS
 // ==========================================================================
-(function injectGalleryCSS() {
-  const s = document.createElement('style');
-  s.textContent = `
-    /* ── Span tambahan untuk layout baru ── */
-    .p-card.s-xwide  { grid-column: span 9; grid-row: span 3; }
-    .p-card.s-pair   { grid-column: span 8; grid-row: span 4; }
-    .p-card.s-wide   { grid-column: span 7; grid-row: span 3; }
- 
-    /* ── Animated conic border ring on hover ── */
-    @property --ba { syntax:'<angle>'; inherits:false; initial-value:0deg; }
- 
-    .p-border-ring {
-      position: absolute;
-      inset: -1.5px;
-      border-radius: 22px;
-      background: conic-gradient(
-        from var(--ba),
-        transparent 18%,
-        #ff8fb0cc 36%,
-        #c084fccc 50%,
-        #ffcce0cc 64%,
-        transparent 80%
-      );
-      z-index: 0;
-      opacity: 0;
-      transition: opacity 0.35s;
-      animation: ringRotate 2.8s linear infinite paused;
-      pointer-events: none;
-    }
-    .p-card:hover .p-border-ring { opacity:1; animation-play-state:running; }
-    @keyframes ringRotate { to { --ba:360deg; } }
- 
-    /* ── Kategori ribbon warna ── */
-    .p-ribbon.cat-favorit { background:linear-gradient(135deg,#ffd700,#ff8c00); }
-    .p-ribbon.cat-cantik  { background:linear-gradient(135deg,#ff6b9d,#ff8fb0); }
-    .p-ribbon.cat-bersama { background:linear-gradient(135deg,#c084fc,#818cf8); }
-    .p-ribbon.cat-lucu    { background:linear-gradient(135deg,#34d399,#10b981); }
- 
-    /* ── Loved pulse ── */
-    .p-heart-btn.loved { animation: heartPulse 1.6s ease infinite; }
-    @keyframes heartPulse {
-      0%,100% { box-shadow:0 0 0 0 rgba(255,100,150,0.5); }
-      60%     { box-shadow:0 0 0 9px rgba(255,100,150,0); }
-    }
- 
-    /* ── Micro sparkle burst saat hover ── */
-    .p-micro-star {
-      position:absolute; font-size:11px; pointer-events:none;
-      z-index:6; opacity:0;
-      animation:microPop 0.75s ease forwards;
-    }
-    @keyframes microPop {
-      0%   { opacity:0; transform:translate(0,0) scale(0.5); }
-      40%  { opacity:1; transform:translate(var(--sx),var(--sy)) scale(1.4); }
-      100% { opacity:0; transform:translate(var(--sx2),var(--sy2)) scale(0.2); }
-    }
- 
-    /* ── Featured sparkle sudut ── */
-    .p-feat-spark {
-      position:absolute; font-size:0.8rem; z-index:4; pointer-events:none;
-      animation:sparkDrift 2.2s ease-in-out infinite alternate;
-    }
-    @keyframes sparkDrift {
-      0%   { opacity:0.3; transform:scale(0.85) rotate(-12deg); }
-      100% { opacity:1;   transform:scale(1.25) rotate(12deg); }
-    }
- 
-    /* ── Count badge pill ── */
-    .gallery-count-badge {
-      background:linear-gradient(135deg,rgba(255,143,176,0.12),rgba(192,132,252,0.08));
-      border:1px solid rgba(255,143,176,0.28);
-      border-radius:30px; padding:5px 18px;
-      display:inline-block;
-    }
- 
-    /* ── Featured frame ── */
-    .p-card.featured {
-      box-shadow:
-        0 4px 28px rgba(0,0,0,0.55),
-        inset 0 0 0 1px rgba(255,143,176,0.2),
-        0 0 0 2px rgba(255,143,176,0.08);
-    }
-    .p-card.featured .p-overlay {
-      background:linear-gradient(
-        to top, rgba(13,0,20,0.96) 0%,
-        rgba(13,0,20,0.55) 38%, transparent 100%
-      );
-    }
- 
-    /* ── Hover image brightness ── */
-    .p-card.loaded:hover img {
-      filter:brightness(1.07) saturate(1.12);
-      transition:transform 0.6s cubic-bezier(.25,.46,.45,.94),filter 0.4s;
-    }
- 
-    /* ── Filter bar active pill ── */
-    .gf-btn.active {
-      box-shadow:
-        0 0 22px rgba(255,143,176,0.45),
-        inset 0 0 12px rgba(255,143,176,0.12);
-    }
- 
-    /* ── Responsive overrides untuk span baru ── */
-    @media (max-width:900px) {
-      .p-card.s-xwide { grid-column:span 6; grid-row:span 3; }
-      .p-card.s-pair  { grid-column:span 6; grid-row:span 3; }
-      .p-card.s-wide  { grid-column:span 6; grid-row:span 3; }
-    }
-    @media (max-width:600px) {
-      .p-card.s-xwide { grid-column:span 4; grid-row:span 3; }
-      .p-card.s-pair  { grid-column:span 4; grid-row:span 3; }
-      .p-card.s-wide  { grid-column:span 4; grid-row:span 3; }
-    }
-  `;
-  document.head.appendChild(s);
-})();
- 
-// ==========================================================================
-// OVERRIDE makePCard — tambah border ring, ribbon warna, sparkle, micro star
-// ==========================================================================
-const _origMakePCard = makePCard;
-function makePCard(photo, idx) {
-  const card = _origMakePCard(photo, idx);
- 
-  // Border ring animasi
-  const ring = document.createElement('div');
-  ring.className = 'p-border-ring';
-  card.insertBefore(ring, card.firstChild);
- 
-  // Ribbon warna berdasar kategori
-  const ribbon = card.querySelector('.p-ribbon');
-  if (ribbon && photo.tags && photo.tags.length) {
-    const t = photo.tags.includes('favorit') ? 'favorit' :
-              photo.tags.includes('cantik')  ? 'cantik'  :
-              photo.tags.includes('bersama') ? 'bersama' : 'lucu';
-    ribbon.classList.add('cat-' + t);
-    ribbon.textContent =
-      t==='favorit' ? '★ Favorit' :
-      t==='cantik'  ? '🌸 Cantik' :
-      t==='bersama' ? '💕 Bersama' : '🤭 Lucu';
+function initBackgrounds(containerId, starCount) {
+  const bg = document.getElementById(containerId);
+  if(!bg) return;
+  for(let i=0;i<starCount;i++){
+    const s=document.createElement('div'); s.className='star';
+    const size=Math.random()*2.5+0.5;
+    s.style.cssText=`width:${size}px;height:${size}px;left:${Math.random()*100}%;top:${Math.random()*100}%;animation-delay:${Math.random()*4}s;animation-duration:${2+Math.random()*3}s;`;
+    bg.appendChild(s);
   }
- 
-  // Sparkle sudut di featured
-  if (photo.featured) {
-    [
-      { bottom:'14px', left:'14px',  delay:'0s'  },
-      { top:'44px',    right:'14px', delay:'0.7s' }
-    ].forEach((pos, i) => {
-      const sp = document.createElement('span');
-      sp.className = 'p-feat-spark';
-      sp.textContent = i === 0 ? '✦' : '✧';
-      Object.assign(sp.style, {
-        bottom: pos.bottom, left: pos.left,
-        top: pos.top,       right: pos.right,
-        animationDelay: pos.delay
-      });
-      card.appendChild(sp);
-    });
+}
+initBackgrounds('stars',120);
+initBackgrounds('lockStars',60);
+
+const heartsRain=document.getElementById('heartsRain');
+if(heartsRain){
+  const hSymbols=['♥','❤','💕','✨','🌸'];
+  for(let i=0;i<30;i++){
+    const h=document.createElement('div'); h.className='heart-drop';
+    h.textContent=hSymbols[Math.floor(Math.random()*hSymbols.length)];
+    const dur=5+Math.random()*10;
+    h.style.cssText=`left:${Math.random()*100}%;font-size:${14+Math.random()*16}px;animation-duration:${dur}s;animation-delay:${Math.random()*dur}s;opacity:${0.3+Math.random()*0.5};`;
+    heartsRain.appendChild(h);
   }
- 
-  // Micro star burst saat hover
-  const syms = ['✦','✧','✨','★'];
-  card.addEventListener('mouseenter', () => {
-    for (let i = 0; i < 5; i++) {
-      setTimeout(() => {
-        const star = document.createElement('span');
-        star.className = 'p-micro-star';
-        star.textContent = syms[Math.floor(Math.random() * syms.length)];
-        star.style.left = (8 + Math.random() * 80) + '%';
-        star.style.top  = (8 + Math.random() * 75) + '%';
-        star.style.setProperty('--sx',  ((Math.random()-.5)*28)+'px');
-        star.style.setProperty('--sy',  (-12-Math.random()*18)+'px');
-        star.style.setProperty('--sx2', ((Math.random()-.5)*44)+'px');
-        star.style.setProperty('--sy2', (-24-Math.random()*28)+'px');
-        card.appendChild(star);
-        setTimeout(() => star.remove(), 800);
-      }, i * 70);
-    }
-  });
- 
-  return card;
-}
- 
-// ==========================================================================
-// REBUILD BENTO — satu kali, setelah semua data & fungsi siap
-// ==========================================================================
-buildBento();
-lbPhotos = photoData.map(p => ({ src: p.src, caption: p.caption }));
-updateCountBadge();
- 
-// Pastikan heart states ter-restore setelah load cloud
-const _origLoadCloud = typeof loadFavoritesFromCloud === 'function'
-  ? loadFavoritesFromCloud : null;
- 
-if (_origLoadCloud) {
-  // Sudah ada loadFavoritesFromCloud dari patch Supabase — jalankan ulang
-  _origLoadCloud().then(() => {
-    if (typeof startPolling === 'function') startPolling();
-  });
-} else {
-  // Fallback localStorage
-  try {
-    const raw = localStorage.getItem('marcia_loved_photos');
-    if (raw) JSON.parse(raw).forEach(idx => lovedPhotos.add(idx));
-  } catch(_) {}
-  if (typeof restoreHeartStates === 'function') restoreHeartStates();
-  updateLovesStrip();
-}
- 
-// Observer untuk rebuild filter
-const _finalBentoEl = document.getElementById('photoBento');
-if (_finalBentoEl) {
-  new MutationObserver(() => {
-    if (typeof restoreHeartStates === 'function') restoreHeartStates();
-  }).observe(_finalBentoEl, { childList: true });
 }
 
-  // ==========================================================================
-  // LOVED PHOTOS SET (in-memory)
-  // ==========================================================================
-  const lovedPhotos = new Set();
+// ==========================================================================
+// STEP 4: LOCK / COUNTDOWN
+// ==========================================================================
+const targetDate = new Date('2026-06-14T00:00:00');
 
-  // ==========================================================================
-  // BACKGROUNDS
-  // ==========================================================================
-  function initBackgrounds(containerId, starCount) {
-    const bg = document.getElementById(containerId);
-    if (!bg) return;
-    for (let i = 0; i < starCount; i++) {
-      const s = document.createElement('div');
-      s.className = 'star';
-      const size = Math.random() * 2.5 + 0.5;
-      s.style.cssText = `width:${size}px;height:${size}px;left:${Math.random()*100}%;top:${Math.random()*100}%;animation-delay:${Math.random()*4}s;animation-duration:${2+Math.random()*3}s;`;
-      bg.appendChild(s);
+function unlockSite() {
+  const lockScreen=document.getElementById('lockScreen');
+  const mainSite=document.getElementById('mainSite');
+  if(lockScreen){ lockScreen.style.opacity='0'; lockScreen.style.pointerEvents='none'; setTimeout(()=>lockScreen.style.display='none',1000); }
+  if(mainSite){
+    mainSite.style.display='block';
+    setTimeout(()=>{
+      spawnBurst(canvas.width/2,canvas.height/3);
+      setTimeout(()=>spawnBurst(canvas.width/4,canvas.height/4),200);
+      setTimeout(()=>spawnBurst(canvas.width*3/4,canvas.height/4),400);
+      setTimeout(()=>spawnBurst(canvas.width/2,canvas.height/2),600);
+    },800);
+    setTimeout(startTyping,1200);
+    setTimeout(initStarMap,1500);
+    loadFavoritesFromCloud().then(()=>startPolling());
+  }
+}
+
+function checkLockAndCountdown() {
+  const now=new Date();
+  const diff=targetDate-now;
+  if(diff<=0){ unlockSite(); return true; }
+  const days=String(Math.floor(diff/(1000*60*60*24))).padStart(2,'0');
+  const hours=String(Math.floor((diff%(1000*60*60*24))/(1000*60*60))).padStart(2,'0');
+  const minutes=String(Math.floor((diff%(1000*60*60))/(1000*60))).padStart(2,'0');
+  const seconds=String(Math.floor((diff%(1000*60))/1000)).padStart(2,'0');
+  const el=(id,v)=>{ const e=document.getElementById(id); if(e) e.textContent=v; };
+  el('lock-d',days); el('lock-h',hours); el('lock-m',minutes); el('lock-s',seconds);
+  el('cd-h',hours); el('cd-m',minutes); el('cd-s',seconds);
+  return false;
+}
+const timerInterval=setInterval(()=>{ if(checkLockAndCountdown()) clearInterval(timerInterval); },1000);
+checkLockAndCountdown();
+
+// ==========================================================================
+// STEP 5: TYPING
+// ==========================================================================
+const typingTexts=[
+  'Hari ini dunia bersyukur kamu lahir. 🌸',
+  'Tepat 2 bulan kita saling mengenal — dan rasanya seperti seumur hidup.',
+  'Semoga hari ini jadi yang terindah buat kamu, Marcia ❤️',
+  'Kamu adalah alasan kenapa aku selalu tersenyum setiap hari. 💖'
+];
+let typingIndex=0,charIndex=0,typingPhase='typing';
+
+function startTyping(){
+  const el=document.getElementById('heroTyping');
+  if(!el) return;
+  const cursor='<span class="typing-cursor"></span>';
+  function tick(){
+    const current=typingTexts[typingIndex];
+    if(typingPhase==='typing'){
+      charIndex++; el.innerHTML=current.substring(0,charIndex)+cursor;
+      if(charIndex===current.length){ typingPhase='pause'; setTimeout(tick,3000); }
+      else setTimeout(tick,65);
+    } else if(typingPhase==='pause'){
+      typingPhase='deleting'; setTimeout(tick,50);
+    } else if(typingPhase==='deleting'){
+      charIndex--; el.innerHTML=current.substring(0,charIndex)+cursor;
+      if(charIndex===0){ typingPhase='gap'; typingIndex=(typingIndex+1)%typingTexts.length; setTimeout(tick,500); }
+      else setTimeout(tick,38);
+    } else if(typingPhase==='gap'){
+      typingPhase='typing'; setTimeout(tick,50);
     }
   }
-  initBackgrounds('stars', 120);
-  initBackgrounds('lockStars', 60);
+  tick();
+}
 
-  const heartsRain = document.getElementById('heartsRain');
-  if (heartsRain) {
-    const hSymbols = ['♥','❤','💕','✨','🌸'];
-    for (let i = 0; i < 30; i++) {
-      const h = document.createElement('div'); h.className = 'heart-drop';
-      h.textContent = hSymbols[Math.floor(Math.random()*hSymbols.length)];
-      const dur = 5 + Math.random() * 10;
-      h.style.cssText = `left:${Math.random()*100}%;font-size:${14+Math.random()*16}px;animation-duration:${dur}s;animation-delay:${Math.random()*dur}s;opacity:${0.3+Math.random()*0.5};`;
-      heartsRain.appendChild(h);
-    }
-  }
+// ==========================================================================
+// STEP 6: AUDIO
+// ==========================================================================
+const audio=document.getElementById('bgAudio'),musicBtn=document.getElementById('musicBtn');
+const musicSelect=document.getElementById('musicSelect'),musicViz=document.getElementById('musicViz');
+const musicTitle=document.getElementById('musicTitle'),musicArtist=document.getElementById('musicArtist');
 
-  // ==========================================================================
-  // LOCK / COUNTDOWN
-  // ==========================================================================
-  const targetDate = new Date('2026-05-14T00:00:00');
+function updateMusicInfo(){
+  const opt=musicSelect.options[musicSelect.selectedIndex];
+  if(musicTitle) musicTitle.textContent=opt.dataset.title||opt.text;
+  if(musicArtist) musicArtist.textContent=opt.dataset.artist||'';
+}
+if(audio&&musicBtn&&musicSelect){
+  audio.src=musicSelect.value;
+  function jalankanAudio(){ audio.play().then(()=>{ musicBtn.textContent='⏸'; if(musicViz) musicViz.classList.add('active'); }).catch(()=>musicBtn.textContent='▶'); }
+  musicBtn.addEventListener('click',()=>{ if(audio.paused) jalankanAudio(); else{ audio.pause(); musicBtn.textContent='▶'; if(musicViz) musicViz.classList.remove('active'); } });
+  musicSelect.addEventListener('change',function(){ audio.src=this.value; updateMusicInfo(); jalankanAudio(); });
+  audio.addEventListener('ended',function(){ let next=(musicSelect.selectedIndex+1)%musicSelect.options.length; musicSelect.selectedIndex=next; audio.src=musicSelect.value; updateMusicInfo(); setTimeout(jalankanAudio,100); });
+}
 
-  function unlockSite() {
-    const lockScreen = document.getElementById('lockScreen');
-    const mainSite = document.getElementById('mainSite');
-    if (lockScreen) { lockScreen.style.opacity='0'; lockScreen.style.pointerEvents='none'; setTimeout(()=>lockScreen.style.display='none',1000); }
-    if (mainSite) {
-      mainSite.style.display = 'block';
-      setTimeout(()=>{
-        spawnBurst(canvas.width/2, canvas.height/3);
-        setTimeout(()=>spawnBurst(canvas.width/4, canvas.height/4),200);
-        setTimeout(()=>spawnBurst(canvas.width*3/4, canvas.height/4),400);
-        setTimeout(()=>spawnBurst(canvas.width/2, canvas.height/2),600);
-      },800);
-      setTimeout(startTyping, 1200);
-      setTimeout(initStarMap, 1500);
-    }
-  }
-
-  function checkLockAndCountdown() {
-    const now = new Date();
-    const diff = targetDate - now;
-    if (diff <= 0) { unlockSite(); return true; }
-    const days    = String(Math.floor(diff/(1000*60*60*24))).padStart(2,'0');
-    const hours   = String(Math.floor((diff%(1000*60*60*24))/(1000*60*60))).padStart(2,'0');
-    const minutes = String(Math.floor((diff%(1000*60*60))/(1000*60))).padStart(2,'0');
-    const seconds = String(Math.floor((diff%(1000*60))/1000)).padStart(2,'0');
-    const el = (id,v) => { const e=document.getElementById(id); if(e) e.textContent=v; };
-    el('lock-d',days); el('lock-h',hours); el('lock-m',minutes); el('lock-s',seconds);
-    el('cd-h',hours);  el('cd-m',minutes); el('cd-s',seconds);
-    return false;
-  }
-  const timerInterval = setInterval(()=>{ if(checkLockAndCountdown()) clearInterval(timerInterval); },1000);
-  checkLockAndCountdown();
-
-  // ==========================================================================
-  // TYPING
-  // ==========================================================================
-  const typingTexts = [
-    'Hari ini dunia bersyukur kamu lahir. 🌸',
-    'Tepat 2 bulan kita saling mengenal — dan rasanya seperti seumur hidup.',
-    'Semoga hari ini jadi yang terindah buat kamu, Marcia ❤️',
-    'Kamu adalah alasan kenapa aku selalu tersenyum setiap hari. 💖'
-  ];
-  let typingIndex=0, charIndex=0, typingPhase='typing';
-
-  function startTyping() {
-    const el = document.getElementById('heroTyping');
-    if (!el) return;
-    const cursor = '<span class="typing-cursor"></span>';
-    function tick() {
-      const current = typingTexts[typingIndex];
-      if (typingPhase==='typing') {
-        charIndex++;
-        el.innerHTML = current.substring(0,charIndex)+cursor;
-        if (charIndex===current.length) { typingPhase='pause'; setTimeout(tick,3000); }
-        else setTimeout(tick,65);
-      } else if (typingPhase==='pause') {
-        typingPhase='deleting'; setTimeout(tick,50);
-      } else if (typingPhase==='deleting') {
-        charIndex--;
-        el.innerHTML = current.substring(0,charIndex)+cursor;
-        if (charIndex===0) { typingPhase='gap'; typingIndex=(typingIndex+1)%typingTexts.length; setTimeout(tick,500); }
-        else setTimeout(tick,38);
-      } else if (typingPhase==='gap') {
-        typingPhase='typing'; setTimeout(tick,50);
-      }
-    }
-    tick();
-  }
-
-  // ==========================================================================
-  // AUDIO
-  // ==========================================================================
-  const audio=document.getElementById('bgAudio'), musicBtn=document.getElementById('musicBtn');
-  const musicSelect=document.getElementById('musicSelect'), musicViz=document.getElementById('musicViz');
-  const musicTitle=document.getElementById('musicTitle'), musicArtist=document.getElementById('musicArtist');
-
-  function updateMusicInfo() {
-    const opt=musicSelect.options[musicSelect.selectedIndex];
-    if(musicTitle) musicTitle.textContent=opt.dataset.title||opt.text;
-    if(musicArtist) musicArtist.textContent=opt.dataset.artist||'';
-  }
-  if (audio&&musicBtn&&musicSelect) {
-    audio.src=musicSelect.value;
-    function jalankanAudio() {
-      audio.play().then(()=>{ musicBtn.textContent='⏸'; if(musicViz) musicViz.classList.add('active'); }).catch(()=>musicBtn.textContent='▶');
-    }
-    musicBtn.addEventListener('click',()=>{ if(audio.paused) jalankanAudio(); else { audio.pause(); musicBtn.textContent='▶'; if(musicViz) musicViz.classList.remove('active'); } });
-    musicSelect.addEventListener('change',function(){ audio.src=this.value; updateMusicInfo(); jalankanAudio(); });
-    audio.addEventListener('ended',function(){
-      let next=(musicSelect.selectedIndex+1)%musicSelect.options.length;
-      musicSelect.selectedIndex=next; audio.src=musicSelect.value; updateMusicInfo(); setTimeout(jalankanAudio,100);
-    });
-  }
-
-  // ==========================================================================
-  // REASONS
-  // ==========================================================================
-  const reasons=[
-    'Senyummu yang bisa langsung memperbaiki hariku yang paling buruk sekalipun',
+// ==========================================================================
+// STEP 7: REASONS
+// ==========================================================================
+const reasons=[
+  'Senyummu yang bisa langsung memperbaiki hariku yang paling buruk sekalipun',
     'Cara kamu tertawa — tulus, lepas, dan membuatku ikut bahagia',
     'Penampilanmu yang sangat cantik dan menggemaskan',
     'Kejujuranmu dalam bercerita — aku selalu merasa aman bersamamu',
@@ -1398,1102 +910,604 @@ if (_finalBentoEl) {
     'Keunikanmu — tidak ada yang seperti kamu di dunia ini',
     'Kehadiranmu yang sudah mengubah hidupku menjadi lebih berwarna',
     'Dan yang paling penting: kamu adalah kamu — dan itu lebih dari cukup'
-  ];
-  const grid=document.getElementById('reasonsGrid');
-  if(grid) reasons.forEach((r,i)=>{
-    const card=document.createElement('div'); card.className='reason-card';
-    card.innerHTML=`<div class="reason-num">${String(i+1).padStart(2,'0')}</div><div class="reason-text">${r}</div>`;
-    grid.appendChild(card);
-  });
+];
+const grid=document.getElementById('reasonsGrid');
+if(grid) reasons.forEach((r,i)=>{
+  const card=document.createElement('div'); card.className='reason-card';
+  card.innerHTML=`<div class="reason-num">${String(i+1).padStart(2,'0')}</div><div class="reason-text">${r}</div>`;
+  grid.appendChild(card);
+});
 
-  // ==========================================================================
-  // FIREWORKS
-  // ==========================================================================
-  const canvas=document.getElementById('globalFwCanvas');
-  const ctx=canvas.getContext('2d');
-  let particles=[];
-  const fwColors=['#ff8fb0','#c084fc','#ffcce0','#ff6b9d','#e9c2ff','#ffffc2','#ffd700'];
-  function resizeCanvas(){ canvas.width=window.innerWidth; canvas.height=window.innerHeight; }
-  window.addEventListener('resize',resizeCanvas); resizeCanvas();
+// ==========================================================================
+// STEP 8: FIREWORKS ENGINE (FW)
+// ==========================================================================
+const FW = (() => {
+  const PALETTES = {
+    romantic:['#ff8fb0','#ff6b9d','#ffcce0','#ff1493','#ff69b4','#ffb6c1'],
+    purple:  ['#c084fc','#a855f7','#e9c2ff','#9333ea','#d946ef','#f0abfc'],
+    gold:    ['#ffd700','#ffec6b','#ffc107','#ff8c00','#fff9c2','#ffa500'],
+    cyan:    ['#67e8f9','#22d3ee','#06b6d4','#a5f3fc','#0ea5e9','#38bdf8'],
+    white:   ['#ffffff','#f0f0ff','#fffde7','#e8f5e9','#fce4ec','#f3e5f5'],
+  };
+  const ALL_COLORS=Object.values(PALETTES).flat();
+  function rnd(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
 
-  function spawnBurst(x,y){
-    for(let i=0;i<80;i++){
-      const angle=Math.random()*Math.PI*2, speed=1+Math.random()*6;
-      particles.push({x,y,vx:Math.cos(angle)*speed,vy:Math.sin(angle)*speed,life:1,color:fwColors[Math.floor(Math.random()*fwColors.length)],size:1.5+Math.random()*3});
+  class Particle {
+    constructor(x,y,opts={}){
+      this.x=x; this.y=y;
+      this.vx=opts.vx??(Math.random()-0.5)*8;
+      this.vy=opts.vy??(Math.random()-0.5)*8;
+      this.life=opts.life??1;
+      this.decay=opts.decay??0.012+Math.random()*0.01;
+      this.size=opts.size??2+Math.random()*2.5;
+      this.color=opts.color??rnd(ALL_COLORS);
+      this.shape=opts.shape??'circle';
+      this.grav=opts.grav??0.06;
+      this.tail=[];
     }
-  }
-  function animateFireworks(){
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-    particles=particles.filter(p=>{
-      p.x+=p.vx; p.y+=p.vy; p.vy+=0.06; p.life-=0.015;
-      if(p.life<=0) return false;
-      ctx.globalAlpha=p.life; ctx.fillStyle=p.color;
-      ctx.beginPath(); ctx.arc(p.x,p.y,p.size,0,Math.PI*2); ctx.fill();
-      return true;
-    });
-    ctx.globalAlpha=1;
-    requestAnimationFrame(animateFireworks);
-  }
-  animateFireworks();
-
-  document.getElementById('fwBtn').addEventListener('click',function(){
-    this.textContent='💥 Boom! 🎆';
-    const mx=canvas.width/2,my=canvas.height/2;
-    spawnBurst(mx,my-50); setTimeout(()=>spawnBurst(mx-120,my-120),150);
-    setTimeout(()=>spawnBurst(mx+120,my-100),300); setTimeout(()=>spawnBurst(mx-60,my+40),450);
-    setTimeout(()=>spawnBurst(mx+60,my+30),600); setTimeout(()=>spawnBurst(mx,my-180),750);
-    setTimeout(()=>{ this.textContent='Ledakkan lagi! 🎆'; },3000);
-  });
-
-  const finalObs=new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{ if(e.isIntersecting&&e.target.id==='finalSection'){ const mx=canvas.width/2; spawnBurst(mx-100,200); setTimeout(()=>spawnBurst(mx+100,150),300); setTimeout(()=>spawnBurst(mx,250),600); finalObs.unobserve(e.target); } });
-  },{threshold:0.2});
-  const finalSec=document.getElementById('finalSection');
-  if(finalSec) finalObs.observe(finalSec);
-
-  // ==========================================================================
-  // PETAL CURSOR TRAIL
-  // ==========================================================================
-  const petalSyms=['🌸','🌺','✨','💕','🌷','🌼','💗'];
-  let lastPetal=0;
-  document.addEventListener('mousemove',(e)=>{
-    const now=Date.now();
-    if(now-lastPetal<120) return;
-    lastPetal=now;
-    const p=document.createElement('div'); p.className='petal-trail';
-    p.textContent=petalSyms[Math.floor(Math.random()*petalSyms.length)];
-    p.style.left=e.clientX+'px'; p.style.top=e.clientY+'px';
-    const px=(Math.random()-0.5)*80,py=-40-Math.random()*60,pr=(Math.random()-0.5)*180;
-    p.style.setProperty('--px',`${px}px`); p.style.setProperty('--py',`${py}px`); p.style.setProperty('--pr',`${pr}deg`);
-    document.body.appendChild(p);
-    setTimeout(()=>p.remove(),1200);
-  });
-
-  // ==========================================================================
-  // CLICK HEARTS ON LOCK
-  // ==========================================================================
-  document.getElementById('lockScreen').addEventListener('click',function(e){
-    for(let i=0;i<5;i++) createHeart(e.clientX,e.clientY);
-  });
-  function createHeart(x,y){
-    const heart=document.createElement('div'); heart.className='click-heart'; heart.innerHTML='❤️';
-    heart.style.left=x+'px'; heart.style.top=y+'px';
-    const vx=(Math.random()-0.5)*100,vy=(Math.random()*-150)-50,rot=(Math.random()-0.5)*45;
-    heart.style.setProperty('--target-x',`${vx}px`); heart.style.setProperty('--target-y',`${vy}px`); heart.style.setProperty('--target-rot',`${rot}deg`);
-    heart.style.fontSize=(Math.random()*15+10)+'px';
-    document.getElementById('lockScreen').appendChild(heart);
-    setTimeout(()=>heart.remove(),1000);
-  }
-
-  // ==========================================================================
-  // TOAST
-  // ==========================================================================
-  function showToast(msg,dur=2500){
-    const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show');
-    setTimeout(()=>t.classList.remove('show'),dur);
-  }
-
-  // ==========================================================================
-  // SECRET
-  // ==========================================================================
-  const envelope=document.getElementById('secretEnvelope'),msgBox=document.getElementById('secretMsgBox');
-  let opened=false;
-  if(envelope&&msgBox){
-    envelope.addEventListener('click',()=>{
-      opened=!opened;
-      if(opened){ envelope.textContent='💝'; msgBox.classList.add('open'); showToast('💌 Pesan rahasia terbuka!'); spawnBurst(canvas.width/2,canvas.height/2); }
-      else { envelope.textContent='💌'; msgBox.classList.remove('open'); }
-    });
-  }
-
-  // ==========================================================================
-  // QUIZ
-  // ==========================================================================
-  const quizData=[
-    { q:'Kenapa aku bikin website ini untuk kamu?', opts:['Karena tugas sekolah','Karena kamu sangat spesial bagiku 💖','Karena iseng aja','Karena disuruh teman'], correct:1, feedback:'Betul banget! Karena kamu memang sangat spesial 💖' },
-    { q:'Apa yang paling aku suka dari kamu?', opts:['Semuanya, tapi terutama senyummu','Hanya penampilanmu','Tidak ada yang spesial','Cara kamu memasak'], correct:0, feedback:'Yap! Semuanya, tapi senyummu yang paling bikin aku jatuh cinta 🥰' },
-    { q:'Berapa bulan kita sudah saling mengenal?', opts:['1 bulan','3 bulan','2 bulan 🌸','6 bulan'], correct:2, feedback:'Tepat! Sudah 2 bulan dan aku nggak menyesal sama sekali 💕' }
-  ];
-  let qIdx=0,score=0;
-  function renderQuiz(){
-    const q=quizData[qIdx];
-    const prog=document.getElementById('quizProgress'),questionEl=document.getElementById('quizQuestion');
-    const optsEl=document.getElementById('quizOptions'),resultEl=document.getElementById('quizResult');
-    const nextBtn=document.getElementById('quizNext'),scoreWrap=document.getElementById('quizScore');
-    prog.innerHTML=quizData.map((_,i)=>`<div class="quiz-pip ${i<qIdx?'done':''}"></div>`).join('');
-    questionEl.textContent=q.q; optsEl.innerHTML=''; resultEl.style.display='none'; nextBtn.style.display='none'; scoreWrap.style.display='none';
-    q.opts.forEach((opt,i)=>{
-      const btn=document.createElement('button'); btn.className='quiz-opt'; btn.textContent=opt;
-      btn.addEventListener('click',()=>{
-        document.querySelectorAll('.quiz-opt').forEach(b=>{ b.classList.toggle('correct',parseInt(b.dataset.idx)===q.correct); b.classList.toggle('wrong',parseInt(b.dataset.idx)!==q.correct); b.style.pointerEvents='none'; });
-        if(i===q.correct){ score++; showToast('✅ Jawaban benar!'); } else showToast('❌ Jawaban salah, tapi aku masih sayang kamu!');
-        resultEl.textContent=q.feedback; resultEl.style.display='block'; nextBtn.style.display='inline-block';
-        nextBtn.textContent=qIdx<quizData.length-1?'Pertanyaan berikutnya →':'Lihat hasil 🎉';
-      });
-      btn.dataset.idx=i; optsEl.appendChild(btn);
-    });
-    nextBtn.onclick=()=>{ qIdx++; if(qIdx<quizData.length) renderQuiz(); else showScore(); };
-  }
-  function showScore(){
-    document.getElementById('quizQuestion').style.display='none';
-    document.getElementById('quizOptions').style.display='none';
-    document.getElementById('quizResult').style.display='none';
-    document.getElementById('quizNext').style.display='none';
-    const msgs=[
-      'Hehe, masih perlu banyak kenalan ya! Tapi aku tetap suka kamu 😆',
-      'Lumayan! Kita perlu lebih sering ngobrol nih 🤭',
-      'Wah hampir sempurna! Kamu sudah kenal aku cukup baik 💕',
-      'Sempurna! Karena kamu benar 3 kali, jadi pacarku aja yaaa 💖✨'
-    ];
-    const scoreWrap=document.getElementById('quizScore');
-    scoreWrap.style.display='block';
-    scoreWrap.innerHTML=`<div class="score-num">${score}/3</div><div class="score-msg">${msgs[score]}</div>`;
-    if(score===3){ setTimeout(()=>{ spawnBurst(canvas.width/2,canvas.height/3); setTimeout(()=>spawnBurst(canvas.width/3,canvas.height/2),300); setTimeout(()=>spawnBurst(canvas.width*2/3,canvas.height/2),600); },300); }
-  }
-  renderQuiz();
-
-  // ==========================================================================
-  // PHOTO BENTO GRID — with 3D tilt, shimmer, filter, heart, glow
-  // ==========================================================================
-  const bentoEl=document.getElementById('photoBento');
-  let lbPhotos=[];
-  let currentFilter='all';
-
-  function updateLovesStrip() {
-    const strip=document.getElementById('galleryLovesStrip');
-    const count=document.getElementById('lovesCount');
-    if(!strip||!count) return;
-    count.textContent=lovedPhotos.size;
-    strip.classList.toggle('visible', lovedPhotos.size>0);
-  }
-
-  function updateCountBadge() {
-    const badge=document.getElementById('galleryCountBadge');
-    if(!badge) return;
-    const cards=[...bentoEl.querySelectorAll('.p-card:not(.deco-card)')];
-    const vis=cards.filter(c=>!c.classList.contains('hidden')).length;
-    badge.textContent=vis===photoData.length ? `${photoData.length} foto kenangan indah` : `${vis} foto ditemukan`;
-  }
-
-  function makePCard(photo,idx){
-    const card=document.createElement('div');
-    card.className=`p-card ${photo.span}${photo.featured?' featured':''}`;
-    card.dataset.idx=idx;
-    card.dataset.tags=JSON.stringify(photo.tags||[]);
-
-    // shimmer removed on load
-    const glow=document.createElement('div'); glow.className='p-glow';
-    const img=document.createElement('img');
-    img.src=photo.src; img.alt=photo.caption; img.loading='lazy';
-    const placeholder=document.createElement('div'); placeholder.className='p-placeholder';
-    placeholder.innerHTML=`<span>${photo.emoji}</span><span>${photo.src}</span>`;
-
-    const overlay=document.createElement('div'); overlay.className='p-overlay';
-    overlay.innerHTML=`<span class="p-caption">${photo.caption}</span><span class="p-caption-date">${photo.date||''}</span>`;
-
-    const zoom=document.createElement('div'); zoom.className='p-zoom-icon'; zoom.textContent='🔍';
-
-    // Heart favourite button
-    const heartBtn=document.createElement('button'); heartBtn.className='p-heart-btn';
-    heartBtn.innerHTML='<span>🤍</span>';
-    heartBtn.title='Simpan ke favorit';
-    heartBtn.addEventListener('click',(e)=>{
-      e.stopPropagation();
-      const inner=heartBtn.querySelector('span');
-      if(lovedPhotos.has(idx)){
-        lovedPhotos.delete(idx);
-        inner.textContent='🤍';
-        heartBtn.classList.remove('loved');
-        // If on favourites filter, re-apply
-        if(currentFilter==='favorit') applyFilter('favorit');
-      } else {
-        lovedPhotos.add(idx);
-        inner.textContent='❤️';
-        heartBtn.classList.add('loved');
-        showToast('❤️ Ditambahkan ke favorit!');
-        // mini burst
-        const r=card.getBoundingClientRect();
-        spawnBurst(r.left+r.width/2,r.top+r.height/2);
-      }
-      updateLovesStrip();
-      updateCountBadge();
-    });
-
-    if(photo.featured){
-      const ribbon=document.createElement('div'); ribbon.className='p-ribbon'; ribbon.textContent='✦ Fav';
-      card.appendChild(ribbon);
+    update(){
+      this.tail.push({x:this.x,y:this.y,life:this.life});
+      if(this.tail.length>6) this.tail.shift();
+      this.x+=this.vx; this.y+=this.vy; this.vy+=this.grav; this.vx*=0.98; this.life-=this.decay;
     }
-
-    const petalArr=['🌸','🌺','🌷','🌼','💮'];
-    const cpl=document.createElement('span'); cpl.className='p-corner-petal cp-tl'; cpl.textContent=petalArr[idx%petalArr.length];
-    const cpr=document.createElement('span'); cpr.className='p-corner-petal cp-tr'; cpr.textContent=petalArr[(idx+2)%petalArr.length];
-    const badge=document.createElement('div'); badge.className='p-num-badge'; badge.textContent=String(idx+1).padStart(2,'0');
-
-    img.addEventListener('load',()=>{ placeholder.style.display='none'; img.style.display='block'; card.classList.add('loaded'); });
-    img.addEventListener('error',()=>{ img.style.display='none'; placeholder.style.display='flex'; card.classList.add('loaded'); });
-
-    card.appendChild(glow);
-    card.appendChild(img);
-    card.appendChild(placeholder);
-    card.appendChild(overlay);
-    card.appendChild(zoom);
-    card.appendChild(heartBtn);
-    card.appendChild(cpl);
-    card.appendChild(cpr);
-    card.appendChild(badge);
-
-    // ── 3D TILT ──
-    card.addEventListener('mousemove',(e)=>{
-      const rect=card.getBoundingClientRect();
-      const cx=rect.left+rect.width/2, cy=rect.top+rect.height/2;
-      const dx=(e.clientX-cx)/rect.width, dy=(e.clientY-cy)/rect.height;
-      const maxTilt=8;
-      card.style.setProperty('--rx',`${-dy*maxTilt}deg`);
-      card.style.setProperty('--ry',`${dx*maxTilt}deg`);
-      card.style.setProperty('--sc','1.03');
-      // glow follow
-      const gx=((e.clientX-rect.left)/rect.width*100).toFixed(1)+'%';
-      const gy=((e.clientY-rect.top)/rect.height*100).toFixed(1)+'%';
-      card.style.setProperty('--mx',gx); card.style.setProperty('--my',gy);
-    });
-    card.addEventListener('mouseleave',()=>{
-      card.style.setProperty('--rx','0deg');
-      card.style.setProperty('--ry','0deg');
-      card.style.setProperty('--sc','1');
-    });
-
-    // click → lightbox
-    card.addEventListener('click',(e)=>{
-      if(e.target===heartBtn||heartBtn.contains(e.target)) return;
-      openLightbox(idx);
-    });
-
-    return card;
-  }
-
-  function makeDecoCard(deco){
-    const card=document.createElement('div'); card.className=`p-card deco-card ${deco.span}`;
-    if(deco.type==='quote'){
-      card.classList.add('deco-quote');
-      card.innerHTML=`<div class="deco-quote-mark">"</div><div class="deco-quote-text">${deco.content}</div>`;
-    } else if(deco.type==='emoji'){
-      card.classList.add('deco-emoji-cloud');
-      card.innerHTML=`<div class="deco-emoji-big">${deco.emoji}</div>`;
-    } else if(deco.type==='sparkle'){
-      card.classList.add('deco-sparkle-card');
-      const g=document.createElement('div'); g.className='deco-sparkle-wrap';
-      deco.emojis.forEach(e=>{ const s=document.createElement('span'); s.textContent=e; g.appendChild(s); });
-      card.appendChild(g);
+    draw(c){
+      if(this.life<=0) return;
+      this.tail.forEach((t,i)=>{ c.globalAlpha=(i/this.tail.length)*this.life*0.4; c.fillStyle=this.color; c.beginPath(); c.arc(t.x,t.y,this.size*0.4,0,Math.PI*2); c.fill(); });
+      c.globalAlpha=this.life; c.fillStyle=this.color;
+      if(this.shape==='star') dStar(c,this.x,this.y,this.size);
+      else if(this.shape==='heart') dHeart(c,this.x,this.y,this.size*0.7);
+      else if(this.shape==='spark') dSpark(c,this.x,this.y,this.size);
+      else{ c.beginPath(); c.arc(this.x,this.y,this.size,0,Math.PI*2); c.fill(); }
     }
-    return card;
+    dead(){ return this.life<=0; }
   }
 
-  function buildBento(){
-    bentoEl.innerHTML='';
-    lbPhotos=photoData.map(p=>({src:p.src,caption:p.caption}));
-    const decoMap={};
-    decoInserts.forEach(d=>decoMap[d.afterIdx]=d);
-    photoData.forEach((photo,idx)=>{
-      bentoEl.appendChild(makePCard(photo,idx));
-      if(decoMap[idx]) bentoEl.appendChild(makeDecoCard(decoMap[idx]));
-    });
-    spawnFloatingPetals();
-    updateCountBadge();
-  }
-  buildBento();
-
-  // ── FILTER ──
-  function applyFilter(filter){
-    currentFilter=filter;
-    const cards=[...bentoEl.querySelectorAll('.p-card:not(.deco-card)')];
-    cards.forEach(card=>{
-      const idx=parseInt(card.dataset.idx);
-      const tags=JSON.parse(card.dataset.tags||'[]');
-      let show=false;
-      if(filter==='all') show=true;
-      else if(filter==='favorit') show=lovedPhotos.has(idx);
-      else show=tags.includes(filter);
-      card.classList.toggle('hidden',!show);
-    });
-    // Show/hide deco when all
-    bentoEl.querySelectorAll('.deco-card').forEach(d=>d.classList.toggle('hidden',filter!=='all'));
-    updateCountBadge();
-  }
-
-  document.getElementById('galleryFilterBar').addEventListener('click',(e)=>{
-    const btn=e.target.closest('.gf-btn');
-    if(!btn) return;
-    document.querySelectorAll('.gf-btn').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    applyFilter(btn.dataset.filter);
-  });
-
-  function spawnFloatingPetals(){
-    const container=document.getElementById('floatingPetals');
-    if(!container) return;
-    container.innerHTML='';
-    const petalArr=['🌸','🌺','🌷','✿','❀','🌼'];
-    for(let i=0;i<12;i++){
-      const p=document.createElement('div'); p.className='floating-petal';
-      p.textContent=petalArr[Math.floor(Math.random()*petalArr.length)];
-      p.style.cssText=`left:${Math.random()*95}%;top:${20+Math.random()*70}%;font-size:${12+Math.random()*14}px;animation-duration:${6+Math.random()*8}s;animation-delay:${Math.random()*10}s;`;
-      p.style.setProperty('--rot',`${(Math.random()-0.5)*360}deg`);
-      container.appendChild(p);
+  class Rocket {
+    constructor(x,targetY,color){
+      this.x=x; this.y=canvas.height+10; this.targetY=targetY;
+      this.color=color??rnd(ALL_COLORS);
+      this.speed=12+Math.random()*6; this.trail=[]; this.done=false;
+      this.wobble=(Math.random()-0.5)*1.2;
     }
-  }
-
-  // ==========================================================================
-  // LIGHTBOX — with touch swipe support
-  // ==========================================================================
-  let currentLb=0;
-  const lightbox=document.getElementById('lightbox'),lbImg=document.getElementById('lbImg');
-  const lbCaption=document.getElementById('lbCaption'),lbCounter=document.getElementById('lbCounter');
-
-  function openLightbox(idx){
-    if(!lbPhotos[idx]) return;
-    currentLb=idx;
-    lbImg.src=lbPhotos[idx].src;
-    lbCaption.textContent=lbPhotos[idx].caption;
-    lbCounter.textContent=`${idx+1} / ${lbPhotos.length}`;
-    lightbox.classList.add('open');
-    document.body.style.overflow='hidden';
-  }
-  function closeLightbox(){ lightbox.classList.remove('open'); document.body.style.overflow=''; }
-
-  document.getElementById('lbClose').addEventListener('click',closeLightbox);
-  document.getElementById('lbPrev').addEventListener('click',()=>{ currentLb=(currentLb-1+lbPhotos.length)%lbPhotos.length; openLightbox(currentLb); });
-  document.getElementById('lbNext').addEventListener('click',()=>{ currentLb=(currentLb+1)%lbPhotos.length; openLightbox(currentLb); });
-  lightbox.addEventListener('click',(e)=>{ if(e.target===lightbox) closeLightbox(); });
-  document.addEventListener('keydown',(e)=>{
-    if(!lightbox.classList.contains('open')) return;
-    if(e.key==='Escape') closeLightbox();
-    if(e.key==='ArrowLeft'){ currentLb=(currentLb-1+lbPhotos.length)%lbPhotos.length; openLightbox(currentLb); }
-    if(e.key==='ArrowRight'){ currentLb=(currentLb+1)%lbPhotos.length; openLightbox(currentLb); }
-  });
-
-  // Touch swipe on lightbox
-  let touchStartX=0;
-  lightbox.addEventListener('touchstart',(e)=>touchStartX=e.touches[0].clientX,{passive:true});
-  lightbox.addEventListener('touchend',(e)=>{
-    const dx=e.changedTouches[0].clientX-touchStartX;
-    if(Math.abs(dx)>50){
-      if(dx<0){ currentLb=(currentLb+1)%lbPhotos.length; }
-      else { currentLb=(currentLb-1+lbPhotos.length)%lbPhotos.length; }
-      openLightbox(currentLb);
+    update(){
+      this.x+=this.wobble*0.3; this.y-=this.speed;
+      this.trail.push({x:this.x,y:this.y});
+      if(this.trail.length>18) this.trail.shift();
+      if(this.y<=this.targetY){ this.done=true; explodeAt(this.x,this.y); }
     }
-  },{passive:true});
-
-  // ==========================================================================
-  // STAR MAP
-  // ==========================================================================
-  function initStarMap(){
-    const c=document.getElementById('starMapCanvas');
-    if(!c) return;
-    const cx=c.getContext('2d');
-    const W=c.offsetWidth||700,H=c.height;
-    c.width=W;
-    const bg=cx.createLinearGradient(0,0,W,H);
-    bg.addColorStop(0,'#0d0020'); bg.addColorStop(0.5,'#14003a'); bg.addColorStop(1,'#0a0018');
-    cx.fillStyle=bg; cx.fillRect(0,0,W,H);
-    for(let i=0;i<180;i++){
-      const x=Math.random()*W,y=Math.random()*H,r=Math.random()*1.5,a=0.2+Math.random()*0.7;
-      cx.globalAlpha=a; cx.fillStyle='#fff';
-      cx.beginPath(); cx.arc(x,y,r,0,Math.PI*2); cx.fill();
+    draw(c){
+      if(this.done) return;
+      this.trail.forEach((t,i)=>{ c.globalAlpha=(i/this.trail.length)*0.9; c.fillStyle=this.color; c.beginPath(); c.arc(t.x,t.y,(i/this.trail.length)*3,0,Math.PI*2); c.fill(); });
+      c.globalAlpha=1; c.fillStyle='#fff'; c.beginPath(); c.arc(this.x,this.y,3,0,Math.PI*2); c.fill();
     }
-    cx.globalAlpha=1;
-    const nodes=[
-      {x:W*0.22,y:H*0.35,label:'Fram ⭐',color:'#c084fc',r:8},
-      {x:W*0.38,y:H*0.55,label:'',color:'#ff8fb0',r:5},
-      {x:W*0.52,y:H*0.30,label:'',color:'#ffcce0',r:4},
-      {x:W*0.64,y:H*0.50,label:'',color:'#ff8fb0',r:5},
-      {x:W*0.50,y:H*0.65,label:'',color:'#c084fc',r:4},
-      {x:W*0.78,y:H*0.38,label:'Marcia 💖',color:'#ff6b9d',r:8},
-    ];
-    cx.strokeStyle='rgba(255,143,176,0.35)'; cx.lineWidth=1; cx.setLineDash([4,6]);
-    cx.beginPath();
-    nodes.forEach((n,i)=>{ if(i===0) cx.moveTo(n.x,n.y); else cx.lineTo(n.x,n.y); });
-    cx.stroke(); cx.setLineDash([]);
-    cx.strokeStyle='rgba(255,107,157,0.5)'; cx.lineWidth=1.5;
-    cx.beginPath(); cx.moveTo(nodes[0].x,nodes[0].y);
-    const hx=(nodes[0].x+nodes[5].x)/2,hy=(nodes[0].y+nodes[5].y)/2-20;
-    cx.quadraticCurveTo(hx,hy-30,nodes[5].x,nodes[5].y); cx.stroke();
-    nodes.forEach(n=>{
-      const grd=cx.createRadialGradient(n.x,n.y,0,n.x,n.y,n.r*4);
-      grd.addColorStop(0,n.color+'99'); grd.addColorStop(1,n.color+'00');
-      cx.fillStyle=grd; cx.beginPath(); cx.arc(n.x,n.y,n.r*4,0,Math.PI*2); cx.fill();
-      cx.fillStyle=n.color; cx.beginPath(); cx.arc(n.x,n.y,n.r,0,Math.PI*2); cx.fill();
-      cx.fillStyle='#fff'; cx.beginPath(); cx.arc(n.x,n.y,n.r*0.4,0,Math.PI*2); cx.fill();
-    });
-    cx.font='bold 13px "Lato", sans-serif'; cx.textAlign='center'; cx.fillStyle='#fff'; cx.globalAlpha=0.9;
-    cx.fillText(nodes[0].label,nodes[0].x,nodes[0].y-18);
-    cx.fillText(nodes[5].label,nodes[5].x,nodes[5].y-18); cx.globalAlpha=1;
-    cx.font='italic 12px "Playfair Display", serif'; cx.fillStyle='rgba(255,143,176,0.7)';
-    cx.fillText('14 April 2026',W/2,H-18);
+    dead(){ return this.done; }
   }
 
-  // ==========================================================================
-  // MOOD RING
-  // ==========================================================================
-  const moods=[
-    {emoji:'😊',label:'Bahagia',color:'#ffd700',title:'Yayyy kamu bahagia! 🌟',message:'Aku juga ikut senang mendengarnya! Senyum kamu itu sungguh menular. Terus jaga energi positifmu ya — dunia jadi lebih cerah karena kamu ada di dalamnya.',song:'🎵 Lagu untukmu: <span>Make You Mine — PUBLIC</span> 🎶'},
-    {emoji:'😔',label:'Sedih',color:'#7eb3ff',title:'Sini aku peluk kamu 💙',message:'Nggak apa-apa untuk sedih. Aku di sini, selalu. Ingat ya, setelah hujan pasti ada pelangi.',song:'🎵 Lagu untukmu: <span>River Flows In You — Yiruma</span> 🎶'},
-    {emoji:'😴',label:'Ngantuk',color:'#c084fc',title:'Tidur yang nyenyak ya sayang 🌙',message:'Istirahat yang cukup itu penting banget! Badan kamu harus sehat. Sebelum tidur, tahu nggak? Aku selalu memikirkanmu.',song:'🎵 Lagu untukmu: <span>Stay With Me — Miki Matsubara</span> 🎶'},
-    {emoji:'😤',label:'Kesel',color:'#ff8fb0',title:'Ayo cerita ke aku 💕',message:'Kalau ada yang ganggu kamu, aku siap dengarkan. Kamu nggak perlu menghadapi apapun sendirian — aku selalu ada.',song:'🎵 Lagu untukmu: <span>Slipping Through My Fingers — Declan McKenna</span> 🎶'},
-    {emoji:'🥰',label:'Kangen',color:'#ff6b9d',title:'Aku juga kangen kamu! 💖',message:'Perasaan itu sama persis — aku juga sering kepikiran kamu di tengah-tengah aktivitas.',song:'🎵 Lagu untukmu: <span>Just A Friend To You — Meghan Trainor</span> 🎶'},
-    {emoji:'🌸',label:'Semangat',color:'#60d394',title:'Channeling your inner boss! 👑',message:'Senang deh lihat kamu se-happy dan sesemangat ini. You got this! ❤️',song:'🎵 Lagu untukmu: <span>Make You Mine — PUBLIC</span> 🎶'},
-  ];
-  const moodGrid=document.getElementById('moodGrid'),moodResult=document.getElementById('moodResult');
-  if(moodGrid){
-    moods.forEach((mood)=>{
-      const btn=document.createElement('div'); btn.className='mood-btn';
-      btn.innerHTML=`<span class="mb-emoji">${mood.emoji}</span><span class="mb-label">${mood.label}</span>`;
-      btn.addEventListener('click',()=>{
-        document.querySelectorAll('.mood-btn').forEach(b=>b.classList.remove('selected'));
-        btn.classList.add('selected');
-        document.getElementById('mrEmoji').textContent=mood.emoji;
-        document.getElementById('mrTitle').textContent=mood.title;
-        document.getElementById('mrMessage').textContent=mood.message;
-        document.getElementById('mrSong').innerHTML=mood.song;
-        moodResult.style.borderColor=mood.color+'66';
-        moodResult.classList.add('show');
-        showToast('💌 Pesan spesial untukmu!');
-        spawnBurst(canvas.width/2,canvas.height*0.6);
-      });
-      moodGrid.appendChild(btn);
-    });
+  class Glitter {
+    constructor(){ this.reset(); }
+    reset(){
+      this.x=Math.random()*canvas.width; this.y=-20;
+      this.vx=(Math.random()-0.5)*2; this.vy=1+Math.random()*3;
+      this.size=3+Math.random()*5;
+      this.color=rnd(['#ffd700','#ff8fb0','#c084fc','#fff','#ffcce0','#67e8f9']);
+      this.rot=Math.random()*Math.PI*2; this.rotV=(Math.random()-0.5)*0.2;
+      this.life=1; this.shape=Math.random()>0.5?'rect':'circle';
+    }
+    update(){ this.x+=this.vx; this.y+=this.vy; this.rot+=this.rotV; this.vy+=0.02; this.life-=0.004; if(this.y>canvas.height+20||this.life<=0) this.reset(); }
+    draw(c){ c.save(); c.globalAlpha=this.life*0.85; c.translate(this.x,this.y); c.rotate(this.rot); c.fillStyle=this.color; if(this.shape==='rect') c.fillRect(-this.size/2,-this.size/4,this.size,this.size/2); else{ c.beginPath(); c.arc(0,0,this.size/2,0,Math.PI*2); c.fill(); } c.restore(); }
   }
 
-  // ==========================================================================
-  // LOCK SUBTITLE
-  // ==========================================================================
-  const pesanKejutan=[
-    'Sabar ya sayangku nggak lama lagi kokk!! 💖',
-    'Jangan dicoba buat di hack ya kak, aku sudah pasang banyak pelindung 😜',
-    'Tapi kalo kamu mau jadi pacarku, countdownnya langsung selesai sih!! ✨',
-    'Ciyee yang gak sabar nungguin countdown-nya selesai... 🤭',
-    'Akses masih digembok! Coba rayu aku dulu pakai kata-kata romantis 🥞',
-    'Tenang, kejutan terbaik selalu butuh waktu yang tepat. Sabar ya, Sayang! 💕',
-    'Setiap detik countdown ini berjalan, rasa sayangku ke kamu juga nambah terus! 🐳',
-    'Yang sabar ya sayangku, cantikku, manisku, princessku, masa depanku!! 👑'
-  ];
-  const lockSubtitleEl=document.getElementById('lockSubtitle');
-  if(lockSubtitleEl) lockSubtitleEl.innerText=pesanKejutan[Math.floor(Math.random()*pesanKejutan.length)];
+  function dStar(c,x,y,r){ c.save(); c.translate(x,y); c.beginPath(); for(let i=0;i<5;i++){ const o=(i*Math.PI*2)/5-Math.PI/2,inn=o+Math.PI/5; if(i===0) c.moveTo(Math.cos(o)*r,Math.sin(o)*r); else c.lineTo(Math.cos(o)*r,Math.sin(o)*r); c.lineTo(Math.cos(inn)*r*0.4,Math.sin(inn)*r*0.4); } c.closePath(); c.fill(); c.restore(); }
+  function dHeart(c,x,y,r){ c.save(); c.translate(x,y); c.scale(r/10,r/10); c.beginPath(); c.moveTo(0,-3); c.bezierCurveTo(5,-10,14,-3,0,8); c.bezierCurveTo(-14,-3,-5,-10,0,-3); c.closePath(); c.fill(); c.restore(); }
+  function dSpark(c,x,y,r){ c.save(); c.translate(x,y); for(let i=0;i<4;i++){ const a=(i/4)*Math.PI*2; c.beginPath(); c.moveTo(0,0); c.lineTo(Math.cos(a)*r*2.5,Math.sin(a)*r*2.5); c.lineWidth=r*0.4; c.strokeStyle=c.fillStyle; c.stroke(); } c.restore(); }
 
-  // ==========================================================================
-  // TOMBOL BUKA PAKSA
-  // ==========================================================================
-  document.getElementById('btnUnlock').addEventListener('click',function(e){
-    e.stopPropagation();
-    const cc=document.querySelector('.lock-countdown-container');
-    if(cc){ cc.classList.remove('shake-animation'); void cc.offsetWidth; cc.classList.add('shake-animation'); }
-    alert('Jangan dibuka paksa sayang!!! ❌ Gak sabaran banget ya? Tungguin countdown-nya selesai yaa atau nggak jadi pacarku dulu hehe!! 🥞😜');
-  });
+  let fwParticles=[],rockets=[],glitters=[];
 
-  // ==========================================================================
-  // SCROLL REVEAL
-  // ==========================================================================
-  const revealObs=new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
-  },{threshold:0.1});
-  document.querySelectorAll('.reveal').forEach(el=>revealObs.observe(el));
+  function explodeAt(x,y,opts={}){
+    const type=opts.type??rnd(['circle','ring','chrysanthemum','heart','star','willow','crossette']);
+    const count=opts.count??80+Math.floor(Math.random()*60);
+    const pal=opts.palette??rnd(Object.values(PALETTES));
+    const color=opts.color??rnd(pal),color2=rnd(pal);
+    fwParticles.push(new Particle(x,y,{vx:0,vy:0,size:30+Math.random()*20,life:0.6,decay:0.09,color:'rgba(255,255,255,0.9)',grav:0}));
+    for(let i=0;i<count;i++){
+      const angle=(i/count)*Math.PI*2,speed=2+Math.random()*6;
+      let vx=Math.cos(angle)*speed,vy=Math.sin(angle)*speed;
+      if(type==='ring'){ const s=4+Math.random()*2; vx=Math.cos(angle)*s; vy=Math.sin(angle)*s; }
+      else if(type==='chrysanthemum'){ const s=(3+Math.random()*5)*(1+0.3*Math.sin(angle*6)); vx=Math.cos(angle)*s; vy=Math.sin(angle)*s; }
+      else if(type==='willow'){ const s=4+Math.random()*4; vx=Math.cos(angle)*s*(Math.random()>0.5?1:0.3); vy=Math.sin(angle)*s; }
+      else if(type==='crossette'){ if(i%8===0){ for(let j=0;j<4;j++){ const a2=angle+(j/4)*Math.PI*2; fwParticles.push(new Particle(x,y,{vx:Math.cos(a2)*3,vy:Math.sin(a2)*3,color:color2,size:1.5,decay:0.018,grav:0.05,shape:'spark'})); } continue; } }
+      const shape=type==='heart'?'heart':type==='star'?'star':Math.random()>0.7?'spark':'circle';
+      fwParticles.push(new Particle(x,y,{vx,vy,color:Math.random()>0.6?color2:color,size:1.5+Math.random()*3,decay:0.008+Math.random()*0.012,grav:type==='willow'?0.12:0.05+Math.random()*0.04,shape}));
+    }
+    for(let i=0;i<30;i++){ const a=Math.random()*Math.PI*2,s=0.5+Math.random()*3; fwParticles.push(new Particle(x,y,{vx:Math.cos(a)*s,vy:Math.sin(a)*s,color:'#ffffff',size:0.8+Math.random(),decay:0.02+Math.random()*0.02,grav:0.04})); }
+  }
 
-  const starMapObs=new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{ if(e.isIntersecting){ initStarMap(); starMapObs.unobserve(e.target); } });
-  },{threshold:0.3});
-  const starMapEl=document.querySelector('.starmap-section');
-  if(starMapEl) starMapObs.observe(starMapEl);
+  function launchRocket(x,targetY,color){ rockets.push(new Rocket(x,targetY,color)); }
 
-  const videoEl=document.querySelector('.video-frame-wrap video');
-  if(videoEl){ videoEl.addEventListener('ended',()=>{ showToast('💖 Makasih sudah menontonnya sampai habis!'); setTimeout(()=>{ spawnBurst(canvas.width/2,canvas.height/3); setTimeout(()=>spawnBurst(canvas.width/3,canvas.height/2),300); setTimeout(()=>spawnBurst(canvas.width*2/3,canvas.height/2),600); },300); }); }
-  
-  const SUPABASE_URL      = 'https://uzalnplqljyluwaoqoak.supabase.co';
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV6YWxucGxxbGp5bHV3YW9xb2FrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAxMjEzMzUsImV4cCI6MjA5NTY5NzMzNX0._Jzh4VrfFvcQ8JsPDP_qNZ_L1GD3gFCm4j0B-jFCO7A';
-const ROW_ID            = 'marcia';
- 
-// ── HEADERS ──────────────────────────────────────────────────
-const sbHeaders = {
-  'apikey':        SUPABASE_ANON_KEY,
-  'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
-  'Content-Type':  'application/json',
-  'Prefer':        'return=minimal'
-};
- 
-// ── GET dari Supabase ─────────────────────────────────────────
-async function sbGet() {
-  const url = `${SUPABASE_URL}/rest/v1/favorites?id=eq.${ROW_ID}&select=loved_indices`;
-  const res = await fetch(url, { headers: sbHeaders });
-  if (!res.ok) {
-    const errText = await res.text();
-    throw new Error(`sbGet HTTP ${res.status}: ${errText}`);
-  }
-  const data = await res.json();
-  console.log('[Supabase] GET result:', data);
-  return data[0]?.loved_indices || [];
-}
- 
-// ── SAVE ke Supabase ──────────────────────────────────────────
-async function sbSave(indices) {
-  const url = `${SUPABASE_URL}/rest/v1/favorites?id=eq.${ROW_ID}`;
-  const body = JSON.stringify({
-    loved_indices: indices,
-    updated_at: new Date().toISOString()
-  });
-  const res = await fetch(url, {
-    method:  'PATCH',
-    headers: sbHeaders,
-    body:    body
-  });
-  if (!res.ok) {
-    const errText = await res.text();
-    throw new Error(`sbSave HTTP ${res.status}: ${errText}`);
-  }
-  console.log('[Supabase] PATCH OK, indices:', indices);
-}
- 
-// ── LOAD saat halaman dibuka ──────────────────────────────────
-async function loadFavoritesFromCloud() {
-  try {
-    const indices = await sbGet();
-    lovedPhotos.clear();
-    indices.forEach(idx => lovedPhotos.add(idx));
-    console.log('[Favorit] Loaded dari cloud:', [...lovedPhotos]);
-    restoreHeartStates();
-    updateLovesStrip();
-    updateCountBadge();
-  } catch(e) {
-    console.error('[Favorit] Gagal load cloud, fallback localStorage:', e);
-    try {
-      const raw = localStorage.getItem('marcia_loved_photos');
-      if (raw) JSON.parse(raw).forEach(idx => lovedPhotos.add(idx));
-      restoreHeartStates();
-      updateLovesStrip();
-      updateCountBadge();
-    } catch(_) {}
-  }
-}
- 
-// ── SAVE saat klik heart ──────────────────────────────────────
-async function saveFavoritesToCloud() {
-  const indices = [...lovedPhotos];
-  // 1. Simpan localStorage dulu (instan)
-  try { localStorage.setItem('marcia_loved_photos', JSON.stringify(indices)); } catch(_) {}
-  // 2. Simpan ke Supabase
-  try {
-    await sbSave(indices);
-  } catch(e) {
-    console.error('[Favorit] Gagal sync cloud:', e);
-    showToast('⚠️ Gagal sync ke cloud', 2500);
-  }
-}
- 
-// ── RESTORE tampilan heart button ────────────────────────────
-function restoreHeartStates() {
-  document.querySelectorAll('.p-card:not(.deco-card)').forEach(card => {
-    const idx      = parseInt(card.dataset.idx);
-    const heartBtn = card.querySelector('.p-heart-btn');
-    if (!heartBtn) return;
- 
-    // Update tampilan
-    const inner = heartBtn.querySelector('span');
-    if (lovedPhotos.has(idx)) {
-      heartBtn.classList.add('loved');
-      if (inner) inner.textContent = '❤️';
+  let showTimeouts=[];
+  function clearShow(){ showTimeouts.forEach(t=>clearTimeout(t)); showTimeouts=[]; }
+  function launchShow(intensity='normal'){
+    clearShow();
+    const W=canvas.width,H=canvas.height;
+    if(intensity==='mega'){
+      for(let i=0;i<30;i++) showTimeouts.push(setTimeout(()=>{ launchRocket(W*0.1+Math.random()*W*0.8,H*0.05+Math.random()*H*0.45,rnd(rnd(Object.values(PALETTES)))); },i*180));
+      for(let i=0;i<60;i++) glitters.push(new Glitter());
+      showTimeouts.push(setTimeout(()=>{ explodeAt(W/2,H*0.25,{type:'chrysanthemum',count:160,palette:PALETTES.romantic}); explodeAt(W*0.2,H*0.3,{type:'willow',count:120,palette:PALETTES.gold}); explodeAt(W*0.8,H*0.3,{type:'ring',count:100,palette:PALETTES.purple}); },2200));
+      showTimeouts.push(setTimeout(()=>{ explodeAt(W/2,H*0.2,{type:'heart',count:200,palette:PALETTES.romantic}); setTimeout(()=>explodeAt(W/2,H*0.3,{type:'star',count:180,palette:PALETTES.gold}),400); setTimeout(()=>explodeAt(W/2,H*0.25,{type:'chrysanthemum',count:200,palette:PALETTES.purple}),800); },5500));
     } else {
-      heartBtn.classList.remove('loved');
-      if (inner) inner.textContent = '🤍';
+      for(let i=0;i<10;i++) showTimeouts.push(setTimeout(()=>launchRocket(W*0.15+Math.random()*W*0.7,H*0.1+Math.random()*H*0.4,rnd(ALL_COLORS)),i*220));
+      for(let i=0;i<20;i++) glitters.push(new Glitter());
     }
- 
-    // Ganti dengan clone untuk hapus listener lama
-    const newBtn = heartBtn.cloneNode(true);
-    heartBtn.parentNode.replaceChild(newBtn, heartBtn);
- 
-    newBtn.addEventListener('click', async (e) => {
+  }
+
+  function loop(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    glitters.forEach(g=>{ g.update(); g.draw(ctx); });
+    rockets=rockets.filter(r=>{ r.update(); r.draw(ctx); return !r.dead(); });
+    fwParticles=rockets.length>0?fwParticles:fwParticles.filter(p=>{ p.update(); p.draw(ctx); return !p.dead(); });
+    // always filter particles
+    fwParticles=fwParticles.filter(p=>{ if(rockets.length===0){ p.update(); p.draw(ctx); } return !p.dead(); });
+    ctx.globalAlpha=1;
+    requestAnimationFrame(loop);
+  }
+
+  // Fix: separate particle loop
+  function loop2(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    glitters.forEach(g=>{ g.update(); g.draw(ctx); });
+    rockets=rockets.filter(r=>{ r.update(); r.draw(ctx); return !r.dead(); });
+    fwParticles=fwParticles.filter(p=>{ p.update(); p.draw(ctx); return !p.dead(); });
+    ctx.globalAlpha=1;
+    requestAnimationFrame(loop2);
+  }
+  loop2();
+
+  return { explodeAt, launchRocket, launchShow };
+})();
+
+// Override spawnBurst to also use FW
+const _origSpawnBurst = spawnBurst;
+function spawnBurst(x, y) {
+  _origSpawnBurst(x, y);
+  FW.explodeAt(x, y);
+}
+
+// ==========================================================================
+// STEP 9: PETAL CURSOR
+// ==========================================================================
+const petalSyms=['🌸','🌺','✨','💕','🌷','🌼','💗'];
+let lastPetal=0;
+document.addEventListener('mousemove',(e)=>{
+  const now=Date.now();
+  if(now-lastPetal<120) return;
+  lastPetal=now;
+  const p=document.createElement('div'); p.className='petal-trail';
+  p.textContent=petalSyms[Math.floor(Math.random()*petalSyms.length)];
+  p.style.left=e.clientX+'px'; p.style.top=e.clientY+'px';
+  const px=(Math.random()-0.5)*80,py=-40-Math.random()*60,pr=(Math.random()-0.5)*180;
+  p.style.setProperty('--px',`${px}px`); p.style.setProperty('--py',`${py}px`); p.style.setProperty('--pr',`${pr}deg`);
+  document.body.appendChild(p);
+  setTimeout(()=>p.remove(),1200);
+});
+
+// ==========================================================================
+// STEP 10: CLICK HEARTS ON LOCK
+// ==========================================================================
+document.getElementById('lockScreen').addEventListener('click',function(e){
+  for(let i=0;i<5;i++) createHeart(e.clientX,e.clientY);
+});
+function createHeart(x,y){
+  const heart=document.createElement('div'); heart.className='click-heart'; heart.innerHTML='❤️';
+  heart.style.left=x+'px'; heart.style.top=y+'px';
+  const vx=(Math.random()-0.5)*100,vy=(Math.random()*-150)-50,rot=(Math.random()-0.5)*45;
+  heart.style.setProperty('--target-x',`${vx}px`); heart.style.setProperty('--target-y',`${vy}px`); heart.style.setProperty('--target-rot',`${rot}deg`);
+  heart.style.fontSize=(Math.random()*15+10)+'px';
+  document.getElementById('lockScreen').appendChild(heart);
+  setTimeout(()=>heart.remove(),1000);
+}
+
+// ==========================================================================
+// STEP 11: TOAST
+// ==========================================================================
+function showToast(msg,dur=2500){
+  const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),dur);
+}
+
+// ==========================================================================
+// STEP 12: SECRET
+// ==========================================================================
+const envelope=document.getElementById('secretEnvelope'),msgBox=document.getElementById('secretMsgBox');
+let opened=false;
+if(envelope&&msgBox){
+  envelope.addEventListener('click',()=>{
+    opened=!opened;
+    if(opened){ envelope.textContent='💝'; msgBox.classList.add('open'); showToast('💌 Pesan rahasia terbuka!'); FW.launchShow('normal'); }
+    else{ envelope.textContent='💌'; msgBox.classList.remove('open'); }
+  });
+}
+
+// ==========================================================================
+// STEP 13: QUIZ
+// ==========================================================================
+const quizData=[
+  {q:'Kenapa aku bikin website ini untuk kamu?',opts:['Karena tugas sekolah','Karena kamu sangat spesial bagiku 💖','Karena iseng aja','Karena disuruh teman'],correct:1,feedback:'Betul banget! Karena kamu memang sangat spesial 💖'},
+  {q:'Apa yang paling aku suka dari kamu?',opts:['Semuanya, tapi terutama senyummu','Hanya penampilanmu','Tidak ada yang spesial','Cara kamu memasak'],correct:0,feedback:'Yap! Semuanya, tapi senyummu yang paling bikin aku jatuh cinta 🥰'},
+  {q:'Berapa bulan kita sudah saling mengenal?',opts:['1 bulan','3 bulan','2 bulan 🌸','6 bulan'],correct:2,feedback:'Tepat! Sudah 2 bulan dan aku nggak menyesal sama sekali 💕'}
+];
+let qIdx=0,score=0;
+function renderQuiz(){
+  const q=quizData[qIdx];
+  const prog=document.getElementById('quizProgress'),questionEl=document.getElementById('quizQuestion');
+  const optsEl=document.getElementById('quizOptions'),resultEl=document.getElementById('quizResult');
+  const nextBtn=document.getElementById('quizNext'),scoreWrap=document.getElementById('quizScore');
+  prog.innerHTML=quizData.map((_,i)=>`<div class="quiz-pip ${i<qIdx?'done':''}"></div>`).join('');
+  questionEl.textContent=q.q; optsEl.innerHTML=''; resultEl.style.display='none'; nextBtn.style.display='none'; scoreWrap.style.display='none';
+  q.opts.forEach((opt,i)=>{
+    const btn=document.createElement('button'); btn.className='quiz-opt'; btn.textContent=opt;
+    btn.addEventListener('click',()=>{
+      document.querySelectorAll('.quiz-opt').forEach(b=>{ b.classList.toggle('correct',parseInt(b.dataset.idx)===q.correct); b.classList.toggle('wrong',parseInt(b.dataset.idx)!==q.correct); b.style.pointerEvents='none'; });
+      if(i===q.correct){ score++; showToast('✅ Jawaban benar!'); } else showToast('❌ Jawaban salah, tapi aku masih sayang kamu!');
+      resultEl.textContent=q.feedback; resultEl.style.display='block'; nextBtn.style.display='inline-block';
+      nextBtn.textContent=qIdx<quizData.length-1?'Pertanyaan berikutnya →':'Lihat hasil 🎉';
+    });
+    btn.dataset.idx=i; optsEl.appendChild(btn);
+  });
+  nextBtn.onclick=()=>{ qIdx++; if(qIdx<quizData.length) renderQuiz(); else showScore(); };
+}
+function showScore(){
+  document.getElementById('quizQuestion').style.display='none';
+  document.getElementById('quizOptions').style.display='none';
+  document.getElementById('quizResult').style.display='none';
+  document.getElementById('quizNext').style.display='none';
+  const msgs=['Hehe, masih perlu banyak kenalan ya! 😆','Lumayan! Kita perlu lebih sering ngobrol nih 🤭','Wah hampir sempurna! 💕','Sempurna! Karena kamu benar 3 kali, jadi pacarku aja yaaa 💖✨'];
+  const scoreWrap=document.getElementById('quizScore');
+  scoreWrap.style.display='block';
+  scoreWrap.innerHTML=`<div class="score-num">${score}/3</div><div class="score-msg">${msgs[score]}</div>`;
+  if(score===3){ setTimeout(()=>{ FW.launchShow('mega'); },300); }
+}
+renderQuiz();
+
+// ==========================================================================
+// STEP 14: GALLERY HELPERS
+// ==========================================================================
+const bentoEl = document.getElementById('photoBento');
+
+function updateLovesStrip(){
+  const strip=document.getElementById('galleryLovesStrip'),count=document.getElementById('lovesCount');
+  if(!strip||!count) return;
+  count.textContent=lovedPhotos.size;
+  strip.classList.toggle('visible',lovedPhotos.size>0);
+}
+
+function updateCountBadge(){
+  const badge=document.getElementById('galleryCountBadge');
+  if(!badge) return;
+  const cards=[...bentoEl.querySelectorAll('.p-card:not(.deco-card)')];
+  const vis=cards.filter(c=>!c.classList.contains('hidden')).length;
+  badge.textContent=vis===photoData.length?`${photoData.length} foto kenangan indah`:`${vis} foto ditemukan`;
+}
+
+function makePCard(photo, idx){
+  const card=document.createElement('div');
+  card.className=`p-card ${photo.span}${photo.featured?' featured':''}`;
+  card.dataset.idx=idx;
+  card.dataset.tags=JSON.stringify(photo.tags||[]);
+
+  const ring=document.createElement('div'); ring.className='p-border-ring';
+  const glow=document.createElement('div'); glow.className='p-glow';
+  const img=document.createElement('img');
+  img.src=photo.src; img.alt=photo.caption; img.loading='lazy';
+  const placeholder=document.createElement('div'); placeholder.className='p-placeholder';
+  placeholder.innerHTML=`<span>${photo.emoji}</span><span>${photo.src}</span>`;
+  const overlay=document.createElement('div'); overlay.className='p-overlay';
+  overlay.innerHTML=`<span class="p-caption">${photo.caption}</span><span class="p-caption-date">${photo.date||''}</span>`;
+  const zoom=document.createElement('div'); zoom.className='p-zoom-icon'; zoom.textContent='🔍';
+
+  const heartBtn=document.createElement('button'); heartBtn.className='p-heart-btn';
+  heartBtn.innerHTML='<span>🤍</span>';
+
+  if(photo.featured){
+    const ribbon=document.createElement('div'); ribbon.className='p-ribbon';
+    const t=photo.tags&&photo.tags.includes('favorit')?'favorit':photo.tags&&photo.tags.includes('cantik')?'cantik':photo.tags&&photo.tags.includes('bersama')?'bersama':'lucu';
+    ribbon.classList.add('cat-'+t);
+    ribbon.textContent=t==='favorit'?'★ Favorit':t==='cantik'?'🌸 Cantik':t==='bersama'?'💕 Bersama':'🤭 Lucu';
+    card.appendChild(ribbon);
+    [{bottom:'14px',left:'14px',delay:'0s'},{top:'44px',right:'14px',delay:'0.7s'}].forEach((pos,i)=>{
+      const sp=document.createElement('span'); sp.className='p-feat-spark'; sp.textContent=i===0?'✦':'✧';
+      Object.assign(sp.style,{bottom:pos.bottom,left:pos.left,top:pos.top,right:pos.right,animationDelay:pos.delay});
+      card.appendChild(sp);
+    });
+  }
+
+  const petalArr=['🌸','🌺','🌷','🌼','💮'];
+  const cpl=document.createElement('span'); cpl.className='p-corner-petal cp-tl'; cpl.textContent=petalArr[idx%petalArr.length];
+  const cpr=document.createElement('span'); cpr.className='p-corner-petal cp-tr'; cpr.textContent=petalArr[(idx+2)%petalArr.length];
+  const badge=document.createElement('div'); badge.className='p-num-badge'; badge.textContent=String(idx+1).padStart(2,'0');
+
+  img.addEventListener('load',()=>{ placeholder.style.display='none'; img.style.display='block'; card.classList.add('loaded'); });
+  img.addEventListener('error',()=>{ img.style.display='none'; placeholder.style.display='flex'; card.classList.add('loaded'); });
+
+  card.appendChild(ring);
+  card.appendChild(glow);
+  card.appendChild(img);
+  card.appendChild(placeholder);
+  card.appendChild(overlay);
+  card.appendChild(zoom);
+  card.appendChild(heartBtn);
+  card.appendChild(cpl);
+  card.appendChild(cpr);
+  card.appendChild(badge);
+
+  // 3D tilt
+  card.addEventListener('mousemove',(e)=>{
+    const rect=card.getBoundingClientRect();
+    const dx=(e.clientX-rect.left-rect.width/2)/rect.width;
+    const dy=(e.clientY-rect.top-rect.height/2)/rect.height;
+    card.style.setProperty('--rx',`${-dy*8}deg`);
+    card.style.setProperty('--ry',`${dx*8}deg`);
+    card.style.setProperty('--sc','1.03');
+    card.style.setProperty('--mx',((e.clientX-rect.left)/rect.width*100).toFixed(1)+'%');
+    card.style.setProperty('--my',((e.clientY-rect.top)/rect.height*100).toFixed(1)+'%');
+  });
+  card.addEventListener('mouseleave',()=>{ card.style.setProperty('--rx','0deg'); card.style.setProperty('--ry','0deg'); card.style.setProperty('--sc','1'); });
+
+  // Micro stars on hover
+  const syms=['✦','✧','✨','★'];
+  card.addEventListener('mouseenter',()=>{
+    for(let i=0;i<5;i++) setTimeout(()=>{
+      const star=document.createElement('span'); star.className='p-micro-star';
+      star.textContent=syms[Math.floor(Math.random()*syms.length)];
+      star.style.left=(8+Math.random()*80)+'%'; star.style.top=(8+Math.random()*75)+'%';
+      star.style.setProperty('--sx',((Math.random()-.5)*28)+'px');
+      star.style.setProperty('--sy',(-12-Math.random()*18)+'px');
+      star.style.setProperty('--sx2',((Math.random()-.5)*44)+'px');
+      star.style.setProperty('--sy2',(-24-Math.random()*28)+'px');
+      card.appendChild(star); setTimeout(()=>star.remove(),800);
+    },i*70);
+  });
+
+  card.addEventListener('click',(e)=>{
+    if(e.target===heartBtn||heartBtn.contains(e.target)) return;
+    openLightbox(idx);
+  });
+
+  return card;
+}
+
+function makeDecoCard(deco){
+  const card=document.createElement('div'); card.className=`p-card deco-card ${deco.span}`;
+  if(deco.type==='quote'){ card.classList.add('deco-quote'); card.innerHTML=`<div class="deco-quote-mark">"</div><div class="deco-quote-text">${deco.content}</div>`; }
+  else if(deco.type==='emoji'){ card.classList.add('deco-emoji-cloud'); card.innerHTML=`<div class="deco-emoji-big">${deco.emoji}</div>`; }
+  else if(deco.type==='sparkle'){ card.classList.add('deco-sparkle-card'); const g=document.createElement('div'); g.className='deco-sparkle-wrap'; deco.emojis.forEach(e=>{ const s=document.createElement('span'); s.textContent=e; g.appendChild(s); }); card.appendChild(g); }
+  return card;
+}
+
+function buildBento(){
+  bentoEl.innerHTML='';
+  lbPhotos=photoData.map(p=>({src:p.src,caption:p.caption}));
+  const decoMap={}; decoInserts.forEach(d=>decoMap[d.afterIdx]=d);
+  photoData.forEach((photo,idx)=>{
+    bentoEl.appendChild(makePCard(photo,idx));
+    if(decoMap[idx]) bentoEl.appendChild(makeDecoCard(decoMap[idx]));
+  });
+  spawnFloatingPetals();
+  updateCountBadge();
+}
+
+function applyFilter(filter){
+  currentFilter=filter;
+  [...bentoEl.querySelectorAll('.p-card:not(.deco-card)')].forEach(card=>{
+    const idx=parseInt(card.dataset.idx);
+    const tags=JSON.parse(card.dataset.tags||'[]');
+    let show=filter==='all'?true:filter==='favorit'?lovedPhotos.has(idx):tags.includes(filter);
+    card.classList.toggle('hidden',!show);
+  });
+  bentoEl.querySelectorAll('.deco-card').forEach(d=>d.classList.toggle('hidden',filter!=='all'));
+  updateCountBadge();
+}
+
+document.getElementById('galleryFilterBar').addEventListener('click',(e)=>{
+  const btn=e.target.closest('.gf-btn');
+  if(!btn) return;
+  document.querySelectorAll('.gf-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  applyFilter(btn.dataset.filter);
+});
+
+function spawnFloatingPetals(){
+  const container=document.getElementById('floatingPetals');
+  if(!container) return;
+  container.innerHTML='';
+  const petalArr=['🌸','🌺','🌷','✿','❀','🌼'];
+  for(let i=0;i<12;i++){
+    const p=document.createElement('div'); p.className='floating-petal';
+    p.textContent=petalArr[Math.floor(Math.random()*petalArr.length)];
+    p.style.cssText=`left:${Math.random()*95}%;top:${20+Math.random()*70}%;font-size:${12+Math.random()*14}px;animation-duration:${6+Math.random()*8}s;animation-delay:${Math.random()*10}s;`;
+    p.style.setProperty('--rot',`${(Math.random()-0.5)*360}deg`);
+    container.appendChild(p);
+  }
+}
+
+function restoreHeartStates(){
+  document.querySelectorAll('.p-card:not(.deco-card)').forEach(card=>{
+    const idx=parseInt(card.dataset.idx);
+    const heartBtn=card.querySelector('.p-heart-btn');
+    if(!heartBtn) return;
+    const inner=heartBtn.querySelector('span');
+    if(lovedPhotos.has(idx)){ heartBtn.classList.add('loved'); if(inner) inner.textContent='❤️'; }
+    else{ heartBtn.classList.remove('loved'); if(inner) inner.textContent='🤍'; }
+    const newBtn=heartBtn.cloneNode(true);
+    heartBtn.parentNode.replaceChild(newBtn,heartBtn);
+    newBtn.addEventListener('click',async(e)=>{
       e.stopPropagation();
-      const btnInner = newBtn.querySelector('span');
- 
-      if (lovedPhotos.has(idx)) {
-        lovedPhotos.delete(idx);
-        if (btnInner) btnInner.textContent = '🤍';
-        newBtn.classList.remove('loved');
-        showToast('🤍 Dihapus dari favorit');
-        if (currentFilter === 'favorit') applyFilter('favorit');
-      } else {
-        lovedPhotos.add(idx);
-        if (btnInner) btnInner.textContent = '❤️';
-        newBtn.classList.add('loved');
-        showToast('❤️ Tersimpan ke cloud! ☁️');
-        const r = card.getBoundingClientRect();
-        spawnBurst(r.left + r.width / 2, r.top + r.height / 2);
-      }
- 
-      updateLovesStrip();
-      updateCountBadge();
+      const btnInner=newBtn.querySelector('span');
+      if(lovedPhotos.has(idx)){ lovedPhotos.delete(idx); if(btnInner) btnInner.textContent='🤍'; newBtn.classList.remove('loved'); showToast('🤍 Dihapus dari favorit'); if(currentFilter==='favorit') applyFilter('favorit'); }
+      else{ lovedPhotos.add(idx); if(btnInner) btnInner.textContent='❤️'; newBtn.classList.add('loved'); showToast('❤️ Tersimpan ke cloud! ☁️'); const r=card.getBoundingClientRect(); FW.explodeAt(r.left+r.width/2,r.top+r.height/2); }
+      updateLovesStrip(); updateCountBadge();
       await saveFavoritesToCloud();
     });
   });
 }
- 
-// ── POLLING tiap 30 detik ─────────────────────────────────────
-function startPolling() {
-  setInterval(async () => {
-    try {
-      const cloudIndices = await sbGet();
-      const localArr = [...lovedPhotos].sort().join(',');
-      const cloudArr = [...cloudIndices].sort().join(',');
-      if (localArr !== cloudArr) {
-        lovedPhotos.clear();
-        cloudIndices.forEach(idx => lovedPhotos.add(idx));
-        restoreHeartStates();
-        updateLovesStrip();
-        updateCountBadge();
-        showToast('☁️ Favorit diperbarui dari device lain!', 2500);
-      }
-    } catch(_) {}
-  }, 30000);
+
+// Build bento sekali
+buildBento();
+
+// ==========================================================================
+// STEP 15: LIGHTBOX
+// ==========================================================================
+const lightbox=document.getElementById('lightbox'),lbImg=document.getElementById('lbImg');
+const lbCaption=document.getElementById('lbCaption'),lbCounter=document.getElementById('lbCounter');
+
+function openLightbox(idx){
+  if(!lbPhotos[idx]) return;
+  currentLb=idx; lbImg.src=lbPhotos[idx].src; lbCaption.textContent=lbPhotos[idx].caption;
+  lbCounter.textContent=`${idx+1} / ${lbPhotos.length}`; lightbox.classList.add('open'); document.body.style.overflow='hidden';
 }
- 
-// ── JALANKAN ─────────────────────────────────────────────────
-if (typeof enhanceCards === 'function') enhanceCards();
- 
-loadFavoritesFromCloud().then(() => startPolling());
- 
-// Observer untuk rebuild filter
-const _bentoEl2 = document.getElementById('photoBento');
-if (_bentoEl2) {
-  new MutationObserver(() => {
-    restoreHeartStates();
-    if (typeof enhanceCards === 'function') enhanceCards();
-  }).observe(_bentoEl2, { childList: true });
-}
-const FW = (() => {
-  const canvas = document.getElementById('globalFwCanvas');
-  const ctx    = canvas.getContext('2d');
-  let particles = [];
-  let trails    = [];
-  let rockets   = [];
-  let glitters  = [];
-  let running   = false;
- 
-  // Warna-warna kembang api
-  const PALETTES = {
-    romantic: ['#ff8fb0','#ff6b9d','#ffcce0','#ff1493','#ff69b4','#ffb6c1'],
-    purple:   ['#c084fc','#a855f7','#e9c2ff','#9333ea','#d946ef','#f0abfc'],
-    gold:     ['#ffd700','#ffec6b','#ffc107','#ff8c00','#fff9c2','#ffa500'],
-    cyan:     ['#67e8f9','#22d3ee','#06b6d4','#a5f3fc','#0ea5e9','#38bdf8'],
-    white:    ['#ffffff','#f0f0ff','#fffde7','#e8f5e9','#fce4ec','#f3e5f5'],
-  };
- 
-  const ALL_COLORS = Object.values(PALETTES).flat();
- 
-  function randomFrom(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
-  function lerp(a, b, t)   { return a + (b - a) * t; }
- 
-  // ── PARTIKEL DASAR ──────────────────────────────────────────
-  class Particle {
-    constructor(x, y, opts = {}) {
-      this.x    = x; this.y = y;
-      this.vx   = opts.vx   ?? (Math.random() - 0.5) * 8;
-      this.vy   = opts.vy   ?? (Math.random() - 0.5) * 8;
-      this.life = opts.life ?? 1;
-      this.decay= opts.decay?? 0.012 + Math.random() * 0.01;
-      this.size = opts.size ?? 2 + Math.random() * 2.5;
-      this.color= opts.color?? randomFrom(ALL_COLORS);
-      this.shape= opts.shape?? 'circle'; // circle | star | heart | spark
-      this.grav = opts.grav ?? 0.06;
-      this.tail = [];
-    }
-    update() {
-      this.tail.push({ x: this.x, y: this.y, life: this.life });
-      if (this.tail.length > 6) this.tail.shift();
-      this.x  += this.vx;
-      this.y  += this.vy;
-      this.vy += this.grav;
-      this.vx *= 0.98;
-      this.life -= this.decay;
-    }
-    draw(ctx) {
-      if (this.life <= 0) return;
-      // Ekor
-      this.tail.forEach((t, i) => {
-        const a = (i / this.tail.length) * this.life * 0.4;
-        ctx.globalAlpha = a;
-        ctx.fillStyle   = this.color;
-        ctx.beginPath();
-        ctx.arc(t.x, t.y, this.size * 0.4, 0, Math.PI * 2);
-        ctx.fill();
-      });
-      ctx.globalAlpha = this.life;
-      ctx.fillStyle   = this.color;
-      if (this.shape === 'star') drawStar(ctx, this.x, this.y, this.size);
-      else if (this.shape === 'heart') drawHeart(ctx, this.x, this.y, this.size * 0.7);
-      else if (this.shape === 'spark') drawSpark(ctx, this.x, this.y, this.size);
-      else {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
-      }
-    }
-    dead() { return this.life <= 0; }
-  }
- 
-  // ── ROKET ────────────────────────────────────────────────────
-  class Rocket {
-    constructor(x, targetY, color) {
-      this.x       = x;
-      this.y       = canvas.height + 10;
-      this.targetY = targetY;
-      this.color   = color ?? randomFrom(ALL_COLORS);
-      this.speed   = 12 + Math.random() * 6;
-      this.trail   = [];
-      this.done    = false;
-      this.wobble  = (Math.random() - 0.5) * 1.2;
-    }
-    update() {
-      this.x += this.wobble * 0.3;
-      this.y -= this.speed;
-      this.trail.push({ x: this.x, y: this.y });
-      if (this.trail.length > 18) this.trail.shift();
-      if (this.y <= this.targetY) {
-        this.done = true;
-        explodeAt(this.x, this.y);
-      }
-    }
-    draw(ctx) {
-      if (this.done) return;
-      this.trail.forEach((t, i) => {
-        const a = (i / this.trail.length) * 0.9;
-        const s = (i / this.trail.length) * 3;
-        ctx.globalAlpha = a;
-        ctx.fillStyle   = this.color;
-        ctx.beginPath();
-        ctx.arc(t.x, t.y, s, 0, Math.PI * 2);
-        ctx.fill();
-      });
-      // kepala roket
-      ctx.globalAlpha = 1;
-      ctx.fillStyle   = '#fff';
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, 3, 0, Math.PI * 2);
-      ctx.fill();
-    }
-    dead() { return this.done; }
-  }
- 
-  // ── GLITTER HUJAN ────────────────────────────────────────────
-  class Glitter {
-    constructor() {
-      this.reset();
-    }
-    reset() {
-      this.x     = Math.random() * canvas.width;
-      this.y     = -20;
-      this.vx    = (Math.random() - 0.5) * 2;
-      this.vy    = 1 + Math.random() * 3;
-      this.size  = 3 + Math.random() * 5;
-      this.color = randomFrom(['#ffd700','#ff8fb0','#c084fc','#fff','#ffcce0','#67e8f9']);
-      this.rot   = Math.random() * Math.PI * 2;
-      this.rotV  = (Math.random() - 0.5) * 0.2;
-      this.life  = 1;
-      this.shape = Math.random() > 0.5 ? 'rect' : 'circle';
-    }
-    update() {
-      this.x   += this.vx;
-      this.y   += this.vy;
-      this.rot += this.rotV;
-      this.vy  += 0.02;
-      this.life -= 0.004;
-      if (this.y > canvas.height + 20 || this.life <= 0) this.reset();
-    }
-    draw(ctx) {
-      ctx.save();
-      ctx.globalAlpha = this.life * 0.85;
-      ctx.translate(this.x, this.y);
-      ctx.rotate(this.rot);
-      ctx.fillStyle = this.color;
-      if (this.shape === 'rect') {
-        ctx.fillRect(-this.size / 2, -this.size / 4, this.size, this.size / 2);
-      } else {
-        ctx.beginPath();
-        ctx.arc(0, 0, this.size / 2, 0, Math.PI * 2);
-        ctx.fill();
-      }
-      ctx.restore();
-    }
-  }
- 
-  // ── SHAPE HELPERS ────────────────────────────────────────────
-  function drawStar(ctx, x, y, r) {
-    ctx.save(); ctx.translate(x, y);
-    ctx.beginPath();
-    for (let i = 0; i < 5; i++) {
-      const outer = (i * Math.PI * 2) / 5 - Math.PI / 2;
-      const inner = outer + Math.PI / 5;
-      if (i === 0) ctx.moveTo(Math.cos(outer) * r, Math.sin(outer) * r);
-      else ctx.lineTo(Math.cos(outer) * r, Math.sin(outer) * r);
-      ctx.lineTo(Math.cos(inner) * r * 0.4, Math.sin(inner) * r * 0.4);
-    }
-    ctx.closePath(); ctx.fill(); ctx.restore();
-  }
- 
-  function drawHeart(ctx, x, y, r) {
-    ctx.save(); ctx.translate(x, y); ctx.scale(r / 10, r / 10);
-    ctx.beginPath();
-    ctx.moveTo(0, -3);
-    ctx.bezierCurveTo(5, -10, 14, -3, 0, 8);
-    ctx.bezierCurveTo(-14, -3, -5, -10, 0, -3);
-    ctx.closePath(); ctx.fill(); ctx.restore();
-  }
- 
-  function drawSpark(ctx, x, y, r) {
-    ctx.save(); ctx.translate(x, y);
-    for (let i = 0; i < 4; i++) {
-      const a = (i / 4) * Math.PI * 2;
-      ctx.beginPath();
-      ctx.moveTo(0, 0);
-      ctx.lineTo(Math.cos(a) * r * 2.5, Math.sin(a) * r * 2.5);
-      ctx.lineWidth = r * 0.4;
-      ctx.strokeStyle = ctx.fillStyle;
-      ctx.stroke();
-    }
-    ctx.restore();
-  }
- 
-  // ── LEDAKAN ──────────────────────────────────────────────────
-  function explodeAt(x, y, opts = {}) {
-    const type   = opts.type  ?? randomFrom(['circle','ring','chrysanthemum','heart','star','willow','crossette']);
-    const count  = opts.count ?? 80 + Math.floor(Math.random() * 60);
-    const pal    = opts.palette ?? randomFrom(Object.values(PALETTES));
-    const color  = opts.color  ?? randomFrom(pal);
-    const color2 = randomFrom(pal);
- 
-    // Flash putih singkat
-    particles.push(new Particle(x, y, {
-      vx:0,vy:0,size:30+Math.random()*20,life:0.6,decay:0.09,
-      color:'rgba(255,255,255,0.9)',grav:0,shape:'circle'
-    }));
- 
-    for (let i = 0; i < count; i++) {
-      const angle = (i / count) * Math.PI * 2;
-      const speed = 2 + Math.random() * 6;
-      let vx = Math.cos(angle) * speed;
-      let vy = Math.sin(angle) * speed;
- 
-      if (type === 'ring') {
-        const s = 4 + Math.random() * 2;
-        vx = Math.cos(angle) * s;
-        vy = Math.sin(angle) * s;
-      } else if (type === 'chrysanthemum') {
-        const s = (3 + Math.random() * 5) * (1 + 0.3 * Math.sin(angle * 6));
-        vx = Math.cos(angle) * s;
-        vy = Math.sin(angle) * s;
-      } else if (type === 'willow') {
-        const s = 4 + Math.random() * 4;
-        vx = Math.cos(angle) * s * (Math.random() > 0.5 ? 1 : 0.3);
-        vy = Math.sin(angle) * s;
-      } else if (type === 'crossette') {
-        if (i % 8 === 0) {
-          for (let j = 0; j < 4; j++) {
-            const a2 = angle + (j / 4) * Math.PI * 2;
-            particles.push(new Particle(x, y, {
-              vx: Math.cos(a2) * 3, vy: Math.sin(a2) * 3,
-              color: color2, size: 1.5, decay: 0.018, grav: 0.05,
-              shape: 'spark'
-            }));
-          }
-          continue;
-        }
-      }
- 
-      const isHeart  = type === 'heart';
-      const isStar   = type === 'star';
-      const shape    = isHeart ? 'heart' : isStar ? 'star' : Math.random() > 0.7 ? 'spark' : 'circle';
-      const isSecond = Math.random() > 0.6;
- 
-      particles.push(new Particle(x, y, {
-        vx, vy,
-        color:  isSecond ? color2 : color,
-        size:   1.5 + Math.random() * 3,
-        decay:  0.008 + Math.random() * 0.012,
-        grav:   type === 'willow' ? 0.12 : 0.05 + Math.random() * 0.04,
-        shape,
-      }));
-    }
- 
-    // Percik kecil ekstra
-    for (let i = 0; i < 30; i++) {
-      const angle = Math.random() * Math.PI * 2;
-      const speed = 0.5 + Math.random() * 3;
-      particles.push(new Particle(x, y, {
-        vx: Math.cos(angle) * speed,
-        vy: Math.sin(angle) * speed,
-        color: '#ffffff',
-        size: 0.8 + Math.random(),
-        decay: 0.02 + Math.random() * 0.02,
-        grav: 0.04,
-        shape: 'circle',
-      }));
-    }
-  }
- 
-  // ── LAUNCH ROKET ─────────────────────────────────────────────
-  function launchRocket(x, targetY, color) {
-    rockets.push(new Rocket(x, targetY, color));
-  }
- 
-  // ── SEQUENCE SHOW ────────────────────────────────────────────
-  let showTimeout = [];
-  function clearShow() { showTimeout.forEach(t => clearTimeout(t)); showTimeout = []; }
- 
-  function launchShow(intensity = 'normal') {
-    clearShow();
-    const W = canvas.width, H = canvas.height;
- 
-    if (intensity === 'mega') {
-      // 30 roket bertahap
-      for (let i = 0; i < 30; i++) {
-        const t = showTimeout[showTimeout.length] = setTimeout(() => {
-          const x  = W * 0.1 + Math.random() * W * 0.8;
-          const y  = H * 0.05 + Math.random() * H * 0.45;
-          const pal = randomFrom(Object.values(PALETTES));
-          launchRocket(x, y, randomFrom(pal));
-        }, i * 180);
-        showTimeout.push(t);
-      }
-      // Hujan glitter
-      for (let i = 0; i < 60; i++) glitters.push(new Glitter());
- 
-      // Ledakan besar di tengah
-      showTimeout.push(setTimeout(() => {
-        explodeAt(W/2, H*0.25, { type:'chrysanthemum', count:160, palette:PALETTES.romantic });
-        explodeAt(W*0.2, H*0.3, { type:'willow', count:120, palette:PALETTES.gold });
-        explodeAt(W*0.8, H*0.3, { type:'ring', count:100, palette:PALETTES.purple });
-      }, 2200));
- 
-      // Finale: jantung besar
-      showTimeout.push(setTimeout(() => {
-        explodeAt(W/2, H*0.2, { type:'heart', count:200, palette:PALETTES.romantic });
-        setTimeout(() => explodeAt(W/2, H*0.3, { type:'star', count:180, palette:PALETTES.gold }), 400);
-        setTimeout(() => explodeAt(W/2, H*0.25, { type:'chrysanthemum', count:200, palette:PALETTES.purple }), 800);
-      }, 5500));
- 
-    } else {
-      // Normal: 10 roket
-      for (let i = 0; i < 10; i++) {
-        showTimeout.push(setTimeout(() => {
-          const x = W * 0.15 + Math.random() * W * 0.7;
-          const y = H * 0.1  + Math.random() * H * 0.4;
-          launchRocket(x, y, randomFrom(ALL_COLORS));
-        }, i * 220));
-      }
-      for (let i = 0; i < 20; i++) glitters.push(new Glitter());
-    }
-  }
- 
-  // ── LOOP ANIMASI ─────────────────────────────────────────────
-  function loop() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
- 
-    glitters.forEach(g => { g.update(); g.draw(ctx); });
- 
-    rockets = rockets.filter(r => {
-      r.update(); r.draw(ctx); return !r.dead();
-    });
- 
-    particles = particles.filter(p => {
-      p.update(); p.draw(ctx); return !p.dead();
-    });
- 
-    ctx.globalAlpha = 1;
-    requestAnimationFrame(loop);
-  }
-  loop();
- 
-  return { explodeAt, launchRocket, launchShow, Glitter };
-})();
- 
-// ── 2. OVERRIDE TOMBOL KEMBANG API ───────────────────────────
-const fwBtn = document.getElementById('fwBtn');
-if (fwBtn) {
-  // Hapus listener lama
-  const newBtn = fwBtn.cloneNode(true);
-  fwBtn.parentNode.replaceChild(newBtn, fwBtn);
- 
-  let fwPhase = 0;
-  const phases = [
-    { label:'🎆 Lagi... BOOM!',       fn: () => FW.launchShow('normal') },
-    { label:'💥 MEGA SHOW!!',          fn: () => FW.launchShow('mega') },
-    { label:'🌹 Sekali lagi untuk Marcia!', fn: () => FW.launchShow('normal') },
-  ];
- 
-  newBtn.addEventListener('click', () => {
+function closeLightbox(){ lightbox.classList.remove('open'); document.body.style.overflow=''; }
+document.getElementById('lbClose').addEventListener('click',closeLightbox);
+document.getElementById('lbPrev').addEventListener('click',()=>{ currentLb=(currentLb-1+lbPhotos.length)%lbPhotos.length; openLightbox(currentLb); });
+document.getElementById('lbNext').addEventListener('click',()=>{ currentLb=(currentLb+1)%lbPhotos.length; openLightbox(currentLb); });
+lightbox.addEventListener('click',(e)=>{ if(e.target===lightbox) closeLightbox(); });
+document.addEventListener('keydown',(e)=>{ if(!lightbox.classList.contains('open')) return; if(e.key==='Escape') closeLightbox(); if(e.key==='ArrowLeft'){ currentLb=(currentLb-1+lbPhotos.length)%lbPhotos.length; openLightbox(currentLb); } if(e.key==='ArrowRight'){ currentLb=(currentLb+1)%lbPhotos.length; openLightbox(currentLb); } });
+let touchStartX=0;
+lightbox.addEventListener('touchstart',(e)=>touchStartX=e.touches[0].clientX,{passive:true});
+lightbox.addEventListener('touchend',(e)=>{ const dx=e.changedTouches[0].clientX-touchStartX; if(Math.abs(dx)>50){ currentLb=dx<0?(currentLb+1)%lbPhotos.length:(currentLb-1+lbPhotos.length)%lbPhotos.length; openLightbox(currentLb); } },{passive:true});
+
+// ==========================================================================
+// STEP 16: FIREWORK BUTTON
+// ==========================================================================
+const fwBtn=document.getElementById('fwBtn');
+if(fwBtn){
+  let fwPhase=0;
+  const phases=['🎆 Lagi... BOOM!','💥 MEGA SHOW!!','🌹 Sekali lagi untuk Marcia!'];
+  fwBtn.addEventListener('click',()=>{
     FW.launchShow('mega');
-    newBtn.textContent = phases[fwPhase % phases.length].label;
-    fwPhase++;
-    newBtn.style.transform = 'scale(0.95)';
-    setTimeout(() => newBtn.style.transform = '', 150);
+    fwBtn.textContent=phases[fwPhase%phases.length]; fwPhase++;
+    fwBtn.style.transform='scale(0.95)'; setTimeout(()=>fwBtn.style.transform='',150);
   });
 }
- 
-// ── 3. UPGRADE SCROLL TRIGGER di final section ───────────────
-const finalSec2 = document.getElementById('finalSection');
-if (finalSec2) {
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        FW.launchShow('normal');
-        obs.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.3 });
-  obs.observe(finalSec2);
+
+const finalSec=document.getElementById('finalSection');
+if(finalSec){ new IntersectionObserver((entries)=>{ entries.forEach(e=>{ if(e.isIntersecting){ FW.launchShow('normal'); } }); },{threshold:0.2}).observe(finalSec); }
+
+// ==========================================================================
+// STEP 17: STAR MAP
+// ==========================================================================
+function initStarMap(){
+  const c=document.getElementById('starMapCanvas'); if(!c) return;
+  const cx=c.getContext('2d'),W=c.offsetWidth||700,H=c.height; c.width=W;
+  const bg=cx.createLinearGradient(0,0,W,H); bg.addColorStop(0,'#0d0020'); bg.addColorStop(0.5,'#14003a'); bg.addColorStop(1,'#0a0018');
+  cx.fillStyle=bg; cx.fillRect(0,0,W,H);
+  for(let i=0;i<180;i++){ const x=Math.random()*W,y=Math.random()*H,r=Math.random()*1.5,a=0.2+Math.random()*0.7; cx.globalAlpha=a; cx.fillStyle='#fff'; cx.beginPath(); cx.arc(x,y,r,0,Math.PI*2); cx.fill(); }
+  cx.globalAlpha=1;
+  const nodes=[{x:W*0.22,y:H*0.35,label:'Fram ⭐',color:'#c084fc',r:8},{x:W*0.38,y:H*0.55,label:'',color:'#ff8fb0',r:5},{x:W*0.52,y:H*0.30,label:'',color:'#ffcce0',r:4},{x:W*0.64,y:H*0.50,label:'',color:'#ff8fb0',r:5},{x:W*0.50,y:H*0.65,label:'',color:'#c084fc',r:4},{x:W*0.78,y:H*0.38,label:'Marcia 💖',color:'#ff6b9d',r:8}];
+  cx.strokeStyle='rgba(255,143,176,0.35)'; cx.lineWidth=1; cx.setLineDash([4,6]); cx.beginPath();
+  nodes.forEach((n,i)=>{ if(i===0) cx.moveTo(n.x,n.y); else cx.lineTo(n.x,n.y); }); cx.stroke(); cx.setLineDash([]);
+  cx.strokeStyle='rgba(255,107,157,0.5)'; cx.lineWidth=1.5; cx.beginPath(); cx.moveTo(nodes[0].x,nodes[0].y);
+  const hx=(nodes[0].x+nodes[5].x)/2,hy=(nodes[0].y+nodes[5].y)/2-20; cx.quadraticCurveTo(hx,hy-30,nodes[5].x,nodes[5].y); cx.stroke();
+  nodes.forEach(n=>{ const grd=cx.createRadialGradient(n.x,n.y,0,n.x,n.y,n.r*4); grd.addColorStop(0,n.color+'99'); grd.addColorStop(1,n.color+'00'); cx.fillStyle=grd; cx.beginPath(); cx.arc(n.x,n.y,n.r*4,0,Math.PI*2); cx.fill(); cx.fillStyle=n.color; cx.beginPath(); cx.arc(n.x,n.y,n.r,0,Math.PI*2); cx.fill(); cx.fillStyle='#fff'; cx.beginPath(); cx.arc(n.x,n.y,n.r*0.4,0,Math.PI*2); cx.fill(); });
+  cx.font='bold 13px "Lato", sans-serif'; cx.textAlign='center'; cx.fillStyle='#fff'; cx.globalAlpha=0.9;
+  cx.fillText(nodes[0].label,nodes[0].x,nodes[0].y-18); cx.fillText(nodes[5].label,nodes[5].x,nodes[5].y-18); cx.globalAlpha=1;
+  cx.font='italic 12px "Playfair Display", serif'; cx.fillStyle='rgba(255,143,176,0.7)'; cx.fillText('14 April 2026',W/2,H-18);
 }
- 
-// ── 4. UPGRADE CSS TOMBOL ─────────────────────────────────────
-(function() {
-  const s = document.createElement('style');
-  s.textContent = `
-    #fwBtn {
-      position: relative;
-      overflow: hidden;
-      background: linear-gradient(135deg, #ff1493, #ff6b9d, #c084fc, #ff8fb0) !important;
-      background-size: 300% 300% !important;
-      animation: btnGradShift 3s ease infinite, btnGlow 2s ease-in-out infinite alternate !important;
-      border: none !important;
-      font-size: 1.1rem !important;
-      padding: 16px 44px !important;
-      letter-spacing: 2px !important;
-      transition: transform 0.15s, box-shadow 0.3s !important;
-    }
-    @keyframes btnGradShift {
-      0%   { background-position: 0% 50%; }
-      50%  { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-    @keyframes btnGlow {
-      0%   { box-shadow: 0 6px 30px rgba(255,20,147,0.5), 0 0 0 0 rgba(255,107,157,0.4); }
-      100% { box-shadow: 0 6px 50px rgba(192,132,252,0.7), 0 0 30px rgba(255,20,147,0.3); }
-    }
-    #fwBtn::before {
-      content: '';
-      position: absolute;
-      inset: -2px;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
-      transform: translateX(-100%);
-      animation: btnSheen 2.5s ease infinite;
-    }
-    @keyframes btnSheen {
-      0%   { transform: translateX(-100%); }
-      50%,100% { transform: translateX(200%); }
-    }
-    #fwBtn:hover {
-      transform: scale(1.08) !important;
-      box-shadow: 0 8px 60px rgba(255,20,147,0.7), 0 0 40px rgba(192,132,252,0.5) !important;
-    }
-    #fwBtn:active { transform: scale(0.96) !important; }
-  `;
-  document.head.appendChild(s);
-})();
- 
-  </script>
+
+// ==========================================================================
+// STEP 18: MOOD
+// ==========================================================================
+const moods=[
+  {emoji:'😊',label:'Bahagia',color:'#ffd700',title:'Yayyy kamu bahagia! 🌟',message:'Aku juga ikut senang mendengarnya! Senyum kamu itu sungguh menular.',song:'🎵 Lagu untukmu: <span>Make You Mine — PUBLIC</span> 🎶'},
+  {emoji:'😔',label:'Sedih',color:'#7eb3ff',title:'Sini aku peluk kamu 💙',message:'Nggak apa-apa untuk sedih. Aku di sini, selalu.',song:'🎵 Lagu untukmu: <span>River Flows In You — Yiruma</span> 🎶'},
+  {emoji:'😴',label:'Ngantuk',color:'#c084fc',title:'Tidur yang nyenyak ya sayang 🌙',message:'Istirahat yang cukup itu penting banget! Sebelum tidur, tahu nggak? Aku selalu memikirkanmu.',song:'🎵 Lagu untukmu: <span>Stay With Me — Miki Matsubara</span> 🎶'},
+  {emoji:'😤',label:'Kesel',color:'#ff8fb0',title:'Ayo cerita ke aku 💕',message:'Kalau ada yang ganggu kamu, aku siap dengarkan.',song:'🎵 Lagu untukmu: <span>Slipping Through My Fingers — Declan McKenna</span> 🎶'},
+  {emoji:'🥰',label:'Kangen',color:'#ff6b9d',title:'Aku juga kangen kamu! 💖',message:'Perasaan itu sama persis — aku juga sering kepikiran kamu.',song:'🎵 Lagu untukmu: <span>Just A Friend To You — Meghan Trainor</span> 🎶'},
+  {emoji:'🌸',label:'Semangat',color:'#60d394',title:'Channeling your inner boss! 👑',message:'Senang deh lihat kamu se-happy dan sesemangat ini. You got this! ❤️',song:'🎵 Lagu untukmu: <span>Make You Mine — PUBLIC</span> 🎶'},
+];
+const moodGrid=document.getElementById('moodGrid'),moodResult=document.getElementById('moodResult');
+if(moodGrid) moods.forEach((mood)=>{
+  const btn=document.createElement('div'); btn.className='mood-btn';
+  btn.innerHTML=`<span class="mb-emoji">${mood.emoji}</span><span class="mb-label">${mood.label}</span>`;
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.mood-btn').forEach(b=>b.classList.remove('selected')); btn.classList.add('selected');
+    document.getElementById('mrEmoji').textContent=mood.emoji; document.getElementById('mrTitle').textContent=mood.title;
+    document.getElementById('mrMessage').textContent=mood.message; document.getElementById('mrSong').innerHTML=mood.song;
+    moodResult.style.borderColor=mood.color+'66'; moodResult.classList.add('show');
+    showToast('💌 Pesan spesial untukmu!'); FW.launchShow('normal');
+  });
+  moodGrid.appendChild(btn);
+});
+
+// ==========================================================================
+// STEP 19: LOCK SCREEN EXTRAS
+// ==========================================================================
+const pesanKejutan=['Sabar ya sayangku nggak lama lagi kokk!! 💖','Jangan dicoba buat di hack ya kak 😜','Tapi kalo kamu mau jadi pacarku, countdownnya langsung selesai sih!! ✨','Ciyee yang gak sabar nungguin countdown-nya selesai... 🤭','Akses masih digembok! Coba rayu aku dulu 🥞','Kejutan terbaik selalu butuh waktu yang tepat. Sabar ya! 💕','Setiap detik countdown ini berjalan, rasa sayangku ke kamu juga nambah terus! 🐳','Yang sabar ya sayangku, cantikku, manisku, princessku, masa depanku!! 👑'];
+const lockSubtitleEl=document.getElementById('lockSubtitle');
+if(lockSubtitleEl) lockSubtitleEl.innerText=pesanKejutan[Math.floor(Math.random()*pesanKejutan.length)];
+
+document.getElementById('btnUnlock').addEventListener('click',function(e){
+  e.stopPropagation();
+  const cc=document.querySelector('.lock-countdown-container');
+  if(cc){ cc.classList.remove('shake-animation'); void cc.offsetWidth; cc.classList.add('shake-animation'); }
+  alert('Jangan dibuka paksa sayang!!! ❌ Tungguin countdown-nya selesai yaa atau nggak jadi pacarku dulu hehe!! 🥞😜');
+});
+
+// ==========================================================================
+// STEP 20: SCROLL REVEAL
+// ==========================================================================
+const revealObs=new IntersectionObserver((entries)=>{ entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); }); },{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>revealObs.observe(el));
+const starMapObs=new IntersectionObserver((entries)=>{ entries.forEach(e=>{ if(e.isIntersecting){ initStarMap(); starMapObs.unobserve(e.target); } }); },{threshold:0.3});
+const starMapEl=document.querySelector('.starmap-section');
+if(starMapEl) starMapObs.observe(starMapEl);
+const videoEl=document.querySelector('.video-frame-wrap video');
+if(videoEl){ videoEl.addEventListener('ended',()=>{ showToast('💖 Makasih sudah menontonnya sampai habis!'); FW.launchShow('normal'); }); }
+
+// ==========================================================================
+// STEP 21: SUPABASE FAVORIT
+// ==========================================================================
+const SUPABASE_URL      = 'https://uzalnplqljyluwaoqoak.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV6YWxucGxxbGp5bHV3YW9xb2FrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAxMjEzMzUsImV4cCI6MjA5NTY5NzMzNX0._Jzh4VrfFvcQ8JsPDP_qNZ_L1GD3gFCm4j0B-jFCO7A';
+const ROW_ID = 'marcia';
+const sbHeaders = { 'apikey': SUPABASE_ANON_KEY, 'Authorization': 'Bearer '+SUPABASE_ANON_KEY, 'Content-Type': 'application/json', 'Prefer': 'return=minimal' };
+
+async function sbGet(){
+  const res=await fetch(`${SUPABASE_URL}/rest/v1/favorites?id=eq.${ROW_ID}&select=loved_indices`,{headers:sbHeaders});
+  if(!res.ok){ const t=await res.text(); throw new Error(`sbGet ${res.status}: ${t}`); }
+  const data=await res.json(); return data[0]?.loved_indices||[];
+}
+async function sbSave(indices){
+  const res=await fetch(`${SUPABASE_URL}/rest/v1/favorites?id=eq.${ROW_ID}`,{method:'PATCH',headers:sbHeaders,body:JSON.stringify({loved_indices:indices,updated_at:new Date().toISOString()})});
+  if(!res.ok){ const t=await res.text(); throw new Error(`sbSave ${res.status}: ${t}`); }
+}
+async function loadFavoritesFromCloud(){
+  try{
+    const indices=await sbGet(); lovedPhotos.clear(); indices.forEach(idx=>lovedPhotos.add(idx));
+    restoreHeartStates(); updateLovesStrip(); updateCountBadge();
+  } catch(e){
+    console.error('[Favorit] Gagal load cloud:',e);
+    try{ const raw=localStorage.getItem('marcia_loved_photos'); if(raw) JSON.parse(raw).forEach(idx=>lovedPhotos.add(idx)); restoreHeartStates(); updateLovesStrip(); updateCountBadge(); } catch(_){}
+  }
+}
+async function saveFavoritesToCloud(){
+  const indices=[...lovedPhotos];
+  try{ localStorage.setItem('marcia_loved_photos',JSON.stringify(indices)); } catch(_){}
+  try{ await sbSave(indices); } catch(e){ console.error('[Favorit] Gagal sync:',e); showToast('⚠️ Gagal sync ke cloud',2500); }
+}
+function startPolling(){
+  setInterval(async()=>{
+    try{
+      const cloudIndices=await sbGet();
+      const localArr=[...lovedPhotos].sort().join(','),cloudArr=[...cloudIndices].sort().join(',');
+      if(localArr!==cloudArr){ lovedPhotos.clear(); cloudIndices.forEach(idx=>lovedPhotos.add(idx)); restoreHeartStates(); updateLovesStrip(); updateCountBadge(); showToast('☁️ Favorit diperbarui dari device lain!',2500); }
+    } catch(_){}
+  },30000);
+}
+
+// Load cloud saat halaman dibuka (lockscreen sudah lewat atau belum)
+// Jika sudah unlock, load langsung. Jika belum, akan dipanggil dari unlockSite()
+if(document.getElementById('mainSite').style.display !== 'none'){
+  loadFavoritesFromCloud().then(()=>startPolling());
+}
+</script>
 </body>
 </html>
