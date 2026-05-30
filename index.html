@@ -170,27 +170,103 @@
     .tl-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; margin-bottom: 6px; }
     .tl-desc { font-size: 0.9rem; color: rgba(255,255,255,0.6); line-height: 1.7; }
 
-    /* ===== PHOTO GALLERY — AESTHETIC BENTO ===== */
-    .gallery-section { padding: 6rem 2rem; max-width: 1200px; margin: 0 auto; position: relative; overflow: visible; }
+    /* ========================================================
+       GALLERY — UPGRADED AESTHETIC
+       ======================================================== */
+    .gallery-section {
+      padding: 6rem 1.5rem;
+      max-width: 1300px;
+      margin: 0 auto;
+      position: relative;
+      overflow: visible;
+    }
 
+    /* Ambient glow blobs behind grid */
+    .gallery-blob {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      filter: blur(90px);
+      opacity: 0.18;
+      z-index: 0;
+    }
+    .blob-1 { width: 500px; height: 500px; background: radial-gradient(circle, #ff8fb0, transparent); top: -100px; left: -80px; animation: blobDrift 12s ease-in-out infinite; }
+    .blob-2 { width: 400px; height: 400px; background: radial-gradient(circle, #c084fc, transparent); bottom: 0; right: -60px; animation: blobDrift 15s ease-in-out infinite reverse; }
+    .blob-3 { width: 300px; height: 300px; background: radial-gradient(circle, #ffcce0, transparent); top: 40%; left: 50%; transform: translateX(-50%); animation: blobDrift 10s ease-in-out infinite 3s; }
+    @keyframes blobDrift { 0%,100%{transform:translate(0,0) scale(1);} 33%{transform:translate(20px,-25px) scale(1.05);} 66%{transform:translate(-15px,10px) scale(0.97);} }
+
+    /* SVG floral accents */
     .gallery-floral { position: absolute; pointer-events: none; z-index: 0; opacity: 0.18; }
     .gallery-floral.fl-tl { top: 20px; left: -30px; width: 160px; animation: floralDrift 8s ease-in-out infinite; }
     .gallery-floral.fl-tr { top: 10px; right: -20px; width: 130px; animation: floralDrift 10s ease-in-out infinite reverse; }
     .gallery-floral.fl-bl { bottom: 40px; left: -10px; width: 100px; animation: floralDrift 9s ease-in-out infinite 2s; }
     .gallery-floral.fl-br { bottom: 20px; right: -30px; width: 140px; animation: floralDrift 7s ease-in-out infinite 1s reverse; }
-    @keyframes floralDrift { 0%,100% { transform: translateY(0) rotate(0deg); } 33% { transform: translateY(-14px) rotate(6deg); } 66% { transform: translateY(-6px) rotate(-4deg); } }
+    @keyframes floralDrift { 0%,100%{transform:translateY(0) rotate(0deg);} 33%{transform:translateY(-14px) rotate(6deg);} 66%{transform:translateY(-6px) rotate(-4deg);} }
 
-    /* ===== NEW AESTHETIC MASONRY BENTO ===== */
+    /* ── FILTER BAR ── */
+    .gallery-filter-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 1.8rem 0 2.2rem;
+      position: relative;
+      z-index: 2;
+    }
+    .gf-btn {
+      background: rgba(255,143,176,0.07);
+      border: 1px solid rgba(255,143,176,0.22);
+      color: rgba(255,255,255,0.65);
+      padding: 8px 20px;
+      border-radius: 30px;
+      font-family: 'Lato', sans-serif;
+      font-size: 12px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1);
+      position: relative;
+      overflow: hidden;
+    }
+    .gf-btn::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(255,143,176,0.2), rgba(192,132,252,0.15));
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .gf-btn:hover { border-color: rgba(255,143,176,0.6); color: #fff; transform: translateY(-2px); }
+    .gf-btn:hover::before { opacity: 1; }
+    .gf-btn.active {
+      background: linear-gradient(135deg, rgba(255,143,176,0.25), rgba(192,132,252,0.2));
+      border-color: rgba(255,143,176,0.7);
+      color: #fff;
+      box-shadow: 0 4px 20px rgba(255,143,176,0.3), 0 0 0 1px rgba(255,143,176,0.3);
+    }
+
+    /* ── PHOTO COUNT BADGE ── */
+    .gallery-count-badge {
+      text-align: center;
+      font-size: 11px;
+      color: rgba(255,143,176,0.5);
+      letter-spacing: 2px;
+      margin-bottom: 1.5rem;
+      position: relative;
+      z-index: 2;
+      font-family: 'Lato', sans-serif;
+    }
+
+    /* ── BENTO GRID ── */
     .photo-bento {
       display: grid;
       grid-template-columns: repeat(12, 1fr);
       grid-auto-rows: 75px;
       gap: 14px;
-      margin-top: 3rem;
       position: relative;
+      z-index: 1;
     }
 
-    /* Sparkle accents */
     .photo-bento::before, .photo-bento::after {
       content: '✦';
       position: absolute; color: rgba(255,143,176,0.4);
@@ -201,48 +277,117 @@
     .photo-bento::after  { bottom: -22px; right: 8%; animation-delay: 2s; }
     @keyframes sparkleRotate { 0%{transform:rotate(0deg) scale(1)} 50%{transform:rotate(180deg) scale(1.4)} 100%{transform:rotate(360deg) scale(1)} }
 
+    /* ── PHOTO CARD ── */
     .p-card {
-      position: relative; border-radius: 20px; overflow: hidden; cursor: pointer;
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      cursor: pointer;
       background: linear-gradient(135deg,#1a0030,#2a0845);
       border: 1px solid rgba(255,143,176,0.12);
-      transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1), border-color 0.3s, box-shadow 0.3s;
+      /* 3D tilt handled via JS + CSS vars */
+      transform: perspective(800px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) scale(var(--sc,1));
+      transition: transform 0.15s ease, border-color 0.3s, box-shadow 0.3s;
       box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+      will-change: transform;
     }
-    .p-card::before {
-      content: '';
-      position: absolute; inset: 0; z-index: 1;
-      background: linear-gradient(135deg, rgba(255,143,176,0.06), rgba(192,132,252,0.04));
-      opacity: 0; transition: opacity 0.4s; pointer-events: none; border-radius: 20px;
-    }
-    .p-card:hover {
-      transform: scale(1.035) translateY(-5px);
-      border-color: rgba(255,143,176,0.7);
-      box-shadow: 0 16px 48px rgba(255,143,176,0.28), 0 0 0 1px rgba(255,143,176,0.3);
-      z-index: 4;
-    }
-    .p-card:hover::before { opacity: 1; }
-    .p-card img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.55s cubic-bezier(0.25,0.46,0.45,0.94); border-radius: 20px; }
-    .p-card:hover img { transform: scale(1.08); }
 
-    /* Gradient overlay on hover */
+    /* Shimmer loading skeleton */
+    .p-card::after {
+      content: '';
+      position: absolute; inset: 0; z-index: 0;
+      background: linear-gradient(110deg, transparent 35%, rgba(255,200,220,0.07) 50%, transparent 65%);
+      background-size: 200% 100%;
+      animation: shimmer 1.8s linear infinite;
+    }
+    .p-card.loaded::after { display: none; }
+    @keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+
+    /* Inner glow on hover */
+    .p-glow {
+      position: absolute; inset: 0; z-index: 2; pointer-events: none;
+      background: radial-gradient(circle at var(--mx,50%) var(--my,50%), rgba(255,143,176,0.14) 0%, transparent 65%);
+      opacity: 0; transition: opacity 0.3s; border-radius: 20px;
+    }
+    .p-card:hover .p-glow { opacity: 1; }
+
+    .p-card img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94);
+      border-radius: 20px;
+      position: relative; z-index: 1;
+    }
+    .p-card:hover img { transform: scale(1.06); }
+
+    /* Gradient overlay */
     .p-overlay {
-      position: absolute; inset: 0; z-index: 2;
-      background: linear-gradient(to top, rgba(13,0,20,0.85) 0%, rgba(13,0,20,0.2) 50%, transparent 100%);
+      position: absolute; inset: 0; z-index: 3;
+      background: linear-gradient(to top, rgba(13,0,20,0.92) 0%, rgba(13,0,20,0.3) 45%, transparent 100%);
       opacity: 0; transition: opacity 0.35s;
-      display: flex; align-items: flex-end; padding: 18px;
+      display: flex; flex-direction: column; justify-content: flex-end; padding: 18px 16px;
     }
     .p-card:hover .p-overlay { opacity: 1; }
-    .p-caption { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.88rem; color: #fff; line-height: 1.4; text-shadow: 0 1px 8px rgba(0,0,0,0.8); }
+    .p-caption {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 0.88rem;
+      color: #fff;
+      line-height: 1.4;
+      text-shadow: 0 1px 8px rgba(0,0,0,0.8);
+    }
+    .p-caption-date {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.7rem;
+      color: rgba(255,143,176,0.7);
+      letter-spacing: 1px;
+      margin-top: 3px;
+    }
 
-    /* Placeholder when image missing */
-    .p-placeholder { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; }
+    /* Placeholder */
+    .p-placeholder {
+      width: 100%; height: 100%;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      position: absolute; inset: 0; z-index: 1;
+    }
     .p-placeholder span:first-child { font-size: 2.8rem; }
     .p-placeholder span:last-child { font-size: 0.72rem; color: rgba(255,143,176,0.45); letter-spacing: 1px; font-family: 'Lato', sans-serif; }
-    .p-placeholder { display: none; }
 
     /* Zoom icon */
-    .p-zoom-icon { position: absolute; top: 12px; right: 12px; z-index: 3; width: 32px; height: 32px; background: rgba(255,143,176,0.22); border: 1px solid rgba(255,143,176,0.5); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; opacity: 0; transition: opacity 0.3s, transform 0.3s; backdrop-filter: blur(4px); }
+    .p-zoom-icon {
+      position: absolute; top: 12px; right: 12px; z-index: 4;
+      width: 32px; height: 32px;
+      background: rgba(13,0,20,0.65);
+      border: 1px solid rgba(255,143,176,0.5);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px;
+      opacity: 0; transition: opacity 0.3s, transform 0.3s;
+      backdrop-filter: blur(4px);
+    }
     .p-card:hover .p-zoom-icon { opacity: 1; transform: scale(1.1); }
+
+    /* Favourite heart button */
+    .p-heart-btn {
+      position: absolute; top: 12px; left: 12px; z-index: 4;
+      width: 30px; height: 30px;
+      background: rgba(13,0,20,0.6);
+      border: 1px solid rgba(255,143,176,0.4);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px;
+      opacity: 0; transition: opacity 0.3s, transform 0.25s;
+      cursor: pointer;
+      backdrop-filter: blur(4px);
+    }
+    .p-card:hover .p-heart-btn { opacity: 1; }
+    .p-heart-btn:hover { transform: scale(1.2); background: rgba(255,100,150,0.3); }
+    .p-heart-btn.loved { opacity: 1 !important; }
+    .p-heart-btn.loved span { animation: heartPop 0.4s cubic-bezier(0.34,1.56,0.64,1); }
+    @keyframes heartPop { 0%{transform:scale(1)} 50%{transform:scale(1.6)} 100%{transform:scale(1)} }
 
     /* Corner petals */
     .p-corner-petal { position: absolute; font-size: 1rem; pointer-events: none; z-index: 3; opacity: 0; transition: opacity 0.4s, transform 0.4s; }
@@ -252,9 +397,22 @@
     .p-card:hover .cp-tl { transform: rotate(-32deg) scale(1.25); }
     .p-card:hover .cp-tr { transform: rotate(32deg) scale(1.25); }
 
+    /* Ribbon badge for featured */
+    .p-ribbon {
+      position: absolute; top: 0; left: 0; z-index: 4;
+      background: linear-gradient(135deg, #ff6b9d, #c084fc);
+      color: #fff; font-size: 9px; letter-spacing: 1px;
+      padding: 4px 12px 4px 8px;
+      clip-path: polygon(0 0, 85% 0, 100% 50%, 85% 100%, 0 100%);
+      font-family: 'Lato', sans-serif; font-weight: 700; text-transform: uppercase;
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .p-card:hover .p-ribbon { opacity: 1; }
+    .p-card.featured .p-ribbon { opacity: 0.85; }
+
     /* Number badge */
     .p-num-badge {
-      position: absolute; top: 10px; left: 10px; z-index: 3;
+      position: absolute; bottom: 10px; right: 10px; z-index: 4;
       font-family: 'Playfair Display', serif;
       font-size: 0.7rem; color: rgba(255,143,176,0.8);
       background: rgba(13,0,20,0.65); border: 1px solid rgba(255,143,176,0.3);
@@ -264,38 +422,26 @@
     }
     .p-card:hover .p-num-badge { opacity: 1; }
 
-    /* ===== BENTO SPAN CLASSES ===== */
-    /* Row × Col on a 12-col grid, 75px auto-rows */
-    .p-card.s-feat-l   { grid-column: span 5; grid-row: span 5; }  /* large feature left  */
-    .p-card.s-feat-m   { grid-column: span 4; grid-row: span 4; }  /* medium feature      */
-    .p-card.s-tall     { grid-column: span 3; grid-row: span 5; }  /* tall portrait       */
-    .p-card.s-wide     { grid-column: span 7; grid-row: span 3; }  /* wide landscape      */
-    .p-card.s-sq       { grid-column: span 3; grid-row: span 3; }  /* square              */
-    .p-card.s-med      { grid-column: span 4; grid-row: span 3; }  /* medium              */
-    .p-card.s-sm       { grid-column: span 3; grid-row: span 2; }  /* small               */
-    .p-card.s-xwide    { grid-column: span 9; grid-row: span 3; }  /* extra wide          */
-    .p-card.s-pair     { grid-column: span 6; grid-row: span 4; }  /* pair/duo            */
-    .p-card.s-accent   { grid-column: span 2; grid-row: span 2; }  /* tiny accent         */
+    /* SPAN CLASSES */
+    .p-card.s-feat-l   { grid-column: span 5; grid-row: span 5; }
+    .p-card.s-feat-m   { grid-column: span 4; grid-row: span 4; }
+    .p-card.s-tall     { grid-column: span 3; grid-row: span 5; }
+    .p-card.s-wide     { grid-column: span 7; grid-row: span 3; }
+    .p-card.s-sq       { grid-column: span 3; grid-row: span 3; }
+    .p-card.s-med      { grid-column: span 4; grid-row: span 3; }
+    .p-card.s-sm       { grid-column: span 3; grid-row: span 2; }
+    .p-card.s-xwide    { grid-column: span 9; grid-row: span 3; }
+    .p-card.s-pair     { grid-column: span 6; grid-row: span 4; }
+    .p-card.s-accent   { grid-column: span 2; grid-row: span 2; }
 
-    /* Decorative filler cards */
-    .deco-card {
-      border-radius: 20px; overflow: hidden;
-      display: flex; align-items: center; justify-content: center;
-      pointer-events: none; cursor: default;
-    }
-    .deco-quote {
-      background: linear-gradient(135deg, rgba(255,143,176,0.07), rgba(192,132,252,0.05));
-      border: 1px solid rgba(255,143,176,0.15);
-      flex-direction: column; gap: 8px; padding: 16px;
-    }
-    .deco-emoji-cloud {
-      background: linear-gradient(135deg, rgba(192,132,252,0.07), rgba(255,143,176,0.05));
-      border: 1px solid rgba(192,132,252,0.15);
-    }
-    .deco-sparkle-card {
-      background: radial-gradient(ellipse at center, rgba(255,215,0,0.06), rgba(255,143,176,0.04));
-      border: 1px solid rgba(255,215,0,0.14);
-    }
+    /* Filter hide/show */
+    .p-card.hidden { display: none; }
+
+    /* Deco cards */
+    .deco-card { border-radius: 20px; overflow: hidden; display: flex; align-items: center; justify-content: center; pointer-events: none; cursor: default; }
+    .deco-quote { background: linear-gradient(135deg,rgba(255,143,176,0.07),rgba(192,132,252,0.05)); border: 1px solid rgba(255,143,176,0.15); flex-direction: column; gap: 8px; padding: 16px; }
+    .deco-emoji-cloud { background: linear-gradient(135deg,rgba(192,132,252,0.07),rgba(255,143,176,0.05)); border: 1px solid rgba(192,132,252,0.15); }
+    .deco-sparkle-card { background: radial-gradient(ellipse at center,rgba(255,215,0,0.06),rgba(255,143,176,0.04)); border: 1px solid rgba(255,215,0,0.14); }
     .deco-quote-mark { font-size: 2.2rem; color: rgba(255,143,176,0.22); line-height: 1; font-family: serif; }
     .deco-quote-text { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.78rem; color: rgba(255,143,176,0.9); text-align: center; line-height: 1.55; }
     .deco-emoji-big { font-size: 2.6rem; animation: floatEmoji 3s ease-in-out infinite; }
@@ -307,15 +453,33 @@
     .deco-sparkle-wrap span:nth-child(6){animation-delay:1.5s}
     @keyframes sparkleFloat { 0%,100%{opacity:0.4;transform:scale(1)} 50%{opacity:1;transform:scale(1.2)} }
 
-    /* Floating petals */
+    /* Floating petals overlay */
     .floating-petal { position: absolute; pointer-events: none; z-index: 1; animation: petalFloat linear infinite; opacity: 0; }
     @keyframes petalFloat { 0%{transform:translateY(0) rotate(0deg) scale(1);opacity:0} 10%{opacity:0.7} 80%{opacity:0.5} 100%{transform:translateY(-140px) rotate(var(--rot)) scale(0.5);opacity:0} }
 
+    /* Favourites counter strip */
+    .gallery-loves-strip {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 2rem;
+      position: relative; z-index: 2;
+      font-family: 'Lato', sans-serif;
+      font-size: 13px;
+      color: rgba(255,143,176,0.7);
+      opacity: 0; transition: opacity 0.5s;
+    }
+    .gallery-loves-strip.visible { opacity: 1; }
+    .loves-count { font-weight: 700; color: var(--pink); }
+
     /* LIGHTBOX */
-    .lightbox { position: fixed; inset: 0; z-index: 999990; background: rgba(0,0,0,0.94); backdrop-filter: blur(16px); display: none; align-items: center; justify-content: center; padding: 2rem; }
-    .lightbox.open { display: flex; }
+    .lightbox { position: fixed; inset: 0; z-index: 999990; background: rgba(0,0,0,0.96); backdrop-filter: blur(20px); display: none; align-items: center; justify-content: center; padding: 2rem; }
+    .lightbox.open { display: flex; animation: lbFadeIn 0.3s ease; }
+    @keyframes lbFadeIn { from{opacity:0} to{opacity:1} }
     .lightbox-inner { position: relative; max-width: 90vw; max-height: 90vh; }
-    .lightbox img { max-width: 80vw; max-height: 80vh; border-radius: 18px; box-shadow: 0 0 80px rgba(255,143,176,0.35), 0 20px 60px rgba(0,0,0,0.8); display: block; }
+    .lightbox img { max-width: 80vw; max-height: 80vh; border-radius: 18px; box-shadow: 0 0 80px rgba(255,143,176,0.35), 0 20px 60px rgba(0,0,0,0.8); display: block; animation: lbImgZoom 0.35s cubic-bezier(0.34,1.56,0.64,1); }
+    @keyframes lbImgZoom { from{transform:scale(0.88);opacity:0} to{transform:scale(1);opacity:1} }
     .lightbox-caption { text-align: center; margin-top: 16px; font-family: 'Playfair Display', serif; font-style: italic; color: rgba(255,255,255,0.8); font-size: 1rem; }
     .lb-close { position: absolute; top: -16px; right: -16px; width: 38px; height: 38px; background: rgba(255,143,176,0.2); border: 1px solid rgba(255,143,176,0.5); border-radius: 50%; color: #fff; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s; z-index: 2; }
     .lb-close:hover { background: rgba(255,143,176,0.4); }
@@ -324,17 +488,19 @@
     .lb-prev { right: calc(100% + 12px); }
     .lb-next { left: calc(100% + 12px); }
     .lb-counter { position: absolute; bottom: -36px; left: 50%; transform: translateX(-50%); font-size: 11px; color: rgba(255,143,176,0.6); letter-spacing: 2px; }
+    /* Swipe hint in lightbox */
+    .lb-swipe-hint { position: absolute; bottom: -54px; left: 50%; transform: translateX(-50%); font-size: 10px; color: rgba(255,255,255,0.25); letter-spacing: 1px; white-space: nowrap; }
 
-    /* ===== STAR MAP ===== */
+    /* ── STAR MAP ── */
     .starmap-section { text-align: center; padding: 6rem 2rem; max-width: 900px; margin: 0 auto; }
-    .starmap-wrap { position: relative; margin: 2.5rem auto 0; max-width: 700px; border-radius: 24px; overflow: hidden; border: 1px solid rgba(255,143,176,0.25); box-shadow: 0 0 60px rgba(192,132,252,0.1), 0 20px 60px rgba(0,0,0,0.5); }
+    .starmap-wrap { position: relative; margin: 2.5rem auto 0; max-width: 700px; border-radius: 24px; overflow: hidden; border: 1px solid rgba(255,143,176,0.25); box-shadow: 0 0 60px rgba(192,132,252,0.1),0 20px 60px rgba(0,0,0,0.5); }
     #starMapCanvas { display: block; width: 100%; }
     .starmap-label { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1rem; color: rgba(255,255,255,0.6); margin-top: 1.2rem; line-height: 1.7; }
 
-    /* ===== MOOD RING ===== */
+    /* MOOD RING */
     .moodring-section { text-align: center; padding: 6rem 2rem; max-width: 700px; margin: 0 auto; }
     .mood-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; margin-top: 2rem; }
-    .mood-btn { background: var(--card-bg); border: 1px solid rgba(255,143,176,0.2); border-radius: 20px; padding: 1.2rem 0.8rem; cursor: pointer; transition: transform 0.3s, border-color 0.3s, background 0.3s; font-family: 'Lato', sans-serif; }
+    .mood-btn { background: var(--card-bg); border: 1px solid rgba(255,143,176,0.2); border-radius: 20px; padding: 1.2rem 0.8rem; cursor: pointer; transition: transform 0.3s,border-color 0.3s,background 0.3s; font-family: 'Lato', sans-serif; }
     .mood-btn:hover { transform: translateY(-4px) scale(1.04); border-color: var(--pink); }
     .mood-btn.selected { border-color: var(--pink); background: rgba(255,143,176,0.15); }
     .mood-btn .mb-emoji { font-size: 2rem; display: block; margin-bottom: 6px; }
@@ -377,12 +543,12 @@
     .quiz-pip { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,143,176,0.2); transition: background 0.3s; }
     .quiz-pip.done { background: var(--pink); }
 
-    /* WISH SECTION */
+    /* WISH */
     .wish-section { text-align: center; }
     .big-wish { font-family: 'Playfair Display', serif; font-size: clamp(1.5rem,4vw,2.5rem); color: var(--pink); margin: 2rem 0; line-height: 1.6; font-style: italic; }
     .cake-wrap { display: flex; justify-content: center; margin: 3rem 0; }
     .cake-svg { width: 160px; height: auto; }
-    .firework-btn { background: linear-gradient(135deg,#ff6b9d,#c084fc); border: none; border-radius: 50px; padding: 14px 36px; color: white; font-size: 1rem; cursor: pointer; margin-top: 2.5rem; letter-spacing: 1px; font-weight: bold; box-shadow: 0 4px 15px rgba(255,107,157,0.4); transition: transform 0.2s, box-shadow 0.2s; }
+    .firework-btn { background: linear-gradient(135deg,#ff6b9d,#c084fc); border: none; border-radius: 50px; padding: 14px 36px; color: white; font-size: 1rem; cursor: pointer; margin-top: 2.5rem; letter-spacing: 1px; font-weight: bold; box-shadow: 0 4px 15px rgba(255,107,157,0.4); transition: transform 0.2s,box-shadow 0.2s; }
     .firework-btn:hover { transform: scale(1.05); box-shadow: 0 6px 20px rgba(255,107,157,0.6); }
 
     /* PROMISE */
@@ -393,7 +559,7 @@
 
     /* VIDEO */
     .video-section { text-align: center; padding: 6rem 2rem; max-width: 800px; margin: 0 auto; }
-    .video-frame-wrap { position: relative; margin-top: 2.5rem; border-radius: 24px; overflow: hidden; background: var(--deep); border: 1px solid rgba(255,143,176,0.3); box-shadow: 0 0 60px rgba(255,143,176,0.15), 0 20px 60px rgba(0,0,0,0.6); }
+    .video-frame-wrap { position: relative; margin-top: 2.5rem; border-radius: 24px; overflow: hidden; background: var(--deep); border: 1px solid rgba(255,143,176,0.3); box-shadow: 0 0 60px rgba(255,143,176,0.15),0 20px 60px rgba(0,0,0,0.6); }
     .video-frame-wrap video { width: 100%; display: block; border-radius: 24px; max-height: 500px; background: var(--deep); }
     .video-frame-wrap::before { content: ''; position: absolute; top: 10px; left: 10px; width: 40px; height: 40px; z-index: 2; pointer-events: none; border-top: 2px solid var(--pink); border-left: 2px solid var(--pink); border-radius: 6px 0 0 0; }
     .video-frame-wrap::after { content: ''; position: absolute; bottom: 10px; right: 10px; width: 40px; height: 40px; z-index: 2; pointer-events: none; border-bottom: 2px solid var(--purple); border-right: 2px solid var(--purple); border-radius: 0 0 6px 0; }
@@ -409,7 +575,7 @@
     .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
     /* SCROLL REVEAL */
-    .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease, transform 0.8s ease; }
+    .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease,transform 0.8s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
     /* RESPONSIVE */
@@ -428,7 +594,7 @@
     }
     @media (max-width: 600px) {
       .timeline::before { left: 20px; }
-      .tl-item, .tl-item:nth-child(even) { flex-direction: column; align-items: flex-start; padding-left: 40px; }
+      .tl-item,.tl-item:nth-child(even) { flex-direction: column; align-items: flex-start; padding-left: 40px; }
       .tl-dot { position: absolute; left: 13px; }
       .letter-card { padding: 2rem 1.5rem; }
       .quiz-options { grid-template-columns: 1fr; }
@@ -445,6 +611,8 @@
       .p-card.s-pair    { grid-column: span 4; grid-row: span 3; }
       .p-card.s-accent  { display: none; }
       .deco-card        { display: none; }
+      .gallery-filter-bar { gap: 7px; }
+      .gf-btn { padding: 6px 14px; font-size: 10px; }
     }
     @media screen and (max-width: 480px) {
       .lock-title { font-size: 2.2rem !important; }
@@ -474,7 +642,6 @@
         <div class="music-artist" id="musicArtist">Miki Matsubara</div>
       </div>
       <select class="music-select" id="musicSelect">
-        
         <option value="Miki Matsubara - Stay With Me (Lyrics).mp3" data-title="Stay With Me" data-artist="Miki Matsubara">Stay With Me</option>
         <option value="Takut -idgitaf (lirik lagu).mp3" data-title="Takut" data-artist="idgitaf">Takut</option>
         <option value="Meghan Trainor - Just A Friend To You (Lyrics).mp3" data-title="Just A Friend To You" data-artist="Meghan Trainor">Just A Friend To You</option>
@@ -497,6 +664,7 @@
       <img src="" id="lbImg" alt="">
       <div class="lightbox-caption" id="lbCaption"></div>
       <div class="lb-counter" id="lbCounter"></div>
+      <div class="lb-swipe-hint">← swipe atau tekan ← → untuk navigasi →</div>
     </div>
   </div>
 
@@ -606,6 +774,12 @@
 
     <!-- ===== GALERI FOTO ===== -->
     <section class="gallery-section reveal">
+      <!-- Ambient blobs -->
+      <div class="gallery-blob blob-1"></div>
+      <div class="gallery-blob blob-2"></div>
+      <div class="gallery-blob blob-3"></div>
+
+      <!-- SVG florals -->
       <svg class="gallery-floral fl-tl" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" fill="none">
         <circle cx="100" cy="100" r="30" fill="#ff8fb0"/>
         <ellipse cx="100" cy="60" rx="18" ry="28" fill="#ffcce0" transform="rotate(0 100 100)"/>
@@ -632,11 +806,30 @@
       <div class="section-label">Galeri Kenangan</div>
       <h2 class="section-title" style="text-align:center;">Momen Cantik Tentangmu 🌸</h2>
       <div class="divider"></div>
-      <p style="color:rgba(255,255,255,0.45); font-size:0.9rem; text-align:center; margin-top:0.5rem;">Klik foto untuk memperbesar ✨ <code style="color:rgba(255,143,176,0.7);font-size:0.85rem">foto cantik kamu kak!!</code></p>
+      <p style="color:rgba(255,255,255,0.45);font-size:0.9rem;text-align:center;margin-top:0.5rem;">
+        Klik foto untuk memperbesar ✨ &nbsp;|&nbsp; <span style="color:rgba(255,143,176,0.6)">hover untuk efek 3D</span> &nbsp;|&nbsp; <span style="color:rgba(192,132,252,0.6)">❤️ untuk simpan favoritmu</span>
+      </p>
+
+      <!-- FILTER BAR -->
+      <div class="gallery-filter-bar" id="galleryFilterBar">
+        <button class="gf-btn active" data-filter="all">✦ Semua</button>
+        <button class="gf-btn" data-filter="cantik">🌸 Cantik</button>
+        <button class="gf-btn" data-filter="lucu">🤭 Lucu</button>
+        <button class="gf-btn" data-filter="bersama">💕 Bersama</button>
+        <button class="gf-btn" data-filter="favorit">❤️ Favorit</button>
+      </div>
+
+      <!-- COUNT BADGE -->
+      <div class="gallery-count-badge" id="galleryCountBadge">14 foto kenangan indah</div>
 
       <div style="position:relative;">
         <div class="photo-bento" id="photoBento"></div>
         <div id="floatingPetals"></div>
+      </div>
+
+      <!-- LOVES STRIP -->
+      <div class="gallery-loves-strip" id="galleryLovesStrip">
+        ❤️ Kamu sudah menyukai <span class="loves-count" id="lovesCount">0</span> foto
       </div>
     </section>
 
@@ -645,7 +838,7 @@
       <div class="section-label">Peta Bintang Kita</div>
       <h2 class="section-title" style="text-align:center;">Bintang yang Mempertemukan Kita ⭐</h2>
       <div class="divider"></div>
-      <p style="color:rgba(255,255,255,0.55); font-size:0.95rem; line-height:1.7; max-width:500px; margin:0 auto;">Di langit malam yang sama, ada dua bintang yang selalu bersinar untuk satu sama lain. Bintang kamu dan bintang aku.</p>
+      <p style="color:rgba(255,255,255,0.55);font-size:0.95rem;line-height:1.7;max-width:500px;margin:0 auto;">Di langit malam yang sama, ada dua bintang yang selalu bersinar untuk satu sama lain. Bintang kamu dan bintang aku.</p>
       <div class="starmap-wrap">
         <canvas id="starMapCanvas" width="700" height="380"></canvas>
       </div>
@@ -657,7 +850,7 @@
       <div class="section-label">Spesial untuk kamu</div>
       <h2 class="section-title" style="text-align:center;">Lagi ngerasa gimana hari ini? 🌈</h2>
       <div class="divider"></div>
-      <p style="color:rgba(255,255,255,0.55); font-size:0.95rem;">Pilih mood kamu sekarang dan biar aku kasih pesan spesial untukmu! 💌</p>
+      <p style="color:rgba(255,255,255,0.55);font-size:0.95rem;">Pilih mood kamu sekarang dan biar aku kasih pesan spesial untukmu! 💌</p>
       <div class="mood-grid" id="moodGrid"></div>
       <div class="mood-result" id="moodResult">
         <div class="mr-emoji" id="mrEmoji">💖</div>
@@ -672,7 +865,7 @@
       <div class="section-label">Kejutan spesial</div>
       <h2 class="section-title" style="text-align:center;">Ada pesan rahasia untukmu 💌</h2>
       <div class="divider"></div>
-      <p style="color:rgba(255,255,255,0.55); font-size:0.95rem;">Klik amplop di bawah untuk membuka pesan tersembunyi...</p>
+      <p style="color:rgba(255,255,255,0.55);font-size:0.95rem;">Klik amplop di bawah untuk membuka pesan tersembunyi...</p>
       <div class="secret-envelope" id="secretEnvelope">💌</div>
       <p class="secret-hint">✨ klik untuk membuka ✨</p>
       <div class="secret-message-box" id="secretMsgBox">
@@ -687,7 +880,7 @@
       <div class="section-label">Mini Quiz</div>
       <h2 class="section-title" style="text-align:center;">Seberapa kenal kamu aku? 🤭</h2>
       <div class="divider"></div>
-      <p style="color:rgba(255,255,255,0.55); font-size:0.95rem; margin-bottom:0.5rem;">Jawab 3 pertanyaan iseng ini ya!</p>
+      <p style="color:rgba(255,255,255,0.55);font-size:0.95rem;margin-bottom:0.5rem;">Jawab 3 pertanyaan iseng ini ya!</p>
       <div class="quiz-card" id="quizCard">
         <div class="quiz-progress" id="quizProgress"></div>
         <div class="quiz-question" id="quizQuestion"></div>
@@ -698,7 +891,7 @@
       </div>
     </section>
 
-    <!-- WISH SECTION -->
+    <!-- WISH -->
     <section class="wish-section reveal">
       <div class="section-label">Doa & harapan aku kepada kak Marcia Rianda</div>
       <h2 class="section-title">Untukmu di usia 21</h2>
@@ -721,7 +914,7 @@
         </svg>
       </div>
       <p class="big-wish">"Semoga usiamu yang ke-21 ini menjadi awal dari babak terindah dalam hidupmu."</p>
-      <p style="color:rgba(255,255,255,0.6); line-height:1.9; max-width:600px; margin: 0 auto; font-size:1.05rem;">
+      <p style="color:rgba(255,255,255,0.6);line-height:1.9;max-width:600px;margin:0 auto;font-size:1.05rem;">
         Semoga mimpimu tercapai satu per satu. Semoga kamu selalu sehat, bahagia, dan dikelilingi orang-orang yang benar-benar mencintaimu. Dan semoga aku bisa terus ada disisimu untuk melihat setiap mimpi yang kamu impikan tercapai.
       </p>
       <button class="firework-btn" id="fwBtn">Ledakkan kembang api! 🎆</button>
@@ -746,7 +939,7 @@
       <div class="section-label">Pesan video untukmu</div>
       <h2 class="section-title" style="text-align:center;">Khusus untuk Marcia 🎥</h2>
       <div class="divider"></div>
-      <p style="color:rgba(255,255,255,0.55); font-size:0.95rem; line-height:1.7;">Aku merekam ini khusus untukmu. Tonton sampai habis ya, ada sesuatu yang ingin aku sampaikan langsung dari hati...</p>
+      <p style="color:rgba(255,255,255,0.55);font-size:0.95rem;line-height:1.7;">Aku merekam ini khusus untukmu. Tonton sampai habis ya, ada sesuatu yang ingin aku sampaikan langsung dari hati...</p>
       <div class="video-frame-wrap">
         <video controls playsinline>
           <source src="video.mp4" type="video/mp4">
@@ -760,59 +953,46 @@
     <div class="final-section" id="finalSection">
       <p class="big">Selamat Ulang Tahun,<br>Sayangku Marcia 🌹</p>
       <div class="divider"></div>
-      <p style="color:rgba(255,255,255,0.65); font-size:1.1rem; line-height:1.9; max-width:500px; margin:0 auto;">
+      <p style="color:rgba(255,255,255,0.65);font-size:1.1rem;line-height:1.9;max-width:500px;margin:0 auto;">
         Dua bulan bersama kamu terasa seperti sebuah keajaiban kecil yang terus tumbuh setiap harinya. Selamat memasuki usia 21 — tahun yang penuh harapan, penuh cinta, dan penuh kamu.
       </p>
       <p class="signature">— Selalu untukmu, dengan cinta ❤️</p>
     </div>
 
-  </div>
+  </div><!-- /site -->
 
   <script>
   // ==========================================================================
-  // PHOTO DATA — foto 9 & 10 pakai s-tall seperti foto 4 & 5
-  // Layout bento 12 kolom aesthetic:
-  //   Row 1: foto1(feat-l=5col) | foto2(feat-m=4col) | DECO-emoji(sm=3col)
-  //   Row 2: foto3(tall=3col, rows=5) | foto4(tall=3col, rows=5) | foto5(tall=3col, rows=5) | DECO-quote(sq=3col)
-  //   Row 3: foto6(wide=7col) | DECO-sparkle(sq=3col) | isi sisa
-  //   Row 4: foto7(med=4col) | foto8(sq=3col) | foto9(tall=3col,rows=5) | foto10(tall=3col,rows=5) — tapi 3+3+3+3=12 ✓
-  //   Row 5: foto11(sq=3col) | foto12(sq=3col) | (sisanya ditutup tall foto9&10)
-  //   Row 6: foto13(pair=6col) | foto14(feat-m=4col) | DECO(sm=2col)
+  // PHOTO DATA — dengan tag kategori untuk filter
   // ==========================================================================
-
-  /*
-    LAYOUT PLAN (12-col, 75px rows):
-    [foto1: s-feat-l 5c×5r] [foto2: s-feat-m 4c×4r] [deco-emoji 3c×2r]
-                                                       [deco-sparkle 3c×2r]
-    [foto3: s-tall 3c×5r] [foto4: s-tall 3c×5r] [foto5: s-tall 3c×5r] [deco-quote 3c×2r]
-                                                                          [foto6: s-sq 3c×3r]  <- wait recalc
-    ... We'll do it via explicit data and let CSS auto-flow do the work
-  */
-
   const photoData = [
-    { src: 'foto1.jpg',  caption: 'Senyum favoritku 🥰',              emoji: '🥰', span: 's-feat-l' },
-    { src: 'foto2.jpg',  caption: 'Saat kamu sangat menggemaskan ✨',  emoji: '✨', span: 's-feat-m' },
-    { src: 'foto3.jpg',  caption: 'Kecantikkanmu 🌸',                  emoji: '🌸', span: 's-tall'  },
-    { src: 'foto4.jpg',  caption: 'Cantik banget kak 💕',              emoji: '💕', span: 's-tall'  },
-    { src: 'foto5.jpg',  caption: 'My favorite person 🌹',             emoji: '🌹', span: 's-tall'  },
-    { src: 'foto6.jpg',  caption: 'Kamu dan senyummu 💖',              emoji: '💖', span: 's-wide'  },
-    { src: 'foto7.jpg',  caption: 'Bersama Keluarga Kecilnya ⭐',      emoji: '⭐', span: 's-med'   },
-    { src: 'foto8.jpg',  caption: 'Hari yang indah 🌼',                emoji: '🌼', span: 's-sq'    },
-    { src: 'foto9.jpg',  caption: 'Momen yang aku rindukan 💫',        emoji: '💫', span: 's-tall'  },
-    { src: 'foto10.jpg', caption: 'Kamu yang aku sayang 🌷',           emoji: '🌷', span: 's-tall'  },
-    { src: 'foto11.jpg', caption: 'Ekspresi lucumu 🤭',                emoji: '🤭', span: 's-sq'    },
-    { src: 'foto12.jpg', caption: 'Gadis favoritku 👑',                emoji: '👑', span: 's-sq'    },
-    { src: 'foto13.jpg', caption: 'Cantik seperti bintang ⭐',          emoji: '⭐', span: 's-pair'  },
-    { src: 'foto14.jpg', caption: 'Kamu, selamanya 🫶',                emoji: '🫶', span: 's-feat-m'},
+    { src:'foto1.jpg',  caption:'Senyum favoritku 🥰',             emoji:'🥰', span:'s-feat-l', tags:['cantik','favorit'], featured:true,  date:'Mei 2026' },
+    { src:'foto2.jpg',  caption:'Saat kamu sangat menggemaskan ✨', emoji:'✨', span:'s-feat-m', tags:['lucu','cantik'],            date:'Mei 2026' },
+    { src:'foto3.jpg',  caption:'Kecantikkanmu 🌸',                 emoji:'🌸', span:'s-tall',   tags:['cantik'],                   date:'Mei 2026' },
+    { src:'foto4.jpg',  caption:'Cantik banget kak 💕',             emoji:'💕', span:'s-tall',   tags:['cantik','favorit'],         date:'Mei 2026' },
+    { src:'foto5.jpg',  caption:'My favorite person 🌹',            emoji:'🌹', span:'s-tall',   tags:['cantik','favorit'],         date:'Mei 2026' },
+    { src:'foto6.jpg',  caption:'Kamu dan senyummu 💖',             emoji:'💖', span:'s-wide',   tags:['cantik'],                   date:'Mei 2026' },
+    { src:'foto7.jpg',  caption:'Bersama Keluarga Kecilnya ⭐',     emoji:'⭐', span:'s-med',    tags:['bersama'],                  date:'Mei 2026' },
+    { src:'foto8.jpg',  caption:'Hari yang indah 🌼',               emoji:'🌼', span:'s-sq',     tags:['cantik','lucu'],            date:'Mei 2026' },
+    { src:'foto9.jpg',  caption:'Momen yang aku rindukan 💫',       emoji:'💫', span:'s-tall',   tags:['cantik','bersama'],         date:'Mei 2026' },
+    { src:'foto10.jpg', caption:'Kamu yang aku sayang 🌷',          emoji:'🌷', span:'s-tall',   tags:['cantik'],                   date:'Mei 2026' },
+    { src:'foto11.jpg', caption:'Ekspresi lucumu 🤭',               emoji:'🤭', span:'s-sq',     tags:['lucu'],                     date:'Mei 2026' },
+    { src:'foto12.jpg', caption:'Gadis favoritku 👑',               emoji:'👑', span:'s-sq',     tags:['cantik','favorit'],         date:'Mei 2026' },
+    { src:'foto13.jpg', caption:'Cantik seperti bintang ⭐',         emoji:'⭐', span:'s-pair',   tags:['cantik','bersama'],         date:'Mei 2026' },
+    { src:'foto14.jpg', caption:'Kamu, selamanya 🫶',               emoji:'🫶', span:'s-feat-m', tags:['cantik','favorit'],         date:'Mei 2026' },
   ];
 
-  // Deco cards placed in-between photos
   const decoInserts = [
-    { afterIdx: 1,  type:'emoji',   span:'s-sm',    emoji:'💖' },
-    { afterIdx: 5,  type:'sparkle', span:'s-sq',    emojis:['✨','🌸','💕','⭐','🌺','💫'] },
-    { afterIdx: 7,  type:'quote',   span:'s-sq',    content:'"Kamu cantik tanpa kamu sadari" 🌸' },
-    { afterIdx: 11, type:'emoji',   span:'s-sm',    emoji:'🎀' },
+    { afterIdx:1,  type:'emoji',   span:'s-sm',  emoji:'💖' },
+    { afterIdx:5,  type:'sparkle', span:'s-sq',  emojis:['✨','🌸','💕','⭐','🌺','💫'] },
+    { afterIdx:7,  type:'quote',   span:'s-sq',  content:'"Kamu cantik tanpa kamu sadari" 🌸' },
+    { afterIdx:11, type:'emoji',   span:'s-sm',  emoji:'🎀' },
   ];
+
+  // ==========================================================================
+  // LOVED PHOTOS SET (in-memory)
+  // ==========================================================================
+  const lovedPhotos = new Set();
 
   // ==========================================================================
   // BACKGROUNDS
@@ -820,10 +1000,10 @@
   function initBackgrounds(containerId, starCount) {
     const bg = document.getElementById(containerId);
     if (!bg) return;
-    for(let i=0;i<starCount;i++){
+    for (let i = 0; i < starCount; i++) {
       const s = document.createElement('div');
       s.className = 'star';
-      const size = Math.random()*2.5+0.5;
+      const size = Math.random() * 2.5 + 0.5;
       s.style.cssText = `width:${size}px;height:${size}px;left:${Math.random()*100}%;top:${Math.random()*100}%;animation-delay:${Math.random()*4}s;animation-duration:${2+Math.random()*3}s;`;
       bg.appendChild(s);
     }
@@ -832,26 +1012,26 @@
   initBackgrounds('lockStars', 60);
 
   const heartsRain = document.getElementById('heartsRain');
-  if(heartsRain){
-    const hSymbols=['♥','❤','💕','✨','🌸'];
-    for(let i=0;i<30;i++){
-      const h=document.createElement('div'); h.className='heart-drop';
-      h.textContent=hSymbols[Math.floor(Math.random()*hSymbols.length)];
-      const dur=5+Math.random()*10;
-      h.style.cssText=`left:${Math.random()*100}%;font-size:${14+Math.random()*16}px;animation-duration:${dur}s;animation-delay:${Math.random()*dur}s;opacity:${0.3+Math.random()*0.5};`;
+  if (heartsRain) {
+    const hSymbols = ['♥','❤','💕','✨','🌸'];
+    for (let i = 0; i < 30; i++) {
+      const h = document.createElement('div'); h.className = 'heart-drop';
+      h.textContent = hSymbols[Math.floor(Math.random()*hSymbols.length)];
+      const dur = 5 + Math.random() * 10;
+      h.style.cssText = `left:${Math.random()*100}%;font-size:${14+Math.random()*16}px;animation-duration:${dur}s;animation-delay:${Math.random()*dur}s;opacity:${0.3+Math.random()*0.5};`;
       heartsRain.appendChild(h);
     }
   }
 
   // ==========================================================================
-  // LOCK SCREEN & COUNTDOWN
+  // LOCK / COUNTDOWN
   // ==========================================================================
-  const targetDate = new Date('2026-06-14T00:00:00');
+  const targetDate = new Date('2026-05-14T00:00:00');
 
   function unlockSite() {
     const lockScreen = document.getElementById('lockScreen');
     const mainSite = document.getElementById('mainSite');
-    if (lockScreen) { lockScreen.style.opacity='0'; lockScreen.style.pointerEvents='none'; setTimeout(()=>{ lockScreen.style.display='none'; },1000); }
+    if (lockScreen) { lockScreen.style.opacity='0'; lockScreen.style.pointerEvents='none'; setTimeout(()=>lockScreen.style.display='none',1000); }
     if (mainSite) {
       mainSite.style.display = 'block';
       setTimeout(()=>{
@@ -865,24 +1045,24 @@
     }
   }
 
-  function checkLockAndCountdown(){
+  function checkLockAndCountdown() {
     const now = new Date();
     const diff = targetDate - now;
-    if(diff <= 0){ unlockSite(); return true; }
-    const days=String(Math.floor(diff/(1000*60*60*24))).padStart(2,'0');
-    const hours=String(Math.floor((diff%(1000*60*60*24))/(1000*60*60))).padStart(2,'0');
-    const minutes=String(Math.floor((diff%(1000*60*60))/(1000*60))).padStart(2,'0');
-    const seconds=String(Math.floor((diff%(1000*60))/1000)).padStart(2,'0');
-    const el=(id,v)=>{ const e=document.getElementById(id); if(e) e.textContent=v; };
+    if (diff <= 0) { unlockSite(); return true; }
+    const days    = String(Math.floor(diff/(1000*60*60*24))).padStart(2,'0');
+    const hours   = String(Math.floor((diff%(1000*60*60*24))/(1000*60*60))).padStart(2,'0');
+    const minutes = String(Math.floor((diff%(1000*60*60))/(1000*60))).padStart(2,'0');
+    const seconds = String(Math.floor((diff%(1000*60))/1000)).padStart(2,'0');
+    const el = (id,v) => { const e=document.getElementById(id); if(e) e.textContent=v; };
     el('lock-d',days); el('lock-h',hours); el('lock-m',minutes); el('lock-s',seconds);
-    el('cd-h',hours); el('cd-m',minutes); el('cd-s',seconds);
+    el('cd-h',hours);  el('cd-m',minutes); el('cd-s',seconds);
     return false;
   }
   const timerInterval = setInterval(()=>{ if(checkLockAndCountdown()) clearInterval(timerInterval); },1000);
   checkLockAndCountdown();
 
   // ==========================================================================
-  // TYPING EFFECT
+  // TYPING
   // ==========================================================================
   const typingTexts = [
     'Hari ini dunia bersyukur kamu lahir. 🌸',
@@ -890,7 +1070,7 @@
     'Semoga hari ini jadi yang terindah buat kamu, Marcia ❤️',
     'Kamu adalah alasan kenapa aku selalu tersenyum setiap hari. 💖'
   ];
-  let typingIndex = 0, charIndex = 0, typingPhase = 'typing';
+  let typingIndex=0, charIndex=0, typingPhase='typing';
 
   function startTyping() {
     const el = document.getElementById('heroTyping');
@@ -898,57 +1078,52 @@
     const cursor = '<span class="typing-cursor"></span>';
     function tick() {
       const current = typingTexts[typingIndex];
-      if (typingPhase === 'typing') {
+      if (typingPhase==='typing') {
         charIndex++;
-        el.innerHTML = current.substring(0, charIndex) + cursor;
-        if (charIndex === current.length) { typingPhase = 'pause'; setTimeout(tick, 3000); }
-        else { setTimeout(tick, 65); }
-      } else if (typingPhase === 'pause') {
-        typingPhase = 'deleting'; setTimeout(tick, 50);
-      } else if (typingPhase === 'deleting') {
+        el.innerHTML = current.substring(0,charIndex)+cursor;
+        if (charIndex===current.length) { typingPhase='pause'; setTimeout(tick,3000); }
+        else setTimeout(tick,65);
+      } else if (typingPhase==='pause') {
+        typingPhase='deleting'; setTimeout(tick,50);
+      } else if (typingPhase==='deleting') {
         charIndex--;
-        el.innerHTML = current.substring(0, charIndex) + cursor;
-        if (charIndex === 0) { typingPhase = 'gap'; typingIndex = (typingIndex + 1) % typingTexts.length; setTimeout(tick, 500); }
-        else { setTimeout(tick, 38); }
-      } else if (typingPhase === 'gap') {
-        typingPhase = 'typing'; setTimeout(tick, 50);
+        el.innerHTML = current.substring(0,charIndex)+cursor;
+        if (charIndex===0) { typingPhase='gap'; typingIndex=(typingIndex+1)%typingTexts.length; setTimeout(tick,500); }
+        else setTimeout(tick,38);
+      } else if (typingPhase==='gap') {
+        typingPhase='typing'; setTimeout(tick,50);
       }
     }
     tick();
   }
 
   // ==========================================================================
-  // AUDIO PLAYER
+  // AUDIO
   // ==========================================================================
-  const audio = document.getElementById('bgAudio');
-  const musicBtn = document.getElementById('musicBtn');
-  const musicSelect = document.getElementById('musicSelect');
-  const musicViz = document.getElementById('musicViz');
-  const musicTitle = document.getElementById('musicTitle');
-  const musicArtist = document.getElementById('musicArtist');
+  const audio=document.getElementById('bgAudio'), musicBtn=document.getElementById('musicBtn');
+  const musicSelect=document.getElementById('musicSelect'), musicViz=document.getElementById('musicViz');
+  const musicTitle=document.getElementById('musicTitle'), musicArtist=document.getElementById('musicArtist');
 
   function updateMusicInfo() {
-    const opt = musicSelect.options[musicSelect.selectedIndex];
-    if(musicTitle) musicTitle.textContent = opt.dataset.title || opt.text;
-    if(musicArtist) musicArtist.textContent = opt.dataset.artist || '';
+    const opt=musicSelect.options[musicSelect.selectedIndex];
+    if(musicTitle) musicTitle.textContent=opt.dataset.title||opt.text;
+    if(musicArtist) musicArtist.textContent=opt.dataset.artist||'';
   }
-
-  if(audio && musicBtn && musicSelect){
-    audio.src = musicSelect.value;
-    function jalankanAudio(){
-      audio.play().then(()=>{ musicBtn.textContent='⏸'; if(musicViz) musicViz.classList.add('active'); }).catch(()=>{ musicBtn.textContent='▶'; });
+  if (audio&&musicBtn&&musicSelect) {
+    audio.src=musicSelect.value;
+    function jalankanAudio() {
+      audio.play().then(()=>{ musicBtn.textContent='⏸'; if(musicViz) musicViz.classList.add('active'); }).catch(()=>musicBtn.textContent='▶');
     }
-    musicBtn.addEventListener('click',()=>{ if(audio.paused){ jalankanAudio(); } else { audio.pause(); musicBtn.textContent='▶'; if(musicViz) musicViz.classList.remove('active'); } });
+    musicBtn.addEventListener('click',()=>{ if(audio.paused) jalankanAudio(); else { audio.pause(); musicBtn.textContent='▶'; if(musicViz) musicViz.classList.remove('active'); } });
     musicSelect.addEventListener('change',function(){ audio.src=this.value; updateMusicInfo(); jalankanAudio(); });
     audio.addEventListener('ended',function(){
       let next=(musicSelect.selectedIndex+1)%musicSelect.options.length;
-      musicSelect.selectedIndex=next; audio.src=musicSelect.value;
-      updateMusicInfo(); setTimeout(jalankanAudio,100);
+      musicSelect.selectedIndex=next; audio.src=musicSelect.value; updateMusicInfo(); setTimeout(jalankanAudio,100);
     });
   }
 
   // ==========================================================================
-  // REASONS GRID
+  // REASONS
   // ==========================================================================
   const reasons=[
     'Senyummu yang bisa langsung memperbaiki hariku yang paling buruk sekalipun',
@@ -1012,43 +1187,39 @@
 
   document.getElementById('fwBtn').addEventListener('click',function(){
     this.textContent='💥 Boom! 🎆';
-    const mx=canvas.width/2, my=canvas.height/2;
+    const mx=canvas.width/2,my=canvas.height/2;
     spawnBurst(mx,my-50); setTimeout(()=>spawnBurst(mx-120,my-120),150);
     setTimeout(()=>spawnBurst(mx+120,my-100),300); setTimeout(()=>spawnBurst(mx-60,my+40),450);
     setTimeout(()=>spawnBurst(mx+60,my+30),600); setTimeout(()=>spawnBurst(mx,my-180),750);
     setTimeout(()=>{ this.textContent='Ledakkan lagi! 🎆'; },3000);
   });
 
-  const obs=new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{ if(e.isIntersecting && e.target.id==='finalSection'){ const mx=canvas.width/2; spawnBurst(mx-100,200); setTimeout(()=>spawnBurst(mx+100,150),300); setTimeout(()=>spawnBurst(mx,250),600); obs.unobserve(e.target); } });
+  const finalObs=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting&&e.target.id==='finalSection'){ const mx=canvas.width/2; spawnBurst(mx-100,200); setTimeout(()=>spawnBurst(mx+100,150),300); setTimeout(()=>spawnBurst(mx,250),600); finalObs.unobserve(e.target); } });
   },{threshold:0.2});
   const finalSec=document.getElementById('finalSection');
-  if(finalSec) obs.observe(finalSec);
+  if(finalSec) finalObs.observe(finalSec);
 
   // ==========================================================================
   // PETAL CURSOR TRAIL
   // ==========================================================================
-  const petals = ['🌸','🌺','✨','💕','🌷','🌼','💗'];
-  let lastPetal = 0;
-  document.addEventListener('mousemove', (e) => {
-    const now = Date.now();
-    if (now - lastPetal < 120) return;
-    lastPetal = now;
-    const p = document.createElement('div');
-    p.className = 'petal-trail';
-    p.textContent = petals[Math.floor(Math.random()*petals.length)];
-    p.style.left = e.clientX + 'px';
-    p.style.top = e.clientY + 'px';
-    const px = (Math.random()-0.5)*80, py = -40-Math.random()*60, pr = (Math.random()-0.5)*180;
-    p.style.setProperty('--px',`${px}px`);
-    p.style.setProperty('--py',`${py}px`);
-    p.style.setProperty('--pr',`${pr}deg`);
+  const petalSyms=['🌸','🌺','✨','💕','🌷','🌼','💗'];
+  let lastPetal=0;
+  document.addEventListener('mousemove',(e)=>{
+    const now=Date.now();
+    if(now-lastPetal<120) return;
+    lastPetal=now;
+    const p=document.createElement('div'); p.className='petal-trail';
+    p.textContent=petalSyms[Math.floor(Math.random()*petalSyms.length)];
+    p.style.left=e.clientX+'px'; p.style.top=e.clientY+'px';
+    const px=(Math.random()-0.5)*80,py=-40-Math.random()*60,pr=(Math.random()-0.5)*180;
+    p.style.setProperty('--px',`${px}px`); p.style.setProperty('--py',`${py}px`); p.style.setProperty('--pr',`${pr}deg`);
     document.body.appendChild(p);
     setTimeout(()=>p.remove(),1200);
   });
 
   // ==========================================================================
-  // CLICK HEART (LOCK)
+  // CLICK HEARTS ON LOCK
   // ==========================================================================
   document.getElementById('lockScreen').addEventListener('click',function(e){
     for(let i=0;i<5;i++) createHeart(e.clientX,e.clientY);
@@ -1056,7 +1227,7 @@
   function createHeart(x,y){
     const heart=document.createElement('div'); heart.className='click-heart'; heart.innerHTML='❤️';
     heart.style.left=x+'px'; heart.style.top=y+'px';
-    const vx=(Math.random()-0.5)*100, vy=(Math.random()*-150)-50, rot=(Math.random()-0.5)*45;
+    const vx=(Math.random()-0.5)*100,vy=(Math.random()*-150)-50,rot=(Math.random()-0.5)*45;
     heart.style.setProperty('--target-x',`${vx}px`); heart.style.setProperty('--target-y',`${vy}px`); heart.style.setProperty('--target-rot',`${rot}deg`);
     heart.style.fontSize=(Math.random()*15+10)+'px';
     document.getElementById('lockScreen').appendChild(heart);
@@ -1066,15 +1237,16 @@
   // ==========================================================================
   // TOAST
   // ==========================================================================
-  function showToast(msg, dur=2500){
+  function showToast(msg,dur=2500){
     const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show');
     setTimeout(()=>t.classList.remove('show'),dur);
   }
 
   // ==========================================================================
-  // PESAN RAHASIA
+  // SECRET
   // ==========================================================================
-  const envelope=document.getElementById('secretEnvelope'); const msgBox=document.getElementById('secretMsgBox'); let opened=false;
+  const envelope=document.getElementById('secretEnvelope'),msgBox=document.getElementById('secretMsgBox');
+  let opened=false;
   if(envelope&&msgBox){
     envelope.addEventListener('click',()=>{
       opened=!opened;
@@ -1091,230 +1263,309 @@
     { q:'Apa yang paling aku suka dari kamu?', opts:['Semuanya, tapi terutama senyummu','Hanya penampilanmu','Tidak ada yang spesial','Cara kamu memasak'], correct:0, feedback:'Yap! Semuanya, tapi senyummu yang paling bikin aku jatuh cinta 🥰' },
     { q:'Berapa bulan kita sudah saling mengenal?', opts:['1 bulan','3 bulan','2 bulan 🌸','6 bulan'], correct:2, feedback:'Tepat! Sudah 2 bulan dan aku nggak menyesal sama sekali 💕' }
   ];
-  let qIdx=0, score=0;
+  let qIdx=0,score=0;
   function renderQuiz(){
     const q=quizData[qIdx];
-    const prog=document.getElementById('quizProgress'), questionEl=document.getElementById('quizQuestion');
-    const optsEl=document.getElementById('quizOptions'), resultEl=document.getElementById('quizResult');
-    const nextBtn=document.getElementById('quizNext'), scoreWrap=document.getElementById('quizScore');
+    const prog=document.getElementById('quizProgress'),questionEl=document.getElementById('quizQuestion');
+    const optsEl=document.getElementById('quizOptions'),resultEl=document.getElementById('quizResult');
+    const nextBtn=document.getElementById('quizNext'),scoreWrap=document.getElementById('quizScore');
     prog.innerHTML=quizData.map((_,i)=>`<div class="quiz-pip ${i<qIdx?'done':''}"></div>`).join('');
     questionEl.textContent=q.q; optsEl.innerHTML=''; resultEl.style.display='none'; nextBtn.style.display='none'; scoreWrap.style.display='none';
     q.opts.forEach((opt,i)=>{
       const btn=document.createElement('button'); btn.className='quiz-opt'; btn.textContent=opt;
       btn.addEventListener('click',()=>{
         document.querySelectorAll('.quiz-opt').forEach(b=>{ b.classList.toggle('correct',parseInt(b.dataset.idx)===q.correct); b.classList.toggle('wrong',parseInt(b.dataset.idx)!==q.correct); b.style.pointerEvents='none'; });
-        if(i===q.correct){ score++; showToast('✅ Jawaban benar!'); } else { showToast('❌ Jawaban salah, tapi aku masih sayang kamu!'); }
+        if(i===q.correct){ score++; showToast('✅ Jawaban benar!'); } else showToast('❌ Jawaban salah, tapi aku masih sayang kamu!');
         resultEl.textContent=q.feedback; resultEl.style.display='block'; nextBtn.style.display='inline-block';
         nextBtn.textContent=qIdx<quizData.length-1?'Pertanyaan berikutnya →':'Lihat hasil 🎉';
       });
       btn.dataset.idx=i; optsEl.appendChild(btn);
     });
-    nextBtn.onclick=()=>{ qIdx++; if(qIdx<quizData.length){ renderQuiz(); } else { showScore(); } };
+    nextBtn.onclick=()=>{ qIdx++; if(qIdx<quizData.length) renderQuiz(); else showScore(); };
   }
   function showScore(){
-    document.getElementById('quizQuestion').style.display='none'; document.getElementById('quizOptions').style.display='none';
-    document.getElementById('quizResult').style.display='none'; document.getElementById('quizNext').style.display='none';
-    const msgs=[['0/3','Hehe, masih perlu banyak kenalan ya! Tapi aku tetap suka kamu 😆'],['1/3','Lumayan! Kita perlu lebih sering ngobrol nih 🤭'],['2/3','Wah hampir sempurna! Kamu sudah kenal aku cukup baik 💕'],['3/3','Sempurna! Karena kamu benar 3 kali, jadi pacarku aja yaaa 💖✨']];
+    document.getElementById('quizQuestion').style.display='none';
+    document.getElementById('quizOptions').style.display='none';
+    document.getElementById('quizResult').style.display='none';
+    document.getElementById('quizNext').style.display='none';
+    const msgs=[
+      'Hehe, masih perlu banyak kenalan ya! Tapi aku tetap suka kamu 😆',
+      'Lumayan! Kita perlu lebih sering ngobrol nih 🤭',
+      'Wah hampir sempurna! Kamu sudah kenal aku cukup baik 💕',
+      'Sempurna! Karena kamu benar 3 kali, jadi pacarku aja yaaa 💖✨'
+    ];
     const scoreWrap=document.getElementById('quizScore');
     scoreWrap.style.display='block';
-    scoreWrap.innerHTML=`<div class="score-num">${score}/3</div><div class="score-msg">${msgs[score][1]}</div>`;
+    scoreWrap.innerHTML=`<div class="score-num">${score}/3</div><div class="score-msg">${msgs[score]}</div>`;
     if(score===3){ setTimeout(()=>{ spawnBurst(canvas.width/2,canvas.height/3); setTimeout(()=>spawnBurst(canvas.width/3,canvas.height/2),300); setTimeout(()=>spawnBurst(canvas.width*2/3,canvas.height/2),600); },300); }
   }
   renderQuiz();
 
   // ==========================================================================
-  // PHOTO BENTO GRID + LIGHTBOX
+  // PHOTO BENTO GRID — with 3D tilt, shimmer, filter, heart, glow
   // ==========================================================================
-  const bentoEl = document.getElementById('photoBento');
-  let lbPhotos = [];
+  const bentoEl=document.getElementById('photoBento');
+  let lbPhotos=[];
+  let currentFilter='all';
 
-  function makePCard(photo, idx) {
-    const card = document.createElement('div');
-    card.className = `p-card ${photo.span}`;
-    card.dataset.idx = idx;
+  function updateLovesStrip() {
+    const strip=document.getElementById('galleryLovesStrip');
+    const count=document.getElementById('lovesCount');
+    if(!strip||!count) return;
+    count.textContent=lovedPhotos.size;
+    strip.classList.toggle('visible', lovedPhotos.size>0);
+  }
 
-    const img = document.createElement('img');
-    img.src = photo.src;
-    img.alt = photo.caption;
-    img.loading = 'lazy';
+  function updateCountBadge() {
+    const badge=document.getElementById('galleryCountBadge');
+    if(!badge) return;
+    const cards=[...bentoEl.querySelectorAll('.p-card:not(.deco-card)')];
+    const vis=cards.filter(c=>!c.classList.contains('hidden')).length;
+    badge.textContent=vis===photoData.length ? `${photoData.length} foto kenangan indah` : `${vis} foto ditemukan`;
+  }
 
-    const placeholder = document.createElement('div');
-    placeholder.className = 'p-placeholder';
-    placeholder.innerHTML = `<span>${photo.emoji}</span><span>${photo.src}</span>`;
+  function makePCard(photo,idx){
+    const card=document.createElement('div');
+    card.className=`p-card ${photo.span}${photo.featured?' featured':''}`;
+    card.dataset.idx=idx;
+    card.dataset.tags=JSON.stringify(photo.tags||[]);
 
-    const overlay = document.createElement('div');
-    overlay.className = 'p-overlay';
-    overlay.innerHTML = `<span class="p-caption">${photo.caption}</span>`;
+    // shimmer removed on load
+    const glow=document.createElement('div'); glow.className='p-glow';
+    const img=document.createElement('img');
+    img.src=photo.src; img.alt=photo.caption; img.loading='lazy';
+    const placeholder=document.createElement('div'); placeholder.className='p-placeholder';
+    placeholder.innerHTML=`<span>${photo.emoji}</span><span>${photo.src}</span>`;
 
-    const zoom = document.createElement('div');
-    zoom.className = 'p-zoom-icon';
-    zoom.textContent = '🔍';
+    const overlay=document.createElement('div'); overlay.className='p-overlay';
+    overlay.innerHTML=`<span class="p-caption">${photo.caption}</span><span class="p-caption-date">${photo.date||''}</span>`;
 
-    const petalSymbols = ['🌸','🌺','🌷','🌼','💮'];
-    const cpl = document.createElement('span');
-    cpl.className = 'p-corner-petal cp-tl';
-    cpl.textContent = petalSymbols[idx % petalSymbols.length];
-    const cpr = document.createElement('span');
-    cpr.className = 'p-corner-petal cp-tr';
-    cpr.textContent = petalSymbols[(idx+2) % petalSymbols.length];
+    const zoom=document.createElement('div'); zoom.className='p-zoom-icon'; zoom.textContent='🔍';
 
-    const badge = document.createElement('div');
-    badge.className = 'p-num-badge';
-    badge.textContent = String(idx+1).padStart(2,'0');
-
-    img.addEventListener('load', () => {
-      placeholder.style.display = 'none';
-      img.style.display = 'block';
-      lbPhotos[idx] = { src: photo.src, caption: photo.caption };
-      card.dataset.lbIdx = idx;
+    // Heart favourite button
+    const heartBtn=document.createElement('button'); heartBtn.className='p-heart-btn';
+    heartBtn.innerHTML='<span>🤍</span>';
+    heartBtn.title='Simpan ke favorit';
+    heartBtn.addEventListener('click',(e)=>{
+      e.stopPropagation();
+      const inner=heartBtn.querySelector('span');
+      if(lovedPhotos.has(idx)){
+        lovedPhotos.delete(idx);
+        inner.textContent='🤍';
+        heartBtn.classList.remove('loved');
+        // If on favourites filter, re-apply
+        if(currentFilter==='favorit') applyFilter('favorit');
+      } else {
+        lovedPhotos.add(idx);
+        inner.textContent='❤️';
+        heartBtn.classList.add('loved');
+        showToast('❤️ Ditambahkan ke favorit!');
+        // mini burst
+        const r=card.getBoundingClientRect();
+        spawnBurst(r.left+r.width/2,r.top+r.height/2);
+      }
+      updateLovesStrip();
+      updateCountBadge();
     });
-    img.addEventListener('error', () => {
-      img.style.display = 'none';
-      placeholder.style.display = 'flex';
-    });
 
+    if(photo.featured){
+      const ribbon=document.createElement('div'); ribbon.className='p-ribbon'; ribbon.textContent='✦ Fav';
+      card.appendChild(ribbon);
+    }
+
+    const petalArr=['🌸','🌺','🌷','🌼','💮'];
+    const cpl=document.createElement('span'); cpl.className='p-corner-petal cp-tl'; cpl.textContent=petalArr[idx%petalArr.length];
+    const cpr=document.createElement('span'); cpr.className='p-corner-petal cp-tr'; cpr.textContent=petalArr[(idx+2)%petalArr.length];
+    const badge=document.createElement('div'); badge.className='p-num-badge'; badge.textContent=String(idx+1).padStart(2,'0');
+
+    img.addEventListener('load',()=>{ placeholder.style.display='none'; img.style.display='block'; card.classList.add('loaded'); });
+    img.addEventListener('error',()=>{ img.style.display='none'; placeholder.style.display='flex'; card.classList.add('loaded'); });
+
+    card.appendChild(glow);
     card.appendChild(img);
     card.appendChild(placeholder);
     card.appendChild(overlay);
     card.appendChild(zoom);
+    card.appendChild(heartBtn);
     card.appendChild(cpl);
     card.appendChild(cpr);
     card.appendChild(badge);
 
-    card.addEventListener('click', () => {
-      const lbIdx = parseInt(card.dataset.lbIdx);
-      if(!isNaN(lbIdx) && lbPhotos[lbIdx]) openLightbox(lbIdx);
-      else { lbPhotos[idx] = { src: photo.src, caption: photo.caption }; openLightbox(idx); }
+    // ── 3D TILT ──
+    card.addEventListener('mousemove',(e)=>{
+      const rect=card.getBoundingClientRect();
+      const cx=rect.left+rect.width/2, cy=rect.top+rect.height/2;
+      const dx=(e.clientX-cx)/rect.width, dy=(e.clientY-cy)/rect.height;
+      const maxTilt=8;
+      card.style.setProperty('--rx',`${-dy*maxTilt}deg`);
+      card.style.setProperty('--ry',`${dx*maxTilt}deg`);
+      card.style.setProperty('--sc','1.03');
+      // glow follow
+      const gx=((e.clientX-rect.left)/rect.width*100).toFixed(1)+'%';
+      const gy=((e.clientY-rect.top)/rect.height*100).toFixed(1)+'%';
+      card.style.setProperty('--mx',gx); card.style.setProperty('--my',gy);
+    });
+    card.addEventListener('mouseleave',()=>{
+      card.style.setProperty('--rx','0deg');
+      card.style.setProperty('--ry','0deg');
+      card.style.setProperty('--sc','1');
+    });
+
+    // click → lightbox
+    card.addEventListener('click',(e)=>{
+      if(e.target===heartBtn||heartBtn.contains(e.target)) return;
+      openLightbox(idx);
     });
 
     return card;
   }
 
-  function makeDecoCard(deco) {
-    const card = document.createElement('div');
-    card.className = `p-card deco-card ${deco.span}`;
-
-    if (deco.type === 'quote') {
+  function makeDecoCard(deco){
+    const card=document.createElement('div'); card.className=`p-card deco-card ${deco.span}`;
+    if(deco.type==='quote'){
       card.classList.add('deco-quote');
-      card.innerHTML = `<div class="deco-quote-mark">"</div><div class="deco-quote-text">${deco.content}</div>`;
-    } else if (deco.type === 'emoji') {
+      card.innerHTML=`<div class="deco-quote-mark">"</div><div class="deco-quote-text">${deco.content}</div>`;
+    } else if(deco.type==='emoji'){
       card.classList.add('deco-emoji-cloud');
-      card.innerHTML = `<div class="deco-emoji-big">${deco.emoji}</div>`;
-    } else if (deco.type === 'sparkle') {
+      card.innerHTML=`<div class="deco-emoji-big">${deco.emoji}</div>`;
+    } else if(deco.type==='sparkle'){
       card.classList.add('deco-sparkle-card');
-      const g = document.createElement('div');
-      g.className = 'deco-sparkle-wrap';
-      deco.emojis.forEach(e => { const s=document.createElement('span'); s.textContent=e; g.appendChild(s); });
+      const g=document.createElement('div'); g.className='deco-sparkle-wrap';
+      deco.emojis.forEach(e=>{ const s=document.createElement('span'); s.textContent=e; g.appendChild(s); });
       card.appendChild(g);
     }
     return card;
   }
 
-  function buildBento() {
-    bentoEl.innerHTML = '';
-    lbPhotos = new Array(photoData.length).fill(null);
-
-    // Pre-populate lbPhotos with all entries (fallback for clicked before load)
-    photoData.forEach((p,i) => lbPhotos[i] = { src: p.src, caption: p.caption });
-
-    // Build with deco inserts
-    const decoMap = {};
-    decoInserts.forEach(d => { decoMap[d.afterIdx] = d; });
-
-    photoData.forEach((photo, idx) => {
-      bentoEl.appendChild(makePCard(photo, idx));
-      if (decoMap[idx]) bentoEl.appendChild(makeDecoCard(decoMap[idx]));
+  function buildBento(){
+    bentoEl.innerHTML='';
+    lbPhotos=photoData.map(p=>({src:p.src,caption:p.caption}));
+    const decoMap={};
+    decoInserts.forEach(d=>decoMap[d.afterIdx]=d);
+    photoData.forEach((photo,idx)=>{
+      bentoEl.appendChild(makePCard(photo,idx));
+      if(decoMap[idx]) bentoEl.appendChild(makeDecoCard(decoMap[idx]));
     });
-
     spawnFloatingPetals();
+    updateCountBadge();
   }
-
   buildBento();
 
-  function spawnFloatingPetals() {
-    const container = document.getElementById('floatingPetals');
-    if (!container) return;
-    container.innerHTML = '';
-    const petalEmojis = ['🌸','🌺','🌷','✿','❀','🌼'];
-    for (let i = 0; i < 12; i++) {
-      const p = document.createElement('div');
-      p.className = 'floating-petal';
-      p.textContent = petalEmojis[Math.floor(Math.random() * petalEmojis.length)];
-      p.style.cssText = `left:${Math.random()*95}%;top:${20+Math.random()*70}%;font-size:${12+Math.random()*14}px;animation-duration:${6+Math.random()*8}s;animation-delay:${Math.random()*10}s;`;
-      p.style.setProperty('--rot', `${(Math.random()-0.5)*360}deg`);
+  // ── FILTER ──
+  function applyFilter(filter){
+    currentFilter=filter;
+    const cards=[...bentoEl.querySelectorAll('.p-card:not(.deco-card)')];
+    cards.forEach(card=>{
+      const idx=parseInt(card.dataset.idx);
+      const tags=JSON.parse(card.dataset.tags||'[]');
+      let show=false;
+      if(filter==='all') show=true;
+      else if(filter==='favorit') show=lovedPhotos.has(idx);
+      else show=tags.includes(filter);
+      card.classList.toggle('hidden',!show);
+    });
+    // Show/hide deco when all
+    bentoEl.querySelectorAll('.deco-card').forEach(d=>d.classList.toggle('hidden',filter!=='all'));
+    updateCountBadge();
+  }
+
+  document.getElementById('galleryFilterBar').addEventListener('click',(e)=>{
+    const btn=e.target.closest('.gf-btn');
+    if(!btn) return;
+    document.querySelectorAll('.gf-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    applyFilter(btn.dataset.filter);
+  });
+
+  function spawnFloatingPetals(){
+    const container=document.getElementById('floatingPetals');
+    if(!container) return;
+    container.innerHTML='';
+    const petalArr=['🌸','🌺','🌷','✿','❀','🌼'];
+    for(let i=0;i<12;i++){
+      const p=document.createElement('div'); p.className='floating-petal';
+      p.textContent=petalArr[Math.floor(Math.random()*petalArr.length)];
+      p.style.cssText=`left:${Math.random()*95}%;top:${20+Math.random()*70}%;font-size:${12+Math.random()*14}px;animation-duration:${6+Math.random()*8}s;animation-delay:${Math.random()*10}s;`;
+      p.style.setProperty('--rot',`${(Math.random()-0.5)*360}deg`);
       container.appendChild(p);
     }
   }
 
-  // Lightbox
-  let currentLb = 0;
-  const lightbox = document.getElementById('lightbox');
-  const lbImg = document.getElementById('lbImg');
-  const lbCaption = document.getElementById('lbCaption');
-  const lbCounter = document.getElementById('lbCounter');
+  // ==========================================================================
+  // LIGHTBOX — with touch swipe support
+  // ==========================================================================
+  let currentLb=0;
+  const lightbox=document.getElementById('lightbox'),lbImg=document.getElementById('lbImg');
+  const lbCaption=document.getElementById('lbCaption'),lbCounter=document.getElementById('lbCounter');
 
-  function openLightbox(idx) {
-    if (!lbPhotos[idx]) return;
-    currentLb = idx;
-    lbImg.src = lbPhotos[idx].src;
-    lbCaption.textContent = lbPhotos[idx].caption;
-    lbCounter.textContent = `${idx+1} / ${lbPhotos.length}`;
+  function openLightbox(idx){
+    if(!lbPhotos[idx]) return;
+    currentLb=idx;
+    lbImg.src=lbPhotos[idx].src;
+    lbCaption.textContent=lbPhotos[idx].caption;
+    lbCounter.textContent=`${idx+1} / ${lbPhotos.length}`;
     lightbox.classList.add('open');
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflow='hidden';
   }
-  function closeLightbox() { lightbox.classList.remove('open'); document.body.style.overflow = ''; }
-  document.getElementById('lbClose').addEventListener('click', closeLightbox);
-  document.getElementById('lbPrev').addEventListener('click', () => { currentLb=(currentLb-1+lbPhotos.length)%lbPhotos.length; openLightbox(currentLb); });
-  document.getElementById('lbNext').addEventListener('click', () => { currentLb=(currentLb+1)%lbPhotos.length; openLightbox(currentLb); });
-  lightbox.addEventListener('click', (e) => { if(e.target===lightbox) closeLightbox(); });
-  document.addEventListener('keydown', (e) => {
-    if (!lightbox.classList.contains('open')) return;
-    if (e.key==='Escape') closeLightbox();
-    if (e.key==='ArrowLeft') { currentLb=(currentLb-1+lbPhotos.length)%lbPhotos.length; openLightbox(currentLb); }
-    if (e.key==='ArrowRight') { currentLb=(currentLb+1)%lbPhotos.length; openLightbox(currentLb); }
+  function closeLightbox(){ lightbox.classList.remove('open'); document.body.style.overflow=''; }
+
+  document.getElementById('lbClose').addEventListener('click',closeLightbox);
+  document.getElementById('lbPrev').addEventListener('click',()=>{ currentLb=(currentLb-1+lbPhotos.length)%lbPhotos.length; openLightbox(currentLb); });
+  document.getElementById('lbNext').addEventListener('click',()=>{ currentLb=(currentLb+1)%lbPhotos.length; openLightbox(currentLb); });
+  lightbox.addEventListener('click',(e)=>{ if(e.target===lightbox) closeLightbox(); });
+  document.addEventListener('keydown',(e)=>{
+    if(!lightbox.classList.contains('open')) return;
+    if(e.key==='Escape') closeLightbox();
+    if(e.key==='ArrowLeft'){ currentLb=(currentLb-1+lbPhotos.length)%lbPhotos.length; openLightbox(currentLb); }
+    if(e.key==='ArrowRight'){ currentLb=(currentLb+1)%lbPhotos.length; openLightbox(currentLb); }
   });
+
+  // Touch swipe on lightbox
+  let touchStartX=0;
+  lightbox.addEventListener('touchstart',(e)=>touchStartX=e.touches[0].clientX,{passive:true});
+  lightbox.addEventListener('touchend',(e)=>{
+    const dx=e.changedTouches[0].clientX-touchStartX;
+    if(Math.abs(dx)>50){
+      if(dx<0){ currentLb=(currentLb+1)%lbPhotos.length; }
+      else { currentLb=(currentLb-1+lbPhotos.length)%lbPhotos.length; }
+      openLightbox(currentLb);
+    }
+  },{passive:true});
 
   // ==========================================================================
   // STAR MAP
   // ==========================================================================
-  function initStarMap() {
-    const c = document.getElementById('starMapCanvas');
-    if (!c) return;
-    const cx = c.getContext('2d');
-    const W = c.offsetWidth || 700;
-    const H = c.height;
-    c.width = W;
-
-    const bg = cx.createLinearGradient(0,0,W,H);
+  function initStarMap(){
+    const c=document.getElementById('starMapCanvas');
+    if(!c) return;
+    const cx=c.getContext('2d');
+    const W=c.offsetWidth||700,H=c.height;
+    c.width=W;
+    const bg=cx.createLinearGradient(0,0,W,H);
     bg.addColorStop(0,'#0d0020'); bg.addColorStop(0.5,'#14003a'); bg.addColorStop(1,'#0a0018');
-    cx.fillStyle = bg; cx.fillRect(0,0,W,H);
-
+    cx.fillStyle=bg; cx.fillRect(0,0,W,H);
     for(let i=0;i<180;i++){
-      const x=Math.random()*W, y=Math.random()*H, r=Math.random()*1.5, a=0.2+Math.random()*0.7;
+      const x=Math.random()*W,y=Math.random()*H,r=Math.random()*1.5,a=0.2+Math.random()*0.7;
       cx.globalAlpha=a; cx.fillStyle='#fff';
       cx.beginPath(); cx.arc(x,y,r,0,Math.PI*2); cx.fill();
     }
     cx.globalAlpha=1;
-
     const nodes=[
-      { x:W*0.22, y:H*0.35, label:'Fram ⭐', color:'#c084fc', r:8 },
-      { x:W*0.38, y:H*0.55, label:'', color:'#ff8fb0', r:5 },
-      { x:W*0.52, y:H*0.30, label:'', color:'#ffcce0', r:4 },
-      { x:W*0.64, y:H*0.50, label:'', color:'#ff8fb0', r:5 },
-      { x:W*0.50, y:H*0.65, label:'', color:'#c084fc', r:4 },
-      { x:W*0.78, y:H*0.38, label:'Marcia 💖', color:'#ff6b9d', r:8 },
+      {x:W*0.22,y:H*0.35,label:'Fram ⭐',color:'#c084fc',r:8},
+      {x:W*0.38,y:H*0.55,label:'',color:'#ff8fb0',r:5},
+      {x:W*0.52,y:H*0.30,label:'',color:'#ffcce0',r:4},
+      {x:W*0.64,y:H*0.50,label:'',color:'#ff8fb0',r:5},
+      {x:W*0.50,y:H*0.65,label:'',color:'#c084fc',r:4},
+      {x:W*0.78,y:H*0.38,label:'Marcia 💖',color:'#ff6b9d',r:8},
     ];
-
     cx.strokeStyle='rgba(255,143,176,0.35)'; cx.lineWidth=1; cx.setLineDash([4,6]);
     cx.beginPath();
     nodes.forEach((n,i)=>{ if(i===0) cx.moveTo(n.x,n.y); else cx.lineTo(n.x,n.y); });
     cx.stroke(); cx.setLineDash([]);
-
     cx.strokeStyle='rgba(255,107,157,0.5)'; cx.lineWidth=1.5;
     cx.beginPath(); cx.moveTo(nodes[0].x,nodes[0].y);
-    const hx=(nodes[0].x+nodes[5].x)/2, hy=(nodes[0].y+nodes[5].y)/2-20;
+    const hx=(nodes[0].x+nodes[5].x)/2,hy=(nodes[0].y+nodes[5].y)/2-20;
     cx.quadraticCurveTo(hx,hy-30,nodes[5].x,nodes[5].y); cx.stroke();
-
     nodes.forEach(n=>{
       const grd=cx.createRadialGradient(n.x,n.y,0,n.x,n.y,n.r*4);
       grd.addColorStop(0,n.color+'99'); grd.addColorStop(1,n.color+'00');
@@ -1322,7 +1573,6 @@
       cx.fillStyle=n.color; cx.beginPath(); cx.arc(n.x,n.y,n.r,0,Math.PI*2); cx.fill();
       cx.fillStyle='#fff'; cx.beginPath(); cx.arc(n.x,n.y,n.r*0.4,0,Math.PI*2); cx.fill();
     });
-
     cx.font='bold 13px "Lato", sans-serif'; cx.textAlign='center'; cx.fillStyle='#fff'; cx.globalAlpha=0.9;
     cx.fillText(nodes[0].label,nodes[0].x,nodes[0].y-18);
     cx.fillText(nodes[5].label,nodes[5].x,nodes[5].y-18); cx.globalAlpha=1;
@@ -1334,16 +1584,14 @@
   // MOOD RING
   // ==========================================================================
   const moods=[
-    { emoji:'😊', label:'Bahagia', color:'#ffd700', title:'Yayyy kamu bahagia! 🌟', message:'Aku juga ikut senang mendengarnya! Senyum kamu itu sungguh menular. Terus jaga energi positifmu ya — dunia jadi lebih cerah karena kamu ada di dalamnya.', song:'🎵 Lagu untukmu: <span>Make You Mine — PUBLIC</span> 🎶' },
-    { emoji:'😔', label:'Sedih', color:'#7eb3ff', title:'Sini aku peluk kamu 💙', message:'Nggak apa-apa untuk sedih. Aku di sini, selalu. Ingat ya, setelah hujan pasti ada pelangi.', song:'🎵 Lagu untukmu: <span>River Flows In You — Yiruma</span> 🎶' },
-    { emoji:'😴', label:'Ngantuk', color:'#c084fc', title:'Tidur yang nyenyak ya sayang 🌙', message:'Istirahat yang cukup itu penting banget! Badan kamu harus sehat. Sebelum tidur, tahu nggak? Aku selalu memikirkanmu.', song:'🎵 Lagu untukmu: <span>Stay With Me — Miki Matsubara</span> 🎶' },
-    { emoji:'😤', label:'Kesel', color:'#ff8fb0', title:'Ayo cerita ke aku 💕', message:'Kalau ada yang ganggu kamu, aku siap dengarkan. Kamu nggak perlu menghadapi apapun sendirian — aku selalu ada.', song:'🎵 Lagu untukmu: <span>Slipping Through My Fingers — Declan McKenna</span> 🎶' },
-    { emoji:'🥰', label:'Kangen', color:'#ff6b9d', title:'Aku juga kangen kamu! 💖', message:'Perasaan itu sama persis — aku juga sering kepikiran kamu di tengah-tengah aktivitas.', song:'🎵 Lagu untukmu: <span>Just A Friend To You — Meghan Trainor</span> 🎶' },
-    { emoji:'🌸', label:'Semangat', color:'#60d394', title:'Channeling your inner boss! 👑', message:'Senang deh lihat kamu se-happy dan sesemangat ini. You got this! ❤️', song:'🎵 Lagu untukmu: <span>Make You Mine — PUBLIC</span> 🎶' },
+    {emoji:'😊',label:'Bahagia',color:'#ffd700',title:'Yayyy kamu bahagia! 🌟',message:'Aku juga ikut senang mendengarnya! Senyum kamu itu sungguh menular. Terus jaga energi positifmu ya — dunia jadi lebih cerah karena kamu ada di dalamnya.',song:'🎵 Lagu untukmu: <span>Make You Mine — PUBLIC</span> 🎶'},
+    {emoji:'😔',label:'Sedih',color:'#7eb3ff',title:'Sini aku peluk kamu 💙',message:'Nggak apa-apa untuk sedih. Aku di sini, selalu. Ingat ya, setelah hujan pasti ada pelangi.',song:'🎵 Lagu untukmu: <span>River Flows In You — Yiruma</span> 🎶'},
+    {emoji:'😴',label:'Ngantuk',color:'#c084fc',title:'Tidur yang nyenyak ya sayang 🌙',message:'Istirahat yang cukup itu penting banget! Badan kamu harus sehat. Sebelum tidur, tahu nggak? Aku selalu memikirkanmu.',song:'🎵 Lagu untukmu: <span>Stay With Me — Miki Matsubara</span> 🎶'},
+    {emoji:'😤',label:'Kesel',color:'#ff8fb0',title:'Ayo cerita ke aku 💕',message:'Kalau ada yang ganggu kamu, aku siap dengarkan. Kamu nggak perlu menghadapi apapun sendirian — aku selalu ada.',song:'🎵 Lagu untukmu: <span>Slipping Through My Fingers — Declan McKenna</span> 🎶'},
+    {emoji:'🥰',label:'Kangen',color:'#ff6b9d',title:'Aku juga kangen kamu! 💖',message:'Perasaan itu sama persis — aku juga sering kepikiran kamu di tengah-tengah aktivitas.',song:'🎵 Lagu untukmu: <span>Just A Friend To You — Meghan Trainor</span> 🎶'},
+    {emoji:'🌸',label:'Semangat',color:'#60d394',title:'Channeling your inner boss! 👑',message:'Senang deh lihat kamu se-happy dan sesemangat ini. You got this! ❤️',song:'🎵 Lagu untukmu: <span>Make You Mine — PUBLIC</span> 🎶'},
   ];
-
-  const moodGrid=document.getElementById('moodGrid');
-  const moodResult=document.getElementById('moodResult');
+  const moodGrid=document.getElementById('moodGrid'),moodResult=document.getElementById('moodResult');
   if(moodGrid){
     moods.forEach((mood)=>{
       const btn=document.createElement('div'); btn.className='mood-btn';
@@ -1365,7 +1613,7 @@
   }
 
   // ==========================================================================
-  // LOCK SUBTITLE RANDOM
+  // LOCK SUBTITLE
   // ==========================================================================
   const pesanKejutan=[
     'Sabar ya sayangku nggak lama lagi kokk!! 💖',
@@ -1387,7 +1635,7 @@
     e.stopPropagation();
     const cc=document.querySelector('.lock-countdown-container');
     if(cc){ cc.classList.remove('shake-animation'); void cc.offsetWidth; cc.classList.add('shake-animation'); }
-    alert("Jangan dibuka paksa sayang!!! ❌ Gak sabaran banget ya? Tungguin countdown-nya selesai yaa atau nggak jadi pacarku dulu hehe!! 🥞😜");
+    alert('Jangan dibuka paksa sayang!!! ❌ Gak sabaran banget ya? Tungguin countdown-nya selesai yaa atau nggak jadi pacarku dulu hehe!! 🥞😜');
   });
 
   // ==========================================================================
@@ -1406,6 +1654,168 @@
 
   const videoEl=document.querySelector('.video-frame-wrap video');
   if(videoEl){ videoEl.addEventListener('ended',()=>{ showToast('💖 Makasih sudah menontonnya sampai habis!'); setTimeout(()=>{ spawnBurst(canvas.width/2,canvas.height/3); setTimeout(()=>spawnBurst(canvas.width/3,canvas.height/2),300); setTimeout(()=>spawnBurst(canvas.width*2/3,canvas.height/2),600); },300); }); }
+  
+  const SUPABASE_URL      = 'https://uzalnplqljyluwaoqoak.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV6YWxucGxxbGp5bHV3YW9xb2FrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAxMjEzMzUsImV4cCI6MjA5NTY5NzMzNX0._Jzh4VrfFvcQ8JsPDP_qNZ_L1GD3gFCm4j0B-jFCO7A';
+const ROW_ID            = 'marcia';
+ 
+// ── HEADERS ──────────────────────────────────────────────────
+const sbHeaders = {
+  'apikey':        SUPABASE_ANON_KEY,
+  'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
+  'Content-Type':  'application/json',
+  'Prefer':        'return=minimal'
+};
+ 
+// ── GET dari Supabase ─────────────────────────────────────────
+async function sbGet() {
+  const url = `${SUPABASE_URL}/rest/v1/favorites?id=eq.${ROW_ID}&select=loved_indices`;
+  const res = await fetch(url, { headers: sbHeaders });
+  if (!res.ok) {
+    const errText = await res.text();
+    throw new Error(`sbGet HTTP ${res.status}: ${errText}`);
+  }
+  const data = await res.json();
+  console.log('[Supabase] GET result:', data);
+  return data[0]?.loved_indices || [];
+}
+ 
+// ── SAVE ke Supabase ──────────────────────────────────────────
+async function sbSave(indices) {
+  const url = `${SUPABASE_URL}/rest/v1/favorites?id=eq.${ROW_ID}`;
+  const body = JSON.stringify({
+    loved_indices: indices,
+    updated_at: new Date().toISOString()
+  });
+  const res = await fetch(url, {
+    method:  'PATCH',
+    headers: sbHeaders,
+    body:    body
+  });
+  if (!res.ok) {
+    const errText = await res.text();
+    throw new Error(`sbSave HTTP ${res.status}: ${errText}`);
+  }
+  console.log('[Supabase] PATCH OK, indices:', indices);
+}
+ 
+// ── LOAD saat halaman dibuka ──────────────────────────────────
+async function loadFavoritesFromCloud() {
+  try {
+    const indices = await sbGet();
+    lovedPhotos.clear();
+    indices.forEach(idx => lovedPhotos.add(idx));
+    console.log('[Favorit] Loaded dari cloud:', [...lovedPhotos]);
+    restoreHeartStates();
+    updateLovesStrip();
+    updateCountBadge();
+  } catch(e) {
+    console.error('[Favorit] Gagal load cloud, fallback localStorage:', e);
+    try {
+      const raw = localStorage.getItem('marcia_loved_photos');
+      if (raw) JSON.parse(raw).forEach(idx => lovedPhotos.add(idx));
+      restoreHeartStates();
+      updateLovesStrip();
+      updateCountBadge();
+    } catch(_) {}
+  }
+}
+ 
+// ── SAVE saat klik heart ──────────────────────────────────────
+async function saveFavoritesToCloud() {
+  const indices = [...lovedPhotos];
+  // 1. Simpan localStorage dulu (instan)
+  try { localStorage.setItem('marcia_loved_photos', JSON.stringify(indices)); } catch(_) {}
+  // 2. Simpan ke Supabase
+  try {
+    await sbSave(indices);
+  } catch(e) {
+    console.error('[Favorit] Gagal sync cloud:', e);
+    showToast('⚠️ Gagal sync ke cloud', 2500);
+  }
+}
+ 
+// ── RESTORE tampilan heart button ────────────────────────────
+function restoreHeartStates() {
+  document.querySelectorAll('.p-card:not(.deco-card)').forEach(card => {
+    const idx      = parseInt(card.dataset.idx);
+    const heartBtn = card.querySelector('.p-heart-btn');
+    if (!heartBtn) return;
+ 
+    // Update tampilan
+    const inner = heartBtn.querySelector('span');
+    if (lovedPhotos.has(idx)) {
+      heartBtn.classList.add('loved');
+      if (inner) inner.textContent = '❤️';
+    } else {
+      heartBtn.classList.remove('loved');
+      if (inner) inner.textContent = '🤍';
+    }
+ 
+    // Ganti dengan clone untuk hapus listener lama
+    const newBtn = heartBtn.cloneNode(true);
+    heartBtn.parentNode.replaceChild(newBtn, heartBtn);
+ 
+    newBtn.addEventListener('click', async (e) => {
+      e.stopPropagation();
+      const btnInner = newBtn.querySelector('span');
+ 
+      if (lovedPhotos.has(idx)) {
+        lovedPhotos.delete(idx);
+        if (btnInner) btnInner.textContent = '🤍';
+        newBtn.classList.remove('loved');
+        showToast('🤍 Dihapus dari favorit');
+        if (currentFilter === 'favorit') applyFilter('favorit');
+      } else {
+        lovedPhotos.add(idx);
+        if (btnInner) btnInner.textContent = '❤️';
+        newBtn.classList.add('loved');
+        showToast('❤️ Tersimpan ke cloud! ☁️');
+        const r = card.getBoundingClientRect();
+        spawnBurst(r.left + r.width / 2, r.top + r.height / 2);
+      }
+ 
+      updateLovesStrip();
+      updateCountBadge();
+      await saveFavoritesToCloud();
+    });
+  });
+}
+ 
+// ── POLLING tiap 30 detik ─────────────────────────────────────
+function startPolling() {
+  setInterval(async () => {
+    try {
+      const cloudIndices = await sbGet();
+      const localArr = [...lovedPhotos].sort().join(',');
+      const cloudArr = [...cloudIndices].sort().join(',');
+      if (localArr !== cloudArr) {
+        lovedPhotos.clear();
+        cloudIndices.forEach(idx => lovedPhotos.add(idx));
+        restoreHeartStates();
+        updateLovesStrip();
+        updateCountBadge();
+        showToast('☁️ Favorit diperbarui dari device lain!', 2500);
+      }
+    } catch(_) {}
+  }, 30000);
+}
+ 
+// ── JALANKAN ─────────────────────────────────────────────────
+buildBento();
+if (typeof enhanceCards === 'function') enhanceCards();
+ 
+loadFavoritesFromCloud().then(() => startPolling());
+ 
+// Observer untuk rebuild filter
+const _bentoEl2 = document.getElementById('photoBento');
+if (_bentoEl2) {
+  new MutationObserver(() => {
+    restoreHeartStates();
+    if (typeof enhanceCards === 'function') enhanceCards();
+  }).observe(_bentoEl2, { childList: true });
+}
+ 
   </script>
 </body>
 </html>
