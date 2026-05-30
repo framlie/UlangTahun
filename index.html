@@ -966,28 +966,279 @@
   // PHOTO DATA — dengan tag kategori untuk filter
   // ==========================================================================
   const photoData = [
-    { src:'foto1.jpg',  caption:'Senyum favoritku 🥰',             emoji:'🥰', span:'s-feat-l', tags:['cantik','favorit'], featured:true,  date:'Mei 2026' },
-    { src:'foto2.jpg',  caption:'Saat kamu sangat menggemaskan ✨', emoji:'✨', span:'s-feat-m', tags:['lucu','cantik'],            date:'Mei 2026' },
-    { src:'foto3.jpg',  caption:'Kecantikkanmu 🌸',                 emoji:'🌸', span:'s-tall',   tags:['cantik'],                   date:'Mei 2026' },
-    { src:'foto4.jpg',  caption:'Cantik banget kak 💕',             emoji:'💕', span:'s-tall',   tags:['cantik','favorit'],         date:'Mei 2026' },
-    { src:'foto5.jpg',  caption:'My favorite person 🌹',            emoji:'🌹', span:'s-tall',   tags:['cantik','favorit'],         date:'Mei 2026' },
-    { src:'foto6.jpg',  caption:'Kamu dan senyummu 💖',             emoji:'💖', span:'s-wide',   tags:['cantik'],                   date:'Mei 2026' },
-    { src:'foto7.jpg',  caption:'Bersama Keluarga Kecilnya ⭐',     emoji:'⭐', span:'s-med',    tags:['bersama'],                  date:'Mei 2026' },
-    { src:'foto8.jpg',  caption:'Hari yang indah 🌼',               emoji:'🌼', span:'s-sq',     tags:['cantik','lucu'],            date:'Mei 2026' },
-    { src:'foto9.jpg',  caption:'Momen yang aku rindukan 💫',       emoji:'💫', span:'s-tall',   tags:['cantik','bersama'],         date:'Mei 2026' },
-    { src:'foto10.jpg', caption:'Kamu yang aku sayang 🌷',          emoji:'🌷', span:'s-tall',   tags:['cantik'],                   date:'Mei 2026' },
-    { src:'foto11.jpg', caption:'Ekspresi lucumu 🤭',               emoji:'🤭', span:'s-sq',     tags:['lucu'],                     date:'Mei 2026' },
-    { src:'foto12.jpg', caption:'Gadis favoritku 👑',               emoji:'👑', span:'s-sq',     tags:['cantik','favorit'],         date:'Mei 2026' },
-    { src:'foto13.jpg', caption:'Cantik seperti bintang ⭐',         emoji:'⭐', span:'s-pair',   tags:['cantik','bersama'],         date:'Mei 2026' },
-    { src:'foto14.jpg', caption:'Kamu, selamanya 🫶',               emoji:'🫶', span:'s-feat-m', tags:['cantik','favorit'],         date:'Mei 2026' },
-  ];
-
-  const decoInserts = [
-    { afterIdx:1,  type:'emoji',   span:'s-sm',  emoji:'💖' },
-    { afterIdx:5,  type:'sparkle', span:'s-sq',  emojis:['✨','🌸','💕','⭐','🌺','💫'] },
-    { afterIdx:7,  type:'quote',   span:'s-sq',  content:'"Kamu cantik tanpa kamu sadari" 🌸' },
-    { afterIdx:11, type:'emoji',   span:'s-sm',  emoji:'🎀' },
-  ];
+  // ── ROW 1: Hero shot besar + 2 tall di kanan ──
+  { src:'foto1.jpg',  caption:'Senyum favoritku 🥰',              emoji:'🥰', span:'s-feat-l',  tags:['cantik','favorit'], featured:true,  date:'Mei 2026' },
+  { src:'foto2.jpg',  caption:'Saat kamu sangat menggemaskan ✨',  emoji:'✨', span:'s-tall',    tags:['lucu','cantik'],                    date:'Mei 2026' },
+  { src:'foto3.jpg',  caption:'Kecantikanmu 🌸',                   emoji:'🌸', span:'s-tall',    tags:['cantik'],                           date:'Mei 2026' },
+ 
+  // ── ROW 2: Wide + medium ──
+  { src:'foto4.jpg',  caption:'Cantik banget kak 💕',              emoji:'💕', span:'s-wide',    tags:['cantik','favorit'],                 date:'Mei 2026' },
+  { src:'foto5.jpg',  caption:'My favorite person 🌹',             emoji:'🌹', span:'s-med',     tags:['cantik','favorit'],                 date:'Mei 2026' },
+ 
+  // ── ROW 3: 4 kartu sejajar medium ──
+  { src:'foto6.jpg',  caption:'Kamu dan senyummu 💖',              emoji:'💖', span:'s-sq',      tags:['cantik'],                           date:'Mei 2026' },
+  { src:'foto7.jpg',  caption:'Bersama Keluarga Kecilnya ⭐',      emoji:'⭐', span:'s-sq',      tags:['bersama'],                          date:'Mei 2026' },
+  { src:'foto8.jpg',  caption:'Hari yang indah 🌼',                emoji:'🌼', span:'s-sq',      tags:['cantik','lucu'],                    date:'Mei 2026' },
+  { src:'foto9.jpg',  caption:'Momen yang aku rindukan 💫',        emoji:'💫', span:'s-sq',      tags:['cantik','bersama'],                 date:'Mei 2026' },
+ 
+  // ── ROW 4: Featured kanan + tall kiri ──
+  { src:'foto10.jpg', caption:'Kamu yang aku sayang 🌷',           emoji:'🌷', span:'s-tall',    tags:['cantik'],                           date:'Mei 2026' },
+  { src:'foto11.jpg', caption:'Ekspresi lucumu 🤭',                emoji:'🤭', span:'s-feat-m',  tags:['lucu'],           featured:true,     date:'Mei 2026' },
+ 
+  // ── ROW 5: Wide panorama ──
+  { src:'foto12.jpg', caption:'Gadis favoritku 👑',                emoji:'👑', span:'s-xwide',   tags:['cantik','favorit'],                 date:'Mei 2026' },
+ 
+  // ── ROW 6: 3 medium ──
+  { src:'foto13.jpg', caption:'Cantik seperti bintang ⭐',          emoji:'⭐', span:'s-med',     tags:['cantik','bersama'],                 date:'Mei 2026' },
+  { src:'foto14.jpg', caption:'Kamu, selamanya 🫶',                emoji:'🫶', span:'s-med',     tags:['cantik','favorit'],                 date:'Mei 2026' },
+ 
+  // ── FOTO BARU 15–21 ──
+  { src:'foto15.jpg', caption:'Senyum paling tulus 🌷',            emoji:'🌷', span:'s-med',     tags:['cantik','favorit'],                 date:'Mei 2026' },
+ 
+  // ── ROW 7: Big featured kiri + kolom kanan ──
+  { src:'foto16.jpg', caption:'Manis banget kak 🍓',               emoji:'🍓', span:'s-feat-l',  tags:['lucu','cantik'],  featured:true,     date:'Mei 2026' },
+  { src:'foto17.jpg', caption:'Momen berharga kita 💞',            emoji:'💞', span:'s-sq',      tags:['bersama','favorit'],                date:'Mei 2026' },
+  { src:'foto18.jpg', caption:'Ekspresi kesukaanku 🤍',            emoji:'🤍', span:'s-sq',      tags:['cantik','favorit'],                 date:'Mei 2026' },
+ 
+  // ── ROW 8: Tall + wide ──
+  { src:'foto19.jpg', caption:'Cantik seperti bunga 🌺',           emoji:'🌺', span:'s-tall',    tags:['cantik'],                           date:'Mei 2026' },
+  { src:'foto20.jpg', caption:'Kamu dan duniamu 🌙',               emoji:'🌙', span:'s-wide',    tags:['cantik','bersama'],                 date:'Mei 2026' },
+ 
+  // ── ROW 9: Finale — hero besar terakhir ──
+  { src:'foto21.jpg', caption:'21 tahun keajaiban — kamu ✨',      emoji:'✨', span:'s-pair',    tags:['cantik','favorit'], featured:true,   date:'Mei 2026' },
+];
+ 
+// ==========================================================================
+// DECO INSERTS — kartu dekoratif sisip di antara foto
+// ==========================================================================
+const decoInserts = [
+  { afterIdx:2,  type:'emoji',   span:'s-sm',   emoji:'💖' },
+  { afterIdx:5,  type:'sparkle', span:'s-sq',   emojis:['✨','🌸','💕','⭐','🌺','💫'] },
+  { afterIdx:9,  type:'quote',   span:'s-sq',   content:'"Kamu cantik tanpa kamu sadari" 🌸' },
+  { afterIdx:13, type:'emoji',   span:'s-sm',   emoji:'🎀' },
+  { afterIdx:17, type:'quote',   span:'s-sq',   content:'"Setiap fotomu bercerita tentang keindahan" 🌷' },
+  { afterIdx:20, type:'sparkle', span:'s-sm',   emojis:['🌸','💖','✨','🌺','💕','⭐'] },
+];
+ 
+// ==========================================================================
+// CSS UPGRADE — layout bento lebih estetik + animasi kartu
+// ==========================================================================
+(function injectGalleryCSS() {
+  const s = document.createElement('style');
+  s.textContent = `
+    /* ── Span tambahan untuk layout baru ── */
+    .p-card.s-xwide  { grid-column: span 9; grid-row: span 3; }
+    .p-card.s-pair   { grid-column: span 8; grid-row: span 4; }
+    .p-card.s-wide   { grid-column: span 7; grid-row: span 3; }
+ 
+    /* ── Animated conic border ring on hover ── */
+    @property --ba { syntax:'<angle>'; inherits:false; initial-value:0deg; }
+ 
+    .p-border-ring {
+      position: absolute;
+      inset: -1.5px;
+      border-radius: 22px;
+      background: conic-gradient(
+        from var(--ba),
+        transparent 18%,
+        #ff8fb0cc 36%,
+        #c084fccc 50%,
+        #ffcce0cc 64%,
+        transparent 80%
+      );
+      z-index: 0;
+      opacity: 0;
+      transition: opacity 0.35s;
+      animation: ringRotate 2.8s linear infinite paused;
+      pointer-events: none;
+    }
+    .p-card:hover .p-border-ring { opacity:1; animation-play-state:running; }
+    @keyframes ringRotate { to { --ba:360deg; } }
+ 
+    /* ── Kategori ribbon warna ── */
+    .p-ribbon.cat-favorit { background:linear-gradient(135deg,#ffd700,#ff8c00); }
+    .p-ribbon.cat-cantik  { background:linear-gradient(135deg,#ff6b9d,#ff8fb0); }
+    .p-ribbon.cat-bersama { background:linear-gradient(135deg,#c084fc,#818cf8); }
+    .p-ribbon.cat-lucu    { background:linear-gradient(135deg,#34d399,#10b981); }
+ 
+    /* ── Loved pulse ── */
+    .p-heart-btn.loved { animation: heartPulse 1.6s ease infinite; }
+    @keyframes heartPulse {
+      0%,100% { box-shadow:0 0 0 0 rgba(255,100,150,0.5); }
+      60%     { box-shadow:0 0 0 9px rgba(255,100,150,0); }
+    }
+ 
+    /* ── Micro sparkle burst saat hover ── */
+    .p-micro-star {
+      position:absolute; font-size:11px; pointer-events:none;
+      z-index:6; opacity:0;
+      animation:microPop 0.75s ease forwards;
+    }
+    @keyframes microPop {
+      0%   { opacity:0; transform:translate(0,0) scale(0.5); }
+      40%  { opacity:1; transform:translate(var(--sx),var(--sy)) scale(1.4); }
+      100% { opacity:0; transform:translate(var(--sx2),var(--sy2)) scale(0.2); }
+    }
+ 
+    /* ── Featured sparkle sudut ── */
+    .p-feat-spark {
+      position:absolute; font-size:0.8rem; z-index:4; pointer-events:none;
+      animation:sparkDrift 2.2s ease-in-out infinite alternate;
+    }
+    @keyframes sparkDrift {
+      0%   { opacity:0.3; transform:scale(0.85) rotate(-12deg); }
+      100% { opacity:1;   transform:scale(1.25) rotate(12deg); }
+    }
+ 
+    /* ── Count badge pill ── */
+    .gallery-count-badge {
+      background:linear-gradient(135deg,rgba(255,143,176,0.12),rgba(192,132,252,0.08));
+      border:1px solid rgba(255,143,176,0.28);
+      border-radius:30px; padding:5px 18px;
+      display:inline-block;
+    }
+ 
+    /* ── Featured frame ── */
+    .p-card.featured {
+      box-shadow:
+        0 4px 28px rgba(0,0,0,0.55),
+        inset 0 0 0 1px rgba(255,143,176,0.2),
+        0 0 0 2px rgba(255,143,176,0.08);
+    }
+    .p-card.featured .p-overlay {
+      background:linear-gradient(
+        to top, rgba(13,0,20,0.96) 0%,
+        rgba(13,0,20,0.55) 38%, transparent 100%
+      );
+    }
+ 
+    /* ── Hover image brightness ── */
+    .p-card.loaded:hover img {
+      filter:brightness(1.07) saturate(1.12);
+      transition:transform 0.6s cubic-bezier(.25,.46,.45,.94),filter 0.4s;
+    }
+ 
+    /* ── Filter bar active pill ── */
+    .gf-btn.active {
+      box-shadow:
+        0 0 22px rgba(255,143,176,0.45),
+        inset 0 0 12px rgba(255,143,176,0.12);
+    }
+ 
+    /* ── Responsive overrides untuk span baru ── */
+    @media (max-width:900px) {
+      .p-card.s-xwide { grid-column:span 6; grid-row:span 3; }
+      .p-card.s-pair  { grid-column:span 6; grid-row:span 3; }
+      .p-card.s-wide  { grid-column:span 6; grid-row:span 3; }
+    }
+    @media (max-width:600px) {
+      .p-card.s-xwide { grid-column:span 4; grid-row:span 3; }
+      .p-card.s-pair  { grid-column:span 4; grid-row:span 3; }
+      .p-card.s-wide  { grid-column:span 4; grid-row:span 3; }
+    }
+  `;
+  document.head.appendChild(s);
+})();
+ 
+// ==========================================================================
+// OVERRIDE makePCard — tambah border ring, ribbon warna, sparkle, micro star
+// ==========================================================================
+const _origMakePCard = makePCard;
+function makePCard(photo, idx) {
+  const card = _origMakePCard(photo, idx);
+ 
+  // Border ring animasi
+  const ring = document.createElement('div');
+  ring.className = 'p-border-ring';
+  card.insertBefore(ring, card.firstChild);
+ 
+  // Ribbon warna berdasar kategori
+  const ribbon = card.querySelector('.p-ribbon');
+  if (ribbon && photo.tags && photo.tags.length) {
+    const t = photo.tags.includes('favorit') ? 'favorit' :
+              photo.tags.includes('cantik')  ? 'cantik'  :
+              photo.tags.includes('bersama') ? 'bersama' : 'lucu';
+    ribbon.classList.add('cat-' + t);
+    ribbon.textContent =
+      t==='favorit' ? '★ Favorit' :
+      t==='cantik'  ? '🌸 Cantik' :
+      t==='bersama' ? '💕 Bersama' : '🤭 Lucu';
+  }
+ 
+  // Sparkle sudut di featured
+  if (photo.featured) {
+    [
+      { bottom:'14px', left:'14px',  delay:'0s'  },
+      { top:'44px',    right:'14px', delay:'0.7s' }
+    ].forEach((pos, i) => {
+      const sp = document.createElement('span');
+      sp.className = 'p-feat-spark';
+      sp.textContent = i === 0 ? '✦' : '✧';
+      Object.assign(sp.style, {
+        bottom: pos.bottom, left: pos.left,
+        top: pos.top,       right: pos.right,
+        animationDelay: pos.delay
+      });
+      card.appendChild(sp);
+    });
+  }
+ 
+  // Micro star burst saat hover
+  const syms = ['✦','✧','✨','★'];
+  card.addEventListener('mouseenter', () => {
+    for (let i = 0; i < 5; i++) {
+      setTimeout(() => {
+        const star = document.createElement('span');
+        star.className = 'p-micro-star';
+        star.textContent = syms[Math.floor(Math.random() * syms.length)];
+        star.style.left = (8 + Math.random() * 80) + '%';
+        star.style.top  = (8 + Math.random() * 75) + '%';
+        star.style.setProperty('--sx',  ((Math.random()-.5)*28)+'px');
+        star.style.setProperty('--sy',  (-12-Math.random()*18)+'px');
+        star.style.setProperty('--sx2', ((Math.random()-.5)*44)+'px');
+        star.style.setProperty('--sy2', (-24-Math.random()*28)+'px');
+        card.appendChild(star);
+        setTimeout(() => star.remove(), 800);
+      }, i * 70);
+    }
+  });
+ 
+  return card;
+}
+ 
+// ==========================================================================
+// REBUILD BENTO — satu kali, setelah semua data & fungsi siap
+// ==========================================================================
+buildBento();
+lbPhotos = photoData.map(p => ({ src: p.src, caption: p.caption }));
+updateCountBadge();
+ 
+// Pastikan heart states ter-restore setelah load cloud
+const _origLoadCloud = typeof loadFavoritesFromCloud === 'function'
+  ? loadFavoritesFromCloud : null;
+ 
+if (_origLoadCloud) {
+  // Sudah ada loadFavoritesFromCloud dari patch Supabase — jalankan ulang
+  _origLoadCloud().then(() => {
+    if (typeof startPolling === 'function') startPolling();
+  });
+} else {
+  // Fallback localStorage
+  try {
+    const raw = localStorage.getItem('marcia_loved_photos');
+    if (raw) JSON.parse(raw).forEach(idx => lovedPhotos.add(idx));
+  } catch(_) {}
+  if (typeof restoreHeartStates === 'function') restoreHeartStates();
+  updateLovesStrip();
+}
+ 
+// Observer untuk rebuild filter
+const _finalBentoEl = document.getElementById('photoBento');
+if (_finalBentoEl) {
+  new MutationObserver(() => {
+    if (typeof restoreHeartStates === 'function') restoreHeartStates();
+  }).observe(_finalBentoEl, { childList: true });
+}
 
   // ==========================================================================
   // LOVED PHOTOS SET (in-memory)
@@ -1802,7 +2053,6 @@ function startPolling() {
 }
  
 // ── JALANKAN ─────────────────────────────────────────────────
-buildBento();
 if (typeof enhanceCards === 'function') enhanceCards();
  
 loadFavoritesFromCloud().then(() => startPolling());
@@ -1815,6 +2065,434 @@ if (_bentoEl2) {
     if (typeof enhanceCards === 'function') enhanceCards();
   }).observe(_bentoEl2, { childList: true });
 }
+const FW = (() => {
+  const canvas = document.getElementById('globalFwCanvas');
+  const ctx    = canvas.getContext('2d');
+  let particles = [];
+  let trails    = [];
+  let rockets   = [];
+  let glitters  = [];
+  let running   = false;
+ 
+  // Warna-warna kembang api
+  const PALETTES = {
+    romantic: ['#ff8fb0','#ff6b9d','#ffcce0','#ff1493','#ff69b4','#ffb6c1'],
+    purple:   ['#c084fc','#a855f7','#e9c2ff','#9333ea','#d946ef','#f0abfc'],
+    gold:     ['#ffd700','#ffec6b','#ffc107','#ff8c00','#fff9c2','#ffa500'],
+    cyan:     ['#67e8f9','#22d3ee','#06b6d4','#a5f3fc','#0ea5e9','#38bdf8'],
+    white:    ['#ffffff','#f0f0ff','#fffde7','#e8f5e9','#fce4ec','#f3e5f5'],
+  };
+ 
+  const ALL_COLORS = Object.values(PALETTES).flat();
+ 
+  function randomFrom(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+  function lerp(a, b, t)   { return a + (b - a) * t; }
+ 
+  // ── PARTIKEL DASAR ──────────────────────────────────────────
+  class Particle {
+    constructor(x, y, opts = {}) {
+      this.x    = x; this.y = y;
+      this.vx   = opts.vx   ?? (Math.random() - 0.5) * 8;
+      this.vy   = opts.vy   ?? (Math.random() - 0.5) * 8;
+      this.life = opts.life ?? 1;
+      this.decay= opts.decay?? 0.012 + Math.random() * 0.01;
+      this.size = opts.size ?? 2 + Math.random() * 2.5;
+      this.color= opts.color?? randomFrom(ALL_COLORS);
+      this.shape= opts.shape?? 'circle'; // circle | star | heart | spark
+      this.grav = opts.grav ?? 0.06;
+      this.tail = [];
+    }
+    update() {
+      this.tail.push({ x: this.x, y: this.y, life: this.life });
+      if (this.tail.length > 6) this.tail.shift();
+      this.x  += this.vx;
+      this.y  += this.vy;
+      this.vy += this.grav;
+      this.vx *= 0.98;
+      this.life -= this.decay;
+    }
+    draw(ctx) {
+      if (this.life <= 0) return;
+      // Ekor
+      this.tail.forEach((t, i) => {
+        const a = (i / this.tail.length) * this.life * 0.4;
+        ctx.globalAlpha = a;
+        ctx.fillStyle   = this.color;
+        ctx.beginPath();
+        ctx.arc(t.x, t.y, this.size * 0.4, 0, Math.PI * 2);
+        ctx.fill();
+      });
+      ctx.globalAlpha = this.life;
+      ctx.fillStyle   = this.color;
+      if (this.shape === 'star') drawStar(ctx, this.x, this.y, this.size);
+      else if (this.shape === 'heart') drawHeart(ctx, this.x, this.y, this.size * 0.7);
+      else if (this.shape === 'spark') drawSpark(ctx, this.x, this.y, this.size);
+      else {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+    dead() { return this.life <= 0; }
+  }
+ 
+  // ── ROKET ────────────────────────────────────────────────────
+  class Rocket {
+    constructor(x, targetY, color) {
+      this.x       = x;
+      this.y       = canvas.height + 10;
+      this.targetY = targetY;
+      this.color   = color ?? randomFrom(ALL_COLORS);
+      this.speed   = 12 + Math.random() * 6;
+      this.trail   = [];
+      this.done    = false;
+      this.wobble  = (Math.random() - 0.5) * 1.2;
+    }
+    update() {
+      this.x += this.wobble * 0.3;
+      this.y -= this.speed;
+      this.trail.push({ x: this.x, y: this.y });
+      if (this.trail.length > 18) this.trail.shift();
+      if (this.y <= this.targetY) {
+        this.done = true;
+        explodeAt(this.x, this.y);
+      }
+    }
+    draw(ctx) {
+      if (this.done) return;
+      this.trail.forEach((t, i) => {
+        const a = (i / this.trail.length) * 0.9;
+        const s = (i / this.trail.length) * 3;
+        ctx.globalAlpha = a;
+        ctx.fillStyle   = this.color;
+        ctx.beginPath();
+        ctx.arc(t.x, t.y, s, 0, Math.PI * 2);
+        ctx.fill();
+      });
+      // kepala roket
+      ctx.globalAlpha = 1;
+      ctx.fillStyle   = '#fff';
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, 3, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    dead() { return this.done; }
+  }
+ 
+  // ── GLITTER HUJAN ────────────────────────────────────────────
+  class Glitter {
+    constructor() {
+      this.reset();
+    }
+    reset() {
+      this.x     = Math.random() * canvas.width;
+      this.y     = -20;
+      this.vx    = (Math.random() - 0.5) * 2;
+      this.vy    = 1 + Math.random() * 3;
+      this.size  = 3 + Math.random() * 5;
+      this.color = randomFrom(['#ffd700','#ff8fb0','#c084fc','#fff','#ffcce0','#67e8f9']);
+      this.rot   = Math.random() * Math.PI * 2;
+      this.rotV  = (Math.random() - 0.5) * 0.2;
+      this.life  = 1;
+      this.shape = Math.random() > 0.5 ? 'rect' : 'circle';
+    }
+    update() {
+      this.x   += this.vx;
+      this.y   += this.vy;
+      this.rot += this.rotV;
+      this.vy  += 0.02;
+      this.life -= 0.004;
+      if (this.y > canvas.height + 20 || this.life <= 0) this.reset();
+    }
+    draw(ctx) {
+      ctx.save();
+      ctx.globalAlpha = this.life * 0.85;
+      ctx.translate(this.x, this.y);
+      ctx.rotate(this.rot);
+      ctx.fillStyle = this.color;
+      if (this.shape === 'rect') {
+        ctx.fillRect(-this.size / 2, -this.size / 4, this.size, this.size / 2);
+      } else {
+        ctx.beginPath();
+        ctx.arc(0, 0, this.size / 2, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.restore();
+    }
+  }
+ 
+  // ── SHAPE HELPERS ────────────────────────────────────────────
+  function drawStar(ctx, x, y, r) {
+    ctx.save(); ctx.translate(x, y);
+    ctx.beginPath();
+    for (let i = 0; i < 5; i++) {
+      const outer = (i * Math.PI * 2) / 5 - Math.PI / 2;
+      const inner = outer + Math.PI / 5;
+      if (i === 0) ctx.moveTo(Math.cos(outer) * r, Math.sin(outer) * r);
+      else ctx.lineTo(Math.cos(outer) * r, Math.sin(outer) * r);
+      ctx.lineTo(Math.cos(inner) * r * 0.4, Math.sin(inner) * r * 0.4);
+    }
+    ctx.closePath(); ctx.fill(); ctx.restore();
+  }
+ 
+  function drawHeart(ctx, x, y, r) {
+    ctx.save(); ctx.translate(x, y); ctx.scale(r / 10, r / 10);
+    ctx.beginPath();
+    ctx.moveTo(0, -3);
+    ctx.bezierCurveTo(5, -10, 14, -3, 0, 8);
+    ctx.bezierCurveTo(-14, -3, -5, -10, 0, -3);
+    ctx.closePath(); ctx.fill(); ctx.restore();
+  }
+ 
+  function drawSpark(ctx, x, y, r) {
+    ctx.save(); ctx.translate(x, y);
+    for (let i = 0; i < 4; i++) {
+      const a = (i / 4) * Math.PI * 2;
+      ctx.beginPath();
+      ctx.moveTo(0, 0);
+      ctx.lineTo(Math.cos(a) * r * 2.5, Math.sin(a) * r * 2.5);
+      ctx.lineWidth = r * 0.4;
+      ctx.strokeStyle = ctx.fillStyle;
+      ctx.stroke();
+    }
+    ctx.restore();
+  }
+ 
+  // ── LEDAKAN ──────────────────────────────────────────────────
+  function explodeAt(x, y, opts = {}) {
+    const type   = opts.type  ?? randomFrom(['circle','ring','chrysanthemum','heart','star','willow','crossette']);
+    const count  = opts.count ?? 80 + Math.floor(Math.random() * 60);
+    const pal    = opts.palette ?? randomFrom(Object.values(PALETTES));
+    const color  = opts.color  ?? randomFrom(pal);
+    const color2 = randomFrom(pal);
+ 
+    // Flash putih singkat
+    particles.push(new Particle(x, y, {
+      vx:0,vy:0,size:30+Math.random()*20,life:0.6,decay:0.09,
+      color:'rgba(255,255,255,0.9)',grav:0,shape:'circle'
+    }));
+ 
+    for (let i = 0; i < count; i++) {
+      const angle = (i / count) * Math.PI * 2;
+      const speed = 2 + Math.random() * 6;
+      let vx = Math.cos(angle) * speed;
+      let vy = Math.sin(angle) * speed;
+ 
+      if (type === 'ring') {
+        const s = 4 + Math.random() * 2;
+        vx = Math.cos(angle) * s;
+        vy = Math.sin(angle) * s;
+      } else if (type === 'chrysanthemum') {
+        const s = (3 + Math.random() * 5) * (1 + 0.3 * Math.sin(angle * 6));
+        vx = Math.cos(angle) * s;
+        vy = Math.sin(angle) * s;
+      } else if (type === 'willow') {
+        const s = 4 + Math.random() * 4;
+        vx = Math.cos(angle) * s * (Math.random() > 0.5 ? 1 : 0.3);
+        vy = Math.sin(angle) * s;
+      } else if (type === 'crossette') {
+        if (i % 8 === 0) {
+          for (let j = 0; j < 4; j++) {
+            const a2 = angle + (j / 4) * Math.PI * 2;
+            particles.push(new Particle(x, y, {
+              vx: Math.cos(a2) * 3, vy: Math.sin(a2) * 3,
+              color: color2, size: 1.5, decay: 0.018, grav: 0.05,
+              shape: 'spark'
+            }));
+          }
+          continue;
+        }
+      }
+ 
+      const isHeart  = type === 'heart';
+      const isStar   = type === 'star';
+      const shape    = isHeart ? 'heart' : isStar ? 'star' : Math.random() > 0.7 ? 'spark' : 'circle';
+      const isSecond = Math.random() > 0.6;
+ 
+      particles.push(new Particle(x, y, {
+        vx, vy,
+        color:  isSecond ? color2 : color,
+        size:   1.5 + Math.random() * 3,
+        decay:  0.008 + Math.random() * 0.012,
+        grav:   type === 'willow' ? 0.12 : 0.05 + Math.random() * 0.04,
+        shape,
+      }));
+    }
+ 
+    // Percik kecil ekstra
+    for (let i = 0; i < 30; i++) {
+      const angle = Math.random() * Math.PI * 2;
+      const speed = 0.5 + Math.random() * 3;
+      particles.push(new Particle(x, y, {
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed,
+        color: '#ffffff',
+        size: 0.8 + Math.random(),
+        decay: 0.02 + Math.random() * 0.02,
+        grav: 0.04,
+        shape: 'circle',
+      }));
+    }
+  }
+ 
+  // ── LAUNCH ROKET ─────────────────────────────────────────────
+  function launchRocket(x, targetY, color) {
+    rockets.push(new Rocket(x, targetY, color));
+  }
+ 
+  // ── SEQUENCE SHOW ────────────────────────────────────────────
+  let showTimeout = [];
+  function clearShow() { showTimeout.forEach(t => clearTimeout(t)); showTimeout = []; }
+ 
+  function launchShow(intensity = 'normal') {
+    clearShow();
+    const W = canvas.width, H = canvas.height;
+ 
+    if (intensity === 'mega') {
+      // 30 roket bertahap
+      for (let i = 0; i < 30; i++) {
+        const t = showTimeout[showTimeout.length] = setTimeout(() => {
+          const x  = W * 0.1 + Math.random() * W * 0.8;
+          const y  = H * 0.05 + Math.random() * H * 0.45;
+          const pal = randomFrom(Object.values(PALETTES));
+          launchRocket(x, y, randomFrom(pal));
+        }, i * 180);
+        showTimeout.push(t);
+      }
+      // Hujan glitter
+      for (let i = 0; i < 60; i++) glitters.push(new Glitter());
+ 
+      // Ledakan besar di tengah
+      showTimeout.push(setTimeout(() => {
+        explodeAt(W/2, H*0.25, { type:'chrysanthemum', count:160, palette:PALETTES.romantic });
+        explodeAt(W*0.2, H*0.3, { type:'willow', count:120, palette:PALETTES.gold });
+        explodeAt(W*0.8, H*0.3, { type:'ring', count:100, palette:PALETTES.purple });
+      }, 2200));
+ 
+      // Finale: jantung besar
+      showTimeout.push(setTimeout(() => {
+        explodeAt(W/2, H*0.2, { type:'heart', count:200, palette:PALETTES.romantic });
+        setTimeout(() => explodeAt(W/2, H*0.3, { type:'star', count:180, palette:PALETTES.gold }), 400);
+        setTimeout(() => explodeAt(W/2, H*0.25, { type:'chrysanthemum', count:200, palette:PALETTES.purple }), 800);
+      }, 5500));
+ 
+    } else {
+      // Normal: 10 roket
+      for (let i = 0; i < 10; i++) {
+        showTimeout.push(setTimeout(() => {
+          const x = W * 0.15 + Math.random() * W * 0.7;
+          const y = H * 0.1  + Math.random() * H * 0.4;
+          launchRocket(x, y, randomFrom(ALL_COLORS));
+        }, i * 220));
+      }
+      for (let i = 0; i < 20; i++) glitters.push(new Glitter());
+    }
+  }
+ 
+  // ── LOOP ANIMASI ─────────────────────────────────────────────
+  function loop() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+ 
+    glitters.forEach(g => { g.update(); g.draw(ctx); });
+ 
+    rockets = rockets.filter(r => {
+      r.update(); r.draw(ctx); return !r.dead();
+    });
+ 
+    particles = particles.filter(p => {
+      p.update(); p.draw(ctx); return !p.dead();
+    });
+ 
+    ctx.globalAlpha = 1;
+    requestAnimationFrame(loop);
+  }
+  loop();
+ 
+  return { explodeAt, launchRocket, launchShow, Glitter };
+})();
+ 
+// ── 2. OVERRIDE TOMBOL KEMBANG API ───────────────────────────
+const fwBtn = document.getElementById('fwBtn');
+if (fwBtn) {
+  // Hapus listener lama
+  const newBtn = fwBtn.cloneNode(true);
+  fwBtn.parentNode.replaceChild(newBtn, fwBtn);
+ 
+  let fwPhase = 0;
+  const phases = [
+    { label:'🎆 Lagi... BOOM!',       fn: () => FW.launchShow('normal') },
+    { label:'💥 MEGA SHOW!!',          fn: () => FW.launchShow('mega') },
+    { label:'🌹 Sekali lagi untuk Marcia!', fn: () => FW.launchShow('normal') },
+  ];
+ 
+  newBtn.addEventListener('click', () => {
+    FW.launchShow('mega');
+    newBtn.textContent = phases[fwPhase % phases.length].label;
+    fwPhase++;
+    newBtn.style.transform = 'scale(0.95)';
+    setTimeout(() => newBtn.style.transform = '', 150);
+  });
+}
+ 
+// ── 3. UPGRADE SCROLL TRIGGER di final section ───────────────
+const finalSec2 = document.getElementById('finalSection');
+if (finalSec2) {
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        FW.launchShow('normal');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  obs.observe(finalSec2);
+}
+ 
+// ── 4. UPGRADE CSS TOMBOL ─────────────────────────────────────
+(function() {
+  const s = document.createElement('style');
+  s.textContent = `
+    #fwBtn {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, #ff1493, #ff6b9d, #c084fc, #ff8fb0) !important;
+      background-size: 300% 300% !important;
+      animation: btnGradShift 3s ease infinite, btnGlow 2s ease-in-out infinite alternate !important;
+      border: none !important;
+      font-size: 1.1rem !important;
+      padding: 16px 44px !important;
+      letter-spacing: 2px !important;
+      transition: transform 0.15s, box-shadow 0.3s !important;
+    }
+    @keyframes btnGradShift {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    @keyframes btnGlow {
+      0%   { box-shadow: 0 6px 30px rgba(255,20,147,0.5), 0 0 0 0 rgba(255,107,157,0.4); }
+      100% { box-shadow: 0 6px 50px rgba(192,132,252,0.7), 0 0 30px rgba(255,20,147,0.3); }
+    }
+    #fwBtn::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+      transform: translateX(-100%);
+      animation: btnSheen 2.5s ease infinite;
+    }
+    @keyframes btnSheen {
+      0%   { transform: translateX(-100%); }
+      50%,100% { transform: translateX(200%); }
+    }
+    #fwBtn:hover {
+      transform: scale(1.08) !important;
+      box-shadow: 0 8px 60px rgba(255,20,147,0.7), 0 0 40px rgba(192,132,252,0.5) !important;
+    }
+    #fwBtn:active { transform: scale(0.96) !important; }
+  `;
+  document.head.appendChild(s);
+})();
  
   </script>
 </body>
